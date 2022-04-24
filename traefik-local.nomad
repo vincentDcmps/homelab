@@ -15,6 +15,9 @@ job "traefik-local" {
         static = 9080
       }
     }
+   vault{
+      policies=["access-tables"]
+    }
 
      task "server" {
       driver = "docker"
@@ -43,8 +46,8 @@ job "traefik-local" {
           "admin"
         ]
         volumes =[
-          "local/traefik.toml:/etc/traefik/traefik.toml"
-          #"/mnt/diskstation/nomad/traefik/acme.json:acme.json"
+          "local/traefik.toml:/etc/traefik/traefik.toml",
+          "/mnt/diskstation/nomad/traefik/acme-local.json:/acme.json"
         ]
 
       }
@@ -52,6 +55,14 @@ job "traefik-local" {
       #}
     env {
     }
+    template{
+      data=<<EOH
+        GANDIV5_API_KEY = "{{with secret "secrets/data/gandi"}}{{.Data.data.API_KEY}}{{end}}"
+        EOH
+      destination= "secrets/gandi.env"
+      env = true
+    }
+
     template{
         data= <<EOH
         [entryPoints]
@@ -67,12 +78,20 @@ job "traefik-local" {
         [providers.consulCatalog]
           exposedByDefault = false
           [providers.consulCatalog.endpoint]
-            address = "127.0.0.1:8500"
+            address = "172.17.0.1:8500"
         [log]
         [api]
           dashboard = true
           insecure = true
         [ping]
+        [certificatesResolvers.myresolver.acme]
+        email = "vincent@ducamps.win"
+        storage = "acme.json"
+        [certificatesResolvers.myresolver.acme.dnsChallenge]
+        provider = "gandiv5"
+        delayBeforeCheck = 0
+        resolvers = ["173.246.100.133:53"]
+
 
         EOH
         destination = "local/traefik.toml"
