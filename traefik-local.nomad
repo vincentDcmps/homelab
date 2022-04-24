@@ -19,14 +19,14 @@ job "traefik-local" {
      task "server" {
       driver = "docker"
       service {
-        name = "traefik"
+        name = "traefik-local"
 
         tags = ["traefik"]
         port = "https"
       }
 
       service {
-        name = "traefik-admin"
+        name = "traefi-local-admin"
         port = "admin"
         tags = [
           "traefik.enable=true",
