@@ -11,7 +11,10 @@ job "traefik-local" {
       port "https" {
         static  = 443
       }
-      port "admin" {
+      port "ssh" {
+        static = 2222
+      }
+     port "admin" {
         static = 9080
       }
     }
@@ -43,7 +46,8 @@ job "traefik-local" {
         ports = [
           "http",
           "https",
-          "admin"
+          "admin",
+          "ssh"
         ]
         volumes =[
           "local/traefik.toml:/etc/traefik/traefik.toml",
@@ -72,6 +76,8 @@ job "traefik-local" {
             address = ":443"
           [entryPoints.traefik]
             address = ":9080"
+          [entrypoints.ssh]
+            address = ":2222"
         [http.middlewares]
           [http.middlewares.https-redirect.redirectscheme]
             scheme = "https"
