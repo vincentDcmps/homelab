@@ -1,6 +1,10 @@
 job "drone" {
   datacenters = ["homelab"]
   type = "service"
+  constraint {
+    attribute = "${attr.cpu.arch}"
+    value = "amd64"
+  }
 
   group "droneCI" {
     network {
