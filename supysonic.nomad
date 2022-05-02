@@ -36,7 +36,7 @@ job "supysonic" {
         ]
       }
       config {
-        image = "ducampsv/supysonic:latest"
+        image = "ogarcia/supysonic:full-sql"
         ports = ["http"]
         volumes = [
           "/mnt/diskstation/music:/mnt/diskstation/music"
