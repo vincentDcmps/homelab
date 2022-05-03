@@ -43,7 +43,7 @@ job "nextcloud" {
         volumes = [
           "/mnt/diskstation/nextcloud/data:/var/www/html/data",
           "/mnt/diskstation/nextcloud/config:/var/www/html/config",
-          "local/default:/config/nginx/site-confs/default"
+          "/mnt/diskstation/nextcloud/root:/var/www/html/"
         ]
 
       }
@@ -53,7 +53,7 @@ job "nextcloud" {
       template {
         data= <<EOH
           {{ with secret "secrets/data/nextcloud"}}
-          POSTGRES_DB="nextcloud2"
+          POSTGRES_DB="nextcloud"
           POSTGRES_USER="nextcloud"
           POSTGRES_PASSWORD="{{ .Data.data.POSTGRES_PASSWORD }}"
           NEXTCLOUD_ADMIN_USER="vincent"
