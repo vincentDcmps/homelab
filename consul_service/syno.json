@@ -1,0 +1,13 @@
+{
+  "Service": {
+    "Name": "syno",
+    "address": "192.168.1.10",
+    "port": 5000,
+    "tags": [
+      "traefik.enable=true",
+      "traefik.http.routers.syno.rule=Host(`syno.ducamps.win`)",
+      "traefik.http.routers.syno.tls.domains[0].sans=syno.ducamps.win",
+      "traefik.http.routers.syno.tls.certresolver=myresolver"
+    ]
+  }
+}
