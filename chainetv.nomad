@@ -5,10 +5,6 @@ job "chainetv" {
   meta {
     forcedeploy = "0"
   }
-  constraint {
-    attribute = "${attr.cpu.arch}"
-    value = "amd64"
-  }
   group "chainetv"{
     network {
       mode = "host"
@@ -34,7 +30,7 @@ job "chainetv" {
         ]
       }
       config {
-        image = "ducampsv/chainetv:base"
+        image = "ducampsv/chainetv:latest"
         ports = ["http"]
       }
     }
