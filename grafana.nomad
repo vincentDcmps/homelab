@@ -1,0 +1,38 @@
+job "grafana" {
+  datacenters = ["homelab"]
+  type        = "service"
+  meta {
+    forcedeploiement = 1
+  }
+  group "grafana" {
+    network {
+      port "http" {
+        to     = 3000
+      }
+    }
+
+    service {
+      name = "grafana"
+      port = "http"
+      tags= [
+        "traefik.enable=true",
+        "traefik.http.routers.grafana.entryPoints=websecure",
+        "traefik.http.routers.grafana.rule=Host(`grafana.ducamps.win`)",
+        "traefik.http.routers.grafana.tls.domains[0].sans=grafana.ducamps.win",
+        "traefik.http.routers.grafana.tls.certresolver=myresolver",
+      ]
+    }
+
+    task "dashboard" {
+        driver = "docker"
+        config {
+            image = "grafana/grafana"
+            ports = ["http"]
+            volumes = [
+              "/mnt/diskstation/nomad/grafana/config:/etc/grafana",
+              "/mnt/diskstation/nomad/grafana/lib:/var/lib/grafana"
+            ]
+        }
+    }
+  }
+}
