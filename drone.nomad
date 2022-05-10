@@ -1,10 +1,10 @@
 job "drone" {
   datacenters = ["homelab"]
   type = "service"
-  constraint {
-    attribute = "${attr.cpu.arch}"
-    value = "amd64"
+  vault {
+    policies = ["access-tables"]
   }
+
 
   group "droneCI" {
     network {
@@ -13,8 +13,9 @@ job "drone" {
         to = 80
       }
     }
-    vault {
-      policies = ["access-tables"]
+    constraint {
+      attribute = "${attr.cpu.arch}"
+      value = "amd64"
     }
     task "drone-server" {
       driver = "docker"
@@ -61,6 +62,36 @@ job "drone" {
     }
 
     task "drone-runner"{
+      driver = "docker"
+      config {
+        image = "drone/drone-runner-docker:latest"
+        volumes =[
+          "/var/run/docker.sock:/var/run/docker.sock",
+        ]
+      }
+      env {
+
+      }
+      template {
+        data= <<EOH
+          {{ with secret "secrets/data/droneCI"}}
+          DRONE_RPC_HOST="drone.ducamps.win"
+          DRONE_RPC_PROTO="https"
+          DRONE_RPC_SECRET= "{{ .Data.data.DRONE_RPC_SECRET}}"
+          {{ end }}
+          EOH
+        destination = "local/drone-runner.env"
+        env = true
+      }
+    }
+
+  }
+  group "Drone-ARM-Runner" {
+    constraint {
+      attribute = "${attr.cpu.arch}"
+      value = "arm"
+    }
+    task "drone-ARM-runner"{
       driver = "docker"
       config {
         image = "drone/drone-runner-docker:latest"
