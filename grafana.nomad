@@ -24,15 +24,18 @@ job "grafana" {
     }
 
     task "dashboard" {
-        driver = "docker"
-        config {
-            image = "grafana/grafana"
-            ports = ["http"]
-            volumes = [
-              "/mnt/diskstation/nomad/grafana/config:/etc/grafana",
-              "/mnt/diskstation/nomad/grafana/lib:/var/lib/grafana"
-            ]
-        }
+      driver = "docker"
+      config {
+        image = "grafana/grafana"
+        ports = ["http"]
+        volumes = [
+          "/mnt/diskstation/nomad/grafana/config:/etc/grafana",
+          "/mnt/diskstation/nomad/grafana/lib:/var/lib/grafana"
+        ]
+      }
+      resources {
+        memory = 150
+      }
     }
   }
 }

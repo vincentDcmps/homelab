@@ -38,7 +38,7 @@ job "homeassistant" {
             "traefik.enable=true",
             "traefik.http.middlewares.httpsRedirect.redirectscheme.scheme=https",
             "traefik.http.routers.${NOMAD_TASK_NAME}_insecure.middlewares=httpsRedirect",
-            "traefik.http.routers.${NOMAD_TASK_NAME}_insecure.rule=Host(`${NOMAD_TASK_NAME}.ducamps.win`)"
+            "traefik.http.routers.${NOMAD_TASK_NAME}_insecure.rule=Host(`${NOMAD_TASK_NAME}.ducamps.win`)",
             "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.win`)",
             "traefik.http.routers.${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_TASK_NAME}.ducamps.win",
             "traefik.http.routers.${NOMAD_TASK_NAME}.tls.certresolver=myresolver",

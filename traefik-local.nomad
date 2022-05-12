@@ -60,17 +60,17 @@ job "traefik-local" {
       }
       # vault{
       #}
-    env {
-    }
-    template{
-      data=<<EOH
-        GANDIV5_API_KEY = "{{with secret "secrets/data/gandi"}}{{.Data.data.API_KEY}}{{end}}"
-        EOH
-      destination= "secrets/gandi.env"
-      env = true
-    }
+      env {
+      }
+      template{
+        data=<<EOH
+          GANDIV5_API_KEY = "{{with secret "secrets/data/gandi"}}{{.Data.data.API_KEY}}{{end}}"
+          EOH
+        destination= "secrets/gandi.env"
+        env = true
+      }
 
-    template{
+      template{
         data= <<EOH
         [entryPoints]
           [entryPoints.web]
