@@ -67,6 +67,7 @@ job "git" {
         GITEA__repository__ROOT = "/repo"
         GITEA__server__APP_DATA_PATH = "/data"
         GITEA__server__LFS_CONTENT_PATH = "/repo/LFS"
+        GITEA__webhook__ALLOWED_HOST_LIST = "drone.ducamps.win"
       }
       template {
         data= <<EOH
