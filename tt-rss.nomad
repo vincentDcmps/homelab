@@ -26,14 +26,14 @@ job "tt-rss" {
       port = "http"
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`rss.ducamps.win`)",
-        "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=rss.ducamps.win",
+        "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`www.ducamps.win`)&&PathPrefix(`/tt-rss`)",
+        "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=www.ducamps.win",
         "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
       ]
     }
 
 
-    task "app" {
+    task "ttrss-app" {
       driver = "docker"
       config {
         image = "cthulhoo/ttrss-fpm-pgsql-static"
@@ -49,7 +49,7 @@ job "tt-rss" {
         TTRSS_DB_HOST = "db1.ducamps.win"
         TTRSS_DB_NAME = "ttrss"
         TTRSS_DB_USER = "ttrss"
-        TTRSS_SELF_URL_PATH = "https://rss.ducamps.win/tt-rss"
+        TTRSS_SELF_URL_PATH = "https://www.ducamps.win/tt-rss"
       }
       template {
         data= <<EOH
