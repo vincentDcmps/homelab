@@ -54,6 +54,9 @@ job "sample" {
         destination = "secrets/sample.env"
         env = true
       }
+      resources {
+        memory = 300
+      }
     }
 
   }
