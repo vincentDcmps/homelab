@@ -59,6 +59,9 @@ job "drone" {
         destination = "local/drone.env"
         env = true
       }
+      resources {
+        memory = 100
+      }
     }
 
     task "drone-runner"{
@@ -82,6 +85,9 @@ job "drone" {
           EOH
         destination = "local/drone-runner.env"
         env = true
+      }
+      resources {
+        memory = 50
       }
     }
 
@@ -112,6 +118,9 @@ job "drone" {
           EOH
         destination = "local/drone-runner.env"
         env = true
+      }
+      resources {
+        memory = 50
       }
     }
 

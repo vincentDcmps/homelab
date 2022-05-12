@@ -83,6 +83,9 @@ EOH
           timeout  = "2s"
         }
       }
+      resources {
+        memory = 200
+      }
     }
   }
 }

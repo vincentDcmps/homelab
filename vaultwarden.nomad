@@ -17,7 +17,7 @@ job "vaultwarden" {
       policies= ["access-tables"]
 
     }
-    task "server" {
+    task "vaultwarden" {
       driver = "docker"
       service {
         name = "vaultwarden"
@@ -63,6 +63,9 @@ job "vaultwarden" {
           EOH
         destination = "secrets/vaultwarden.env"
         env = true
+      }
+      resources {
+        memory = 150
       }
     }
 

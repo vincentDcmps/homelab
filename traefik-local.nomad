@@ -25,7 +25,7 @@ job "traefik-local" {
       policies=["access-tables"]
     }
 
-     task "server" {
+     task "traefik-local" {
       driver = "docker"
       service {
         name = "traefik-local"
@@ -108,7 +108,10 @@ job "traefik-local" {
         change_mode = "noop"
         left_delimiter = "{{{"
         right_delimiter = "}}}"
-    }
+      }
+      resources {
+        memory = 200
+      }
     }
   }
 }

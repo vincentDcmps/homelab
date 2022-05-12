@@ -61,9 +61,12 @@ job "tt-rss" {
         env = true
 
       }
+      resources {
+        memory = 150
+      }
     }
 
-   task "updater" {
+   task "ttrss-updater" {
       driver = "docker"
       config {
         image = "cthulhoo/ttrss-fpm-pgsql-static"
@@ -90,9 +93,12 @@ job "tt-rss" {
         env = true
 
       }
+      resources {
+        memory = 150
+      }
     }
 
-    task "frontend" {
+    task "ttrss-frontend" {
       driver = "docker"
       config {
         image= "nginx:alpine"
@@ -171,6 +177,9 @@ job "tt-rss" {
         destination = "etc/nginx/nginx.conf"
       }
 
+      resources {
+        memory = 50
+      }
     }
 
   }

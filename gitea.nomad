@@ -80,6 +80,9 @@ job "git" {
         destination = "secrets/gitea.env"
         env = true
       }
+      resources {
+        memory = 300
+      }
     }
   }
 }

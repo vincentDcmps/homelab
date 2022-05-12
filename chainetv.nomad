@@ -33,6 +33,9 @@ job "chainetv" {
         image = "ducampsv/chainetv:latest"
         ports = ["http"]
       }
+      resources {
+        memory = 200
+      }
     }
   }
 

@@ -37,7 +37,7 @@ job "supysonic" {
       ]
     }
 
-    task "frontend" {
+    task "supysonic-frontend" {
       driver = "docker"
       config {
         image= "nginx:alpine"
@@ -76,9 +76,11 @@ http {
         destination = "etc/nginx/nginx.conf"
 
       }
-
+    resources {
+      memory = 75
     }
-    task "server" {
+    }
+    task "supysonic-server" {
       driver = "docker"
       config {
         image = "ogarcia/supysonic:full-sql"
@@ -104,6 +106,9 @@ http {
           EOH
         destination = "secrets/supysonic.env"
         env = true
+      }
+      resources {
+        memory = 256
       }
     }
 

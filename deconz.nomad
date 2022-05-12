@@ -20,7 +20,7 @@ job "deconz" {
       port "ws" {}
     }
 
-    task "server" {
+    task "deconz" {
       driver = "docker"
       service {
         name = "deconz"
@@ -43,6 +43,9 @@ job "deconz" {
          TZ = "Europe/Paris"
          DECONZ_WEB_PORT = "${NOMAD_PORT_http}"
          DECONZ_WS_PORT = "${NOMAD_PORT_ws}"
+      }
+      resources {
+        memory = 75
       }
 
     }

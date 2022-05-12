@@ -13,7 +13,7 @@ job "pacoloco" {
         to = 9129
       }
     }
-    task "server" {
+    task "pacoloco-server" {
       driver = "docker"
       service {
         name = "pacoloco"
@@ -55,6 +55,9 @@ prefetch:
   ttl_unupdated_in_days: 300
     EOH
   destination = "local/pacoloco.yaml"
+      }
+      resources {
+        memory = 200
       }
     }
 

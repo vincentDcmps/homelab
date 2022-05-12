@@ -16,7 +16,7 @@ job "radicale" {
       policies= ["acces-policy"]
 
     }
-    task "server" {
+    task "radicale" {
       driver = "docker"
       service {
         name = "radicale"
@@ -61,6 +61,9 @@ job "radicale" {
           filesystem_folder = /data/collections
           EOH
         destination = "local/config"
+      }
+      resources {
+        memory = 100
       }
     }
 

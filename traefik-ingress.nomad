@@ -21,7 +21,7 @@ job "traefik-ingress" {
     vault{
       policies=["access-tables"]
     }
-     task "server" {
+     task "traefik-ingress" {
       driver = "docker"
       service {
         name = "traefik"
@@ -96,6 +96,9 @@ job "traefik-ingress" {
         change_mode = "noop"
         left_delimiter = "{{{"
         right_delimiter = "}}}"
+    }
+    resources {
+      memory = 200
     }
     }
   }

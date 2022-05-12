@@ -61,6 +61,9 @@ job "pihole" {
         destination="local/dnsmasq.d/02-localresolver.conf"
 
       }
+      resources {
+        memory = 200
+      }
     }
   }
 }
