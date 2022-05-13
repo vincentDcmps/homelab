@@ -50,6 +50,12 @@ scrape_configs:
     metrics_path: /v1/metrics
     params:
       format: ['prometheus']
+  - job_name: 'traefik-local'
+    consul_sd_configs:
+    - server: 'consul.service.consul:8500'
+      services: ['traefik-local-admin','traefik-admin']
+
+
 EOH
       }
 

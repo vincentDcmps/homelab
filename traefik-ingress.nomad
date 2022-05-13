@@ -90,6 +90,10 @@ job "traefik-ingress" {
         storage = "acme.json"
         [certificatesResolvers.myresolver.acme.httpChallenge]
         entryPoint= "web"
+        [metrics]
+          [metrics.prometheus]
+
+
         EOH
         destination = "local/traefik.toml"
         env         = false

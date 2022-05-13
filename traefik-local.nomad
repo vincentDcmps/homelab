@@ -35,7 +35,7 @@ job "traefik-local" {
       }
 
       service {
-        name = "traefi-local-admin"
+        name = "traefik-local-admin"
         port = "admin"
         tags = [
           "traefik.enable=true",
@@ -100,6 +100,9 @@ job "traefik-local" {
         provider = "gandiv5"
         delayBeforeCheck = 0
         resolvers = ["173.246.100.133:53"]
+        [metrics]
+          [metrics.prometheus]
+
 
 
         EOH
