@@ -23,8 +23,8 @@ job "radicale" {
         port = "http"
         tags = [
             "traefik.enable=true",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`rss.ducamps.win`)&&PathPrefix(`/radicale`)",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=rss.ducamps.win",
+            "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`www.ducamps.win`)&&PathPrefix(`/radicale`)",
+            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=www.ducamps.win",
             "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
             "traefik.http.routers.${NOMAD_JOB_NAME}.middlewares=radicaleHeader,radicalestrip",
             "traefik.http.middlewares.radicaleHeader.headers.customrequestheaders.X-Script-Name=/radicale",
