@@ -82,7 +82,7 @@ job "git" {
         env = true
       }
       resources {
-        memory = 300
+        memory = 400
       }
     }
   }
