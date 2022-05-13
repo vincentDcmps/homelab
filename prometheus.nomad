@@ -32,6 +32,13 @@ job "prometheus" {
 global:
   scrape_interval:     10s
   evaluation_interval: 10s
+alerting:
+  alertmanagers:
+  - consul_sd_configs:
+    - server: 'consul.service.consul:8500'
+      services: ['alertmanager']
+rule_files:
+  - "nomad-alert-rules.yml"
 
 scrape_configs:
 
@@ -54,8 +61,47 @@ scrape_configs:
     consul_sd_configs:
     - server: 'consul.service.consul:8500'
       services: ['traefik-local-admin','traefik-admin']
+  - job_name: 'alertmanager'
+    consul_sd_configs:
+    - server: 'consul.service.consul:8500'
+      services: ['alertmanager']
 
 
+EOH
+      }
+      template {
+        destination = "local/nomad-alert-rules.yml"
+        right_delimiter = "]]"
+        left_delimiter = "[["
+        data = <<EOH
+---
+groups:
+- name: nomad_alerts
+  rules:
+  - alert: NomadJobFailed
+    expr: nomad_nomad_job_summary_failed > 0
+    for: 0m
+    labels:
+      severity: warning
+    annotations:
+      summary: Nomad job failed (instance {{ $labels.instance }})
+      description: "Nomad job failed\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  - alert: NomadBlockedEvaluation
+    expr: nomad_nomad_blocked_evals_total_blocked > 0
+    for: 0m
+    labels:
+      severity: warning
+    annotations:
+      summary: Nomad blocked evaluation (instance {{ $labels.instance }})
+      description: "Nomad blocked evaluation\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  - alert: NomadJobLost
+    expr: nomad_nomad_job_summary_lost > 0
+    for: 0m
+    labels:
+      severity: warning
+    annotations:
+      summary: Nomad job lost (instance {{ $labels.instance }})
+      description: "Nomad job lost\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 EOH
       }
 
@@ -69,6 +115,7 @@ EOH
           "--storage.tsdb.retention.time=15d",
         ]
         volumes = [
+          "local/nomad-alert-rules.yml:/etc/prometheus/nomad-alert-rules.yml",
           "local/prometheus.yml:/etc/prometheus/prometheus.yml",
           "/mnt/diskstation/nomad/prometheus:/prometheus"
         ]
