@@ -59,6 +59,12 @@ scrape_configs:
   consul_sd_configs:
     - server: 'consul.service.consul:8500'
   relabel_configs:
+    - source_labels: [__meta_consul_service_metadata_external_source]
+      regex: nomad
+      action: keep
+    - source_labels: [__meta_consul_service]
+      regex: nomad|nomad-client
+      action: drop
     - source_labels: [__meta_consul_node]
       target_label: __host__
     - source_labels: [__meta_consul_service_metadata_external_source]
@@ -69,10 +75,6 @@ scrape_configs:
       regex: '_nomad-task-([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})-.*'
       target_label:  'task_id'
       replacement: '$1'
-    - source_labels: [__meta_consul_tags]
-      regex: ',(app|monitoring),'
-      target_label:  'group'
-      replacement:   '$1'
     - source_labels: [__meta_consul_service]
       target_label: job
     - source_labels: ['__meta_consul_node']
