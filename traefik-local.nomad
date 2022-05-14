@@ -1,10 +1,7 @@
 job "traefik-local" {
   datacenters = ["homelab"]
   type = "service"
-  constraint {
-     attribute = "${attr.unique.hostname}"
-     value     = "gerard"
-  }
+
   group "traefik-local" {
     network {
       mode = "host"
