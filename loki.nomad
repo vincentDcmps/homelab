@@ -39,6 +39,9 @@ job "loki" {
           "-config.file",
           "/etc/loki/local-config.yaml",
         ]
+        volumes = [
+          "/mnt/diskstation/nomad/loki:/loki"
+        ]
       }
       template {
         data = <<EOH
