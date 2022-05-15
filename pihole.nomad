@@ -57,6 +57,7 @@ job "pihole" {
         data= <<EOH
         server=/ducamps.win/192.168.1.10
         server=/consul/172.17.0.1#8600
+        local-ttl=2
         EOH
         destination="local/dnsmasq.d/02-localresolver.conf"
 
