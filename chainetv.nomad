@@ -3,7 +3,7 @@ job "chainetv" {
   datacenters = ["homelab"]
   type = "service"
   meta {
-    forcedeploy = "0"
+    forcedeploy = "2"
   }
   group "chainetv"{
     network {
