@@ -35,9 +35,6 @@ job "traefik-local" {
         name = "traefik-local-admin"
         port = "admin"
         tags = [
-          "traefik.enable=true",
-          "traefik.http.routers.${NOMAD_JOB_NAME}_insecure.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
         ]
       }
 
@@ -72,6 +69,12 @@ job "traefik-local" {
         [entryPoints]
           [entryPoints.web]
             address = ":80"
+            [entryPoints.web.http]
+              [entryPoints.web.http.redirections]
+                [entryPoints.web.http.redirections.entryPoint]
+                  to = "websecure"
+                  scheme = "https"
+
           [entryPoints.websecure]
             address = ":443"
           [entryPoints.traefik]

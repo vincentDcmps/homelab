@@ -16,10 +16,6 @@ job "www" {
           "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
-          "traefik.http.routers.${NOMAD_JOB_NAME}_insecure.entrypoints=web",
-          "traefik.http.routers.${NOMAD_JOB_NAME}_insecure.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
-          "traefik.http.routers.${NOMAD_JOB_NAME}_insecure.middlewares=httpsRedirect",
-          "traefik.http.middlewares.httpsRedirect.redirectscheme.scheme=https",
        ]
         port = "http"
     }
