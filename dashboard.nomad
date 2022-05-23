@@ -109,11 +109,15 @@ links:
     url: "https://www.ducamps.win/notebook/"
 services:
   - name: Application
-    icon: "fas fa-heartbeat"
+    icon: "fas fa-heartbeet"
     items: []
   - name: Platform
     icon: "fas fa-code-branch"
     items: []
+  - name: Monitoring
+    icon: "fab fa-watchman-monitoring"
+    items: []
+
   EOH
         destination = "local/base.yml"
 

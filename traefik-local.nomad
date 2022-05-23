@@ -35,6 +35,15 @@ job "traefik-local" {
         name = "traefik-local-admin"
         port = "admin"
         tags = [
+            "homer.enable=true",
+            "homer.name=Traefik admin",
+            "homer.subtitle=LAN",
+            "homer.service=Platform",
+            "homer.logo=https://upload.wikimedia.org/wikipedia/commons/1/1b/Traefik.logo.png",
+            "homer.target=_blank",
+            "homer.url=http://${NOMAD_ADDR_admin}",
+
+
         ]
       }
 

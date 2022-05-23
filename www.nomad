@@ -12,6 +12,13 @@ job "www" {
     service {
         name = "www"
         tags = [
+            "homer.enable=true",
+            "homer.name=Website",
+            "homer.service=Application",
+            "homer.icon=fas fa-blog",
+            "homer.target=_blank",
+            "homer.url=https://www.ducamps.win",
+
           "traefik.enable=true",
           "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",

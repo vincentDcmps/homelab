@@ -23,6 +23,13 @@ job "drone" {
         name = "drone"
         port = "http"
         tags = [
+          "homer.enable=true",
+          "homer.name=DroneCI",
+          "homer.service=Platform",
+          "homer.logo=https://drone.ducamps.win/static/media/logo.76c744d4.svg",
+          "homer.target=_blank",
+          "homer.url=https://${NOMAD_JOB_NAME}.ducamps.win",
+
           "traefik.enable=true",
           "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",

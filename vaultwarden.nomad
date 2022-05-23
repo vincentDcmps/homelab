@@ -23,6 +23,13 @@ job "vaultwarden" {
         name = "vaultwarden"
         port = "http"
         tags = [
+            "homer.enable=true",
+            "homer.name=VaultWarden",
+            "homer.service=Application",
+            "homer.logo=https://yunohost.org/user/images/bitwarden_logo.png",
+            "homer.target=_blank",
+            "homer.url=https://${NOMAD_JOB_NAME}.ducamps.win",
+
             "traefik.enable=true",
             "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`vault.ducamps.win`)",
             "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=vault.ducamps.win",

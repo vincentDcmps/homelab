@@ -25,6 +25,13 @@ job "tt-rss" {
       name = "tt-rss"
       port = "http"
       tags = [
+            "homer.enable=true",
+            "homer.name=TT-RSS",
+            "homer.service=Application",
+            "homer.logo=https://framalibre.org/sites/default/files/styles/thumbnail/public/leslogos/ic_launcher_1.png",
+            "homer.target=_blank",
+            "homer.url=https://www.ducamps.win/tt-rss",
+
         "traefik.enable=true",
         "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`www.ducamps.win`)&&PathPrefix(`/tt-rss`)",
         "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=www.ducamps.win",

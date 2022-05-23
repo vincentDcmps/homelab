@@ -26,6 +26,14 @@ job "deconz" {
         name = "deconz"
         port = "http"
         tags = [
+            "homer.enable=true",
+            "homer.name=Deconz",
+            "homer.service=Application",
+            "homer.logo=https://tutoriels.domotique-store.fr/images/JeeBox/plugin-zigbee/icone-plugin-zigbee-officiel-jeedom.png?1632754975124",
+            "homer.target=_blank",
+            "homer.url=http://${NOMAD_ADDR_http}",
+
+ 
         ]
       }
       config {

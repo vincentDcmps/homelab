@@ -3,7 +3,7 @@ job "homeassistant" {
   datacenters = ["homelab"]
   type = "service"
   meta {
-    forcedeploy = "1"
+    forcedeploy = "0"
   }
   constraint {
      attribute = "${attr.unique.hostname}"
@@ -35,10 +35,14 @@ job "homeassistant" {
         name = "${NOMAD_TASK_NAME}"
         port = "http"
         tags = [
+            "homer.enable=true",
+            "homer.name=Hass",
+            "homer.service=Application",
+            "homer.subtitle=Home Assistant",
+            "homer.logo=https://raw.githubusercontent.com/home-assistant/assets/master/logo/logo-small.svg",
+            "homer.target=_blank",
+            "homer.url=https://${NOMAD_TASK_NAME}.ducamps.win",
             "traefik.enable=true",
-            "traefik.http.middlewares.httpsRedirect.redirectscheme.scheme=https",
-            "traefik.http.routers.${NOMAD_TASK_NAME}_insecure.middlewares=httpsRedirect",
-            "traefik.http.routers.${NOMAD_TASK_NAME}_insecure.rule=Host(`${NOMAD_TASK_NAME}.ducamps.win`)",
             "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.win`)",
             "traefik.http.routers.${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_TASK_NAME}.ducamps.win",
             "traefik.http.routers.${NOMAD_TASK_NAME}.tls.certresolver=myresolver",

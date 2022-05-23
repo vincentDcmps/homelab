@@ -28,6 +28,13 @@ job "supysonic" {
       name = "supysonic"
       port = "http"
       tags = [
+          "homer.enable=true",
+          "homer.name=Supysonic",
+          "homer.service=Application",
+          "homer.icon=fas fa-headphones",
+          "homer.target=_blank",
+          "homer.url=http://${NOMAD_JOB_NAME}.ducamps.win",
+
           "traefik.enable=true",
           "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",

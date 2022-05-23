@@ -19,7 +19,16 @@ job "pihole" {
     }
     service {
         name = "pihole-gui"
-        tags = ["pihole", "admin"]
+        tags = ["pihole", "admin",
+            "homer.enable=true",
+            "homer.name=Pi-hole",
+            "homer.service=Application",
+            "homer.type=PiHole",
+            "homer.logo=http://${NOMAD_ADDR_http}/admin/img/logo.svg",
+            "homer.target=_blank",
+            "homer.url=http://${NOMAD_ADDR_http}/admin",
+
+        ]
         port = "http"
     }
     task "server" {

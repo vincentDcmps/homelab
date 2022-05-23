@@ -20,7 +20,13 @@ job "git" {
       service {
         name = "gitea"
         port = "http"
-        tags = [
+        tags = [          
+          "homer.enable=true",
+          "homer.name=Gitea",
+          "homer.service=Platform",
+          "homer.target=_blank",
+          "homer.logo=https://git.ducamps.win/assets/img/logo.svg",
+          "homer.url=https://${NOMAD_JOB_NAME}.ducamps.win",
           "traefik.enable=true",
           "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",

@@ -15,6 +15,13 @@ job "grafana" {
       name = "grafana"
       port = "http"
       tags= [
+        "homer.enable=true",
+        "homer.name=Grafana",
+        "homer.service=Monitoring",
+        "homer.logo=https://grafana.ducamps.win/public/img/grafana_icon.svg",
+        "homer.target=_blank",
+        "homer.url=https://${NOMAD_JOB_NAME}.ducamps.win",
+
         "traefik.enable=true",
         "traefik.http.routers.grafana.entryPoints=websecure",
         "traefik.http.routers.grafana.rule=Host(`grafana.ducamps.win`)",

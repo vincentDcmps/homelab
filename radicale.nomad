@@ -22,6 +22,14 @@ job "radicale" {
         name = "radicale"
         port = "http"
         tags = [
+            "homer.enable=true",
+            "homer.name=Radicale",
+            "homer.service=Application",
+            "homer.logo=https://radicale.org/assets/logo.svg",
+            "homer.target=_blank",
+            "homer.url=https://www.ducamps.win/${NOMAD_JOB_NAME}",
+
+
             "traefik.enable=true",
             "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`www.ducamps.win`)&&PathPrefix(`/radicale`)",
             "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=www.ducamps.win",
