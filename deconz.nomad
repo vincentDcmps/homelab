@@ -45,7 +45,7 @@ job "deconz" {
          DECONZ_WS_PORT = "${NOMAD_PORT_ws}"
       }
       resources {
-        memory = 75
+        memory = 150
       }
 
     }

@@ -89,7 +89,7 @@ EOTC
         destination = "/local/promtail.yml"
       }
       resources {
-        memory = 50
+        memory = 100
       }
     }
   }
