@@ -1,0 +1,13 @@
+{
+  "Service": {
+    "Name": "file",
+    "address": "192.168.1.10",
+    "port": 7000,
+    "tags": [
+      "traefik.enable=true",
+      "traefik.http.routers.file.rule=Host(`file.ducamps.win`)",
+      "traefik.http.routers.file.tls.domains[0].sans=file.ducamps.win",
+      "traefik.http.routers.file.tls.certresolver=myresolver"
+    ]
+  }
+}
