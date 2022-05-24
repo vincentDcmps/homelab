@@ -39,7 +39,7 @@ job "dashboard" {
       }
 
       resources {
-        memory = 100
+        memory = 20
       }
     }
     task "homer-service-discovery" {
@@ -123,7 +123,7 @@ services:
 
       }
       resources {
-        memory= 100
+        memory= 30
       }
     }
 
