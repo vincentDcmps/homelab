@@ -53,6 +53,7 @@ job "dashboard" {
       }
       env {
         SERVICE_DISCOVERY="Consul"
+        CONSUL_HOST = "consul.service.consul:8500"
       }
 
       template{
@@ -113,7 +114,21 @@ services:
     items: []
   - name: Platform
     icon: "fas fa-code-branch"
-    items: []
+    items:
+      - name: Nomad
+        logo: https://www.datocms-assets.com/2885/1620155100-brandhcnomadverticalcolor.svg
+        url: http://nomad.service.consul:4646
+        target: "_blank"
+      - name: Consul
+        logo: http://consul.service.consul:8500/ui/assets/apple-touch-icon-01cd4680782fbb5bc02301347df9903d.png
+        url: http://consul.service.consul:8500
+        target: "_blank"
+      - name: Vault
+        logo: http://active.vault.service.consul:8200/ui/favicon-c02e22ca67f83a0fb6f2fd265074910a.png 
+        url: http://active.vault.service.consul:8200
+        target: "_blank"
+
+
   - name: Monitoring
     icon: "fab fa-watchman-monitoring"
     items: []
