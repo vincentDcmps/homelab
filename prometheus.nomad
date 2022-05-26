@@ -66,6 +66,11 @@ scrape_configs:
     - server: 'consul.service.consul:8500'
       services: ['alertmanager']
 
+  - job_name: 'crowdsec'
+    consul_sd_configs:
+    - server: 'consul.service.consul:8500'
+      services: ['crowdsec-metrics']
+
 
 EOH
       }

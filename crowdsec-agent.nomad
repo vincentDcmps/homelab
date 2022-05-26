@@ -1,0 +1,58 @@
+
+job "crowdsec-agent" {
+  datacenters = ["homelab","hetzner"]
+  type = "system"
+  meta {
+    forcedeploy = "2"
+  }
+  vault{
+    policies= ["access-tables"]
+
+  }
+
+  group "crowdsec-agent"{
+    task "crowdsec-agent" {
+      driver = "docker"
+      config {
+        image = "crowdsecurity/crowdsec"
+        volumes = [
+          "/var/run/docker.sock:/var/run/docker.sock",
+          "/var/log:/var/log",
+          "local/acquis.yaml:/etc/crowdsec/acquis.yaml"
+        ]
+
+      }
+      env {
+        COLLECTIONS= "crowdsecurity/traefik"
+        DISABLE_LOCAL_API= "true"
+      }
+      template {
+        data = <<EOH
+---
+source: docker
+container_name_regexp:
+  - traefik-*
+labels:
+  type: traefik
+EOH
+        destination = "local/acquis.yaml"
+
+      }
+      template {
+        data = <<EOH
+        LOCAL_API_URL =  {{- range service "crowdsec-api" }} "http://{{ .Address }}:{{ .Port }}"{{- end }}
+AGENT_USERNAME = "{{ env "node.unique.name" }}"
+{{with secret "secrets/data/crowdsec"}}
+  AGENT_PASSWORD = "{{.Data.data.AGENT_PASSWORD}}"
+{{end}}
+EOH
+        destination ="secret/agent.env"
+        env = "true"
+      }
+      resources {
+        memory = 100
+      }
+    }
+
+  }
+}
