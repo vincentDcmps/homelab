@@ -22,7 +22,7 @@ job "traefik-local" {
       policies=["access-tables"]
     }
 
-     task "traefik-local" {
+     task "traefik" {
       driver = "docker"
       service {
         name = "traefik-local"
