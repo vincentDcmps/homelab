@@ -11,6 +11,7 @@ job "crowdsec-api" {
     network {
       mode = "host"
       port "http" {
+        static = 8898
         to = 8080
       }
       port "metric"{
