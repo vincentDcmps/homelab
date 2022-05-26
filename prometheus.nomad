@@ -70,6 +70,11 @@ scrape_configs:
     consul_sd_configs:
     - server: 'consul.service.consul:8500'
       services: ['crowdsec-metrics']
+    relabel_configs:
+    - source_labels: [__meta_consul_node]
+      target_label: machine
+
+      
 
 
 EOH
