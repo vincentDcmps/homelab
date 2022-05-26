@@ -2,6 +2,9 @@ job "traefik-ingress" {
   datacenters = ["hetzner"]
   type = "service"
 
+  meta {
+    force_deploy= 1
+  }
   group "traefik-ingress" {
     network {
       mode = "host"
@@ -21,7 +24,7 @@ job "traefik-ingress" {
     vault{
       policies=["access-tables"]
     }
-     task "traefik-ingress" {
+     task "traefik" {
       driver = "docker"
       service {
         name = "traefik"
@@ -92,6 +95,7 @@ job "traefik-ingress" {
           [providers.consulCatalog.endpoint]
             address = "10.0.0.1:8500"
         [log]
+        [accessLog]
         [api]
           dashboard = true
           insecure = true
