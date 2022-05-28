@@ -67,6 +67,8 @@ job "pihole" {
 server=/ducamps.win/192.168.1.10
 {{range service "consul"}}server=/consul/{{.Address}}#8600
 {{end}}
+domain=ducamps.win
+no-negcache
 local-ttl=2
         EOH
         destination="local/dnsmasq.d/02-localresolver.conf"
