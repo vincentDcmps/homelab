@@ -44,7 +44,7 @@ job "torrent" {
           ]
         volumes = [
           "/mnt/diskstation/nomad/qbittorent:/config",
-          "/mnt/file:/downloads"
+          "/mnt/hetzner/storagebox/file:/downloads"
         ]
 
       }
