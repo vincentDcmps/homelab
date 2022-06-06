@@ -1,5 +1,5 @@
 {
-  "allowed_policies": "acces-tables",
+  "allowed_policies": "access-tables",
   "disallowed_policies": "",
   "token_explicit_max_ttl": 0,
   "name": "nomad-cluster",
