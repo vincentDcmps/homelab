@@ -1,5 +1,5 @@
 CONSUL_HTTP_ADDR=http://127.0.0.1:8500
-
+ANSIBLE_POLICY="ansible"
 echo "launch consul dev server"
 nohup consul agent -dev & 
 if [ "$1" ]; then
@@ -27,4 +27,5 @@ ui= true
 EOF
 
 echo "starting vault server please unseal before use "
-vault server -config "/tmp/standalone-vault-dev.hcl"
+nohup vault server -config "/tmp/standalone-vault-dev.hcl" &
+vault token create -policy=$ANSIBLE_POLICY -display-name=rebuild-token
