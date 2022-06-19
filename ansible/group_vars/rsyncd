@@ -1,0 +1,9 @@
+
+rsynclocations:
+    - name: backup nas
+      location: /mnt/backup
+      readonly: "no"
+
+rsynchostalloawed: 192.168.1.10
+
+

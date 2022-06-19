@@ -1,0 +1,7 @@
+---
+- hosts: dhcp
+  vars:
+
+  roles:
+    - role: ansible-dhcpd
+      become: true

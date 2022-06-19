@@ -1,0 +1,11 @@
+---
+- hosts: 
+    - homelab
+    - VPS
+  vars:
+  # certbot_force: true
+  roles:
+    - system
+    - autofs
+    - msmtp
+    - cronie

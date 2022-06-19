@@ -1,0 +1,8 @@
+---
+- hosts: music-player
+  roles:
+    - user_config
+    - cronie
+    - hass-client-control
+    - mpd
+

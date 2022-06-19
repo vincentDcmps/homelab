@@ -1,0 +1,93 @@
+systemd_mounts:
+    diskstation_git:
+        share: diskstation.ducamps.win:/volume2/git
+        mount: /mnt/diskstation/git
+        type: nfs
+        options:
+            - " "
+        automount: true
+    diskstation_CardDav:
+        share: diskstation.ducamps.win:/volume2/CardDav
+        mount: /mnt/diskstation/CardDav
+        type: nfs
+        options:
+            - " "
+        automount: true
+    backup_disk:
+        share: /dev/sdb1
+        mount: /mnt/backup
+        type: ntfs-3g
+        options:
+            - "uid=1024
+            - guid=100
+            - vers=3.0"
+        automount: true
+    diskstation_home:
+        share: diskstation.ducamps.win:/volume2/homes/admin
+        mount: /mnt/diskstation/home
+        type: nfs
+        options:
+            - " "
+        automount: true
+    diskstation_photo:
+        share: diskstation.ducamps.win:/volume2/photo
+        mount: /mnt/diskstation/photo
+        type: nfs
+        options:
+            - " "
+        automount: true
+    diskstation_music:
+        share: diskstation.ducamps.win:/volume2/music
+        mount: /mnt/diskstation/music
+        type: nfs
+        options:
+            - " "
+        automount: true
+    diskstation_media:
+        share: diskstation.ducamps.win:/volume1/media
+        mount: /mnt/diskstation/media
+        type: nfs
+        options:
+            - " "
+        automount: true
+    diskstation_ebook:
+        share: diskstation.ducamps.win:/volume2/ebook
+        mount: /mnt/diskstation/ebook
+        type: nfs
+        options:
+            - " "
+        automount: true
+    diskstation_archMirror:
+        share: diskstation.ducamps.win:/volume2/archMirror
+        mount: /mnt/diskstation/archMirror
+        type: nfs
+        options:
+            - " "
+        automount: true
+    diskstation_nomad:
+        share: diskstation.ducamps.win:/volume2/nomad
+        mount: /mnt/diskstation/nomad
+        type: nfs
+        options:
+            - " "
+        automount: true
+
+systemd_mounts_enabled:
+    - diskstation_git
+    - diskstation_music
+    - backup_disk
+    - diskstation_photo
+    - diskstation_home
+    - diskstation_CardDav
+    - diskstation_media
+    - diskstation_ebook
+    - diskstation_archMirror
+    - diskstation_nomad
+
+credentials_files:
+    1:
+        type: smb
+        path: /etc/creds/.diskstation_credentials
+        username: admin
+        password: "{{ lookup('hashi_vault','secret=secrets/data/ansible/storage:diskstation_admin') }}"
+

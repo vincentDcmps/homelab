@@ -1,0 +1,4 @@
+- hosts: all
+  vars:
+  roles:
+    - user_config

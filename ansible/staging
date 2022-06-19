@@ -1,0 +1,13 @@
+[VPS]
+VMDR
+
+[dhcp]
+VMAS-BUILD
+
+[VMServer]
+VMAS-HML
+
+
+[wireguard]
+VMDR
+

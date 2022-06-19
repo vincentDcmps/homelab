@@ -1,0 +1,11 @@
+- hosts: all
+  roles:
+    - role: ansible-consul
+      become: true
+    - role: ansible-hashicorp-vault
+      when: ansible_architecture == 'x86_64'
+      become: true
+    - role: ansible-nomad
+      become: true
+    - role: docker
+      become: true

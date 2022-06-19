@@ -1,0 +1,7 @@
+---
+- hosts: rsyncd
+  vars:
+  # certbot_force: true
+  roles:
+    - role: rsyncd
+      become: true

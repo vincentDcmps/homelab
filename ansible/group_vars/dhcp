@@ -1,0 +1,152 @@
+dhcpd_authoritative: True
+dhcpd_lease_time: '72'
+dhcpd_domain_name: "{{ domain.name }}"
+dhcpd_nameservers:
+  - '192.168.1.40'
+  - '192.168.1.10'
+dhcpd_keys: 
+  - key: dhcp
+    algorithm: HMAC-MD5
+    secret: "{{ lookup('hashi_vault','secret=secrets/data/ansible/other:dhcpd_key') }}"
+
+dhcpd_zones:
+  - zone: "{{ domain.name }}."
+    primary: "192.168.1.10"
+    key: "dhcp"
+  - zone: "1.168.192.in-addr.arpa."
+    primary: "192.168.1.10"
+    key: "dhcp"
+
+dhcpd_options: |
+  ddns-updates           on;
+  ddns-update-style      interim;
+  ignore                 client-updates;
+  update-static-leases   on;
+  ddns-domainname "ducamps.win.";
+  ddns-rev-domainname "in-addr.arpa.";
+
+
+dhcpd_subnets:
+  - subnet: '192.168.1.0'
+    netmask: '255.255.255.0'
+    options: |
+      option routers 192.168.1.1;
+    pools:
+      - range: '192.168.1.100 192.168.1.140'
+
+dhcpd_hosts:
+  - hostname: 'zen-pc'
+    address: '192.168.1.14'
+    ethernet: 'f0:d5:bf:f4:ce:d7'
+
+  - hostname: 'fixe-pc'
+    address: '192.168.1.15'
+    ethernet: 'ee:35:20:fc:7b:04'
+
+  - hostname: 'oscar'
+    address: '192.168.1.40'
+    ethernet: '84:39:be:12:05:69'
+
+  - hostname: 'VMAS-HML'
+    address: '192.168.1.50'
+    ethernet: '52:54:00:02:74:ed'
+
+  - hostname: 'VMAS-BUILD'
+    address: '192.168.1.53'
+    ethernet: '52:54:13:1e:93'
+
+
+  - hostname: 'xiaomi-chambre-gateway'
+    address: '192.168.1.61'
+    ethernet: '04:cf:8c:9c:f7:f0'
+  - hostname: 'xiaomi-ampoule-chambre'
+    address: '192.168.1.62'
+    ethernet: '44:23:7c:88:1f:ea'
+  - hostname: 'shelly-chambre-ecran'
+    address: '192.168.1.63'
+    ethernet: 'b4:e6:2d:7a:ea:77'
+  - hostname: 'shelly-salon-cadre'
+    address: '192.168.1.64'
+    ethernet: 'b4:e6:2d:7a:e6:1e'
+  - hostname: 'shelly-chambre-ventilo'
+    address: '192.168.1.65'
+    ethernet: 'e0:98:06:97:78:0b'
+
+keystodeploy:
+    - name: juicessh with password
+      user: "{{user.name}}"
+      sshkey: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINN5V9WPPi2/HwAQuDeaJO3hUPf8HxNMHqVmkf1pDjWg JuiceSSH
+    - name: fixe-pc new
+      user: "{{user.name}}"
+      sshkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDBrP9akjyailPU9tUMvKrtDsqjI191W1L95u3OFjBqqapXgbDVx1FVtSlIIKcCHZyTII1zgC7woZmNRpmaIJRh6N+VIuRrRs29xx2GUVc4pxflUwwIAK36hgZS3nqmA2biacmPR9HogZLZMcPtZdLhWGlLuUv1cWqbqW7UcDa0lbubCo2v4OQMx/zt37voKAZSkkbH9mVszH6eKxNFy1KXbLYhwXiKfYBnAHbivhiSkZUGV6D4HNj8Jx6IY1YF3bfwMXmt841Q/7OY+t3RTIS8ewvSF+jpQ7GKHBEsZTZUGwIoSyZFFvCgKQVOJu/ZJJS4HNkluilir9Sxtx2LRgy+HHQ251trnsVsJp3ts4uTiMkKJQy1PXy1ZvQXYkip9Af3vlXUMmTyVj8cv+No07G1rZ1pZ3wXKX4RkTsoep5GsYlhyUd7GzsAQQiX9YhYyWDQ6NHBYAGAWbw2BLNxltWa4AyWOa1C8v+1+mRwdvpdMY7powJNCXQaIJmiOZiI/Us= vincent@fixe-pc-2020-03-01
+    - name: zen-pc
+      user: "{{user.name}}"
+      sshkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCYHkEIa38p3e4+m/LScHm8Ei7H2X/pDksjVAzoJ4fHr8oXc6DKkC8SWwMnh3L4WzWBhfTbzwUgFTNpsxhp/UyJf+fdzmzetlbVlYSuA6yWuSmgMeFbXFImhZ+Sn3i59hLeqAAyrkQLjba2waehdEsuOQ/AGoDbMYm38Xf9Wka/1YIeUPE4gLeLvymRnGw7BSug6Unycy52WlFAquollObOvc7tNiX0uLDh81Dp0KZhqWRs75hfmQ9du4g4uNhFLiF11hOGNgj3PWV+nWe8GWNQYVUBChWX1dsP8ct/ahG9IFXSPEaFD1IZeFp29u2ln3mgKkBtcRTRe1e3CLQqiRsUq2aixVFbSgFMFgGSUiNGNqKR4f9DeyJrYBplSj6HXjWoBny4Wm8+yfk8qR2RtQpS6AUu81xtKnXOaj9Q5VZO3kVF0U3EXHAZutTYDj9mDlhLSBS7x7hmrkRBbIy7adSx9Gx5Ck3/RllqG6KD+LdJa4I0pUTRNetpLpYDeZpwjnDP1r7udaSQMyRMH5YKLzhtHqIV/imn9QO4KCxNxTgwxt9ho6HDvlDGERCxm+yeHUu3CPyq2ZGSF5HHsYTGUtYvQw4JfQyw/5DrZ7IIdU1e7ZuaE3h/NvFgKJPVTP52nmUtIW7pIOkHpn9mddjm/oKMayOzMspLn9HLFVbqi7A5Xw== vincent@zen-pc
+
+nomad_datacenter: homelab
+
+
+systemd_mounts:
+  diskstation_nomad:
+    share: diskstation.ducamps.win:/volume2/nomad
+    mount: /mnt/diskstation/nomad
+    type: nfs
+    options:
+        - " "
+    automount: true
+  diskstation_git:
+    share: diskstation.ducamps.win:/volume2/git
+    mount: /mnt/diskstation/git
+    type: nfs
+    options:
+        - " "
+    automount: true
+  diskstation_music:
+    share: diskstation.ducamps.win:/volume2/music
+    mount: /mnt/diskstation/music
+    type: nfs
+    options:
+        - " "
+    automount: true
+  diskstation_nextcloud:
+    share: //diskstation.ducamps.win/nextcloud
+    mount: /mnt/diskstation/nextcloud
+    type: cifs
+    options:
+        - credentials=/etc/creds/.diskstation_credentials
+        - uid=33
+        - gid=33
+        - vers=3.0
+        - dir_mode=0770
+        - _netdev
+    automount: true
+  diskstation_CardDav:
+      share: diskstation.ducamps.win:/volume2/CardDav
+      mount: /mnt/diskstation/CardDav
+      type: nfs
+      options:
+          - " "
+      automount: true
+  diskstation_archMirror:
+      share: diskstation.ducamps.win:/volume2/archMirror
+      mount: /mnt/diskstation/archMirror
+      type: nfs
+      options:
+          - " "
+      automount: true
+
+credentials_files:
+    1:
+        type: smb
+        path: /etc/creds/.diskstation_credentials
+        username: admin
+        password: "{{ lookup('hashi_vault','secret=secrets/data/ansible/storage:diskstation_admin') }}"
+
+
+systemd_mounts_enabled:
+  - diskstation_nomad
+  - diskstation_git
+  - diskstation_music
+  - diskstation_nextcloud
+  - diskstation_CardDav
+  - diskstation_archMirror

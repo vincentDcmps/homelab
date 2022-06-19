@@ -1,0 +1,7 @@
+---
+- hosts: database
+  vars:
+  # certbot_force: true
+  roles:
+    - role: ansible-role-postgresql
+      become: true
