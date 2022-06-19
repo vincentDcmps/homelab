@@ -97,7 +97,7 @@ EOH
         destination = "local/loki/local-config.yaml"
       }
       resources {
-        memory = 150
+        memory = 250
       }
     }
 
