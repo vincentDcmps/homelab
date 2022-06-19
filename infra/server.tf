@@ -1,6 +1,6 @@
 resource "hcloud_server" "HomeLab" {
   count       = var.instances
-  name        = "random"
+  name        = "merlin"
   image       = var.os_type
   server_type = var.server_type
   location    = var.location
