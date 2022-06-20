@@ -4,7 +4,7 @@ ansible_host: 65.109.13.133
 wireguard_address: "10.0.0.4/24"
 wireguard_endpoint: "65.109.13.133"
 wireguard_persistent_keepalive: "30"
-wireguard_allowed_ips: "10.0.0.0/24"
+wireguard_allowed_ips: "10.0.0.4/32,10.0.0.3/32,10.0.0.5/32"
 
 wireguard_postup:
   - iptables -A FORWARD -o %i -j ACCEPT
@@ -23,7 +23,7 @@ wireguard_unmanaged_peers:
     persistent_keepalive: 0
   zen:
     public_key: rYYljQw8InmM95pxCP9KyZ8R+kcicgnjr6E9qtkI1Ag=
-    allowed_ips: 10.0.0.4/32
+    allowed_ips: 10.0.0.5/32
     persistent_keepalive: 0
 consul_client_addr: "127.0.0.1 10.0.0.4"
 consul_bind_address: "10.0.0.4"
