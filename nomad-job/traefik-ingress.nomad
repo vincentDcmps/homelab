@@ -93,7 +93,7 @@ job "traefik-ingress" {
         [providers.consulCatalog]
           exposedByDefault = false
           [providers.consulCatalog.endpoint]
-            address = "10.0.0.1:8500"
+            address = "{{{env "NOMAD_IP_admin"}}}:8500"
         [log]
         [accessLog]
         [api]
