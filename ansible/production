@@ -4,6 +4,7 @@ gerard
 
 [VPS]
 corwin
+merlin
 
 [dhcp]
 gerard
@@ -11,6 +12,7 @@ gerard
 [wireguard]
 corwin
 oscar
+merlin
 
 [database]
 oscar
