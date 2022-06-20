@@ -9,12 +9,12 @@ wireguard_allowed_ips: "10.0.0.0/24"
 wireguard_postup:
   - iptables -A FORWARD -o %i -j ACCEPT
   - iptables -A FORWARD -i %i -j ACCEPT
-  - iptables -t nat -A POSTROUTING -o enp1s0 -j MASQUERADE
+  - iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 wireguard_postdown:
   - iptables -D FORWARD -i %i -j ACCEPT
   - iptables -D FORWARD -o %i -j ACCEPT
-  - iptables -t nat -D POSTROUTING -o enp1s0 -j MASQUERADE
+  - iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 
 wireguard_unmanaged_peers:
   phone:
