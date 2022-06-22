@@ -58,7 +58,8 @@ source: docker
 container_name_regexp:
   - gitea-*
 labels:
-  type: gitea
+  type: docker
+  program: gitea
 
 
 EOH
