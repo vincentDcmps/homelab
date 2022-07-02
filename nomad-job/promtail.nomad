@@ -40,8 +40,7 @@ job "promtail" {
           "-server.http-listen-port=${NOMAD_PORT_http}",
         ]
         volumes = [
-          "/mnt/diskstation/nomad/promtail:/data",
-          "/var/lib/nomad/:/nomad/"
+          "/opt/nomad/:/nomad/"
         ]
 
       }
@@ -51,7 +50,7 @@ job "promtail" {
      template {
         data        = <<EOTC
 positions:
-  filename: /data/positions.yaml
+  filename: {{ env "NOMAD_ALLOC_DIR"}}/positions.yaml
 clients:
   - url: http://loki.service.consul:3100/loki/api/v1/push
 scrape_configs:
