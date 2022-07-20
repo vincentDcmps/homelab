@@ -25,6 +25,7 @@ wireguard_unmanaged_peers:
     public_key: rYYljQw8InmM95pxCP9KyZ8R+kcicgnjr6E9qtkI1Ag=
     allowed_ips: 10.0.0.5/32
     persistent_keepalive: 0
+wireguard_dns: "192.168.1.41,192.168.1.10"
 consul_client_addr: "127.0.0.1 10.0.0.4"
 consul_bind_address: "10.0.0.4"
 consul_ui: True
