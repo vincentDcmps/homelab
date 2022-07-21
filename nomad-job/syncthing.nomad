@@ -20,7 +20,7 @@ job "syncthing" {
       }
     }
     vault{
-      policies= ["policy_name"]
+      policies= ["access-tables"]
 
     }
     task "syncthing" {
@@ -35,8 +35,6 @@ job "syncthing" {
             "homer.logo=http://${NOMAD_ADDR_http}/assets/img/logo-horizontal.svg",
             "homer.target=_blank",
             "homer.url=http://${NOMAD_ADDR_http}",
-
-
         ]
       }
       config {

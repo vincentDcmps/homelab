@@ -13,7 +13,7 @@ job "radicale" {
       }
     }
     vault{
-      policies= ["acces-policy"]
+      policies= ["access-tables"]
 
     }
     task "radicale" {
