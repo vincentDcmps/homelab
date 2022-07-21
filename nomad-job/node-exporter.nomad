@@ -60,7 +60,7 @@ job "node-exporter" {
 
       resources {
         cpu = 20
-        memory = 16
+        memory = 30
       }
     }
 
