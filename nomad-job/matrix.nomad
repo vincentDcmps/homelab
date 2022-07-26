@@ -9,8 +9,11 @@ job "matrix" {
   group "matrix"{
     network {
       mode = "host"
-      port "http" {
+      port "dendrite" {
         to = 8008
+      }
+      port "element" {
+        to = 80
       }
     }
     vault{
@@ -21,7 +24,7 @@ job "matrix" {
       driver = "docker"
       service {
         name = "dendrite"
-        port = "http"
+        port = "dendrite"
         tags = [
             "traefik.enable=true",
             "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.win`)",
@@ -33,7 +36,7 @@ job "matrix" {
       }
       config {
         image = "matrixdotorg/dendrite-monolith"
-        ports = ["http"]
+        ports = ["dendrite"]
         volumes = [
           "local/dendrite.yaml:/etc/dendrite/dendrite.yaml",
           "secrets/matrix_key.pem:/etc/dendrite/matrix_key.pem",
@@ -226,6 +229,87 @@ template {
 
       resources {
         memory = 150
+      }
+    }
+    task element {
+      driver = "docker"
+      service {
+        name = "element"
+        port = "element"
+        tags = [
+            "traefik.enable=true",
+            "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.win`)",
+            "traefik.http.routers.${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_TASK_NAME}.ducamps.win",
+            "traefik.http.routers.${NOMAD_TASK_NAME}.tls.certresolver=myresolver",
+            "homer.enable=true",
+            "homer.name=element",
+            "homer.service=Application",
+            "homer.logo=https://${NOMAD_TASK_NAME}.ducamps.win",
+            "homer.target=_blank",
+            "homer.url=https://${NOMAD_TASK_NAME}.ducamps.win",
+
+        ]
+
+
+      }
+      config {
+        image = "vectorim/element-web"
+        ports = ["element"]
+        volumes = ["local/config.json:/app/config.json"]
+      }
+      template {
+        data = <<EOH
+{
+    "default_server_config": {
+        "m.homeserver": {
+            "base_url": "https://dendrite.ducamps.win",
+            "server_name": "dendrite.ducamps.win"
+        },
+        "m.identity_server": {
+            "base_url": "https://vector.im"
+        }
+    },
+    "disable_custom_urls": false,
+    "disable_guests": false,
+    "disable_login_language_selector": false,
+    "disable_3pid_login": false,
+    "brand": "Element",
+    "integrations_ui_url": "https://scalar.vector.im/",
+    "integrations_rest_url": "https://scalar.vector.im/api",
+    "integrations_widgets_urls": [
+        "https://scalar.vector.im/_matrix/integrations/v1",
+        "https://scalar.vector.im/api",
+        "https://scalar-staging.vector.im/_matrix/integrations/v1",
+        "https://scalar-staging.vector.im/api",
+        "https://scalar-staging.riot.im/scalar/api"
+    ],
+    "bug_report_endpoint_url": "https://element.io/bugreports/submit",
+    "uisi_autorageshake_app": "element-auto-uisi",
+    "default_country_code": "GB",
+    "show_labs_settings": false,
+    "features": { },
+    "default_federate": true,
+    "default_theme": "dark",
+    "room_directory": {
+        "servers": [
+            "matrix.org"
+        ]
+    },
+    "enable_presence_by_hs_url": {
+        "https://matrix.org": false,
+        "https://matrix-client.matrix.org": false
+    },
+    "setting_defaults": {
+        "breadcrumbs": true
+    },
+    "jitsi": {
+        "preferred_domain": "meet.element.io"
+    },
+    "map_style_url": "https://api.maptiler.com/maps/streets/style.json?key=fU3vlMsMn4Jb6dnEIFsx"
+}
+        EOH
+        destination = "local/config.json"
+
       }
     }
 
