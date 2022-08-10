@@ -71,3 +71,46 @@ resource "vault_policy" "ansible" {
   name = "ansible"
   policy= data.vault_policy_document.ansible.hcl
 }
+
+data "vault_policy_document" "admin_policy" {
+  rule {
+    path = "auth/*"
+    capabilities = ["create", "read", "update", "delete", "list", "sudo"]
+  }
+  rule {
+    path = "sys/auth/*"
+    capabilities = ["create", "update", "delete", "sudo"]
+  }
+  rule {
+    path = "sys/auth"
+    capabilities = ["read"]
+  }
+  rule {
+    path = "sys/health"
+    capabilities = ["read", "sudo"]
+  }
+  rule {
+    path = "sys/policies/acl"
+    capabilities = ["list"]
+  }
+  rule {
+    path = "sys/policies/acl/*"
+    capabilities = ["create", "read", "update", "delete", "list", "sudo"]
+  }
+  rule {
+    path = "secrets/*"
+    capabilities = ["create", "read", "update", "delete", "list", "sudo"]
+  }
+  rule {
+    path = "sys/mounts/*"
+    capabilities = ["create", "read", "update", "delete", "list", "sudo"]
+   } 
+  rule {
+    path = "sys/mounts"
+    capabilities  = ["read","list"]
+  }
+}
+resource "vault_policy" "admin_policy" {
+  name = "admin_policy"
+  policy= data.vault_policy_document.admin_policy.hcl
+}
