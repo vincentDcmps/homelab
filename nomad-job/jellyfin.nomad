@@ -43,12 +43,24 @@ job "jellyfin" {
         ports = ["http"]
         volumes = [
           "/mnt/diskstation/nomad/jellyfin/config:/config",
-          "/mnt/diskstation/media/:/media"
+          "/mnt/diskstation/nomad/jellyfin/cache:/cache",
+          "/mnt/diskstation/media/:/media",
+          "/mnt/diskstation/music/:/media2"
+        ]
+        devices = [
+          {
+              host_path = "/dev/dri/renderD128"
+              container_path = "/dev/dri/renderD128"
+          },
+          {
+              host_path = "/dev/dri/card0"
+              container_path = "/dev/dri/card0"
+          }
         ]
 
       }
       resources {
-        memory = 900
+        memory = 1100
         cpu= 3000
       }
     }
