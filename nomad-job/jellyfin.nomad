@@ -23,11 +23,17 @@ job "jellyfin" {
       service {
         name = "jellyfin"
         port = "http"
-        tags = [
-            "traefik.enable=true",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
+       tags = [
+          "homer.enable=true",
+          "homer.name=jellyfin",
+          "homer.service=Application",
+          "homer.target=_blank",
+          "homer.logo=https://${NOMAD_JOB_NAME}.ducamps.win/web/assets/img/banner-light.png",
+          "homer.url=https://${NOMAD_JOB_NAME}.ducamps.win",
+          "traefik.enable=true",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
 
 
         ]
