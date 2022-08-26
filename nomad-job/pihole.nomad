@@ -1,6 +1,7 @@
 
 job "pihole" {
   datacenters = ["homelab"]
+  priority= 100
   type = "service"
      constraint {
      attribute = "${attr.unique.hostname}"
