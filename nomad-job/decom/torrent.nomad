@@ -57,7 +57,7 @@ job "torrent" {
       }
 
       resources {
-        memory = 300
+        memory = 450
       }
     }
 
