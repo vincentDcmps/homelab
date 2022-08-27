@@ -18,19 +18,32 @@ resource "hcloud_firewall" "HomeLab" {
       "::/0"
     ]
   }
+  # torrent UDH port
   rule {
     direction ="in"
-    protocol = "tcp"
+    protocol = "udp"
     port = "6881"
     source_ips = [
       "0.0.0.0/0",
       "::/0"
     ]
   }
+  # wireguard port
   rule {
     direction ="in"
     protocol = "udp"
     port = "51820"
+    source_ips = [
+      "0.0.0.0/0",
+      "::/0"
+    ]
+
+  }
+# torrent listen port
+  rule {
+    direction ="in"
+    protocol = "tcp"
+    port = "50000"
     source_ips = [
       "0.0.0.0/0",
       "::/0"
@@ -45,13 +58,13 @@ resource "hcloud_firewall" "HomeLab" {
       "::/0"
     ]
   }
-  rule {
-    direction = "in"
-    protocol = "tcp"
-    port = "22"
-    source_ips = [
-      "0.0.0.0/0",
-      "::/0"
-    ]
-  }
+  #  rule {
+  #  direction = "in"
+  #  protocol = "tcp"
+  #  port = "22"
+  #  source_ips = [
+  #    "0.0.0.0/0",
+  #    "::/0"
+  #  ]
+  #}
 }
