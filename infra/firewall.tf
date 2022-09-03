@@ -1,5 +1,5 @@
-resource "hcloud_firewall" "HomeLab" {
-  name= "firewall-1"
+resource "hcloud_firewall" "prod" {
+  name= "prod"
   rule {
     direction ="in"
     protocol = "tcp"
@@ -58,13 +58,17 @@ resource "hcloud_firewall" "HomeLab" {
       "::/0"
     ]
   }
-  #  rule {
-  #  direction = "in"
-  #  protocol = "tcp"
-  #  port = "22"
-  #  source_ips = [
-  #    "0.0.0.0/0",
-  #    "::/0"
-  #  ]
-  #}
+}
+
+resource "hcloud_firewall" "ssh" {
+  name= "ssh"
+  rule {
+    direction ="in"
+    protocol = "tcp"
+    port="22"
+    source_ips = [
+      "0.0.0.0/0",
+      "::/0"
+    ]
+  }
 }

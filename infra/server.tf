@@ -5,7 +5,7 @@ resource "hcloud_server" "HomeLab" {
   server_type = var.server_type
   location    = var.location
   ssh_keys     = [hcloud_ssh_key.default.id]
-  firewall_ids = [hcloud_firewall.HomeLab.id]
+  firewall_ids = [hcloud_firewall.prod.id]
   labels = {
   }
 
@@ -17,7 +17,7 @@ resource "hcloud_server" "HomeLab2" {
   server_type = var.server_type
   location    = var.location
   ssh_keys     = [hcloud_ssh_key.default.id]
-  firewall_ids = [hcloud_firewall.HomeLab.id]
+  firewall_ids = [hcloud_firewall.prod.id]
   labels = {
   }
 
