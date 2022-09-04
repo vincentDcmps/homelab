@@ -21,6 +21,8 @@ postgresql_users:
     password: "{{  lookup('hashi_vault', 'secret=secrets/data/ansible/database:drone')}}"
   - name: dendrite
     password: "{{  lookup('hashi_vault', 'secret=secrets/data/ansible/database:dendrite')}}"
+  - name: paperless
+    password: "{{  lookup('hashi_vault', 'secret=secrets/data/ansible/database:paperless')}}"
 
 postgresql_databases:
   - name: wikijs
@@ -59,3 +61,7 @@ postgresql_databases:
     lc_collate: fr_FR.UTF-8
     lc_ctype: fr_FR.UTF-8
     owner: dendrite
+  - name: paperless
+    lc_collate: fr_FR.UTF-8
+    lc_ctype: fr_FR.UTF-8
+    owner: paperless
