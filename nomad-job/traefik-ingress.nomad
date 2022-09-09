@@ -76,6 +76,9 @@ job "traefik-ingress" {
     template{
         data= <<EOH
         [entryPoints]
+
+          [entrypoints.ssh]
+            address = ":2222"
           [entryPoints.web]
             address = ":80"
             [entryPoints.web.http]
