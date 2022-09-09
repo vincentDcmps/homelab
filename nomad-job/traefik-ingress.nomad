@@ -20,6 +20,10 @@ job "traefik-ingress" {
         static = 9080
         host_network = "private"
       }
+      port "ssh" {
+        static = 2222
+        host_network = "public"
+      }
     }
     vault{
       policies=["access-tables"]
@@ -54,7 +58,8 @@ job "traefik-ingress" {
         ports = [
           "http",
           "https",
-          "admin"
+          "admin",
+          "ssh"
         ]
         volumes =[
           "local/traefik.toml:/etc/traefik/traefik.toml",
