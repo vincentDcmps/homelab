@@ -59,6 +59,29 @@ systemd_mounts:
       - vers=3.0
       - mfsymlinks
     automount: true
+  diskstation_git:
+    share: diskstation.ducamps.win:/volume2/git
+    mount: /mnt/diskstation/git
+    type: nfs
+    options:
+      - " "
+    automount: true
+  diskstation_CardDav:
+        share: diskstation.ducamps.win:/volume2/CardDav
+        mount: /mnt/diskstation/CardDav
+        type: nfs
+        options:
+            - " "
+        automount: true
+  diskstation_music:
+        share: diskstation.ducamps.win:/volume2/music
+        mount: /mnt/diskstation/music
+        type: nfs
+        options:
+            - " "
+        automount: true
+
+
 credentials_files:
   1:
       type: smb
@@ -71,4 +94,6 @@ credentials_files:
 systemd_mounts_enabled:
   - diskstation_nomad
   - hetzner_storage
-
+  - diskstation_git
+  - diskstation_music
+  - diskstation_CardDav
