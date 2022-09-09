@@ -6,6 +6,7 @@ gerard
 corwin
 merlin
 
+
 [dhcp]
 gerard
 
@@ -13,10 +14,11 @@ gerard
 corwin
 oscar
 merlin
+gerard
 
 [database]
 oscar
+merlin
 
 [rsyncd]
 oscar
-

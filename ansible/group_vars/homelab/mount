@@ -90,4 +90,3 @@ credentials_files:
         path: /etc/creds/.diskstation_credentials
         username: admin
         password: "{{ lookup('hashi_vault','secret=secrets/data/ansible/storage:diskstation_admin') }}"
-

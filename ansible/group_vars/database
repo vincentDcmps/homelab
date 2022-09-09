@@ -26,42 +26,22 @@ postgresql_users:
 
 postgresql_databases:
   - name: wikijs
-    lc_collate: fr_FR.UTF-8
-    lc_ctype: en_US.UTF-8
     owner: wikijs
   - name: ttrss
-    lc_collate: fr_FR.UTF-8
-    lc_ctype: fr_FR.UTF-8
     owner: ttrss
   - name: gitea
-    lc_collate: fr_FR.UTF-8
-    lc_ctype: fr_FR.UTF-8
     owner: gitea
   - name: supysonic
-    lc_collate: fr_FR.UTF-8
-    lc_ctype: fr_FR.UTF-8
     owner: supysonic
   - name: hass
-    lc_collate: fr_FR.UTF-8
-    lc_ctype: fr_FR.UTF-8
     owner: hass
   - name: nextcloud
-    lc_collate: fr_FR.UTF-8
-    lc_ctype: fr_FR.UTF-8
     owner: nextcloud
   - name: vaultwarden
-    lc_collate: fr_FR.UTF-8
-    lc_ctype: fr_FR.UTF-8
     owner: vaultwarden
   - name: drone
-    lc_collate: fr_FR.UTF-8
-    lc_ctype: fr_FR.UTF-8
     owner: drone
   - name: dendrite
-    lc_collate: fr_FR.UTF-8
-    lc_ctype: fr_FR.UTF-8
     owner: dendrite
   - name: paperless
-    lc_collate: fr_FR.UTF-8
-    lc_ctype: fr_FR.UTF-8
     owner: paperless
