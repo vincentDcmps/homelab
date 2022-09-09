@@ -1,5 +1,5 @@
 job "prometheus" {
-  datacenters = ["homelab"]
+  datacenters = ["hetzner"]
   type        = "service"
 
   group "prometheus" {

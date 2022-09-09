@@ -1,6 +1,6 @@
 
 job "filestash" {
-  datacenters = ["homelab"]
+  datacenters = ["hetzner"]
   type = "service"
   meta {
     forcedeploy = "0"

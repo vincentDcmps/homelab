@@ -1,5 +1,5 @@
 job "git" {
-  datacenters = ["homelab"]
+  datacenters = ["hetzner"]
   type = "service"
 
   group "gitea" {
@@ -20,7 +20,7 @@ job "git" {
       service {
         name = "gitea"
         port = "http"
-        tags = [          
+        tags = [
           "homer.enable=true",
           "homer.name=Gitea",
           "homer.service=Platform",

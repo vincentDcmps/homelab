@@ -1,6 +1,6 @@
 
 job "dashboard" {
-  datacenters = ["homelab"]
+  datacenters = ["hetzner"]
   type = "service"
   meta {
     forcedeploy = "1"
@@ -13,7 +13,7 @@ job "dashboard" {
         to = 8080
       }
     }
-  
+
     task "homer" {
       driver = "docker"
       service {
@@ -69,7 +69,7 @@ proxy:
   useCredentials: false
 defaults:
   layout: columns
-  colorTheme: auto 
+  colorTheme: auto
 theme: default
 colors:
   light:
@@ -124,7 +124,7 @@ services:
         url: http://consul.service.consul:8500
         target: "_blank"
       - name: Vault
-        logo: http://active.vault.service.consul:8200/ui/favicon-c02e22ca67f83a0fb6f2fd265074910a.png 
+        logo: http://active.vault.service.consul:8200/ui/favicon-c02e22ca67f83a0fb6f2fd265074910a.png
         url: http://active.vault.service.consul:8200
         target: "_blank"
 
