@@ -20,7 +20,7 @@ partition_table:
     label: gpt
     settings:
       - number: 1
-        part_end: 64MB
+        part_end: 300MB
         flags: [boot, esp]
         fstype: vfat
         format: yes
