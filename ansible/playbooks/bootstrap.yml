@@ -1,4 +1,7 @@
 ---
 - hosts: all
+  remote_user: root
+  vars:
+    ansible_password: "{{ lookup('hashi_vault','secret=secrets/data/ansible/user:root') }}"
   roles:
     - ansible_bootstrap
