@@ -2,17 +2,18 @@
 ansible_host: "192.168.1.41"
 ansible_python_interpreter: "/usr/bin/python3"
 wireguard_address: "10.0.0.6/24"
-wireguard_allowed_ips: "10.0.0.6/32,192.168.1.0/24"
+wireguard_byhost_allowed_ips:
+  merlin: 10.0.0.6,192.168.1.41
 perrsistent_keepalive: "30"
 wireguard_endpoint: ""
 
 wireguard_postup:
   - iptables -A FORWARD -i wg0 -j ACCEPT
   - iptables -A FORWARD -o wg0 -j ACCEPT
-  - iptables -t nat -A POSTROUTING -o eno1 -j MASQUERADE
+  - iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 wireguard_postdown:
   - iptables -D FORWARD -i wg0 -j ACCEPT
   - iptables -D FORWARD -o wg0 -j ACCEPT
-  - iptables -t nat -D POSTROUTING -o eno1 -j MASQUERADE
+  - iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 

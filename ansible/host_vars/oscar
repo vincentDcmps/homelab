@@ -1,18 +1,19 @@
 ---
 wireguard_address: "10.0.0.2/24"
-wireguard_allowed_ips: "10.0.0.2/32,192.168.1.0/24"
+wireguard_byhost_allowed_ips:
+  merlin: 10.0.0.2,192.168.1.40,192.168.1.0/24
 perrsistent_keepalive: "30"
 wireguard_endpoint: ""
 
 wireguard_postup:
   - iptables -A FORWARD -i wg0 -j ACCEPT
   - iptables -A FORWARD -o wg0 -j ACCEPT
-  - iptables -t nat -A POSTROUTING -o eno1 -j MASQUERADE
+  - iptables -t nat -A POSTROUTING -o enp2s0 -j MASQUERADE
 
 wireguard_postdown:
   - iptables -D FORWARD -i wg0 -j ACCEPT
   - iptables -D FORWARD -o wg0 -j ACCEPT
-  - iptables -t nat -D POSTROUTING -o eno1 -j MASQUERADE
+  - iptables -t nat -D POSTROUTING -o enp2s0 -j MASQUERADE
 consul_snapshot: True
 
 partition_table:
