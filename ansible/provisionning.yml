@@ -1,6 +1,8 @@
 ---
 - hosts: all
   remote_user: root
+  vars:
+    provissionning_default_root: "{{ lookup('hashi_vault','secret=secrets/data/ansible/user:root') }}"
   roles:
     - ansible-arch-provissionning
 
@@ -11,5 +13,5 @@
   roles:
     - ansible_bootstrap
 
-- remote_user: "{{ user.name }}"
-  import_playbook: site.yml
+      #- remote_user: "{{ user.name }}"
+      #import_playbook: site.yml

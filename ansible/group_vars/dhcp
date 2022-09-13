@@ -45,7 +45,7 @@ dhcpd_hosts:
 
   - hostname: 'oscar'
     address: '192.168.1.40'
-    ethernet: '84:39:be:12:05:69'
+    ethernet: '7C:83:34:B3:49:9A'
 
   - hostname: 'VMAS-HML'
     address: '192.168.1.50'
