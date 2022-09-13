@@ -1,5 +1,5 @@
 job "tt-rss" {
-  datacenters = ["hetzner"]
+  datacenters = ["homelab"]
   type = "service"
 
 
