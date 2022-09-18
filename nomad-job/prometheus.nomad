@@ -120,6 +120,16 @@ groups:
     annotations:
       summary: Nomad job lost (instance {{ $labels.instance }})
       description: "Nomad job lost\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  - alert: NomadJobQueued
+    expr: nomad_nomad_job_summary_queued > 0
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: Nomad job queued (instance {{ $labels.instance }})
+      description: "Nomad job queued\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+
 EOH
       }
 
