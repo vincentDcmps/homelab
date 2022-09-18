@@ -38,7 +38,7 @@ job "deconz" {
       }
       config {
         image = "deconzcommunity/deconz"
-        ports = ["http"]
+        ports = ["http","ws"]
         privileged = true
         volumes = [
           "/mnt/diskstation/nomad/deconz:/opt/deCONZ",
