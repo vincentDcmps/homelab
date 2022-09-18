@@ -2,6 +2,11 @@ job "tt-rss" {
   datacenters = ["homelab"]
   type = "service"
 
+   constraint {
+    attribute = "${attr.cpu.arch}"
+    value = "amd64"
+ }
+               
 
   group "tt-rss" {
     ephemeral_disk {
