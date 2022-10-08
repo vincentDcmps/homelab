@@ -72,3 +72,16 @@ resource "hcloud_firewall" "ssh" {
     ]
   }
 }
+
+resource "hcloud_firewall" "Gitea_SSH" {
+  name= "Gitea SSH"
+  rule {
+    direction ="in"
+    protocol = "tcp"
+    port="2222"
+    source_ips = [
+      "0.0.0.0/0",
+      "::/0"
+    ]
+  }
+}
