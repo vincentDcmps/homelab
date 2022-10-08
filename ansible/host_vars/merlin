@@ -1,8 +1,8 @@
 ---
-ansible_host: 65.109.13.133
+ansible_host: 95.216.217.5
 
 wireguard_address: "10.0.0.4/24"
-wireguard_endpoint: "65.109.13.133"
+wireguard_endpoint: "95.216.217.5"
 wireguard_persistent_keepalive: "30"
 wireguard_allowed_ips: "10.0.0.4/32,10.0.0.3/32,10.0.0.5/32"
 
