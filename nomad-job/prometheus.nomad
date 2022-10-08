@@ -1,5 +1,5 @@
 job "prometheus" {
-  datacenters = ["hetzner"]
+  datacenters = ["homelab"]
   type        = "service"
 
   group "prometheus" {
@@ -16,6 +16,9 @@ job "prometheus" {
       interval = "30m"
       delay    = "15s"
       mode     = "fail"
+    }
+   vault {
+      policies = ["access-tables"]
     }
 
     ephemeral_disk {
@@ -81,6 +84,15 @@ scrape_configs:
     relabel_configs:
       - source_labels: [__meta_consul_node]
         target_label: instance
+  - job_name: 'HASS'
+    consul_sd_configs:
+    - server: 'consul.service.consul:8500'
+      services: ['hass']
+    scrape_interval: 60s
+    metrics_path: /api/prometheus
+    authorization:
+      credentials: {{ with secret "secrets/data/prometheus"}}'{{ .Data.data.hass_token }}'{{end}}
+
 
 
 
