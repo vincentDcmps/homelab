@@ -1,5 +1,5 @@
 ---
-ansible_host: 95.216.217.5
+ansible_host: 10.0.0.4
 
 wireguard_address: "10.0.0.4/24"
 wireguard_endpoint: "95.216.217.5"
