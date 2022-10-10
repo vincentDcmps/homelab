@@ -23,6 +23,10 @@ job "www" {
           "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
+
+          "traefik.http.routers.default.rule=Host(`ducamps.win`)",
+          "traefik.http.routers.default.tls.domains[0].sans=ducamps.win",
+          "traefik.http.routers.default.tls.certresolver=myresolver",
        ]
         port = "http"
     }
