@@ -49,7 +49,7 @@ job "torrent" {
           "ecoute"
           ]
         volumes = [
-          "/mnt/hetzner/rutorrentConfig:/data",
+          "/mnt/hetzner/storagebox/rutorrentConfig:/data",
           "/mnt/hetzner/storagebox/file:/downloads"
         ]
 
