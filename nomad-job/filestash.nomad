@@ -54,7 +54,7 @@ job "filestash" {
       }
 
       resources {
-        cpu = 300
+        cpu = 100
         memory = 300
       }
     }

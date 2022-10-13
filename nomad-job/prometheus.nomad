@@ -187,7 +187,7 @@ EOH
         }
       }
       resources {
-        memory = 200
+        memory = 250
       }
     }
   }
