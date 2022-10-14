@@ -3,18 +3,18 @@ ansible_host: 65.108.221.233
 
 wireguard_address: "10.0.0.1/24"
 wireguard_endpoint: "65.108.221.233"
-wireguard_persistent_keepalive: "30"
+wireguard_persistent_keepalive: "20"
 wireguard_allowed_ips: "10.0.0.1/32"
 
 wireguard_postup:
   - iptables -A FORWARD -o %i -j ACCEPT
   - iptables -A FORWARD -i %i -j ACCEPT
-  - iptables -t nat -A POSTROUTING -o enp1s0 -j MASQUERADE
+  - iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 wireguard_postdown:
   - iptables -D FORWARD -i %i -j ACCEPT
   - iptables -D FORWARD -o %i -j ACCEPT
-  - iptables -t nat -D POSTROUTING -o enp1s0 -j MASQUERADE
+  - iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 
 wireguard_unmanaged_peers:
   phone:
@@ -34,7 +34,7 @@ nomad_host_networks:
   - name: "private"
     interface: wg0
   - name: "public"
-    interface: enp1s0
+    interface: eth0
   - name: "default"
     interface: wg0
 vault_listener_address: 10.0.0.1
