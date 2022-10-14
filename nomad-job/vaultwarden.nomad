@@ -1,6 +1,6 @@
 
 job "vaultwarden" {
-  datacenters = ["hetzner"]
+  datacenters = ["homelab"]
   type = "service"
   meta {
     forcedeploy = "0"

@@ -1,5 +1,5 @@
 job "git" {
-  datacenters = ["hetzner"]
+  datacenters = ["homelab"]
   type = "service"
 
   group "gitea" {
