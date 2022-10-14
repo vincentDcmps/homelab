@@ -15,17 +15,16 @@ make vault-dev FILE=./yourconsulsnaphot.snap
 
 ```mermaid
 flowchart LR
-    subgraph Home
-    oscar[oscar]
-    gerard[gerard]
-    local[lan]
-    end
-    subgraph Cloud
-    merlin[merlin]
-    end
-  local[lan] <--> oscar
-  oscar <--> merlin
-  gerard <--> merlin
+  subgraph Home
+  oscar[oscar]
+  gerard[gerard]
+  end
+  subgraph Cloud
+  merlin[merlin]
+  end
+  oscar <--lan--> gerard
+  oscar <--wiregard--> merlin
+  gerard <--wiregard--> merlin
   merlin <--> internet 
   
 ```
