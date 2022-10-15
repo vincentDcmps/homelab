@@ -61,6 +61,7 @@ job "pihole" {
         WEBPASSWORD="{{with secret "secrets/data/pihole"}}{{.Data.data.WEBPASSWORD}}{{end}}"
         EOH
         destination = "local/file.env"
+        change_mode = "noop"
         env         = true
     }
      template{
