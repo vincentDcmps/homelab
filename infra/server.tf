@@ -9,6 +9,11 @@ resource "hcloud_server" "HomeLab" {
   labels = {
   }
 
+  lifecycle {
+    ignore_changes = [
+      ssh_keys,
+    ]
+  }
 }
 #resource "hcloud_server" "HomeLab2" {
 #  count       = var.instances
