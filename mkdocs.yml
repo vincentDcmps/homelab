@@ -1,0 +1,29 @@
+---
+site_name: Homelab
+copyright: Copyright &copy; 2021 - 2022 VincentDcmps
+repo_url: https://git.ducamps.win/vincent/homelab
+site_author: VincentDcmps
+site_url: https://www.ducamps.win/homelab
+theme:
+  name: material
+  highlightjs: true
+  palette:
+    scheme: default
+    primary: black
+  hljs_languages:
+    - yaml
+  features:
+    - navigation.indexes
+    - navigation.instant
+    - navigation.sections
+    - search.highlight
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/vincentDcmps
