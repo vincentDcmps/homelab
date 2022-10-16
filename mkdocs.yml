@@ -18,6 +18,8 @@ theme:
     - navigation.sections
     - search.highlight
 markdown_extensions:
+  - pymdownx.snippets:
+      check_paths: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
