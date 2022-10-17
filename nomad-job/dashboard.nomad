@@ -1,6 +1,6 @@
 
 job "dashboard" {
-  datacenters = ["hetzner"]
+  datacenters = ["homelab"]
   type = "service"
   meta {
     forcedeploy = "1"
