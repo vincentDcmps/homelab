@@ -6,9 +6,11 @@ job "seedboxsync" {
   meta {
     forcedeploy = "0"
   }
-  #  constraint {
-  #}
 
+  constraint {
+    attribute = "${attr.cpu.arch}"
+    value = "amd64"
+  }
   periodic {
     cron = "0,30 * * * *"  
     prohibit_overlap = true
@@ -26,7 +28,7 @@ job "seedboxsync" {
         name = "lftp"
       }
       config {
-        image = "minidocks/lftp"
+        image = "ducampsv/lftp:latest"
         volumes = [
           "/mnt/diskstation/media/download:/media"
         ]
@@ -37,7 +39,10 @@ job "seedboxsync" {
         ]
 
       }
-
+      env {
+        USER_ID=1000001
+        GROUP_ID=1000007
+      }
       template {
         data= <<EOH
           {{ with secret "secrets/data/seedbox"}}
@@ -51,7 +56,7 @@ job "seedboxsync" {
         env = true
       }
       resources {
-        memory = 50
+        memory = 100
       }
     }
 
