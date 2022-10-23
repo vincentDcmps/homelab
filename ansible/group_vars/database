@@ -23,6 +23,8 @@ postgresql_users:
     password: "{{  lookup('hashi_vault', 'secret=secrets/data/ansible/database:dendrite')}}"
   - name: paperless
     password: "{{  lookup('hashi_vault', 'secret=secrets/data/ansible/database:paperless')}}"
+  - name: dump
+    password: "{{  lookup('hashi_vault', 'secret=secrets/data/ansible/database:dump')}}"
 
 postgresql_databases:
   - name: wikijs
@@ -45,3 +47,4 @@ postgresql_databases:
     owner: dendrite
   - name: paperless
     owner: paperless
+
