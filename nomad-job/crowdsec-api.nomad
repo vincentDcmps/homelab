@@ -1,10 +1,10 @@
 job "crowdsec-api" {
   datacenters = ["homelab"]
-  type = "service"
+  type        = "service"
   meta {
     forcedeploy = "-1"
   }
-  vault{
+  vault {
     policies = ["access-tables"]
   }
   group "crowdsec-api" {
@@ -12,30 +12,30 @@ job "crowdsec-api" {
       mode = "host"
       port "http" {
         static = 8898
-        to = 8080
+        to     = 8080
       }
-      port "metric"{
+      port "metric" {
         to = 6060
       }
     }
     task "crowdsec-api" {
-       service {
-        name= "crowdsec-metrics"
+      service {
+        name = "crowdsec-metrics"
         port = "metric"
         tags = [
         ]
       }
-     driver = "docker"
+      driver = "docker"
       service {
-        name= "crowdsec-api"
+        name = "crowdsec-api"
         port = "http"
         tags = [
 
         ]
       }
       config {
-        image ="crowdsecurity/crowdsec"
-        ports = ["http","metric"]
+        image = "crowdsecurity/crowdsec"
+        ports = ["http", "metric"]
         volumes = [
           "/mnt/diskstation/nomad/crowdsec/db:/var/lib/crowdsec/data",
           "/mnt/diskstation/nomad/crowdsec/data:/etc/crowdsec_data",
@@ -43,21 +43,21 @@ job "crowdsec-api" {
 
       }
       template {
-        data = <<EOH
+        data        = <<EOH
 DISABLE_AGENT = "true"
 {{with secret "secrets/data/crowdsec"}}
   AGENT_USERNAME = "{{.Data.data.AGENT_USERNAME}}"
   AGENT_PASSWORD = "{{.Data.data.AGENT_PASSWORD}}"
 {{end}}
 EOH
-        destination ="secret/api.env"
-        env = "true"
+        destination = "secret/api.env"
+        env         = "true"
       }
       resources {
         memory = 99
       }
     }
-    
+
 
 
   }

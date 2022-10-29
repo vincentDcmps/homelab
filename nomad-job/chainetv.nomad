@@ -1,11 +1,11 @@
 
 job "chainetv" {
   datacenters = ["homelab"]
-  type = "service"
+  type        = "service"
   meta {
     forcedeploy = "2"
   }
-  group "chainetv"{
+  group "chainetv" {
     network {
       mode = "host"
       port "http" {
@@ -19,20 +19,20 @@ job "chainetv" {
         name = "chainetv"
         port = "http"
         tags = [
-            "homer.enable=true",
-            "homer.name=ChaineTV",
-            "homer.service=Application",
-            "homer.icon=fas fa-tv",
-            "homer.target=_blank",
-            "homer.url=https://www.ducamps.win/${NOMAD_JOB_NAME}",
+          "homer.enable=true",
+          "homer.name=ChaineTV",
+          "homer.service=Application",
+          "homer.icon=fas fa-tv",
+          "homer.target=_blank",
+          "homer.url=https://www.ducamps.win/${NOMAD_JOB_NAME}",
 
-            "traefik.enable=true",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`www.ducamps.win`)&&PathPrefix(`/chainetv`)",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=www.ducamps.win",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.middlewares=chainetv,chainetvStrip",
-            "traefik.http.middlewares.chainetv.headers.customrequestheaders.X-Script-Name=/chainetv",
-            "traefik.http.middlewares.chainetvStrip.stripprefix.prefixes=/chainetv",
+          "traefik.enable=true",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`www.ducamps.win`)&&PathPrefix(`/chainetv`)",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=www.ducamps.win",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.middlewares=chainetv,chainetvStrip",
+          "traefik.http.middlewares.chainetv.headers.customrequestheaders.X-Script-Name=/chainetv",
+          "traefik.http.middlewares.chainetvStrip.stripprefix.prefixes=/chainetv",
 
         ]
       }

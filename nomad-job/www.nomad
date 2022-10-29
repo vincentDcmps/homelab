@@ -1,34 +1,34 @@
 job "www" {
   datacenters = ["hetzner"]
-  type = "service"
+  type        = "service"
   group "www" {
     network {
       mode = "host"
       port "http" {
-        to  = 80
+        to           = 80
         host_network = "private"
       }
     }
     service {
-        name = "www"
-        tags = [
-            "homer.enable=true",
-            "homer.name=Website",
-            "homer.service=Application",
-            "homer.icon=fas fa-blog",
-            "homer.target=_blank",
-            "homer.url=https://www.ducamps.win",
+      name = "www"
+      tags = [
+        "homer.enable=true",
+        "homer.name=Website",
+        "homer.service=Application",
+        "homer.icon=fas fa-blog",
+        "homer.target=_blank",
+        "homer.url=https://www.ducamps.win",
 
-          "traefik.enable=true",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
+        "traefik.enable=true",
+        "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
+        "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
+        "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
 
-          "traefik.http.routers.default.rule=Host(`ducamps.win`)",
-          "traefik.http.routers.default.tls.domains[0].sans=ducamps.win",
-          "traefik.http.routers.default.tls.certresolver=myresolver",
-       ]
-        port = "http"
+        "traefik.http.routers.default.rule=Host(`ducamps.win`)",
+        "traefik.http.routers.default.tls.domains[0].sans=ducamps.win",
+        "traefik.http.routers.default.tls.certresolver=myresolver",
+      ]
+      port = "http"
     }
     task "server" {
       driver = "docker"
@@ -37,14 +37,14 @@ job "www" {
         ports = [
           "http"
         ]
-        volumes =[
+        volumes = [
           "local/nginx.conf:/etc/nginx/nginx.conf",
           "/srv/http:/usr/share/nginx/html"
         ]
 
       }
-    template{
-        data= <<EOH
+      template {
+        data        = <<EOH
 worker_processes auto;
 pid /var/run/nginx.pid;
 events {
@@ -73,7 +73,7 @@ http {
 
 }
         EOH
-        destination="local/nginx.conf"
+        destination = "local/nginx.conf"
       }
       resources {
         memory = 50

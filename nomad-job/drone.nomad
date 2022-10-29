@@ -1,6 +1,6 @@
 job "drone" {
   datacenters = ["homelab"]
-  type = "service"
+  type        = "service"
   vault {
     policies = ["access-tables"]
   }
@@ -15,7 +15,7 @@ job "drone" {
     }
     constraint {
       attribute = "${attr.cpu.arch}"
-      value = "amd64"
+      value     = "amd64"
     }
     task "drone-server" {
       driver = "docker"
@@ -49,7 +49,7 @@ job "drone" {
 
       }
       template {
-        data= <<EOH
+        data        = <<EOH
           {{ with secret "secrets/data/droneCI"}}
           DRONE_GITEA_SERVER="https://git.ducamps.win"
           DRONE_GITEA_CLIENT_ID="{{ .Data.data.DRONE_GITEA_CLIENT_ID }}"
@@ -64,18 +64,18 @@ job "drone" {
           {{end}}
           EOH
         destination = "local/drone.env"
-        env = true
+        env         = true
       }
       resources {
         memory = 100
       }
     }
 
-    task "drone-runner"{
+    task "drone-runner" {
       driver = "docker"
       config {
         image = "drone/drone-runner-docker:latest"
-        volumes =[
+        volumes = [
           "/var/run/docker.sock:/var/run/docker.sock",
         ]
       }
@@ -83,7 +83,7 @@ job "drone" {
 
       }
       template {
-        data= <<EOH
+        data        = <<EOH
           {{ with secret "secrets/data/droneCI"}}
           DRONE_RPC_HOST="drone.ducamps.win"
           DRONE_RPC_PROTO="https"
@@ -91,7 +91,7 @@ job "drone" {
           {{ end }}
           EOH
         destination = "local/drone-runner.env"
-        env = true
+        env         = true
       }
       resources {
         memory = 50
@@ -102,13 +102,13 @@ job "drone" {
   group "Drone-ARM-Runner" {
     constraint {
       attribute = "${attr.cpu.arch}"
-      value = "arm"
+      value     = "arm"
     }
-    task "drone-ARM-runner"{
+    task "drone-ARM-runner" {
       driver = "docker"
       config {
-        image = "drone/drone-runner-docker:latest"
-        volumes =[
+        image = "drone/drone-runner-docker:1.8.2-linux-arm"
+        volumes = [
           "/var/run/docker.sock:/var/run/docker.sock",
         ]
       }
@@ -116,7 +116,7 @@ job "drone" {
 
       }
       template {
-        data= <<EOH
+        data        = <<EOH
           {{ with secret "secrets/data/droneCI"}}
           DRONE_RPC_HOST="drone.ducamps.win"
           DRONE_RPC_PROTO="https"
@@ -124,7 +124,7 @@ job "drone" {
           {{ end }}
           EOH
         destination = "local/drone-runner.env"
-        env = true
+        env         = true
       }
       resources {
         memory = 50

@@ -1,6 +1,6 @@
 job "git" {
   datacenters = ["homelab"]
-  type = "service"
+  type        = "service"
 
   group "gitea" {
     network {
@@ -37,7 +37,7 @@ job "git" {
         ]
       }
       service {
-        name= "gitea-ssh"
+        name = "gitea-ssh"
         port = "ssh"
         tags = [
           "traefik.enable=true",
@@ -51,32 +51,32 @@ job "git" {
           "http",
           "ssh"
         ]
-      volumes = [
-        "/mnt/diskstation/git:/repo",
-        "/mnt/diskstation/nomad/gitea:/data"
-      ]
+        volumes = [
+          "/mnt/diskstation/git:/repo",
+          "/mnt/diskstation/nomad/gitea:/data"
+        ]
       }
       env {
-        USER_UID = 1000000
-        USER_GUID = 985
-        GITEA__server__DOMAIN = "git.ducamps.win"
-        GITEA__server__ROOT_URL = "https://git.ducamps.win"
-        GITEA__server__SSH_DOMAIN  = "git.ducamps.win"
-        GITEA__server__SSH_PORT  = "2222"
-        GITEA__server__SSH_LISTEN_PORT  = "2222"
-        GITEA__server__START_SSH_SERVER  = "false"
-        GITEA__database__DB_TYPE = "postgres"
-        GITEA__database__HOST = "db1.ducamps.win"
-        GITEA__database__NAME = "gitea"
-        GITEA__database__USER = "gitea"
+        USER_UID                             = 1000000
+        USER_GUID                            = 985
+        GITEA__server__DOMAIN                = "git.ducamps.win"
+        GITEA__server__ROOT_URL              = "https://git.ducamps.win"
+        GITEA__server__SSH_DOMAIN            = "git.ducamps.win"
+        GITEA__server__SSH_PORT              = "2222"
+        GITEA__server__SSH_LISTEN_PORT       = "2222"
+        GITEA__server__START_SSH_SERVER      = "false"
+        GITEA__database__DB_TYPE             = "postgres"
+        GITEA__database__HOST                = "db1.ducamps.win"
+        GITEA__database__NAME                = "gitea"
+        GITEA__database__USER                = "gitea"
         GITEA__service__DISABLE_REGISTRATION = "true"
-        GITEA__repository__ROOT = "/repo"
-        GITEA__server__APP_DATA_PATH = "/data"
-        GITEA__server__LFS_CONTENT_PATH = "/repo/LFS"
-        GITEA__webhook__ALLOWED_HOST_LIST = "drone.ducamps.win"
+        GITEA__repository__ROOT              = "/repo"
+        GITEA__server__APP_DATA_PATH         = "/data"
+        GITEA__server__LFS_CONTENT_PATH      = "/repo/LFS"
+        GITEA__webhook__ALLOWED_HOST_LIST    = "drone.ducamps.win"
       }
       template {
-        data= <<EOH
+        data        = <<EOH
           {{ with secret "secrets/data/gitea"}}
             GITEA__database__PASSWD = "{{.Data.data.PASSWD}}"
             GITEA__security__SECRET_KEY = "{{.Data.data.secret_key}}"
@@ -85,7 +85,7 @@ job "git" {
           {{end}}
           EOH
         destination = "secrets/gitea.env"
-        env = true
+        env         = true
       }
       resources {
         memory = 400

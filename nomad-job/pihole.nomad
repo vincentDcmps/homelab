@@ -1,39 +1,39 @@
 
 job "pihole" {
   datacenters = ["homelab"]
-  priority= 100
+  priority    = 100
   meta {
     force = 1
   }
   type = "service"
-     constraint {
-     attribute = "${attr.unique.hostname}"
-     value     = "oscar"
+  constraint {
+    attribute = "${attr.unique.hostname}"
+    value     = "oscar"
   }
-   group "pi-hole" {
+  group "pi-hole" {
     network {
       mode = "host"
       port "dns" {
-        static       = 53
+        static = 53
       }
       port "http" {
-        static       = 8090
-        to           = 80
+        static = 8090
+        to     = 80
       }
     }
     service {
-        name = "pihole-gui"
-        tags = ["pihole", "admin",
-            "homer.enable=true",
-            "homer.name=Pi-hole",
-            "homer.service=Application",
-            "homer.type=PiHole",
-            "homer.logo=http://${NOMAD_ADDR_http}/admin/img/logo.svg",
-            "homer.target=_blank",
-            "homer.url=http://${NOMAD_ADDR_http}/admin",
+      name = "pihole-gui"
+      tags = ["pihole", "admin",
+        "homer.enable=true",
+        "homer.name=Pi-hole",
+        "homer.service=Application",
+        "homer.type=PiHole",
+        "homer.logo=http://${NOMAD_ADDR_http}/admin/img/logo.svg",
+        "homer.target=_blank",
+        "homer.url=http://${NOMAD_ADDR_http}/admin",
 
-        ]
-        port = "http"
+      ]
+      port = "http"
     }
     task "server" {
       driver = "docker"
@@ -43,32 +43,32 @@ job "pihole" {
           "dns",
           "http",
         ]
-        volumes =[
-        "local/dnsmasq.d/02-localresolver.conf:/etc/dnsmasq.d/02-localresolver.conf",
-        "/mnt/diskstation/nomad/pihole:/etc/pihole"
+        volumes = [
+          "local/dnsmasq.d/02-localresolver.conf:/etc/dnsmasq.d/02-localresolver.conf",
+          "/mnt/diskstation/nomad/pihole:/etc/pihole"
         ]
 
       }
-    vault{
-      policies= ["access-tables"]
+      vault {
+        policies = ["access-tables"]
 
-    }
-    env {
-      TZ= "Europe/Paris"
-      DNS1= "1.1.1.1"
-      DNS2= "80.67.169.40"
+      }
+      env {
+        TZ   = "Europe/Paris"
+        DNS1 = "1.1.1.1"
+        DNS2 = "80.67.169.40"
 
-    }
-    template {
-      data = <<EOH
+      }
+      template {
+        data        = <<EOH
         WEBPASSWORD="{{with secret "secrets/data/pihole"}}{{.Data.data.WEBPASSWORD}}{{end}}"
         EOH
         destination = "local/file.env"
         change_mode = "noop"
         env         = true
-    }
-     template{
-        data= <<EOH
+      }
+      template {
+        data        = <<EOH
 server=/ducamps.win/192.168.1.10
 {{range service "consul"}}server=/consul/{{.Address}}#8600
 {{end}}
@@ -76,7 +76,7 @@ domain=ducamps.win
 no-negcache
 local-ttl=2
         EOH
-        destination="local/dnsmasq.d/02-localresolver.conf"
+        destination = "local/dnsmasq.d/02-localresolver.conf"
         change_mode = "restart"
 
       }

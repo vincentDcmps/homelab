@@ -1,12 +1,12 @@
 
 job "alertmanager" {
   datacenters = ["homelab"]
-  type = "service"
+  type        = "service"
   meta {
     forcedeploy = "0"
   }
 
-  group "alertmanager"{
+  group "alertmanager" {
     network {
       mode = "host"
       port "http" {
@@ -27,7 +27,7 @@ job "alertmanager" {
           "homer.target=_blank",
           "homer.url=http://${NOMAD_ADDR_http}",
 
-                  ]
+        ]
         check {
           name     = "alertmanager_ui port alive"
           type     = "http"

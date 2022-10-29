@@ -1,22 +1,22 @@
 job "tt-rss" {
   datacenters = ["homelab"]
-  type = "service"
+  type        = "service"
 
-   constraint {
+  constraint {
     attribute = "${attr.cpu.arch}"
-    value = "amd64"
- }
-               
+    value     = "amd64"
+  }
+
 
   group "tt-rss" {
     ephemeral_disk {
       migrate = true
-      size    =  200
+      size    = 200
       sticky  = true
     }
     network {
       mode = "host"
-      port "http"{
+      port "http" {
         to = 80
       }
       port "appPort" {
@@ -30,12 +30,12 @@ job "tt-rss" {
       name = "tt-rss"
       port = "http"
       tags = [
-            "homer.enable=true",
-            "homer.name=TT-RSS",
-            "homer.service=Application",
-            "homer.logo=https://framalibre.org/sites/default/files/styles/thumbnail/public/leslogos/ic_launcher_1.png",
-            "homer.target=_blank",
-            "homer.url=https://www.ducamps.win/tt-rss",
+        "homer.enable=true",
+        "homer.name=TT-RSS",
+        "homer.service=Application",
+        "homer.logo=https://framalibre.org/sites/default/files/styles/thumbnail/public/leslogos/ic_launcher_1.png",
+        "homer.target=_blank",
+        "homer.url=https://www.ducamps.win/tt-rss",
 
         "traefik.enable=true",
         "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`www.ducamps.win`)&&PathPrefix(`/tt-rss`)",
@@ -50,27 +50,27 @@ job "tt-rss" {
       config {
         image = "cthulhoo/ttrss-fpm-pgsql-static"
         ports = [
-         "appPort"
+          "appPort"
         ]
         volumes = [
           "${NOMAD_ALLOC_DIR}/data:/var/www/html"
         ]
       }
       env {
-        TTRSS_DB-TYPE = "pgsql"
-        TTRSS_DB_HOST = "db1.ducamps.win"
-        TTRSS_DB_NAME = "ttrss"
-        TTRSS_DB_USER = "ttrss"
+        TTRSS_DB-TYPE       = "pgsql"
+        TTRSS_DB_HOST       = "db1.ducamps.win"
+        TTRSS_DB_NAME       = "ttrss"
+        TTRSS_DB_USER       = "ttrss"
         TTRSS_SELF_URL_PATH = "https://www.ducamps.win/tt-rss"
       }
       template {
-        data= <<EOH
+        data        = <<EOH
             {{ with secret "secrets/data/ttrss"}}
             TTRSS_DB_PASS = "{{ .Data.data.DB_PASS }}"
             {{end}}
           EOH
         destination = "secrets/tt-rss.env"
-        env = true
+        env         = true
 
       }
       resources {
@@ -78,7 +78,7 @@ job "tt-rss" {
       }
     }
 
-   task "ttrss-updater" {
+    task "ttrss-updater" {
       driver = "docker"
       config {
         image = "cthulhoo/ttrss-fpm-pgsql-static"
@@ -89,20 +89,20 @@ job "tt-rss" {
 
       }
       env {
-        TTRSS_DB-TYPE = "pgsql"
-        TTRSS_DB_HOST = "db1.ducamps.win"
-        TTRSS_DB_NAME = "ttrss"
-        TTRSS_DB_USER = "ttrss"
+        TTRSS_DB-TYPE       = "pgsql"
+        TTRSS_DB_HOST       = "db1.ducamps.win"
+        TTRSS_DB_NAME       = "ttrss"
+        TTRSS_DB_USER       = "ttrss"
         TTRSS_SELF_URL_PATH = "https://rss.ducamps.win/tt-rss"
       }
       template {
-        data= <<EOH
+        data        = <<EOH
             {{ with secret "secrets/data/ttrss"}}
             TTRSS_DB_PASS = "{{ .Data.data.DB_PASS }}"
             {{end}}
           EOH
         destination = "secrets/tt-rss.env"
-        env = true
+        env         = true
 
       }
       resources {
@@ -113,8 +113,8 @@ job "tt-rss" {
     task "ttrss-frontend" {
       driver = "docker"
       config {
-        image= "nginx:alpine"
-        ports= [
+        image = "nginx:alpine"
+        ports = [
           "http"
         ]
         volumes = [
@@ -124,7 +124,7 @@ job "tt-rss" {
       }
 
       template {
-        data = <<EOH
+        data        = <<EOH
               worker_processes auto;
               pid /var/run/nginx.pid;
 

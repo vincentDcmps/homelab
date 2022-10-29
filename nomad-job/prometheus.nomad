@@ -17,7 +17,7 @@ job "prometheus" {
       delay    = "15s"
       mode     = "fail"
     }
-   vault {
+    vault {
       policies = ["access-tables"]
     }
 
@@ -100,10 +100,10 @@ scrape_configs:
 EOH
       }
       template {
-        destination = "local/nomad-alert-rules.yml"
+        destination     = "local/nomad-alert-rules.yml"
         right_delimiter = "]]"
-        left_delimiter = "[["
-        data = <<EOH
+        left_delimiter  = "[["
+        data            = <<EOH
 ---
 groups:
 - name: nomad_alerts
@@ -166,13 +166,13 @@ EOH
       service {
         name = "prometheus"
         tags = ["urlprefix-/",
-            "homer.enable=true",
-            "homer.name=Prometheus",
-            "homer.service=Monitoring",
-            "homer.type=Prometheus",
-            "homer.logo=https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/173px-Prometheus_software_logo.svg.png",
-            "homer.target=_blank",
-            "homer.url=http://${NOMAD_ADDR_prometheus_ui}",
+          "homer.enable=true",
+          "homer.name=Prometheus",
+          "homer.service=Monitoring",
+          "homer.type=Prometheus",
+          "homer.logo=https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/173px-Prometheus_software_logo.svg.png",
+          "homer.target=_blank",
+          "homer.url=http://${NOMAD_ADDR_prometheus_ui}",
 
 
         ]

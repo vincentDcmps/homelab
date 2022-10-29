@@ -1,28 +1,28 @@
 job "traefik-local" {
   datacenters = ["homelab"]
-  type = "service"
+  type        = "service"
 
   group "traefik-local" {
     network {
       mode = "host"
       port "http" {
-        static  = 80
+        static = 80
       }
       port "https" {
-        static  = 443
+        static = 443
       }
       port "ssh" {
         static = 2222
       }
-     port "admin" {
+      port "admin" {
         static = 9080
       }
     }
-   vault{
-      policies=["access-tables"]
+    vault {
+      policies = ["access-tables"]
     }
 
-     task "traefik" {
+    task "traefik" {
       driver = "docker"
       service {
         name = "traefik-local"
@@ -35,13 +35,13 @@ job "traefik-local" {
         name = "traefik-local-admin"
         port = "admin"
         tags = [
-            "homer.enable=true",
-            "homer.name=Traefik admin",
-            "homer.subtitle=LAN",
-            "homer.service=Platform",
-            "homer.logo=https://upload.wikimedia.org/wikipedia/commons/1/1b/Traefik.logo.png",
-            "homer.target=_blank",
-            "homer.url=http://${NOMAD_ADDR_admin}",
+          "homer.enable=true",
+          "homer.name=Traefik admin",
+          "homer.subtitle=LAN",
+          "homer.service=Platform",
+          "homer.logo=https://upload.wikimedia.org/wikipedia/commons/1/1b/Traefik.logo.png",
+          "homer.target=_blank",
+          "homer.url=http://${NOMAD_ADDR_admin}",
 
 
         ]
@@ -55,7 +55,7 @@ job "traefik-local" {
           "admin",
           "ssh"
         ]
-        volumes =[
+        volumes = [
           "local/traefik.toml:/etc/traefik/traefik.toml",
           "/mnt/diskstation/nomad/traefik/acme-local.json:/acme.json"
         ]
@@ -65,16 +65,16 @@ job "traefik-local" {
       #}
       env {
       }
-      template{
-        data=<<EOH
+      template {
+        data        = <<EOH
           GANDIV5_API_KEY = "{{with secret "secrets/data/gandi"}}{{.Data.data.API_KEY}}{{end}}"
           EOH
-        destination= "secrets/gandi.env"
-        env = true
+        destination = "secrets/gandi.env"
+        env         = true
       }
 
-      template{
-        data= <<EOH
+      template {
+        data            = <<EOH
         [entryPoints]
           [entryPoints.web]
             address = ":80"
@@ -115,10 +115,10 @@ job "traefik-local" {
 
 
         EOH
-        destination = "local/traefik.toml"
-        env         = false
-        change_mode = "noop"
-        left_delimiter = "{{{"
+        destination     = "local/traefik.toml"
+        env             = false
+        change_mode     = "noop"
+        left_delimiter  = "{{{"
         right_delimiter = "}}}"
       }
       resources {

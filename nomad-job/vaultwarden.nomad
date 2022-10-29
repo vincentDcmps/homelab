@@ -1,20 +1,20 @@
 
 job "vaultwarden" {
   datacenters = ["homelab"]
-  type = "service"
+  type        = "service"
   meta {
     forcedeploy = "0"
   }
 
-  group "vaultwarden"{
+  group "vaultwarden" {
     network {
       mode = "host"
       port "http" {
         to = 80
       }
     }
-    vault{
-      policies= ["access-tables"]
+    vault {
+      policies = ["access-tables"]
 
     }
     task "vaultwarden" {
@@ -23,17 +23,17 @@ job "vaultwarden" {
         name = "vaultwarden"
         port = "http"
         tags = [
-            "homer.enable=true",
-            "homer.name=VaultWarden",
-            "homer.service=Application",
-            "homer.logo=https://yunohost.org/user/images/bitwarden_logo.png",
-            "homer.target=_blank",
-            "homer.url=https://${NOMAD_JOB_NAME}.ducamps.win",
+          "homer.enable=true",
+          "homer.name=VaultWarden",
+          "homer.service=Application",
+          "homer.logo=https://yunohost.org/user/images/bitwarden_logo.png",
+          "homer.target=_blank",
+          "homer.url=https://${NOMAD_JOB_NAME}.ducamps.win",
 
-            "traefik.enable=true",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`vault.ducamps.win`)",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=vault.ducamps.win",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
+          "traefik.enable=true",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`vault.ducamps.win`)",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=vault.ducamps.win",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
         ]
         check {
           type     = "http"
@@ -56,20 +56,20 @@ job "vaultwarden" {
 
       }
       env {
-        DATA_FOLDER  = "/data"
-        WEB_VAULT_ENABLED   = "true"
-        DOMAIN = "https://vault.ducamps.win"
+        DATA_FOLDER       = "/data"
+        WEB_VAULT_ENABLED = "true"
+        DOMAIN            = "https://vault.ducamps.win"
 
       }
 
       template {
-        data= <<EOH
+        data        = <<EOH
           {{ with secret "secrets/data/vaultwarden"}}
           DATABASE_URL=postgresql://vaultwarden:{{ .Data.data.DB_PASSWORD }}@db1.ducamps.win/vaultwarden
           {{end}}
           EOH
         destination = "secrets/vaultwarden.env"
-        env = true
+        env         = true
       }
       resources {
         memory = 150

@@ -1,12 +1,12 @@
 
 job "loki" {
   datacenters = ["homelab"]
-  type = "service"
+  type        = "service"
   meta {
     forcedeploy = "0"
   }
 
-  group "loki"{
+  group "loki" {
     network {
       mode = "host"
       port "http" {
@@ -44,7 +44,7 @@ job "loki" {
         ]
       }
       template {
-        data = <<EOH
+        data        = <<EOH
 auth_enabled: false
 server:
   http_listen_port: 3100

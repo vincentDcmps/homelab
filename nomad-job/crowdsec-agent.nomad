@@ -1,25 +1,25 @@
 
 job "crowdsec-agent" {
-  datacenters = ["homelab","hetzner"]
-  type = "system"
+  datacenters = ["homelab", "hetzner"]
+  type        = "system"
   meta {
     forcedeploy = "2"
   }
-  vault{
-    policies= ["access-tables"]
+  vault {
+    policies = ["access-tables"]
 
   }
 
-  group "crowdsec-agent"{
+  group "crowdsec-agent" {
     network {
       mode = "host"
-      port "metric"{
+      port "metric" {
         to = 6060
       }
     }
     task "crowdsec-agent" {
       service {
-        name= "crowdsec-metrics"
+        name = "crowdsec-metrics"
         port = "metric"
         tags = [
         ]
@@ -36,11 +36,11 @@ job "crowdsec-agent" {
 
       }
       env {
-        COLLECTIONS= "crowdsecurity/traefik crowdsecurity/home-assistant LePresidente/gitea"
-        DISABLE_LOCAL_API= "true"
+        COLLECTIONS       = "crowdsecurity/traefik crowdsecurity/home-assistant LePresidente/gitea"
+        DISABLE_LOCAL_API = "true"
       }
       template {
-        data = <<EOH
+        data        = <<EOH
 ---
 source: docker
 container_name_regexp:
@@ -66,15 +66,15 @@ EOH
 
       }
       template {
-        data = <<EOH
+        data        = <<EOH
         LOCAL_API_URL =  {{- range service "crowdsec-api" }} "http://{{ .Address }}:{{ .Port }}"{{- end }}
 AGENT_USERNAME = "{{ env "node.unique.name" }}"
 {{with secret "secrets/data/crowdsec"}}
   AGENT_PASSWORD = "{{.Data.data.AGENT_PASSWORD}}"
 {{end}}
 EOH
-        destination ="secret/agent.env"
-        env = "true"
+        destination = "secret/agent.env"
+        env         = "true"
       }
       resources {
         memory = 100

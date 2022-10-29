@@ -7,14 +7,14 @@ job "grafana" {
   group "grafana" {
     network {
       port "http" {
-        to     = 3000
+        to = 3000
       }
     }
 
     service {
       name = "grafana"
       port = "http"
-      tags= [
+      tags = [
         "homer.enable=true",
         "homer.name=Grafana",
         "homer.service=Monitoring",

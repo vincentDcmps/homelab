@@ -1,23 +1,23 @@
 
 job "filestash" {
   datacenters = ["hetzner"]
-  type = "service"
+  type        = "service"
   meta {
     forcedeploy = "0"
   }
   constraint {
     attribute = "${attr.cpu.arch}"
-    value = "amd64"
+    value     = "amd64"
   }
 
 
-  group "filestash"{
+  group "filestash" {
     network {
       mode = "host"
       port "http" {
         to = 8334
       }
-      port "onlyoffice"{
+      port "onlyoffice" {
         to = 80
       }
     }
@@ -27,16 +27,16 @@ job "filestash" {
         name = "filestash"
         port = "http"
         tags = [
-            "homer.enable=true",
-            "homer.name=FileStash",
-            "homer.service=Application",
-            "homer.url=http://file.ducamps.win",
-            "homer.logo=http://file.ducamps.win/assets/logo/apple-touch-icon.png",
-            "homer.target=_blank",
-            "traefik.enable=true",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`file.ducamps.win`)",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=file.ducamps.win",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
+          "homer.enable=true",
+          "homer.name=FileStash",
+          "homer.service=Application",
+          "homer.url=http://file.ducamps.win",
+          "homer.logo=http://file.ducamps.win/assets/logo/apple-touch-icon.png",
+          "homer.target=_blank",
+          "traefik.enable=true",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`file.ducamps.win`)",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=file.ducamps.win",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
 
 
         ]
@@ -50,11 +50,11 @@ job "filestash" {
 
       }
       env {
-        APPLICATION_URL= ""
+        APPLICATION_URL = ""
       }
 
       resources {
-        cpu = 100
+        cpu    = 100
         memory = 300
       }
     }

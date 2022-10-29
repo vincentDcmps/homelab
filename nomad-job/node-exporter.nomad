@@ -1,11 +1,11 @@
 job "node-exporter" {
-  datacenters = ["homelab","hetzner"]
-  type = "system"
+  datacenters = ["homelab", "hetzner"]
+  type        = "system"
   meta {
     forcedeploy = "0"
   }
 
-  group "node-exporter"{
+  group "node-exporter" {
     network {
       port "http" {
       }
@@ -14,11 +14,11 @@ job "node-exporter" {
       name = "node-exporter"
       port = "http"
       check {
-        type = "http"
-        port = "http"
-        path = "/"
-        interval = "10s"
-        timeout = "2s"
+        type                     = "http"
+        port                     = "http"
+        path                     = "/"
+        interval                 = "10s"
+        timeout                  = "2s"
         success_before_passing   = "3"
         failures_before_critical = "3"
         check_restart {
@@ -59,7 +59,7 @@ job "node-exporter" {
       }
 
       resources {
-        cpu = 20
+        cpu    = 20
         memory = 30
       }
     }

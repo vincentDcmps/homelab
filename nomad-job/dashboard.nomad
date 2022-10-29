@@ -1,12 +1,12 @@
 
 job "dashboard" {
   datacenters = ["homelab"]
-  type = "service"
+  type        = "service"
   meta {
     forcedeploy = "1"
   }
 
-  group "dashboard"{
+  group "dashboard" {
     network {
       mode = "host"
       port "http" {
@@ -20,10 +20,10 @@ job "dashboard" {
         name = "homer"
         port = "http"
         tags = [
-            "traefik.enable=true",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
+          "traefik.enable=true",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
         ]
       }
       config {
@@ -35,7 +35,7 @@ job "dashboard" {
 
       }
       env {
-        INIT_ASSETS= 0
+        INIT_ASSETS = 0
       }
 
       resources {
@@ -45,19 +45,19 @@ job "dashboard" {
     task "homer-service-discovery" {
       driver = "docker"
       config {
-        image= "ducampsv/homer-service-discovery"
+        image = "ducampsv/homer-service-discovery"
         volumes = [
           "/mnt/diskstation/nomad/homer/config.yml:/config.yml",
           "local/base.yml:/base.yml"
         ]
       }
       env {
-        SERVICE_DISCOVERY="Consul"
-        CONSUL_HOST = "consul.service.consul:8500"
+        SERVICE_DISCOVERY = "Consul"
+        CONSUL_HOST       = "consul.service.consul:8500"
       }
 
-      template{
-        data = <<EOH
+      template {
+        data        = <<EOH
 title: "HomeLab dashboard"
 subtitle: "VincentDcmps"
 logo: "assets/logo.png"
@@ -138,7 +138,7 @@ services:
 
       }
       resources {
-        memory= 30
+        memory = 30
       }
     }
 

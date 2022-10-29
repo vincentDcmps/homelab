@@ -1,12 +1,12 @@
 
 job "promtail" {
-  datacenters = ["homelab","hetzner"]
-  type = "system"
+  datacenters = ["homelab", "hetzner"]
+  type        = "system"
   meta {
     forcedeploy = "0"
   }
 
-  group "promtail"{
+  group "promtail" {
     network {
       mode = "host"
       port "http" {
@@ -47,7 +47,7 @@ job "promtail" {
       env {
         HOSTNAME = "${attr.unique.hostname}"
       }
-     template {
+      template {
         data        = <<EOTC
 positions:
   filename: {{ env "NOMAD_ALLOC_DIR"}}/positions.yaml

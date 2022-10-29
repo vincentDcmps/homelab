@@ -1,34 +1,34 @@
 job "traefik-ingress" {
   datacenters = ["hetzner"]
-  type = "service"
+  type        = "service"
 
   meta {
-    force_deploy= 1
+    force_deploy = 1
   }
   group "traefik-ingress" {
     network {
       mode = "host"
       port "http" {
-        static  = 80
+        static       = 80
         host_network = "public"
       }
       port "https" {
-        static  = 443
+        static       = 443
         host_network = "public"
       }
       port "admin" {
-        static = 9080
+        static       = 9080
         host_network = "private"
       }
       port "ssh" {
-        static = 2222
+        static       = 2222
         host_network = "public"
       }
     }
-    vault{
-      policies=["access-tables"]
+    vault {
+      policies = ["access-tables"]
     }
-     task "traefik" {
+    task "traefik" {
       driver = "docker"
       service {
         name = "traefik"
@@ -41,13 +41,13 @@ job "traefik-ingress" {
         name = "traefik-admin"
         port = "admin"
         tags = [
-            "homer.enable=true",
-            "homer.name=Traefik admin",
-            "homer.subtitle=WAN",
-            "homer.service=Platform",
-            "homer.logo=https://upload.wikimedia.org/wikipedia/commons/1/1b/Traefik.logo.png",
-            "homer.target=_blank",
-            "homer.url=http://${NOMAD_ADDR_admin}",
+          "homer.enable=true",
+          "homer.name=Traefik admin",
+          "homer.subtitle=WAN",
+          "homer.service=Platform",
+          "homer.logo=https://upload.wikimedia.org/wikipedia/commons/1/1b/Traefik.logo.png",
+          "homer.target=_blank",
+          "homer.url=http://${NOMAD_ADDR_admin}",
 
 
         ]
@@ -61,7 +61,7 @@ job "traefik-ingress" {
           "admin",
           "ssh"
         ]
-        volumes =[
+        volumes = [
           "local/traefik.toml:/etc/traefik/traefik.toml",
           "/mnt/diskstation/nomad/traefik/acme.json:/acme.json"
         ]
@@ -69,17 +69,17 @@ job "traefik-ingress" {
       }
       # vault{
       #}
-    env {
-    }
-    template{
-      data=<<EOH
+      env {
+      }
+      template {
+        data        = <<EOH
         GANDIV5_API_KEY = "{{with secret "secrets/data/gandi"}}{{.Data.data.API_KEY}}{{end}}"
         EOH
-      destination= "secrets/gandi.env"
-      env = true
-    }
-    template{
-        data= <<EOH
+        destination = "secrets/gandi.env"
+        env         = true
+      }
+      template {
+        data            = <<EOH
         [entryPoints]
 
           [entrypoints.ssh]
@@ -118,15 +118,15 @@ job "traefik-ingress" {
 
 
         EOH
-        destination = "local/traefik.toml"
-        env         = false
-        change_mode = "noop"
-        left_delimiter = "{{{"
+        destination     = "local/traefik.toml"
+        env             = false
+        change_mode     = "noop"
+        left_delimiter  = "{{{"
         right_delimiter = "}}}"
-    }
-    resources {
-      memory = 200
-    }
+      }
+      resources {
+        memory = 200
+      }
     }
   }
 }

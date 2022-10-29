@@ -1,29 +1,29 @@
 
 job "MQTT" {
   datacenters = ["homelab"]
-  priority = 50
-  type = "service"
+  priority    = 50
+  type        = "service"
   meta {
     forcedeploy = "0"
   }
   constraint {
     attribute = "${attr.unique.hostname}"
-    value = "oscar"
+    value     = "oscar"
   }
 
-  group "MQTT"{
+  group "MQTT" {
     network {
       mode = "host"
       port "zigbee2mqtt" {
         to = 8090
       }
       port "mosquittoMQTT" {
-        static= 1883
-        to = 1883
+        static = 1883
+        to     = 1883
       }
       port "mosquittoWS" {
-        to = 9001
-        static  = 9001
+        to     = 9001
+        static = 9001
       }
     }
     task "mosquitto" {
@@ -36,9 +36,9 @@ job "MQTT" {
       }
       config {
         image = "eclipse-mosquitto"
-        ports = ["mosquittoWS","mosquittoMQTT"]
+        ports = ["mosquittoWS", "mosquittoMQTT"]
         volumes = [
-           "/mnt/diskstation/nomad/mosquitto:/mosquitto/data",
+          "/mnt/diskstation/nomad/mosquitto:/mosquitto/data",
           "local/mosquitto.conf:/mosquitto/config/mosquitto.conf"
         ]
 
@@ -47,7 +47,7 @@ job "MQTT" {
         TZ = "Europe/Paris"
       }
       template {
-        data= <<EOH
+        data        = <<EOH
 persistence false
 log_dest stdout
 listener 1883
@@ -66,19 +66,19 @@ connection_messages true
         name = "Zigbee2MQTT"
         port = "zigbee2mqtt"
         tags = [
-            "homer.enable=true",
-            "homer.name=zigbee.mqtt",
-            "homer.service=Application",
-            "homer.logo=https://www.zigbee2mqtt.io/logo.png",
-            "homer.target=_blank",
-            "homer.url=http://${NOMAD_ADDR_zigbee2mqtt}",
+          "homer.enable=true",
+          "homer.name=zigbee.mqtt",
+          "homer.service=Application",
+          "homer.logo=https://www.zigbee2mqtt.io/logo.png",
+          "homer.target=_blank",
+          "homer.url=http://${NOMAD_ADDR_zigbee2mqtt}",
 
         ]
       }
       config {
-        image = "koenkk/zigbee2mqtt"
-        privileged= true
-        ports = ["zigbee2mqtt"]
+        image      = "koenkk/zigbee2mqtt"
+        privileged = true
+        ports      = ["zigbee2mqtt"]
         volumes = [
           "/mnt/diskstation/nomad/zigbee2mqtt:/app/data",
           "local/configuration.yaml:/app/data/configuration.yaml",
@@ -92,7 +92,7 @@ connection_messages true
       }
 
       template {
-        data= <<EOH
+        data        = <<EOH
 # MQTT settings
 mqtt:
   # MQTT base topic for Zigbee2MQTT MQTT messages

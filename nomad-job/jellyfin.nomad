@@ -1,20 +1,20 @@
 
 job "jellyfin" {
   datacenters = ["homelab"]
-  type = "service"
+  type        = "service"
   meta {
     forcedeploy = "0"
   }
   constraint {
     attribute = "${attr.cpu.arch}"
-    value = "amd64"
+    value     = "amd64"
   }
 
-  group "jellyfin"{
+  group "jellyfin" {
     network {
       mode = "host"
       port "http" {
-         to = 8096
+        to = 8096
       }
     }
 
@@ -23,7 +23,7 @@ job "jellyfin" {
       service {
         name = "jellyfin"
         port = "http"
-       tags = [
+        tags = [
           "homer.enable=true",
           "homer.name=jellyfin",
           "homer.service=Application",
@@ -49,19 +49,19 @@ job "jellyfin" {
         ]
         devices = [
           {
-              host_path = "/dev/dri/renderD128"
-              container_path = "/dev/dri/renderD128"
+            host_path      = "/dev/dri/renderD128"
+            container_path = "/dev/dri/renderD128"
           },
           {
-              host_path = "/dev/dri/card0"
-              container_path = "/dev/dri/card0"
+            host_path      = "/dev/dri/card0"
+            container_path = "/dev/dri/card0"
           }
         ]
 
       }
       resources {
         memory = 2000
-        cpu= 3000
+        cpu    = 3000
       }
     }
 

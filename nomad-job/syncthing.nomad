@@ -1,26 +1,26 @@
 
 job "syncthing" {
   datacenters = ["homelab"]
-  type = "service"
+  type        = "service"
   meta {
     forcedeploy = "0"
   }
 
-  group "syncthing"{
+  group "syncthing" {
     network {
       mode = "host"
       port "http" {
         to = 8384
       }
-      port "listen"{
+      port "listen" {
         static = 22000
       }
       port "discovery" {
         static = 21027
       }
     }
-    vault{
-      policies= ["access-tables"]
+    vault {
+      policies = ["access-tables"]
 
     }
     task "syncthing" {
@@ -29,12 +29,12 @@ job "syncthing" {
         name = "syncthing-web"
         port = "http"
         tags = [
-            "homer.enable=true",
-            "homer.name=Syncthing",
-            "homer.service=Application",
-            "homer.logo=http://${NOMAD_ADDR_http}/assets/img/logo-horizontal.svg",
-            "homer.target=_blank",
-            "homer.url=http://${NOMAD_ADDR_http}",
+          "homer.enable=true",
+          "homer.name=Syncthing",
+          "homer.service=Application",
+          "homer.logo=http://${NOMAD_ADDR_http}/assets/img/logo-horizontal.svg",
+          "homer.target=_blank",
+          "homer.url=http://${NOMAD_ADDR_http}",
         ]
       }
       config {
