@@ -9,3 +9,11 @@ vault-dev:
 	else \
 		./vault/standalone_vault.sh $(FILE);\
 	fi
+
+
+create-dev:
+	make -C ansible create-dev
+
+destroy-dev:
+	make -C ansible destroy-dev
+

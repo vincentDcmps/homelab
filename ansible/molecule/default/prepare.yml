@@ -1,0 +1,9 @@
+- hosts: all
+  remote_user: root
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Init pacman
+      ansible.builtin.include_role: 
+        name: ansible_bootstrap
+

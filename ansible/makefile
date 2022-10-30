@@ -10,3 +10,10 @@ deploy_staging:
 
 generate-token:
 	@echo export VAULT_TOKEN=`vault token create -policy=ansible -field="token" -period 6h`
+
+
+create-dev:
+	molecule converge
+	
+destroy-dev:
+	molecule destroy

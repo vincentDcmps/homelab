@@ -1,0 +1,45 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: lxd
+platforms:
+  - name: oscar-dev
+    image: images:archlinux
+    source:
+      type: image
+      mode: pull
+      alias: archlinux
+  - name: merlin-dev
+    source:
+      type: image
+      mode: pull
+      alias: rockylinux/9
+  - name: gerard-dev
+    source:
+      type: image
+      mode: pull
+      alias: debian/11
+provisioner:
+  name: ansible
+  connection_options:
+    ansible_ssh_user: user
+    ansible_become: true
+  log: true
+  lint:
+    name: ansible-lint
+  inventory:
+    host_vars:
+      oscar-dev:
+        user:
+          name: user
+      merlin-dev:
+        user:
+          name: user
+      gerard-dev:
+        user:
+          name: user
+    links:
+      hosts: ../../staging
+verifier:
+  name: ansible
