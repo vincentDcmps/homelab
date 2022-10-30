@@ -21,7 +21,7 @@ job "supysonic" {
       }
     }
     vault {
-      policies = ["access-tables"]
+      policies = ["supysonic"]
 
     }
     service {
@@ -107,8 +107,8 @@ http {
 
       template {
         data        = <<EOH
-          {{ with secret "secrets/data/supysonic"}}
-            SUPYSONIC_DB_URI = "postgres://supysonic:{{ .Data.data.db_password}}@db1.ducamps.win/supysonic"
+          {{ with secret "secrets/data/database/supysonic"}}
+            SUPYSONIC_DB_URI = "postgres://supysonic:{{ .Data.data.password}}@db1.ducamps.win/supysonic"
           {{end}}
           EOH
         destination = "secrets/supysonic.env"

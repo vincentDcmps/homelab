@@ -20,7 +20,7 @@ job "seedboxsync" {
       mode = "host"
     }
     vault {
-      policies = ["access-tables"]
+      policies = ["seedbox"]
     }
     task "server" {
       driver = "docker"
@@ -45,7 +45,7 @@ job "seedboxsync" {
       }
       template {
         data        = <<EOH
-          {{ with secret "secrets/data/seedbox"}}
+          {{ with secret "secrets/data/nomad/seedbox"}}
           USERNAME = "{{ .Data.data.username }}"
           PASSWORD = "{{ .Data.data.password }}"
           REMOTE_PATH = "{{ .Data.data.remote_path }}"

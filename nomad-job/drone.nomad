@@ -2,7 +2,7 @@ job "drone" {
   datacenters = ["homelab"]
   type        = "service"
   vault {
-    policies = ["access-tables"]
+    policies = ["droneci"]
   }
 
 
@@ -50,17 +50,20 @@ job "drone" {
       }
       template {
         data        = <<EOH
-          {{ with secret "secrets/data/droneCI"}}
+          {{ with secret "secrets/data/nomad/droneCI"}}
           DRONE_GITEA_SERVER="https://git.ducamps.win"
           DRONE_GITEA_CLIENT_ID="{{ .Data.data.DRONE_GITEA_CLIENT_ID }}"
           DRONE_GITEA_CLIENT_SECRET="{{ .Data.data.DRONE_GITEA_CLIENT_SECRET }}"
           DRONE_GITEA_ALWAYS_AUTH="True"
           DRONE_USER_CREATE="username:vincent,admin:true"
           DRONE_DATABASE_DRIVER="postgres"
-          DRONE_DATABASE_DATASOURCE="postgres://drone:{{ .Data.data.DRONE_DB_PASSWORD }}@db1.ducamps.win:5432/drone?sslmode=disable"
           DRONE_RPC_SECRET="{{ .Data.data.DRONE_RPC_SECRET }}"
           DRONE_SERVER_HOST="drone.ducamps.win"
           DRONE_SERVER_PROTO="https"
+          {{end}}
+
+          {{ with secret "secrets/data/database/droneCI"}}
+          DRONE_DATABASE_DATASOURCE="postgres://drone:{{ .Data.data.password }}@db1.ducamps.win:5432/drone?sslmode=disable"
           {{end}}
           EOH
         destination = "local/drone.env"
@@ -84,7 +87,7 @@ job "drone" {
       }
       template {
         data        = <<EOH
-          {{ with secret "secrets/data/droneCI"}}
+          {{ with secret "secrets/data/nomad/droneCI"}}
           DRONE_RPC_HOST="drone.ducamps.win"
           DRONE_RPC_PROTO="https"
           DRONE_RPC_SECRET= "{{ .Data.data.DRONE_RPC_SECRET}}"
@@ -117,7 +120,7 @@ job "drone" {
       }
       template {
         data        = <<EOH
-          {{ with secret "secrets/data/droneCI"}}
+          {{ with secret "secrets/data/nomad/droneCI"}}
           DRONE_RPC_HOST="drone.ducamps.win"
           DRONE_RPC_PROTO="https"
           DRONE_RPC_SECRET= "{{ .Data.data.DRONE_RPC_SECRET}}"

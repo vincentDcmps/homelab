@@ -19,10 +19,6 @@ job "syncthing" {
         static = 21027
       }
     }
-    vault {
-      policies = ["access-tables"]
-
-    }
     task "syncthing" {
       driver = "docker"
       service {

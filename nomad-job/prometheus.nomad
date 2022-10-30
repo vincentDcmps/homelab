@@ -18,7 +18,7 @@ job "prometheus" {
       mode     = "fail"
     }
     vault {
-      policies = ["access-tables"]
+      policies = ["prometheus"]
     }
 
     ephemeral_disk {
@@ -91,7 +91,7 @@ scrape_configs:
     scrape_interval: 60s
     metrics_path: /api/prometheus
     authorization:
-      credentials: {{ with secret "secrets/data/prometheus"}}'{{ .Data.data.hass_token }}'{{end}}
+      credentials: {{ with secret "secrets/data/nomad/prometheus"}}'{{ .Data.data.hass_token }}'{{end}}
 
 
 

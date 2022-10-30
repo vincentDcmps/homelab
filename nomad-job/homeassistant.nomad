@@ -22,10 +22,6 @@ job "homeassistant" {
         static = 5683
       }
     }
-    vault {
-      policies = ["access-tables"]
-
-    }
 
 
 

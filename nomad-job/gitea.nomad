@@ -13,7 +13,7 @@ job "git" {
       }
     }
     vault {
-      policies = ["access-tables"]
+      policies = ["gitea"]
     }
     task "gitea" {
       driver = "docker"
@@ -77,11 +77,14 @@ job "git" {
       }
       template {
         data        = <<EOH
-          {{ with secret "secrets/data/gitea"}}
-            GITEA__database__PASSWD = "{{.Data.data.PASSWD}}"
+        {{ with secret "secrets/data/nomad/gitea"}}
             GITEA__security__SECRET_KEY = "{{.Data.data.secret_key}}"
             GITEA__oauth2__JWT_SECRET = "{{.Data.data.jwt_secret}}"
             GITEA__security__INTERNAL_TOKEN = "{{.Data.data.internal_token}}"
+          {{end}}
+
+          {{ with secret "secrets/data/database/gitea"}}
+            GITEA__database__PASSWD = "{{.Data.data.password}}"
           {{end}}
           EOH
         destination = "secrets/gitea.env"

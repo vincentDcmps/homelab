@@ -24,7 +24,7 @@ job "tt-rss" {
       }
     }
     vault {
-      policies = ["access-tables"]
+      policies = ["ttrss"]
     }
     service {
       name = "tt-rss"
@@ -65,8 +65,8 @@ job "tt-rss" {
       }
       template {
         data        = <<EOH
-            {{ with secret "secrets/data/ttrss"}}
-            TTRSS_DB_PASS = "{{ .Data.data.DB_PASS }}"
+            {{ with secret "secrets/data/database/ttrss"}}
+            TTRSS_DB_PASS = "{{ .Data.data.password }}"
             {{end}}
           EOH
         destination = "secrets/tt-rss.env"
@@ -97,8 +97,8 @@ job "tt-rss" {
       }
       template {
         data        = <<EOH
-            {{ with secret "secrets/data/ttrss"}}
-            TTRSS_DB_PASS = "{{ .Data.data.DB_PASS }}"
+            {{ with secret "secrets/data/database/ttrss"}}
+            TTRSS_DB_PASS = "{{ .Data.data.password }}"
             {{end}}
           EOH
         destination = "secrets/tt-rss.env"

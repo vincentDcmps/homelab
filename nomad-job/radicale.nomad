@@ -12,10 +12,6 @@ job "radicale" {
         to = 5232
       }
     }
-    vault {
-      policies = ["access-tables"]
-
-    }
     task "radicale" {
       driver = "docker"
       service {

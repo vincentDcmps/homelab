@@ -5,7 +5,7 @@ job "crowdsec-api" {
     forcedeploy = "-1"
   }
   vault {
-    policies = ["access-tables"]
+    policies = ["crowdsec"]
   }
   group "crowdsec-api" {
     network {
@@ -45,7 +45,7 @@ job "crowdsec-api" {
       template {
         data        = <<EOH
 DISABLE_AGENT = "true"
-{{with secret "secrets/data/crowdsec"}}
+{{with secret "secrets/data/nomad/crowdsec"}}
   AGENT_USERNAME = "{{.Data.data.AGENT_USERNAME}}"
   AGENT_PASSWORD = "{{.Data.data.AGENT_PASSWORD}}"
 {{end}}

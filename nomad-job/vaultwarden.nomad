@@ -14,7 +14,7 @@ job "vaultwarden" {
       }
     }
     vault {
-      policies = ["access-tables"]
+      policies = ["vaultwarden"]
 
     }
     task "vaultwarden" {
@@ -64,8 +64,8 @@ job "vaultwarden" {
 
       template {
         data        = <<EOH
-          {{ with secret "secrets/data/vaultwarden"}}
-          DATABASE_URL=postgresql://vaultwarden:{{ .Data.data.DB_PASSWORD }}@db1.ducamps.win/vaultwarden
+          {{ with secret "secrets/data/database/vaultwarden"}}
+          DATABASE_URL=postgresql://vaultwarden:{{ .Data.data.password }}@db1.ducamps.win/vaultwarden
           {{end}}
           EOH
         destination = "secrets/vaultwarden.env"

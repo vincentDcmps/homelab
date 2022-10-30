@@ -20,7 +20,7 @@ job "backup-postgress" {
       mode = "host"
     }
     vault {
-      policies = ["access-tables"]
+      policies = ["dump"]
     }
     task "backup" {
       driver = "docker"
@@ -45,7 +45,7 @@ job "backup-postgress" {
         env         = true
       }
       resources {
-        memory = 25
+        memory = 50
       }
     }
 

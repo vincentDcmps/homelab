@@ -17,7 +17,7 @@ job "matrix" {
       }
     }
     vault{
-      policies= ["access-tables"]
+      policies= ["dendrite"]
 
     }
     task "dendrite" {
@@ -63,8 +63,8 @@ global:
 
   database:
 
-  {{ with secret "secrets/data/dendrite"}}
-    connection_string: postgresql://dendrite:{{.Data.data.databasePass}}@db1.ducamps.win/dendrite?sslmode=disable
+  {{ with secret "secrets/data/database/dendrite"}}
+    connection_string: postgresql://dendrite:{{.Data.data.password}}@db1.ducamps.win/dendrite?sslmode=disable
   {{end}}
 
     max_open_conns: 100

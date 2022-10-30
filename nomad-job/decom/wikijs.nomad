@@ -17,7 +17,7 @@ job "wikijs" {
       }
     }
     vault{
-      policies= ["access-tables"]
+      policies= ["wikijs"]
 
     }
     task "wikijs" {
@@ -54,12 +54,12 @@ job "wikijs" {
 
       template {
         data= <<EOH
-{{ with secret "secrets/data/wikijs"}}
+{{ with secret "secrets/data/database/wikijs"}}
 DB_TYPE="postgres"
 DB_HOST="db1.ducamps.win"
 DB_PORT="5432"
 DB_USER="wikijs"
-DB_PASS="{{.Data.data.DB_PASS}}"
+DB_PASS="{{.Data.data.password}}"
 DB_NAME="wikijs"
 {{end}}
 EOH

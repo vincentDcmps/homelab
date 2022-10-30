@@ -19,7 +19,7 @@ job "traefik-local" {
       }
     }
     vault {
-      policies = ["access-tables"]
+      policies = ["gandi"]
     }
 
     task "traefik" {
@@ -67,7 +67,7 @@ job "traefik-local" {
       }
       template {
         data        = <<EOH
-          GANDIV5_API_KEY = "{{with secret "secrets/data/gandi"}}{{.Data.data.API_KEY}}{{end}}"
+          GANDIV5_API_KEY = "{{with secret "secrets/data/nomad/gandi"}}{{.Data.data.API_KEY}}{{end}}"
           EOH
         destination = "secrets/gandi.env"
         env         = true

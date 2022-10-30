@@ -50,7 +50,7 @@ job "pihole" {
 
       }
       vault {
-        policies = ["access-tables"]
+        policies = ["pihole"]
 
       }
       env {
@@ -61,7 +61,7 @@ job "pihole" {
       }
       template {
         data        = <<EOH
-        WEBPASSWORD="{{with secret "secrets/data/pihole"}}{{.Data.data.WEBPASSWORD}}{{end}}"
+        WEBPASSWORD="{{with secret "secrets/data/nomad/pihole"}}{{.Data.data.WEBPASSWORD}}{{end}}"
         EOH
         destination = "local/file.env"
         change_mode = "noop"

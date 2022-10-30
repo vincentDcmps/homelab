@@ -66,6 +66,11 @@ data "vault_policy_document" "ansible" {
     path = "secrets/data/ansible"
     capabilities = ["read", "list"]
   }
+  rule {
+    path = "secrets/data/database"
+    capabilities = ["read", "list"]
+  }
+
 }
 resource "vault_policy" "ansible" {
   name = "ansible"

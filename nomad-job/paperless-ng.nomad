@@ -23,7 +23,7 @@ job "paperless-ng" {
       }
     }
     vault {
-      policies = ["access-tables"]
+      policies = ["paperless"]
 
     }
     task "redis" {
@@ -85,7 +85,7 @@ job "paperless-ng" {
 
       template {
         data        = <<EOH
-          PAPERLESS_DBPASS= {{ with secret "secrets/data/paperless"}}{{.Data.data.DB_PASSWORD }}{{end}}
+          PAPERLESS_DBPASS= {{ with secret "secrets/data/database/paperless"}}{{.Data.data.password }}{{end}}
           EOH
         destination = "secrets/paperless.env"
         env         = true
