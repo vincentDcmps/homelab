@@ -38,25 +38,6 @@ resource "vault_policy" "nomad-server-policy" {
   policy = data.vault_policy_document.nomad_server_policy.hcl
 }
 
-
-data "vault_policy_document" "access-tables" {
-
-  rule {
-    path = "secrets/*"
-    capabilities= ["read","list"]
-  }
-
-  rule {
-    path = "secrets/ansible"
-    capabilities = ["deny"]
-  }
-}
-
-resource "vault_policy" "access-tables" {
-  name = "access-tables"
-  policy = data.vault_policy_document.access-tables.hcl
-}
-
 data "vault_policy_document" "ansible" {
   rule {
     path = "secrets/data/ansible/*"
