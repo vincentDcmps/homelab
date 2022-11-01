@@ -17,3 +17,5 @@ create-dev:
 destroy-dev:
 	make -C ansible destroy-dev
 
+docs
+	mkdocs server
