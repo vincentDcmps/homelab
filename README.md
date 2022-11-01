@@ -1,5 +1,12 @@
 # Homelab
 
+This repository contain my homelab Infrastructure As Code
+
+this Homelab is build over Hashicorp software:
+
+- Nomad
+- Consul
+- Vault
 
 ## Rebuild 
 to rebuild from scratch ansible need a vault server up and unseal
