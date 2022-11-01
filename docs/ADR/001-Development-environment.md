@@ -1,4 +1,4 @@
-# 001  Development environment.md
+# 001  Development environment
 
 ## Status
 
