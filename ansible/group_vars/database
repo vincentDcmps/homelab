@@ -13,8 +13,6 @@ postgresql_users:
     password: "{{  lookup('hashi_vault', 'secret=secrets/data/database/supysonic:password')}}"
   - name: hass
     password: "{{  lookup('hashi_vault', 'secret=secrets/data/database/homeassistant:password')}}"
-  - name: nextcloud
-    password: "{{  lookup('hashi_vault', 'secret=secrets/data/database/nextcloud:password')}}"
   - name: vaultwarden
     password: "{{  lookup('hashi_vault', 'secret=secrets/data/database/vaultwarden:password')}}"
   - name: drone
@@ -24,7 +22,7 @@ postgresql_users:
   - name: paperless
     password: "{{  lookup('hashi_vault', 'secret=secrets/data/database/paperless:password')}}"
   - name: dump
-    password: "{{  lookup('hashi_vault', 'secret=secrets/data/database/dump:passwod')}}"
+    password: "{{  lookup('hashi_vault', 'secret=secrets/data/database/dump:password')}}"
 
 postgresql_databases:
   - name: wikijs
@@ -37,8 +35,6 @@ postgresql_databases:
     owner: supysonic
   - name: hass
     owner: hass
-  - name: nextcloud
-    owner: nextcloud
   - name: vaultwarden
     owner: vaultwarden
   - name: drone
