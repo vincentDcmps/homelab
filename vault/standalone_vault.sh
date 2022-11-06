@@ -28,4 +28,7 @@ EOF
 
 echo "starting vault server please unseal before use "
 nohup vault server -config "/tmp/standalone-vault-dev.hcl" &
-vault token create -policy=$ANSIBLE_POLICY -display-name=rebuild-token
+vault operator unseal
+OTP=$(vault operator generate-root -init|grep "OTP"|head -1|awk '{print $2}')
+ENCODE_ROOT=$(vault operator generate-root|tail -1|awk '{print $3}')
+vault operator generate-root -decode=$ENCODE_ROOT -otp=$OTP
