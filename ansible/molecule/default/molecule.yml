@@ -25,7 +25,7 @@ platforms:
 provisioner:
   name: ansible
   connection_options:
-    ansible_ssh_user: vincent
+    ansible_ssh_user: ansible
     ansible_become: true
   env:
     ANSIBLE_CONFIG: ../../ansible.cfg
