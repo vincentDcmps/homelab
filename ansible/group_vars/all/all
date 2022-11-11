@@ -18,3 +18,7 @@ privatekeytodeploy:
     - user: root
       keyfile: /root/.ssh/id_gitea
       privatekey: "{{lookup('hashi_vault', 'secret=secrets/data/ansible/privatekey:gitea')}}"
+    - user: ansible
+      keyfile: "/home/ansible/.ssh/id_gitea"
+      privatekey: "{{lookup('hashi_vault', 'secret=secrets/data/ansible/privatekey:gitea')}}"
+
