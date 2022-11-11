@@ -1,7 +1,7 @@
 ---
 - import_playbook: playbooks/sssd.yml
-- import_playbook: playbooks/server.yml
 - import_playbook: playbooks/wireguard.yml
+- import_playbook: playbooks/server.yml
 - import_playbook: playbooks/HashicorpStack.yml
 - import_playbook: playbooks/database.yml
 - import_playbook: playbooks/rsyncd.yml
