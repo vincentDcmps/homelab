@@ -21,3 +21,4 @@
         uid: "{{ user.uid }}"
         shell: /bin/bash
       when: sssd_configure is not defined or sssd_configure == false
+      become: true
