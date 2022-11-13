@@ -22,10 +22,11 @@ job "torrent" {
       }
     }
     task "bittorent" {
-      driver = "docker"
+      driver = "podman"
       service {
         name = "bittorent"
         port = "http"
+        address_mode= "host"
         tags = [
           "homer.enable=true",
           "homer.name=torrent",
@@ -41,8 +42,11 @@ job "torrent" {
 
         ]
       }
+      user = "root"
       config {
-        image = "crazymax/rtorrent-rutorrent"
+        
+        image = "docker.io/crazymax/rtorrent-rutorrent:latest"
+        privileged = "true"
         ports = [
           "http",
           "torrent",
