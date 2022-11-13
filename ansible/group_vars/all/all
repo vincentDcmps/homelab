@@ -9,7 +9,7 @@ domain:
 
 hass_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDfVei9iC/Ra5qmSZcLu8z2CTaXCmfn4JSS4o3eu0HhykdYGSqhBTcUDD3/FhcTPQJVFsu1P4Gwqq1dCE+EvaZZRQaMUqVKUpOliThSG6etbImkvqLQQsC1qt+/NqSvfzu2+28A6+YspzuxsViGo7e3Gg9MdwV3LMGh0mcOr/uXb/HIk18sJg5yQpwMfYTj0Wda90nyegcN3F2iZMeauh/aaFJzWcHNakAAewceDYOErU07NhlZgVA2C8HgkJ8HL7AqIVqt9VOx3xLp91DbKTNXSxvyM0X4NQP24P7ZFxAOk/j0AX3hAWhaNmievCHyBWvQve1VshZXFwEIiuHm8q4GSCxK2r0oQudKdtIuQMfuUALigdiSxo522oEiML/2kSk17WsxZwh7SxfD0DKa82fy9iAwcAluWLwJ+yN3nGnDFF/tHYaamSiowpmTTmQ9ycyIPWPLVZclt3BlEt9WH/FPOdzAyY7YLzW9X6jhsU3QwViyaTRGqAdqzUAiflKCMsNzb5kq0oYsDFC+/eqp1USlgTZDhoKtTKRGEjW2KuUlDsXGBeB6w1D8XZxXJXAaHuMh4oMUgLswjLUdTH3oLnnAvfOrl8O66kTkmcQ8i/kr1wDODMy/oNUzs8q4DeRuhD5dpUiTUGYDTWPYj6m6U/GAEHvN/2YEqSgfVff1iQ4VBw==
 
-system_arch_local_mirror: "https://arch.{{domain.name}}"
+system_arch_local_mirror: "https://arch.{{domain.name}}/repo/archlinux_$arch"
 
 privatekeytodeploy:
     - user: "{{user.name}}"
