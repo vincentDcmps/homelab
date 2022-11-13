@@ -23,15 +23,22 @@ make vault-dev FILE=./yourconsulsnaphot.snap
 ```mermaid
 flowchart LR
   subgraph Home
+  bleys[bleys]
   oscar[oscar]
   gerard[gerard]
+  LAN
+  NAS
   end
   subgraph Cloud
-  merlin[merlin]
+  corwin[corwin]
   end
-  oscar <--lan--> gerard
-  oscar <--wiregard--> merlin
-  gerard <--wiregard--> merlin
-  merlin <--> internet 
+  LAN--main road--ooscar
+  LAN --- bleys
+  LAN --- gerard
+  LAN --- NAS
+  bleys <--wireguard--> corwin
+  oscar <--wiregard--> corwin
+  gerard <--wiregard--> corwin
+  corwin <--> internet 
   
 ```
