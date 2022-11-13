@@ -1,0 +1,61 @@
+---
+ansible_host: "192.168.1.42"
+ansible_python_interpreter: "/usr/bin/python3"
+wireguard_address: "10.0.0.7/24"
+wireguard_byhost_allowed_ips:
+  merlin: 10.0.0.7,192.168.1.42
+  corwin: 10.0.0.7,192.168.1.42
+perrsistent_keepalive: "20"
+wireguard_endpoint: ""
+
+wireguard_postup:
+  - iptables -A FORWARD -i wg0 -j ACCEPT
+  - iptables -A FORWARD -o wg0 -j ACCEPT
+  - iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+  - sysctl -w net.ipv4.ip_forward=1
+
+wireguard_postdown:
+  - iptables -D FORWARD -i wg0 -j ACCEPT
+  - iptables -D FORWARD -o wg0 -j ACCEPT
+  - iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+  - sysctl -w net.ipv4.ip_forward=0
+
+partition_table:
+  - device: "/dev/sda"
+    label: gpt
+    settings:
+      - number: 1
+        part_end: 300MB
+        flags: [boot, esp]
+        fstype: vfat
+        format: yes
+      - number: 2
+        part_start: 512MB
+        part_end: 1524MB
+        flags: []
+        fstype: swap
+        format: yes
+      - number: 3
+        part_start: 1524MB
+        flags: [lvm]
+        fstype: ext4
+        format: yes
+  #- device: "/dev/sdb"
+  #settings:
+  #- number: 1
+  #name: home
+  #fstype: ext4
+  #format:
+mount_table:
+  - device: "/dev/sda"
+    settings:
+      - number: 3
+        mountpath: /mnt
+        fstype: ext4
+      - number: 1
+        mountpath: /mnt/boot
+        fstype: vfat
+
+#need vfat boot partition with esp label
+provissionning_UEFI_Enable: True
+
