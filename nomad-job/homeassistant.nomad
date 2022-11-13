@@ -6,8 +6,8 @@ job "homeassistant" {
     forcedeploy = "0"
   }
   constraint {
-    attribute = "${attr.unique.hostname}"
-    value     = "oscar"
+    attribute = "${attr.cpu.arch}"
+    value     = "amd64"
   }
 
   group "homeassistant" {
