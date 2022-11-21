@@ -28,6 +28,7 @@ locals {
     "ttrss",
     "vaultwarden",
     "wikijs",
+    "vikunja",
   ]
 
 }
