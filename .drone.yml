@@ -22,7 +22,7 @@ steps:
   - name: build
     image: squidfunk/mkdocs-material
     commands:
-      - mkdocs build --clean --strict --verbose --site-dirs build
+      - mkdocs build --clean --strict --verbose --site-dir build
 trigger:
   event:
     exclude:
@@ -36,7 +36,7 @@ steps:
   - name: build
     image: squidfunk/mkdocs-material
     commands:
-      - mkdocs build --clean --strict --verbose --site-dirs homelab
+      - mkdocs build --clean --strict --verbose --site-dir homelab
 
   - name: deploy
     image: appleboy/drone-scp
