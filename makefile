@@ -10,12 +10,11 @@ vault-dev:
 		./vault/standalone_vault.sh $(FILE);\
 	fi
 
-
 create-dev:
 	make -C ansible create-dev
 
 destroy-dev:
 	make -C ansible destroy-dev
 
-docs:
+serve:
 	mkdocs serve
