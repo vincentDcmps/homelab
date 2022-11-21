@@ -1,0 +1,59 @@
+---
+kind: pipeline
+type: docker
+name: lint
+
+steps:
+  - name: yaml linting
+    image: pipelinecomponents/yamllint
+    commands:
+      - yamllint .
+  - name: markdown linting
+    image: 06kellyjac/markdownlint-cli
+    commands:
+      - markdownlint . --config .markdownlint.yaml
+
+---
+kind: pipeline
+type: docker
+name: test build
+
+steps:
+  - name: build
+    image: squidfunk/mkdocs-material
+    commands:
+      - mkdocs build --clean --strict --verbose --site-dirs build
+trigger:
+  event:
+    exclude:
+      - push
+---
+kind: pipeline
+type: docker
+name: deploy
+
+steps:
+  - name: build
+    image: squidfunk/mkdocs-material
+    commands:
+      - mkdocs build --clean --strict --verbose --site-dirs homelab
+
+  - name: deploy
+    image: appleboy/drone-scp
+    when:
+      status:
+        - success
+    settings:
+      host: www.service.consul
+      user: drone-deploy
+      overwrite: true
+      key:
+        from_secret: gitea_private_key
+      target: /srv/http
+      source: homelab
+
+trigger:
+  branch:
+    - master
+  event:
+    - push
