@@ -1,10 +1,2 @@
-chisel_server: true
-chisel_server_port: 9090
-chisel_server_backend: https://www.{{domain.name}}
-chisel_server_auth:
-      user: chisel
-      pass: "{{ lookup('hashi_vault','secret=secrets/data/ansible/other:chisel_pass') }}"
-arch_mirror_location: "/mnt/diskstation/archMirror"
-
 nomad_datacenter: homelab
 nomad_allow_privileged: True
