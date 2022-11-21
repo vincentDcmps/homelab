@@ -22,41 +22,53 @@ job "seedboxsync" {
     vault {
       policies = ["seedbox"]
     }
-    task "server" {
+    task "rsync" {
       driver = "docker"
       service {
-        name = "lftp"
+        name = "seedboxsync"
       }
       config {
-        image = "ducampsv/lftp:latest"
+        image = "ducampsv/rsync-docker:latest"
         volumes = [
-          "/mnt/diskstation/media/download:/media"
+          "/mnt/diskstation/media/download:/media",
+          "local/id_rsa:/home/rsyncuser/.ssh/id_rsa"
         ]
+        command = "rsync"
         args = [
-          "-u", "${USERNAME},${PASSWORD}",
-          "-e", "mirror -c -P 5 -x seed ${REMOTE_PATH} /media;quit",
-          "${REMOTE_SERVER}"
+          "--info=progress2",
+          "-e" ,  "ssh -p23 -o StrictHostKeyChecking=no",
+          "-a",
+          "${USERNAME}@${REMOTE_SERVER}:${REMOTE_PATH}",
+          "/media",
+          "--exclude=seed",
+          "-v"
         ]
-
       }
       env {
-        USER_ID  = 1000001
-        GROUP_ID = 1000007
+        RSYNC_UID  = 1000001
+        RSYNC_GID = 1000007
       }
       template {
         data        = <<EOH
           {{ with secret "secrets/data/nomad/seedbox"}}
           USERNAME = "{{ .Data.data.username }}"
-          PASSWORD = "{{ .Data.data.password }}"
-          REMOTE_PATH = "{{ .Data.data.remote_path }}"
+          REMOTE_PATH = "{{ .Data.data.remote_rsync_path }}"
           REMOTE_SERVER = "{{ .Data.data.remote_server }}"
           {{end}}
           EOH
         destination = "secrets/sample.env"
         env         = true
       }
+      template {
+        data = "{{ with secret \"secrets/data/nomad/seedbox\"}}{{ .Data.data.private_key }}{{end}}"
+
+        destination = "local/id_rsa"
+        uid=1000001
+        perms= "600"
+
+      }
       resources {
-        memory = 100
+        memory = 500
       }
     }
 
