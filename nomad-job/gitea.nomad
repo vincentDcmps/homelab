@@ -1,7 +1,13 @@
 job "git" {
   datacenters = ["homelab"]
   type        = "service"
-
+  meta {
+    force = 1
+  }
+  constraint {
+    attribute = "${attr.cpu.arch}"
+    value     = "amd64"
+  }
   group "gitea" {
     network {
       mode = "host"
@@ -58,7 +64,7 @@ job "git" {
       }
       env {
         USER_UID                             = 1000000
-        USER_GUID                            = 985
+        USER_GID                            = 984
         GITEA__server__DOMAIN                = "git.ducamps.win"
         GITEA__server__ROOT_URL              = "https://git.ducamps.win"
         GITEA__server__SSH_DOMAIN            = "git.ducamps.win"
