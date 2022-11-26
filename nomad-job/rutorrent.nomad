@@ -62,7 +62,7 @@ job "torrent" {
         PUID       = 1024
         PGID       = 984
         UMASK      = 002
-        WEBUI_PORT = "8070"
+        WEBUI_PORT = "8080"
       }
 
       resources {
