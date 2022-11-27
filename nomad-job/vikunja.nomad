@@ -56,7 +56,7 @@ job "vikunja" {
         env = true
       }
       resources {
-        memory = 30
+        memory = 50
       }
     }
     task "front" {
