@@ -12,6 +12,9 @@ job "drone" {
       port "http" {
         to = 80
       }
+      port "vault" {
+
+      }
     }
     constraint {
       attribute = "${attr.cpu.arch}"
@@ -66,73 +69,43 @@ job "drone" {
           DRONE_DATABASE_DATASOURCE="postgres://drone:{{ .Data.data.password }}@db1.ducamps.win:5432/drone?sslmode=disable"
           {{end}}
           EOH
-        destination = "local/drone.env"
+        destination = "secrets/drone.env"
         env         = true
       }
       resources {
         memory = 100
       }
     }
-
-    task "drone-runner" {
+    task "vault" {
       driver = "docker"
-      config {
-        image = "drone/drone-runner-docker:latest"
-        volumes = [
-          "/var/run/docker.sock:/var/run/docker.sock",
-        ]
+      service {
+        name = "drone-vault"
+        port = "vault"
       }
-      env {
-
+      config {
+        ports = ["vault"]
+        image = "drone/vault:latest"
       }
       template {
-        data        = <<EOH
-          {{ with secret "secrets/data/nomad/droneCI"}}
-          DRONE_RPC_HOST="drone.ducamps.win"
-          DRONE_RPC_PROTO="https"
-          DRONE_RPC_SECRET= "{{ .Data.data.DRONE_RPC_SECRET}}"
-          {{ end }}
-          EOH
-        destination = "local/drone-runner.env"
-        env         = true
-      }
-      resources {
-        memory = 50
-      }
-    }
+        data= <<EOH
+        DRONE_DEBUG=true
+        {{ with secret "secrets/data/nomad/droneCI"}}
+        DRONE_SECRET= {{ .Data.data.DRONE_VAULT_SECRET}}
+        VAULT_APPROLE_ID=  {{ .Data.data.approleID}}
+        VAULT_APPROLE_SECRET=  {{ .Data.data.approleSecretID}}
 
-  }
-  group "Drone-ARM-Runner" {
-    constraint {
-      attribute = "${attr.cpu.arch}"
-      value     = "arm"
-    }
-    task "drone-ARM-runner" {
-      driver = "docker"
-      config {
-        image = "drone/drone-runner-docker:1.8.2-linux-arm"
-        volumes = [
-          "/var/run/docker.sock:/var/run/docker.sock",
-        ]
-      }
-      env {
+        {{end}}
+        VAULT_ADDR=http://active.vault.service.consul:8200
+        VAULT_AUTH_TYPE=approle
+        VAULT_TOKEN_TTL=72h
+        VAULT_TOKEN_RENEWAL=24h
+        EOH
+        destination = "secrets/drone-vault.env"
+        env = true
 
       }
-      template {
-        data        = <<EOH
-          {{ with secret "secrets/data/nomad/droneCI"}}
-          DRONE_RPC_HOST="drone.ducamps.win"
-          DRONE_RPC_PROTO="https"
-          DRONE_RPC_SECRET= "{{ .Data.data.DRONE_RPC_SECRET}}"
-          {{ end }}
-          EOH
-        destination = "local/drone-runner.env"
-        env         = true
-      }
-      resources {
-        memory = 50
-      }
-    }
 
+
+    }
   }
 }
