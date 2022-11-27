@@ -3,6 +3,10 @@ consul_datacenter: "homelab"
 consul_backup_location: "/mnt/diskstation/git/backup/consul"
 consul_ansible_group: all
 consul_bootstrap_expect: 3
+nomad_docker_allow_caps: 
+  - NET_ADMIN
+  - NET_BROADCAST
+  - NET_RAW
 nomad_vault_enabled: true
 nomad_vault_address: "http://active.vault.service.consul:8200"
 nomad_vault_role: "nomad-cluster"
