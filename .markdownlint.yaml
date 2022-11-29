@@ -1,0 +1,9 @@
+---
+# Default state for all rules
+default: true
+MD009:
+    strict: false
+
+MD013: false
+MD033: false
+MD024: false
