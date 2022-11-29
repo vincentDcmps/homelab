@@ -19,11 +19,11 @@ output "drone-vault-role-id" {
 
 data "vault_policy_document" "drone-vault" {
   rule {
-      path = "secrets/data/droneCI/*"
+      path = "secrets/data/droneci/*"
       capabilities = ["read", "list"]
    }
   rule {
-      path = "secrets/data/droneCI"
+      path = "secrets/data/droneci"
       capabilities = ["read", "list"]
    }
 
