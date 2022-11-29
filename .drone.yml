@@ -62,5 +62,5 @@ trigger:
 kind: secret
 name: dronePrivateKey
 get:
-  path: secrets/droneci/keyRSA
+  path: secrets/data/droneci/keyRSA
   name: dronePrivateKey
