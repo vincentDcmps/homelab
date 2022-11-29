@@ -5,12 +5,12 @@
   roles:
     - role: ansible-role-postgresql
       become: true
-  tasks: 
+  tasks:
     - name: add pg_read_all_data to dump
       community.postgresql.postgresql_membership:
-        target_roles: 
+        target_roles:
           - dump
         groups:
-          - pg_read_all_data  
+          - pg_read_all_data
       become: true
       become_user: "{{ postgresql_user }}"

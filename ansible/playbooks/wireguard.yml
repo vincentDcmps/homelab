@@ -2,4 +2,4 @@
 - hosts: wireguard
   roles:
     - role: ansible-role-wireguard
-      become: True
+      become: true
