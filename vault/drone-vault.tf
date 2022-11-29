@@ -22,6 +22,10 @@ data "vault_policy_document" "drone-vault" {
       path = "secrets/data/droneCI/*"
       capabilities = ["read", "list"]
    }
+  rule {
+      path = "secrets/data/droneCI"
+      capabilities = ["read", "list"]
+   }
 
 }
 
