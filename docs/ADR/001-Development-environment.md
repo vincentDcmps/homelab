@@ -6,14 +6,12 @@ Accepted
 
 ## Context
 
-we need to create a virtual cluster to do test without impact on production 
-diferent way:
+we need to create a virtual cluster to do test without impact on production.
 
 ### Virtualisation or Container
 
 Virtualisation provide better isolation but must ressource are needed.  
 Container able to create more item without consum as resource than virtual machine.
-
 
 ### Creation Wrapper
 
@@ -29,4 +27,3 @@ Molecule wrapper will be use  because all our configuration is already provide b
 ## Consequences
 
 Need to create dev env other an LXD server.
-

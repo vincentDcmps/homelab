@@ -1,11 +1,8 @@
 # Add a new job
 
-
 ## Create Nomad job
 
-
 ## Add secret to vault
-
 
 ## Add a new policy to Vault terraform
 
