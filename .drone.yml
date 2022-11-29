@@ -48,7 +48,7 @@ steps:
       user: drone-deploy
       overwrite: true
       key:
-        from_secret: gitea_private_key
+        from_secret: dronePrivateKey
       target: /srv/http
       source: homelab
 
@@ -57,3 +57,10 @@ trigger:
     - master
   event:
     - push
+
+---
+kind: secret
+name: dronePrivateKey
+get:
+  path: secrets/droneci/keyRSA
+  name: dronePrivateKey
