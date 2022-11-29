@@ -48,6 +48,10 @@ data "vault_policy_document" "nomad_jobs" {
     capabilities = ["read"]
   }
   rule {
+    path         = "secrets/data/nomad/${each.key}/*"
+    capabilities = ["read"]
+  }
+  rule {
     path = "secrets/data/database/${each.key}"
     capabilities = ["read"]
   }

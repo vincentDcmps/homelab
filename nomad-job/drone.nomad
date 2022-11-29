@@ -91,9 +91,10 @@ job "drone" {
         DRONE_DEBUG=true
         {{ with secret "secrets/data/nomad/droneCI"}}
         DRONE_SECRET= {{ .Data.data.DRONE_VAULT_SECRET}}
+        {{end}}
+        {{ with secret "secrets/data/nomad/droneCI/approle"}}
         VAULT_APPROLE_ID=  {{ .Data.data.approleID}}
         VAULT_APPROLE_SECRET=  {{ .Data.data.approleSecretID}}
-
         {{end}}
         VAULT_ADDR=http://active.vault.service.consul:8200
         VAULT_AUTH_TYPE=approle
