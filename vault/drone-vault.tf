@@ -31,7 +31,7 @@ data "vault_policy_document" "drone-vault" {
 
 resource "vault_policy" "drone-vault" {
     name = "drone-vault"
-    policy = data.vault_policy_document.nomad_server_policy.hcl
+    policy = data.vault_policy_document.drone-vault.hcl
 }
 
 
