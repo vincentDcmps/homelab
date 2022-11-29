@@ -13,7 +13,7 @@ job "drone" {
         to = 80
       }
       port "vault" {
-
+        to= 3000
       }
     }
     constraint {
