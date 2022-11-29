@@ -95,6 +95,14 @@ data "vault_policy_document" "admin_policy" {
     path = "sys/mounts"
     capabilities  = ["read","list"]
   }
+  rule {
+    path = "sys/leases/*"
+    capabilities  = ["create", "read", "update", "delete", "list", "sudo"]
+  }
+  rule {
+    path = "sys/leases/lookup"
+    capabilities  = ["list","sudo"]
+  }
 }
 resource "vault_policy" "admin_policy" {
   name = "admin_policy"
