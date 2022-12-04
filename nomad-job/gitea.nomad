@@ -80,6 +80,7 @@ job "git" {
         GITEA__server__APP_DATA_PATH         = "/data"
         GITEA__server__LFS_CONTENT_PATH      = "/repo/LFS"
         GITEA__webhook__ALLOWED_HOST_LIST    = "drone.ducamps.win"
+        GITEA__webhook__DELIVER_TIMEOUT       = "30" 
       }
       template {
         data        = <<EOH
