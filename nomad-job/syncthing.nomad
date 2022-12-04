@@ -5,6 +5,11 @@ job "syncthing" {
   meta {
     forcedeploy = "0"
   }
+  constraint {
+    attribute = "${attr.cpu.arch}"
+    value     = "amd64"
+  }
+
 
   group "syncthing" {
     network {
