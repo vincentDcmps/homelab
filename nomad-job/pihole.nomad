@@ -86,7 +86,7 @@ job "pihole" {
       template {
         data        = <<EOH
         INTERFACE     = {{ sockaddr "GetPrivateInterfaces | include \"network\" \"192.168.1.0/24\" | attr \"name\"" }}
-
+        FTLCONF_LOCAL_IPV4 = {{ env "NOMAD_IP_dns" }}
         WEBPASSWORD="{{with secret "secrets/data/nomad/pihole"}}{{.Data.data.WEBPASSWORD}}{{end}}"
         EOH
         destination = "local/file.env"
