@@ -28,7 +28,7 @@ job "seedboxsync" {
         name = "seedboxsync"
       }
       config {
-        image = "ducampsv/rsync-docker:latest"
+        image = "ducampsv/rsync:latest"
         volumes = [
           "/mnt/diskstation/media/download:/media",
           "local/id_rsa:/home/rsyncuser/.ssh/id_rsa"
