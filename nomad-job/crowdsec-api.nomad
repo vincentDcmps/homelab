@@ -1,5 +1,6 @@
 job "crowdsec-api" {
   datacenters = ["homelab"]
+  priority    = 50
   type        = "service"
   meta {
     forcedeploy = "-1"
@@ -45,10 +46,6 @@ job "crowdsec-api" {
       template {
         data        = <<EOH
 DISABLE_AGENT = "true"
-{{with secret "secrets/data/nomad/crowdsec"}}
-  AGENT_USERNAME = "{{.Data.data.AGENT_USERNAME}}"
-  AGENT_PASSWORD = "{{.Data.data.AGENT_PASSWORD}}"
-{{end}}
 EOH
         destination = "secret/api.env"
         env         = "true"
