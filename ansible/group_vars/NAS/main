@@ -1,0 +1,11 @@
+nfs_cluster_list: "{% for server in groups[all]%}{{hostvars[server][inventory_hostname]}} (rw,async,all_squash,insecure_locks,sec=sys,anonuid=1024,anongid=100)  {%endfor%}"
+
+
+nfs_exports:
+    - "/var/local/volume1/nomad {{nfs_cluster_list}}"
+    - "/var/local/volume1/music {{nfs_cluster_list}}"
+    - "/var/local/volume1/media {{nfs_cluster_list}}"
+    - "/var/local/volume1/photo {{nfs_cluster_list}}"
+    - "/var/local/volume1/ebook {{nfs_cluster_list}}"
+    - "/var/local/volume1/git {{nfs_cluster_list}}"
+

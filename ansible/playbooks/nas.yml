@@ -1,0 +1,14 @@
+---
+- hosts: NAS
+  vars:
+  # certbot_force: true
+  roles:
+    - system
+    - role: msmtp
+      when: ansible_os_family != "RedHat"
+    - role: ansible-role-nfs 
+    #    - cronie
+    #- ldap
+    #- samba
+    #- ftp
+
