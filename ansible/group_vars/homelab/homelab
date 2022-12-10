@@ -1,2 +1,3 @@
 nomad_datacenter: homelab
 nomad_allow_privileged: True
+system_wol_enable: True
