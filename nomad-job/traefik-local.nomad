@@ -1,5 +1,6 @@
 job "traefik-local" {
   datacenters = ["homelab"]
+  priority    = 90
   type        = "service"
 
   group "traefik-local" {

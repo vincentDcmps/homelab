@@ -1,5 +1,6 @@
 job "git" {
   datacenters = ["homelab"]
+  priority    = 90
   type        = "service"
   meta {
     force = 1

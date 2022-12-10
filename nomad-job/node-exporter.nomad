@@ -1,5 +1,6 @@
 job "node-exporter" {
   datacenters = ["homelab", "hetzner"]
+  priority    = 30
   type        = "system"
   meta {
     forcedeploy = "0"

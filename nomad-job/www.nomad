@@ -1,5 +1,6 @@
 job "www" {
   datacenters = ["hetzner"]
+  priority    = 90
   type        = "service"
   group "www" {
     network {

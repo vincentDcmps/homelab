@@ -1,6 +1,7 @@
 
 job "torrent" {
   datacenters = ["hetzner"]
+  priority    = 80
   type        = "service"
   meta {
     forcedeploy = "0"

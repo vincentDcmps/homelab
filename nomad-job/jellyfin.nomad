@@ -1,6 +1,7 @@
 
 job "jellyfin" {
   datacenters = ["homelab"]
+  priority    = 80
   type        = "service"
   meta {
     forcedeploy = "0"

@@ -1,5 +1,6 @@
 job "traefik-ingress" {
   datacenters = ["hetzner"]
+  priority    = 90
   type        = "service"
 
   meta {

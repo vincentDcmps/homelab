@@ -1,7 +1,7 @@
 
 job "MQTT" {
   datacenters = ["homelab"]
-  priority    = 50
+  priority    = 90
   type        = "service"
   meta {
     forcedeploy = "0"

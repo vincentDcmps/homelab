@@ -1,6 +1,7 @@
 
 job "dashboard" {
   datacenters = ["homelab"]
+  priority    = 30
   type        = "service"
   meta {
     forcedeploy = "1"

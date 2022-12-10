@@ -2,6 +2,7 @@
 job "crowdsec-agent" {
   datacenters = ["homelab", "hetzner"]
   type        = "system"
+  priority    = 50
   meta {
     forcedeploy = "2"
   }

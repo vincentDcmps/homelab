@@ -1,5 +1,6 @@
 job "tt-rss" {
   datacenters = ["homelab"]
+  priority    = 90
   type        = "service"
 
   constraint {

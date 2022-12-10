@@ -1,5 +1,6 @@
 job "grafana" {
   datacenters = ["homelab"]
+  priority    = 50
   type        = "service"
   meta {
     forcedeploiement = 1

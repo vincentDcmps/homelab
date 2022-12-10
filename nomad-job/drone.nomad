@@ -1,5 +1,6 @@
 job "drone" {
   datacenters = ["homelab"]
+  priority    = 50
   type        = "service"
   vault {
     policies = ["droneci"]

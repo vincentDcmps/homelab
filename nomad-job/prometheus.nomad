@@ -1,5 +1,6 @@
 job "prometheus" {
   datacenters = ["homelab"]
+  priority    = 50
   type        = "service"
   constraint {
     attribute = "${attr.cpu.arch}"

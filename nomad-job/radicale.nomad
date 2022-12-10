@@ -1,6 +1,7 @@
 
 job "radicale" {
   datacenters = ["homelab"]
+  priority    = 70
   type        = "service"
   meta {
     forcedeploy = "0"

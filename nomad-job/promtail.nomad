@@ -1,6 +1,7 @@
 
 job "promtail" {
   datacenters = ["homelab", "hetzner"]
+  priority    = 50
   type        = "system"
   meta {
     forcedeploy = "0"

@@ -1,6 +1,7 @@
 
 job "filestash" {
   datacenters = ["hetzner"]
+  priority    = 50
   type        = "service"
   meta {
     forcedeploy = "0"

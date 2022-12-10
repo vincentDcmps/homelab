@@ -1,6 +1,7 @@
 
 job "homeassistant" {
   datacenters = ["homelab"]
+  priority    = 90
   type        = "service"
   meta {
     forcedeploy = "0"

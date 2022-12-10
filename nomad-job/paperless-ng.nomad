@@ -1,7 +1,7 @@
 
 job "paperless-ng" {
   datacenters = ["homelab"]
-  priority    = 50
+  priority    = 70
   type        = "service"
   meta {
     forcedeploy = "0"
