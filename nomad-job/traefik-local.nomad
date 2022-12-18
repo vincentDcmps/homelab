@@ -99,6 +99,7 @@ job "traefik-local" {
           [providers.consulCatalog.endpoint]
             address = "172.17.0.1:8500"
         [log]
+        [accessLog]
         [api]
           dashboard = true
           insecure = true
