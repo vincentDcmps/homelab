@@ -1,3 +1,4 @@
 nomad_datacenter: homelab
 nomad_allow_privileged: True
 system_wol_enable: True
+system_ipV6_disable: True
