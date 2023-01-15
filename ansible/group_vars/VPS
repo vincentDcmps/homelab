@@ -37,7 +37,7 @@ mount_table:
 
 #need vfat boot partition with esp label
 provissionning_UEFI_Enable: True
-sssd_configure: False
+#sssd_configure: False
 nomad_datacenter: hetzner
 
 consul_server: False
