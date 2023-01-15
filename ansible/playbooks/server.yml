@@ -4,6 +4,22 @@
     - VPS
   vars:
   # certbot_force: true
+  tasks:
+    - name: create user
+      include_role:
+        name: "ansible-user"
+        apply:
+          become: true
+      vars:
+        user_name: "{{ create.name }}"
+        user_home: "{{ create.home }}"
+        user_groups: "{{ create.groups|default('') }}"
+        user_shell: "{{ create.shell|default('') }}"
+        user_authorized_key: "{{ create.authorized_keys|default([]) }}"
+        user_privatekey: "{{ create.privatekey|default([])}}"
+      loop: "{{system_user}}"
+      loop_control:
+        loop_var: create
   roles:
     - system
     - autofs

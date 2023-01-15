@@ -35,3 +35,5 @@
   scm: git
 - src: ssh://git@git.ducamps.win:2222/ansible-roles/ansible-dhcpd.git
   scm: git
+- src: ssh://git@git.ducamps.win:2222/ansible-roles/ansible-user.git
+  scm: git
