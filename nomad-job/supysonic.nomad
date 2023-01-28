@@ -91,7 +91,7 @@ http {
     task "supysonic-server" {
       driver = "docker"
       config {
-        image      = "ogarcia/supysonic:full-sql"
+        image      = "ogarcia/supysonic:full-sql-20221001"
         ports      = ["fcgi"]
         force_pull = true
         volumes = [
@@ -102,7 +102,7 @@ http {
       env {
         SUPYSONIC_RUN_MODE         = "fcgi-port"
         SUPYSONIC_DAEMON_ENABLED   = "true"
-        SUPYSONIC_WEBAPP_LOG_LEVEL = "WARNING"
+        SUPYSONIC_WEBAPP_LOG_LEVEL = "DEBUG"
         SUPYSONIC_DAEMON_LOG_LEVEL = "INFO"
       }
 
