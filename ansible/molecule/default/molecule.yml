@@ -25,7 +25,6 @@ platforms:
     cpu: 1
     memory: 1024
     box: archlinux/archlinux
-
 provisioner:
   name: ansible
   connection_options:
