@@ -24,6 +24,7 @@ system_arch_local_mirror: "https://arch.{{domain.name}}/repo/archlinux_$arch"
 
 
 system_sudoers_group: "serverAdmin"
+system_ipV6_disable: True
 
 user_custom_host:
   - host: "git.ducamps.win"
