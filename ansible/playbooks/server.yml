@@ -23,5 +23,4 @@
         loop_var: create
   roles:
     - system
-    - autofs
     - cronie

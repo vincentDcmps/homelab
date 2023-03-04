@@ -1,4 +1,4 @@
-nfs_cluster_list: "{% for server in groups['all']%}{{hostvars[server]['inventory_hostname']}}(rw,async,insecure_locks,sec=sys,anonuid=1000001,anongid=100)  {%endfor%}"
+nfs_cluster_list: "{% for server in groups['all']%}{{ hostvars[server]['inventory_hostname'] }}.{{ nfs_domain_name }}(rw,async,insecure_locks,sec=sys,anonuid=1000001,anongid=100)  {%endfor%}"
 
 
 nfs_exports:
@@ -8,4 +8,6 @@ nfs_exports:
     - "/var/local/volume1/photo {{nfs_cluster_list}}"
     - "/var/local/volume1/ebook {{nfs_cluster_list}}"
     - "/var/local/volume1/git {{nfs_cluster_list}}"
-
+    - "/var/local/volume1/archMirror {{nfs_cluster_list}}"
+    - "/var/local/volume1/homes/admin {{nfs_cluster_list}}"
+    - "/var/local/volume1/CardDav {{nfs_cluster_list}}"
