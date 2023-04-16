@@ -11,3 +11,8 @@ nfs_exports:
     - "/var/local/volume1/archMirror {{nfs_cluster_list}}"
     - "/var/local/volume1/homes/admin {{nfs_cluster_list}}"
     - "/var/local/volume1/CardDav {{nfs_cluster_list}}"
+
+
+vsftpd_config:
+    local_root: "/var/local/volume1"
+    seccomp_sandbox: False

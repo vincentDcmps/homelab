@@ -4,6 +4,7 @@
   # certbot_force: true
   roles:
     - role: ansible-role-nfs 
+    - role: ansible-role-vsftpd 
     #    - cronie
     #- ldap
     #- samba
