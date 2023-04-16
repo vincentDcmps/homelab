@@ -4,7 +4,7 @@ job "supysonic" {
   priority    = 90
   type        = "service"
   meta {
-    forcedeploy = "0"
+    forcedeploy = "1"
   }
   constraint {
     attribute = "${attr.cpu.arch}"
@@ -91,7 +91,7 @@ http {
     task "supysonic-server" {
       driver = "docker"
       config {
-        image      = "ogarcia/supysonic:full-sql-20221001"
+        image      = "ducampsv/supysonic:latest"
         ports      = ["fcgi"]
         force_pull = true
         volumes = [
@@ -104,6 +104,10 @@ http {
         SUPYSONIC_DAEMON_ENABLED   = "true"
         SUPYSONIC_WEBAPP_LOG_LEVEL = "DEBUG"
         SUPYSONIC_DAEMON_LOG_LEVEL = "INFO"
+        SUPYSONIC_LDAP_SERVER      = "LDAP://ldap.ducamps.win"
+        SUPYSONIC_LDAP_BASE_DN     = "dc=ducamps,dc=win"
+        SUPYSONIC_LDAP_USER_FILTER = "(&(memberOf=CN=SupysonicUsers,cn=groups,dc=ducamps,dc=win))"
+        SUPYSONIC_LDAP_ADMIN_FILTER= "(&(memberOf=CN=SupysonicAdmins,cn=groups,dc=ducamps,dc=win))"
       }
 
       template {
@@ -111,6 +115,10 @@ http {
           {{ with secret "secrets/data/database/supysonic"}}
             SUPYSONIC_DB_URI = "postgres://supysonic:{{ .Data.data.password}}@db1.ducamps.win/supysonic"
           {{end}}
+          {{ with secret "secrets/data/nomad/supysonic"}}
+            SUPYSONIC_LDAP_BIND_DN     = "{{ .Data.data.serviceAccountName }}"
+            SUPYSONIC_LDAP_BIND_PASSWORD = "{{ .Data.data.serviceAccountPassword }}"
+          {{ end }}
           EOH
         destination = "secrets/supysonic.env"
         env         = true
