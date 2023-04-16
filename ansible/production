@@ -20,6 +20,8 @@ bleys
 
 [database]
 oscar
+bleys
 
 [rsyncd]
 oscar
+bleys
