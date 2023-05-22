@@ -80,7 +80,7 @@ job "paperless-ng" {
         PAPERLESS_OCR_LANGUAGE     = "fra"
         PAPERLESS_CONSUMER_POLLING = "60"
         PAPERLESS_URL              = "https://${NOMAD_JOB_NAME}.ducamps.win"
-        PAPERLESS_ALLOWED_HOSTS    = "*"
+        PAPERLESS_ALLOWED_HOSTS    = "192.168.1.42,192.168.1.40"
       }
 
       template {
