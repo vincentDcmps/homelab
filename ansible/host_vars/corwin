@@ -21,7 +21,7 @@ wireguard_postdown:
 
 wireguard_unmanaged_peers:
   phone:
-    public_key: ioG35kDFTtip+Acfq+je9qDHYbZij+J6+Pg3T6Z4N0w=
+    public_key: IYKgrQ2VJUbOnupSqedOfIilsbmBBABZUTRF9ZoTrkc=
     allowed_ips: 10.0.0.3/32
     persistent_keepalive: 0
   zen:
