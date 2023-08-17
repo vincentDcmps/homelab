@@ -91,7 +91,7 @@ job "paperless-ng" {
         env         = true
       }
       resources {
-        memory = 800
+        memory = 950
         cpu    = 2000
       }
     }
