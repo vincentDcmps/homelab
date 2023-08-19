@@ -18,9 +18,7 @@ systemd_mounts:
         mount: /mnt/backup
         type: ntfs-3g
         options:
-            - "uid=1024
-            - guid=100
-            - vers=3.0"
+            - " "
         automount: true
     diskstation_home:
         share: diskstation.ducamps.win:/volume2/homes/admin
