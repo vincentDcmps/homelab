@@ -4,28 +4,27 @@ dependency:
   name: galaxy
   enabled: false
 driver:
-  name: lxd
+  name: vagrant
+  provider:
+    name: libvirt
+    default_box: archlinux/archlinux
 platforms:
   - name: oscar-dev
-    image: images:archlinux
-    source:
-      type: image
-      mode: pull
-      alias: archlinux
+    cpu: 1
+    memory: 1024
+    box: archlinux/archlinux
   - name: merlin-dev
-    source:
-      type: image
-      mode: pull
-      alias: rockylinux/9
+    cpu: 1
+    memory: 1024
+    box: generic/rocky9
   - name: gerard-dev
-    source:
-      type: image
-      mode: pull
-      alias: debian/11
+    cpu: 1
+    memory: 1024
+    box: debian/bookworm64
 provisioner:
   name: ansible
   connection_options:
-    ansible_ssh_user: ansible
+    ansible_ssh_user: vagrant
     ansible_become: true
   env:
     ANSIBLE_CONFIG: ../../ansible.cfg
