@@ -79,7 +79,8 @@ Vagrant.configure('2') do |config|
       bootstrap.playbook= "ansible/playbooks/bootstrap.yml"
       bootstrap.galaxy_roles_path= "ansible/roles"
       bootstrap.limit="all"
-     { ansible_python_interpreter:"/usr/bin/python3" }
+      bootstrap.extra_vars = { ansible_python_interpreter:"/usr/bin/python3" }
     end
   end
+
 end

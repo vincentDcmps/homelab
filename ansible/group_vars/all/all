@@ -1,4 +1,4 @@
-##ansible_python_interpreter: /usr/bin/python2
+ansible_python_interpreter: /usr/bin/python3
 user:
     name: vincent
     home: /home/vincent
