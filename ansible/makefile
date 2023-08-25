@@ -2,15 +2,12 @@
 requirements:
 	ansible-galaxy install -g  -r roles/requirements.yml
 
-deploy_production:
+deploy_production: generate-token
 	ansible-playbook site.yml -i production -u ansible
 
+deploy_staging: generate-token
+	ansible-playbook site.yml -i staging -u ansible
+
 generate-token:
-	@echo export VAULT_TOKEN=`vault token create -policy=ansible -field="token" -period 6h`
+	export VAULT_TOKEN=`vault token create -policy=ansible -field="token" -period 6h`
 
-
-create-dev: requirements
-	PY_COLORS=1 molecule converge
-	
-destroy-dev:
-	PY_COLORS=1 molecule destroy

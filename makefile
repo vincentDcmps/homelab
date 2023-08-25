@@ -11,10 +11,11 @@ vault-dev:
 	fi
 
 create-dev:
-	make -C ansible create-dev
+	vagrant up
+	make -C ansible deploy_staging
 
 destroy-dev:
-	make -C ansible destroy-dev
+	vagrant destroy
 
 serve:
 	mkdocs serve
