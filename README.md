@@ -2,11 +2,23 @@
 
 This repository contain my homelab Infrastructure As Code
 
-this Homelab is build over Hashicorp software:
+this Homelab is build over Hashicorp software stack:
 
 - Nomad
 - Consul
 - Vault
+
+## Dev
+
+dev stack is build over vagrant box with libvirt provider
+
+curently need to have vault and ldap production up to be correctly provision
+
+to launch dev stack provissionning :
+
+```sh
+make create-dev
+```
 
 ## Rebuild
 
