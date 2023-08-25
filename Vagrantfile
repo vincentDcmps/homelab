@@ -2,6 +2,10 @@ Vagrant.configure('2') do |config|
   if Vagrant.has_plugin?('vagrant-cachier')
     config.cache.scope = 'machine'
   end
+  config.vm.provider :libvirt do |libvirt|
+    libvirt.management_network_domain = "ducamps-dev.win"
+
+  end
   config.vm.define "oscar-dev" do |c|
     # Box definition
     c.vm.box = "archlinux/archlinux"
