@@ -15,7 +15,7 @@ create-dev:
 	make -C ansible deploy_staging
 
 destroy-dev:
-	vagrant destroy
+	vagrant destroy --force
 
 serve:
 	mkdocs serve
