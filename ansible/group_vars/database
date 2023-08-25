@@ -16,7 +16,7 @@ postgresql_users:
   - name: vaultwarden
     password: "{{  lookup('hashi_vault', 'secret=secrets/data/database/vaultwarden:password')}}"
   - name: drone
-    password: "{{  lookup('hashi_vault', 'secret=secrets/data/database/droneCI:password')}}"
+    password: "{{  lookup('hashi_vault', 'secret=secrets/data/database/droneci:password')}}"
   - name: dendrite
     password: "{{  lookup('hashi_vault', 'secret=secrets/data/database/dendrite:password')}}"
   - name: paperless

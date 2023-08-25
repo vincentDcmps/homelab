@@ -6,7 +6,7 @@ locals {
     "crowdsec",
     "dump",
     "dentrite",
-    "droneCI",
+    "droneci",
     "gandi",
     "gitea",
     "nextcloud",

@@ -26,7 +26,7 @@ job "drone-runner" {
       }
       template {
         data        = <<EOH
-          {{ with secret "secrets/data/nomad/droneCI"}}
+          {{ with secret "secrets/data/nomad/droneci"}}
           DRONE_RPC_HOST="drone.ducamps.win"
           DRONE_RPC_PROTO="https"
           DRONE_RPC_SECRET= "{{ .Data.data.DRONE_RPC_SECRET}}"

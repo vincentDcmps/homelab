@@ -54,7 +54,7 @@ job "drone" {
       }
       template {
         data        = <<EOH
-          {{ with secret "secrets/data/nomad/droneCI"}}
+          {{ with secret "secrets/data/nomad/droneci"}}
           DRONE_GITEA_SERVER="https://git.ducamps.win"
           DRONE_GITEA_CLIENT_ID="{{ .Data.data.DRONE_GITEA_CLIENT_ID }}"
           DRONE_GITEA_CLIENT_SECRET="{{ .Data.data.DRONE_GITEA_CLIENT_SECRET }}"
@@ -66,7 +66,7 @@ job "drone" {
           DRONE_SERVER_PROTO="https"
           {{end}}
 
-          {{ with secret "secrets/data/database/droneCI"}}
+          {{ with secret "secrets/data/database/droneci"}}
           DRONE_DATABASE_DATASOURCE="postgres://drone:{{ .Data.data.password }}@db1.ducamps.win:5432/drone?sslmode=disable"
           {{end}}
           EOH
@@ -90,7 +90,7 @@ job "drone" {
       template {
         data= <<EOH
         DRONE_DEBUG=true
-        {{ with secret "secrets/data/nomad/droneCI"}}
+        {{ with secret "secrets/data/nomad/droneci"}}
         DRONE_SECRET= {{ .Data.data.DRONE_VAULT_SECRET}}
         {{end}}
         VAULT_TOKEN=
@@ -98,7 +98,7 @@ job "drone" {
         VAULT_AUTH_TYPE=approle
         VAULT_TOKEN_TTL=72h
         VAULT_TOKEN_RENEWAL=24h
-        {{ with secret "secrets/data/nomad/droneCI/approle"}}
+        {{ with secret "secrets/data/nomad/droneci/approle"}}
         VAULT_APPROLE_ID=  {{ .Data.data.approleID}}
         VAULT_APPROLE_SECRET=  {{ .Data.data.approleSecretID}}
         {{end}}
