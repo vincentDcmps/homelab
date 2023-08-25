@@ -3,4 +3,3 @@
   roles:
     - role: ansible-role-sssd
       become: true
-

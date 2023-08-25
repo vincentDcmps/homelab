@@ -1,27 +1,25 @@
 ---
 - hosts: all
-
   roles:
     - role: ansible-user
       vars:
-        user_name: "{{ user.name }}"
-        user_ldap: "{{ sssd_configure}}"
-        user_password: "{{ userPassword }}"
-        user_authorized_key: "{{ user.authorized_keys}}"
-        user_privatekey: "{{ user.privatekey}}"
-        user_shell: "/bin/zsh"
-        user_uid: "{{ user.uid }}"
+        user_name: '{{ user.name }}'
+        user_ldap: '{{ sssd_configure}}'
+        user_password: '{{ userPassword }}'
+        user_authorized_key: '{{ user.authorized_keys}}'
+        user_privatekey: '{{ user.privatekey}}'
+        user_shell: '/bin/zsh'
+        user_uid: '{{ user.uid }}'
         user_groups:
           - docker
       become: true
-      become_user: "{{ user.name }}"
+      become_user: '{{ user.name }}'
     - role: user_config
       vars:
-        user_config_username: "{{ user.name }}"
-      become_user: "{{ user.name }}"
+        user_config_username: '{{ user.name }}'
+      become_user: '{{ user.name }}'
       become: true
     - role: user_config
       vars:
         user_config_username: root
       become: true
-
