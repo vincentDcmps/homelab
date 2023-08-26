@@ -1,10 +1,11 @@
 ---
 - hosts: all
+  name: Hashicorp stack
   roles:
-    - role: ansible-consul
-      become: true
     - role: ansible-hashicorp-vault
-      when: ansible_architecture == 'x86_64'
+      when: inventory_hostname not in groups['VPS']
+      become: true
+    - role: ansible-consul
       become: true
     - role: ansible-nomad
       become: true
