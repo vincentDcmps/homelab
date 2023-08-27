@@ -1,0 +1,15 @@
+---
+wireguard_address: "10.0.1.2/24"
+perrsistent_keepalive: "30"
+wireguard_endpoint: ""
+
+wireguard_postup:
+  - iptables -A FORWARD -i wg0 -j ACCEPT
+  - iptables -A FORWARD -o wg0 -j ACCEPT
+  - iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+wireguard_postdown:
+  - iptables -D FORWARD -i wg0 -j ACCEPT
+  - iptables -D FORWARD -o wg0 -j ACCEPT
+  - iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+consul_snapshot: True

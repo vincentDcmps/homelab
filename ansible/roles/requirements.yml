@@ -23,7 +23,7 @@
   scm: git
 - src: ssh://git@git.ducamps.win:2222/ansible-roles/user_config.git
   scm: git
-- src: https://github.com/githubixx/ansible-role-wireguard.git
+- src: git@github.com:vincentDcmps/ansible-role-wireguard.git
   scm: git
 - src: ssh://git@git.ducamps.win:2222/ansible-roles/ansible-consul.git
   scm: git
@@ -36,4 +36,6 @@
 - src: ssh://git@git.ducamps.win:2222/ansible-roles/ansible-dhcpd.git
   scm: git
 - src: ssh://git@git.ducamps.win:2222/ansible-roles/ansible-user.git
+  scm: git
+- src: git@github.com:vincentDcmps/ansible-role-nfs.git
   scm: git

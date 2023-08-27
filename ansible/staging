@@ -8,6 +8,8 @@ merlin-dev
 [database]
 oscar-dev
 
+[wireguard:children]
+staging
 
 [staging]
 oscar-dev
