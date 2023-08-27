@@ -17,6 +17,10 @@ wireguard_postdown:
   - iptables -t nat -D POSTROUTING -o enp2s0 -j MASQUERADE
 consul_snapshot: True
 
+vault_snapshot: true
+vault_backup_location: "/mnt/diskstation/git/backup/vault"
+vault_roleID: "{{ lookup('hashi_vault','secret=secrets/data/ansible/hashistack:vault-snapshot_approle') }}"
+vault_secretID: "{{ lookup('hashi_vault','secret=secrets/data/ansible/hashistack:vault-snapshot_secretID') }}"
 partition_table:
   - device: "/dev/sda"
     label: gpt

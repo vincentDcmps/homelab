@@ -1,13 +1,3 @@
-data "vault_policy_document" "snapshot" {
-    rule {
-        path= "sys/storage/raft/snapshot"
-        capabilities = ["read"]
-    }
-}
-resource "vault_policy" "snapshot" {
-  name = "snapshot"
-  policy = data.vault_policy_document.snapshot.hcl
-}
 data "vault_policy_document" "nomad_server_policy" {
   rule {
     path = "auth/token/create/nomad-cluster"
