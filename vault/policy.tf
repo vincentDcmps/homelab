@@ -98,6 +98,10 @@ data "vault_policy_document" "admin_policy" {
     capabilities = ["create", "read", "update", "delete", "list", "sudo"]
   }
   rule {
+    path = "sys/storage/*"
+    capabilities = ["create", "read", "update", "delete", "list", "sudo"]
+  }
+  rule {
     path = "secrets/*"
     capabilities = ["create", "read", "update", "delete", "list", "sudo"]
   }
