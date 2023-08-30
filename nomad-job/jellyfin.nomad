@@ -1,16 +1,56 @@
-
 job "jellyfin" {
   datacenters = ["homelab"]
   priority    = 80
   type        = "service"
   meta {
-    forcedeploy = "0"
+    forcedeploy = "1"
   }
   constraint {
     attribute = "${attr.cpu.arch}"
     value     = "amd64"
   }
+  group jellyfin-vue{
+    network {
+        mode = "host"
+        port "http" {
+            to = 80            
+        }
+    }
+    task "jellyfin-vue"{
+        driver = "docker"
+        service {
+            name = "jellyfin-vue"
+            port = "http"
+            tags = [
+              "homer.enable=true",
+              "homer.name=${NOMAD_TASK_NAME}",
+              "homer.service=Application",
+              "homer.target=_blank",
+              "homer.logo=https://${NOMAD_TASK_NAME}.ducamps.win/icon.png",
+              "homer.url=https://${NOMAD_TASK_NAME}.ducamps.win",
+              "traefik.enable=true",
+              "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.win`)",
+              "traefik.http.routers.${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_TASK_NAME}.ducamps.win",
+              "traefik.http.routers.${NOMAD_TASK_NAME}.tls.certresolver=myresolver",
+            ]
 
+        }
+        config {
+            image = "ghcr.io/jellyfin/jellyfin-vue:unstable"
+            ports = ["http"]
+        }   
+        env {
+            DEFAULT_SERVERS = "${NOMAD_TASK_NAME}.ducamps.win"
+            }
+
+        resources {
+
+            memory = 50
+            cpu    = 100
+        }
+
+    }
+  }
   group "jellyfin" {
     network {
       mode = "host"
