@@ -20,6 +20,7 @@ locals {
     "vaultwarden",
     "wikijs",
     "vikunja",
+    "ghostfolio",
   ]
 
 }
