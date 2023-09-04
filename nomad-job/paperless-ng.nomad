@@ -33,7 +33,7 @@ job "paperless-ng" {
         ports = ["redis"]
       }
       resources {
-        memory = 100
+        memory = 50
       }
     }
     task "paperless-ng" {
