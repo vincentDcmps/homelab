@@ -160,6 +160,12 @@ groups:
     annotations:
       summary: Nomad job queued (instance {{ $labels.instance }})
       description: "Nomad job queued\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  - alert: NomadBatchError
+    expr: nomad_nomad_job_summary_failed{parent_id=~".+"}>0
+    labels:
+        severity: warning
+    annotations:
+        summary: Nomad batch {{ $labels.parent_id}} error
 
 
 EOH
