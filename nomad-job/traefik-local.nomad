@@ -20,7 +20,7 @@ job "traefik-local" {
       }
     }
     vault {
-      policies = ["gandi"]
+      policies = ["traefik"]
     }
 
     task "traefik" {
@@ -68,7 +68,7 @@ job "traefik-local" {
       }
       template {
         data        = <<EOH
-          GANDIV5_API_KEY = "{{with secret "secrets/data/nomad/gandi"}}{{.Data.data.API_KEY}}{{end}}"
+          HETZNER_API_KEY = "{{with secret "secrets/data/nomad/traefik"}}{{.Data.data.hetznerdnstoken}}{{end}}"
           EOH
         destination = "secrets/gandi.env"
         env         = true
@@ -108,9 +108,9 @@ job "traefik-local" {
         email = "vincent@ducamps.win"
         storage = "acme.json"
         [certificatesResolvers.myresolver.acme.dnsChallenge]
-        provider = "gandiv5"
+        provider = "hetzner"
         delayBeforeCheck = 0
-        resolvers = ["173.246.100.133:53"]
+        resolvers = ["hydrogen.ns.hetzner.com"]
         [metrics]
           [metrics.prometheus]
 

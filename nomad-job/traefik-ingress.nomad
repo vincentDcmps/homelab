@@ -27,7 +27,7 @@ job "traefik-ingress" {
       }
     }
     vault {
-      policies = ["gandi"]
+      policies = ["traefik"]
     }
     task "traefik" {
       driver = "docker"
@@ -74,7 +74,7 @@ job "traefik-ingress" {
       }
       template {
         data        = <<EOH
-        GANDIV5_API_KEY = "{{with secret "secrets/data/nomad/gandi"}}{{.Data.data.API_KEY}}{{end}}"
+        HETZNER_API_KEY = "{{with secret "secrets/data/nomad/traefik"}}{{.Data.data.hetznerdnstoken}}{{end}}"
         EOH
         destination = "secrets/gandi.env"
         env         = true

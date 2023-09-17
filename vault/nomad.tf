@@ -7,7 +7,7 @@ locals {
     "dump",
     "dentrite",
     "droneci",
-    "gandi",
+    "traefik",
     "gitea",
     "nextcloud",
     "paperless",
