@@ -1,6 +1,6 @@
 dhcpd_authoritative: True
 dhcpd_lease_time: '72'
-dhcpd_domain_name: "{{ domain.name }}"
+dhcpd_domain_name: "lan.{{ domain.name }}"
 dhcpd_nameservers:
   - '192.168.1.4'
   - '192.168.1.10'
@@ -10,7 +10,7 @@ dhcpd_keys:
     secret: "{{ lookup('hashi_vault','secret=secrets/data/ansible/other:dhcpd_key') }}"
 
 dhcpd_zones:
-  - zone: "{{ domain.name }}."
+  - zone: "lan.{{ domain.name }}."
     primary: "192.168.1.10"
     key: "dhcp"
   - zone: "1.168.192.in-addr.arpa."
@@ -22,7 +22,7 @@ dhcpd_options: |
   ddns-update-style      interim;
   ignore                 client-updates;
   update-static-leases   on;
-  ddns-domainname "ducamps.win.";
+  ddns-domainname "lan.{{ domain.name }}.";
   ddns-rev-domainname "in-addr.arpa.";
 
 
