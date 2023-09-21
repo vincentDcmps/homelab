@@ -9,45 +9,45 @@ job "jellyfin" {
     attribute = "${attr.cpu.arch}"
     value     = "amd64"
   }
-  group jellyfin-vue{
+  group jellyfin-vue {
     network {
-        mode = "host"
-        port "http" {
-            to = 80            
-        }
+      mode = "host"
+      port "http" {
+        to = 80
+      }
     }
-    task "jellyfin-vue"{
-        driver = "docker"
-        service {
-            name = "jellyfin-vue"
-            port = "http"
-            tags = [
-              "homer.enable=true",
-              "homer.name=${NOMAD_TASK_NAME}",
-              "homer.service=Application",
-              "homer.target=_blank",
-              "homer.logo=https://${NOMAD_TASK_NAME}.ducamps.win/icon.png",
-              "homer.url=https://${NOMAD_TASK_NAME}.ducamps.win",
-              "traefik.enable=true",
-              "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.win`)",
-              "traefik.http.routers.${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_TASK_NAME}.ducamps.win",
-              "traefik.http.routers.${NOMAD_TASK_NAME}.tls.certresolver=myresolver",
-            ]
+    task "jellyfin-vue" {
+      driver = "docker"
+      service {
+        name = "jellyfin-vue"
+        port = "http"
+        tags = [
+          "homer.enable=true",
+          "homer.name=${NOMAD_TASK_NAME}",
+          "homer.service=Application",
+          "homer.target=_blank",
+          "homer.logo=https://${NOMAD_TASK_NAME}.ducamps.win/icon.png",
+          "homer.url=https://${NOMAD_TASK_NAME}.ducamps.win",
+          "traefik.enable=true",
+          "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.win`)",
+          "traefik.http.routers.${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_TASK_NAME}.ducamps.win",
+          "traefik.http.routers.${NOMAD_TASK_NAME}.tls.certresolver=myresolver",
+        ]
 
-        }
-        config {
-            image = "ghcr.io/jellyfin/jellyfin-vue:unstable"
-            ports = ["http"]
-        }   
-        env {
-            DEFAULT_SERVERS = "${NOMAD_TASK_NAME}.ducamps.win"
-            }
+      }
+      config {
+        image = "ghcr.io/jellyfin/jellyfin-vue:unstable"
+        ports = ["http"]
+      }
+      env {
+        DEFAULT_SERVERS = "${NOMAD_TASK_NAME}.ducamps.win"
+      }
 
-        resources {
+      resources {
 
-            memory = 50
-            cpu    = 100
-        }
+        memory = 50
+        cpu    = 100
+      }
 
     }
   }
@@ -101,8 +101,9 @@ job "jellyfin" {
 
       }
       resources {
-        memory = 2000
-        cpu    = 3000
+        memory     = 2000
+        memory_max = 4000
+        cpu        = 3000
       }
     }
 
