@@ -7,6 +7,25 @@ resource "hetznerdns_zone" "externalZone" {
   ttl  = 1700
 }
 
+resource "hetznerdns_zone" "externalZoneEU" {
+    name = "ducamps.eu"
+    ttl  = 1700
+}
+
+resource "hetznerdns_record" "MX1Eu" {
+    zone_id = hetznerdns_zone.externalZoneEU.id
+    name    = "@"
+    value   = "20 ${local.defaultCname}"
+    type    = "MX"
+}
+
+resource "hetznerdns_record" "mailEu" {
+      zone_id = hetznerdns_zone.externalZoneEU.id
+      name    = "mail"
+      value    = local.defaultCname
+      type= "CNAME"
+}
+
 
 resource "hetznerdns_record" "rootalias" {
   zone_id = hetznerdns_zone.externalZone.id
