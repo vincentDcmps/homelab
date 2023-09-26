@@ -19,12 +19,25 @@ resource "hetznerdns_record" "MX1Eu" {
     type    = "MX"
 }
 
+resource "hetznerdns_record" "smtpEU" {
+      zone_id = hetznerdns_zone.externalZoneEU.id
+      name    = "smtp"
+      value    = local.defaultCname
+      type= "CNAME"
+}
+resource "hetznerdns_record" "imapEU" {
+      zone_id = hetznerdns_zone.externalZoneEU.id
+      name    = "imap"
+      value    = local.defaultCname
+      type= "CNAME"
+}
 resource "hetznerdns_record" "mailEu" {
       zone_id = hetznerdns_zone.externalZoneEU.id
       name    = "mail"
       value    = local.defaultCname
       type= "CNAME"
 }
+
 
 
 resource "hetznerdns_record" "rootalias" {
