@@ -25,6 +25,18 @@ job "traefik-ingress" {
         static       = 2222
         host_network = "public"
       }
+      port "smtp" {
+        static = 25
+        host_network = "public"
+      }
+      port "esmtp" {
+        static = 465
+        host_network = "public"
+      }
+      port "imap" {
+        static= 993
+        host_network = "public"
+      }
     }
     vault {
       policies = ["traefik"]
@@ -60,7 +72,10 @@ job "traefik-ingress" {
           "http",
           "https",
           "admin",
-          "ssh"
+          "ssh",
+          "smtp",
+          "esmtp",
+          "imap",
         ]
         volumes = [
           "local/traefik.toml:/etc/traefik/traefik.toml",
@@ -96,6 +111,12 @@ job "traefik-ingress" {
             address = ":443"
           [entryPoints.traefik]
             address = ":9080"
+          [entrypoints.smtp]
+            address = ":25"
+          [entrypoints.esmtp]
+            address = ":465"
+          [entrypoints.imap]
+            address = ":993"
         [http.middlewares]
           [http.middlewares.https-redirect.redirectscheme]
             scheme = "https"

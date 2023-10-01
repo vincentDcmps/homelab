@@ -15,6 +15,15 @@ job "traefik-local" {
       port "ssh" {
         static = 2222
       }
+      port "smtp" {
+        static = 25
+      }
+      port "esmtp" {
+        static = 465
+      }
+      port "imap" {
+        static= 993
+      }
       port "admin" {
         static = 9080
       }
@@ -54,7 +63,10 @@ job "traefik-local" {
           "http",
           "https",
           "admin",
-          "ssh"
+          "ssh",
+          "smtp",
+          "esmtp",
+          "imap",
         ]
         volumes = [
           "local/traefik.toml:/etc/traefik/traefik.toml",
@@ -91,6 +103,12 @@ job "traefik-local" {
             address = ":9080"
           [entrypoints.ssh]
             address = ":2222"
+          [entrypoints.smtp]
+            address = ":25"
+          [entrypoints.esmtp]
+            address = ":465"
+          [entrypoints.imap]
+            address = ":993"
         [http.middlewares]
           [http.middlewares.https-redirect.redirectscheme]
             scheme = "https"
