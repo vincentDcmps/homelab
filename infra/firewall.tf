@@ -85,3 +85,34 @@ resource "hcloud_firewall" "Gitea_SSH" {
     ]
   }
 }
+resource "hcloud_firewall" "mail" {
+    name= "mail"
+    rule {
+        direction ="in"
+        protocol = "tcp"
+        port="25"
+        source_ips = [
+              "0.0.0.0/0",
+                    "::/0"
+        ]
+      }
+    rule {
+        direction ="in"
+        protocol = "tcp"
+        port="993"
+        source_ips = [
+              "0.0.0.0/0",
+                    "::/0"
+        ]
+      }
+    rule {
+        direction ="in"
+        protocol = "tcp"
+        port="465"
+        source_ips = [
+              "0.0.0.0/0",
+                    "::/0"
+        ]
+      }
+
+}
