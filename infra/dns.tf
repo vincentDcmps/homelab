@@ -15,29 +15,22 @@ resource "hetznerdns_zone" "externalZoneEU" {
 resource "hetznerdns_record" "MX1Eu" {
     zone_id = hetznerdns_zone.externalZoneEU.id
     name    = "@"
-    value   = "20 ${local.defaultCname}"
+    value   = "20 mail"
     type    = "MX"
 }
 
-resource "hetznerdns_record" "smtpEU" {
-      zone_id = hetznerdns_zone.externalZoneEU.id
-      name    = "smtp"
-      value    = local.defaultCname
-      type= "CNAME"
-}
-resource "hetznerdns_record" "imapEU" {
-      zone_id = hetznerdns_zone.externalZoneEU.id
-      name    = "imap"
-      value    = local.defaultCname
-      type= "CNAME"
-}
 resource "hetznerdns_record" "mailEu" {
       zone_id = hetznerdns_zone.externalZoneEU.id
       name    = "mail"
       value    = local.defaultCname
       type= "CNAME"
 }
-
+resource "hetznerdns_record" "serverEU" {
+  zone_id = hetznerdns_zone.externalZoneEU.id
+  name    = local.defaultCname
+  value   = hcloud_server.HomeLab2[0].ipv4_address
+  type    = "A"
+}
 
 
 resource "hetznerdns_record" "rootalias" {
@@ -55,7 +48,7 @@ resource "hetznerdns_record" "MX1" {
 resource "hetznerdns_record" "MX2" {
   zone_id = hetznerdns_zone.externalZone.id
   name    = "@"
-  value   = "50 fb.mail.gandi.net"
+  value   = "50 fb.mail.gandi.net."
   type    = "MX"
 }
 
@@ -68,13 +61,13 @@ resource "hetznerdns_record" "spf" {
 resource "hetznerdns_record" "caldav" {
   zone_id = hetznerdns_zone.externalZone.id
   name    = "_caldavs_tcp"
-  value   = "10 20 443 www.${hetznerdns_zone.externalZone.name}"
+  value   = "10 20 443 www.${hetznerdns_zone.externalZone.name}."
   type    = "SRV"
 }
 resource "hetznerdns_record" "carddavs" {
   zone_id = hetznerdns_zone.externalZone.id
   name    = "_carddavs_tcp"
-  value   = "10 20 443 www.${hetznerdns_zone.externalZone.name}"
+  value   = "10 20 443 www.${hetznerdns_zone.externalZone.name}."
   type    = "SRV"
 }
 resource "hetznerdns_record" "server" {
@@ -192,21 +185,21 @@ resource "hetznerdns_record" "ww" {
 resource "hetznerdns_record" "gm1" {
   zone_id = hetznerdns_zone.externalZone.id
   name    = "gm1._domainkey"
-  value   = "gm1.gandimail.net"
+  value   = "gm1.gandimail.net."
   type    = "CNAME"
 }
 
 resource "hetznerdns_record" "gm2" {
   zone_id = hetznerdns_zone.externalZone.id
   name    = "gm2._domainkey"
-  value   = "gm2.gandimail.net"
+  value   = "gm2.gandimail.net."
   type    = "CNAME"
 }
 
 resource "hetznerdns_record" "gm3" {
   zone_id = hetznerdns_zone.externalZone.id
   name    = "gm3._domainkey"
-  value   = "gm3.gandimail.net"
+  value   = "gm3.gandimail.net."
   type    = "CNAME"
 }
 
@@ -221,7 +214,7 @@ resource "hetznerdns_record" "imap" {
 resource "hetznerdns_record" "smtp" {
   zone_id = hetznerdns_zone.externalZone.id
   name    = "smtp"
-  value   = "mail.gandi.net"
+  value   = "mail.gandi.net."
   type    = "CNAME"
 }
 
