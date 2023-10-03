@@ -15,6 +15,8 @@ job "dockermailserver" {
       mode = "host"
       port "smtp" {
         to = 25
+        static = 25
+        host_network = "public"
       }
       port "imap" {
         to = 10993
@@ -31,10 +33,8 @@ job "dockermailserver" {
         "traefik.tcp.routers.smtp.service=smtp",
         "traefik.tcp.routers.smtp.entrypoints=smtp",
         "traefik.tcp.routers.smtp.rule=HostSNI(`*`)",
-        "traefik.tcp.routers.smtp.tls.passthrough=true",
-        "traefik.tcp.routers.smtp.tls=false",
         "traefik.tcp.services.smtp.loadbalancer.proxyProtocol.version=1",
-      ]
+    ]
       check {
         name     = "smtp_probe"
         type     = "tcp"
@@ -115,7 +115,7 @@ job "dockermailserver" {
         DMS_VMAIL_GID = 100
         SSL_TYPE= "letsencrypt"
         SSL_DOMAIN= "mail.ducamps.eu"
-        LOG_LEVEL="debug"
+        LOG_LEVEL="info"
       }
       template {
         data        = <<EOH
@@ -127,7 +127,7 @@ job "dockermailserver" {
 
       template {
         data        = <<EOH
-postscreen_upstream_proxy_protocol = haproxy
+#postscreen_upstream_proxy_protocol = haproxy
         EOH
         destination = "local/postfix-main.cf"
       }
