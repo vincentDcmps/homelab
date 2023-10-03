@@ -31,7 +31,12 @@ resource "hetznerdns_record" "serverEU" {
   value   = hcloud_server.HomeLab2[0].ipv4_address
   type    = "A"
 }
-
+resource "hetznerdns_record" "spfEu" {
+  zone_id = hetznerdns_zone.externalZoneEU.id
+  name    = "@"
+  value   = "\"v=spf1 ip4:${hcloud_server.HomeLab2[0].ipv4_address} ~all\""
+  type    = "TXT"
+}
 
 resource "hetznerdns_record" "rootalias" {
   zone_id = hetznerdns_zone.externalZone.id
