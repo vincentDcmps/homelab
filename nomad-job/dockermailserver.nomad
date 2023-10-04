@@ -24,6 +24,9 @@ job "dockermailserver" {
       port "esmtp" {
         to = 465
       }
+      port "rspamd" {
+        to = 11334
+      }
     }
     service {
       name = "smtp"
@@ -34,7 +37,7 @@ job "dockermailserver" {
         "traefik.tcp.routers.smtp.entrypoints=smtp",
         "traefik.tcp.routers.smtp.rule=HostSNI(`*`)",
         "traefik.tcp.services.smtp.loadbalancer.proxyProtocol.version=1",
-    ]
+      ]
       check {
         name     = "smtp_probe"
         type     = "tcp"
@@ -95,7 +98,7 @@ job "dockermailserver" {
       driver = "docker"
       config {
         image = "ghcr.io/docker-mailserver/docker-mailserver:edge"
-        ports = ["smtp", "esmtp", "imap"]
+        ports = ["smtp", "esmtp", "imap","rspamd"]
         volumes = [
           "/mnt/diskstation/nomad/dms/mail-data:/var/mail",
           "/mnt/diskstation/nomad/dms/mail-state:/var/mail-state",
@@ -114,8 +117,14 @@ job "dockermailserver" {
         DMS_VMAIL_UID = 1000000
         DMS_VMAIL_GID = 100
         SSL_TYPE= "letsencrypt"
-        SSL_DOMAIN= "mail.ducamps.eu"
         LOG_LEVEL="info"
+        POSTMASTER_ADDRESS="vincent@ducamps.eu"
+        ENABLE_RSPAMD=1
+        ENABLE_OPENDKIM=0
+        ENABLE_OPENDMARC=0
+        ENABLE_POLICYD_SPF=0
+        RSPAMD_CHECK_AUTHENTICATED=1
+
       }
       template {
         data        = <<EOH
@@ -153,7 +162,7 @@ service imap-login {
         destination = "local/dovecot.cf"
       }
       resources {
-        memory = 300
+        memory = 1000
       }
     }
 

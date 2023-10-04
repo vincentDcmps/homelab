@@ -38,6 +38,21 @@ resource "hetznerdns_record" "spfEu" {
   type    = "TXT"
 }
 
+resource "hetznerdns_record" "dkimRecordEu" {
+  zone_id = hetznerdns_zone.externalZoneEU.id
+  name    = "mail._domainkey"
+  value   = "\"v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0GadPljh+zM+Hf8MAf2wyj+h9p72aBFeFaiDhnswxO68fM9Uk6XhN4s1BkHLY5AWQh0SP1JDBaFWDfJiOV/27E3qJIa4KDHPZcgxgvo+SbfgNZq5qGIhKyqAAtyg/dI8IMKVOZ5Cevdv9VFrSF84xnTmDBCrWydPyV8D5+xA/bVna/AVCAVUeXVppyMPpC0s1HpRNJ0YaY23RH1KwChxvZY+BkanELSzTA8K0ATbIzwgQaK10/lc1S6EFvaSNG8sy6EIoondl6t+uiqU3bHgAW68r8snzl2gclG+uMkjXkH7YGPJzL9Co1o1MlKOHIONz89CCe0puIH4qaCo1G6EDwIDAQAB\""
+  type    = "TXT"
+}
+
+resource "hetznerdns_record" "dmarcEU" {
+
+  zone_id = hetznerdns_zone.externalZoneEU.id
+  name = "_dmarc.ducamps.eu."
+  value = "\"v=DMARC1; p=none; rua=mailto:vincent@ducamps.eu; ruf=mailto:vincent@ducamps.eu; sp=none; ri=86400\""
+  type  = "TXT"
+}
+
 resource "hetznerdns_record" "rootalias" {
   zone_id = hetznerdns_zone.externalZone.id
   name    = "@"
