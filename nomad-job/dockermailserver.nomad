@@ -89,6 +89,25 @@ job "dockermailserver" {
           "traefik.http.routers.certmail.tls.certresolver=myresolver",
       ]
     }
+    service {
+      name = "rspamdUI"
+      port = "rspamd"
+      tags = [
+        "homer.enable=true",
+        "homer.name=RSPAMD",
+        "homer.service=Application",
+        "homer.logo=http://${NOMAD_ADDR_rspamd}/img/rspamd_logo_navbar.png",
+        "homer.target=_blank",
+        "homer.url=http://${NOMAD_ADDR_rspamd}/",
+      ]
+       check {
+        name     = "rspamd_probe"
+        type     = "http"
+        path     = "/"
+        interval = "60s"
+        timeout  = "2s"
+      }
+    }
     
     #    vault{
     #      policies= ["policy_name"]
