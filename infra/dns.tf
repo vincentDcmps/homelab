@@ -53,6 +53,20 @@ resource "hetznerdns_record" "dmarcEU" {
   type  = "TXT"
 }
 
+resource "hetznerdns_record" "imapsAutodiscoverEU" {
+  zone_id = hetznerdns_zone.externalZoneEU.id
+  name = "_imaps._tcp"
+  value = "0 0 993 mail.ducamps.eu"
+  type  = "SRV"
+}
+
+resource "hetznerdns_record" "submissionAutodiscoverEU" {
+  zone_id = hetznerdns_zone.externalZoneEU.id
+  name = "_submission._tcp"
+  value = "0 0 465 mail.ducamps.eu"
+  type  = "SRV"
+}
+
 resource "hetznerdns_record" "rootalias" {
   zone_id = hetznerdns_zone.externalZone.id
   name    = "@"
