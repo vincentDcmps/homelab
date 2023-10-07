@@ -94,7 +94,7 @@ job "tt-rss" {
         TTRSS_DB_HOST       = "db1.ducamps.win"
         TTRSS_DB_NAME       = "ttrss"
         TTRSS_DB_USER       = "ttrss"
-        TTRSS_SELF_URL_PATH = "https://rss.ducamps.win/tt-rss"
+        TTRSS_SELF_URL_PATH = "https://www.ducamps.win/tt-rss"
       }
       template {
         data        = <<EOH
