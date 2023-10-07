@@ -38,6 +38,7 @@ job "filestash" {
           "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`file.ducamps.win`)",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=file.ducamps.win",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
 
 
         ]

@@ -39,7 +39,8 @@ job "drone" {
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
           "traefik.http.middlewares.httpsRedirect.redirectscheme.scheme=https",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.middlewares=httpsRedirect"
+          "traefik.http.routers.${NOMAD_JOB_NAME}.middlewares=httpsRedirect",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
 
         ]
       }

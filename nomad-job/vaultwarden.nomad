@@ -35,6 +35,7 @@ job "vaultwarden" {
           "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`vault.ducamps.win`)",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=vault.ducamps.win",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
         ]
         check {
           type     = "http"

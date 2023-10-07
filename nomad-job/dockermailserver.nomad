@@ -15,8 +15,6 @@ job "dockermailserver" {
       mode = "host"
       port "smtp" {
         to = 25
-#        static = 25
-#        host_network = "public"
       }
       port "imap" {
         to = 10993
@@ -85,6 +83,7 @@ job "dockermailserver" {
       name = "certmail"
       tags =[
           "traefik.enable=true",
+          "traefik.http.routers.certmail.entrypoints=web,websecure",
           "traefik.http.routers.certmail.tls.domains[0].sans=mail.ducamps.eu",
           "traefik.http.routers.certmail.tls.certresolver=myresolver",
       ]

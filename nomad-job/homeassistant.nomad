@@ -43,6 +43,7 @@ job "homeassistant" {
           "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.win`)",
           "traefik.http.routers.${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_TASK_NAME}.ducamps.win",
           "traefik.http.routers.${NOMAD_TASK_NAME}.tls.certresolver=myresolver",
+          "traefik.http.routers.${NOMAD_TASK_NAME}.entrypoints=web,websecure",
         ]
         check {
           type     = "tcp"

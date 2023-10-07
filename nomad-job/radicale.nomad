@@ -32,6 +32,7 @@ job "radicale" {
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=www.ducamps.win",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
           "traefik.http.routers.${NOMAD_JOB_NAME}.middlewares=radicaleHeader,radicalestrip",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
           "traefik.http.middlewares.radicaleHeader.headers.customrequestheaders.X-Script-Name=/radicale",
           "traefik.http.middlewares.radicalestrip.stripprefix.prefixes=/radicale",
 

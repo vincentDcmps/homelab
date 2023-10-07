@@ -31,6 +31,7 @@ job "chainetv" {
           "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`www.ducamps.win`)&&PathPrefix(`/chainetv`)",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=www.ducamps.win",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
           "traefik.http.routers.${NOMAD_JOB_NAME}.middlewares=chainetv,chainetvStrip",
           "traefik.http.middlewares.chainetv.headers.customrequestheaders.X-Script-Name=/chainetv",
           "traefik.http.middlewares.chainetvStrip.stripprefix.prefixes=/chainetv",

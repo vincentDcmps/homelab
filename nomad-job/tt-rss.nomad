@@ -42,6 +42,7 @@ job "tt-rss" {
         "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`www.ducamps.win`)&&PathPrefix(`/tt-rss`)",
         "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=www.ducamps.win",
         "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
+        "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
       ]
     }
 

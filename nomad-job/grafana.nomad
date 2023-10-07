@@ -28,6 +28,8 @@ job "grafana" {
         "traefik.http.routers.grafana.rule=Host(`grafana.ducamps.win`)",
         "traefik.http.routers.grafana.tls.domains[0].sans=grafana.ducamps.win",
         "traefik.http.routers.grafana.tls.certresolver=myresolver",
+        "traefik.http.routers.grafana.entrypoints=web,websecure",
+
       ]
     }
 
