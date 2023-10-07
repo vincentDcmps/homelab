@@ -48,7 +48,7 @@ resource "hetznerdns_record" "dkimRecordEu" {
 resource "hetznerdns_record" "dmarcEU" {
 
   zone_id = hetznerdns_zone.externalZoneEU.id
-  name = "_dmarc.ducamps.eu."
+  name = "_dmarc"
   value = "\"v=DMARC1; p=none; rua=mailto:vincent@ducamps.eu; ruf=mailto:vincent@ducamps.eu; sp=none; ri=86400\""
   type  = "TXT"
 }
