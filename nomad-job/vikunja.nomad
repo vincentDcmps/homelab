@@ -31,7 +31,7 @@ job "vikunja" {
             "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`) && PathPrefix(`/api/v1`, `/dav/`, `/.well-known/`)",
             "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
             "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.tls.certresolver=myresolver",
-            "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.entrypoint=web,websecure",
+            "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.entrypoints=web,websecure",
         ]
       }
       config {
