@@ -21,6 +21,7 @@ locals {
     "wikijs",
     "vikunja",
     "ghostfolio",
+    "alertmanager",
   ]
 
 }

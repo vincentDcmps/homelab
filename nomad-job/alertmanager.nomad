@@ -5,7 +5,9 @@ job "alertmanager" {
   meta {
     forcedeploy = "0"
   }
-
+  vault {
+    policies = ["alertmanager"]
+  }
   group "alertmanager" {
     network {
       mode = "host"
@@ -39,8 +41,33 @@ job "alertmanager" {
 
       config {
         image = "prom/alertmanager"
+        args= ["--log.level=debug", "--config.file=/etc/alertmanager/alertmanager.yml"]
         ports = ["http"]
+        volumes = [
+          "local/alertmanager.yml:/etc/alertmanager/alertmanager.yml"
+        ]
+      }
 
+      template {
+        data = <<EOH
+global:
+  smtp_from: alert@ducamps.eu
+  smtp_smarthost: 135.181.150.203:25
+  smtp_hello: "mail.ducamps.win"
+  smtp_require_tls: false
+  {{with secret "secrets/data/nomad/alertmanager/mail"}}
+  smtp_auth_username: {{.Data.data.username}}
+  smtp_auth_password: {{.Data.data.password}}
+  {{end}}
+route:
+  group_by: ['alertname']
+  receiver: "default"
+receivers:
+  - name: "default"
+    email_configs:
+      - to: "vincent@ducamps.eu"
+EOH
+        destination = "local/alertmanager.yml"
       }
       resources {
         memory = 75
