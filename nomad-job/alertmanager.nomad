@@ -52,7 +52,7 @@ job "alertmanager" {
         data = <<EOH
 global:
   smtp_from: alert@ducamps.eu
-  smtp_smarthost: 135.181.150.203:25
+  smtp_smarthost: mail.ducamps.eu:465
   smtp_hello: "mail.ducamps.win"
   smtp_require_tls: false
   {{with secret "secrets/data/nomad/alertmanager/mail"}}

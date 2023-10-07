@@ -142,7 +142,7 @@ job "dockermailserver" {
         ENABLE_OPENDKIM=0
         ENABLE_OPENDMARC=0
         ENABLE_POLICYD_SPF=0
-        RSPAMD_CHECK_AUTHENTICATED=1
+        RSPAMD_CHECK_AUTHENTICATED=0
 
       }
       template {
