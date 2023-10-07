@@ -2,7 +2,7 @@
 
 ## Status
 
-In progress
+done
 
 ## Context
 
@@ -50,5 +50,5 @@ for begining container will be launch on hetzner
 
 ## Consequences
 
-- need to buy a new domaine name and configure DNS
+- need to buy a new domaine name and configure DNS (done)
 - inprove memory on corwin (done)
