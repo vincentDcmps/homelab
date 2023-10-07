@@ -15,8 +15,8 @@ job "dockermailserver" {
       mode = "host"
       port "smtp" {
         to = 25
-        static = 25
-        host_network = "public"
+#        static = 25
+#        host_network = "public"
       }
       port "imap" {
         to = 10993
@@ -155,7 +155,7 @@ job "dockermailserver" {
 
       template {
         data        = <<EOH
-#postscreen_upstream_proxy_protocol = haproxy
+postscreen_upstream_proxy_protocol = haproxy
         EOH
         destination = "local/postfix-main.cf"
       }

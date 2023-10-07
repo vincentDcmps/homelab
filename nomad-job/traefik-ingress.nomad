@@ -26,7 +26,7 @@ job "traefik-ingress" {
         host_network = "public"
       }
       port "smtp" {
-        static = 12346
+        static = 25
         host_network = "public"
       }
       port "esmtp" {
