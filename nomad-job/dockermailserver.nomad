@@ -112,7 +112,7 @@ job "dockermailserver" {
     #      policies= ["policy_name"]
     #
     #}
-    task "server" {
+    task "docker-mailserver" {
       driver = "docker"
       config {
         image = "ghcr.io/docker-mailserver/docker-mailserver:edge"

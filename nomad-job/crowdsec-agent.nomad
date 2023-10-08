@@ -37,11 +37,35 @@ job "crowdsec-agent" {
 
       }
       env {
-        COLLECTIONS       = "crowdsecurity/traefik crowdsecurity/home-assistant LePresidente/gitea"
-        DISABLE_LOCAL_API = "true"
+      COLLECTIONS       = "andreasbrett/paperless-ngx Dominic-Wagner/vaultwarden LePresidente/jellyfin crowdsecurity/traefik crowdsecurity/home-assistant LePresidente/gitea crowdsecurity/postfix  crowdsecurity/dovecot "
+      DISABLE_LOCAL_API = "true"
       }
       template {
         data        = <<EOH
+---
+source: docker
+container_name_regexp:
+  - jellyfin*
+labels:
+  type: jellyfin
+---
+source: docker
+container_name_regexp:
+  - paperless-ng*
+labels:
+  type: Paperless-ngx
+---
+source: docker
+container_name_regexp:
+  - vaultwarden*
+labels:
+  type: Vaultwarden
+---
+source: docker
+container_name_regexp:
+  - docker-mailserver*
+labels:
+  type: syslog
 ---
 source: docker
 container_name_regexp:
