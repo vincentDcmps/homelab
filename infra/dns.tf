@@ -215,6 +215,12 @@ resource "hetznerdns_record" "ww" {
   value   = local.defaultCname
   type    = "CNAME"
 }
+resource "hetznerdns_record" "paperless" {
+    zone_id = hetznerdns_zone.externalZone.id
+    name    = "paperless-ng"
+    value   = local.defaultCname
+    type    = "CNAME"
+}
 
 resource "hetznerdns_record" "gm1" {
   zone_id = hetznerdns_zone.externalZone.id
