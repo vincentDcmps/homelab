@@ -112,6 +112,15 @@ scrape_configs:
     metrics_path: /api/prometheus
     authorization:
       credentials: {{ with secret "secrets/data/nomad/prometheus"}}'{{ .Data.data.hass_token }}'{{end}}
+  - job_name: 'nut'
+    consul_sd_configs:
+    - server: 'consul.service.consul:8500'
+      services: ['nutexporter']
+    metrics_path: /ups_metrics
+    relabel_configs:
+      - source_labels: ['__meta_consul_dc']
+        target_label: instance
+
 
 
 
@@ -128,14 +137,6 @@ EOH
 groups:
 - name: nomad_alerts
   rules:
-  - alert: NomadJobFailed
-    expr: nomad_nomad_job_summary_failed > 0
-    for: 0m
-    labels:
-      severity: warning
-    annotations:
-      summary: Nomad job failed (instance {{ $labels.instance }})
-      description: "Nomad job failed\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
   - alert: NomadBlockedEvaluation
     expr: nomad_nomad_blocked_evals_total_blocked > 0
     for: 0m
@@ -144,14 +145,6 @@ groups:
     annotations:
       summary: Nomad blocked evaluation (instance {{ $labels.instance }})
       description: "Nomad blocked evaluation\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-  - alert: NomadJobLost
-    expr: nomad_nomad_job_summary_lost > 0
-    for: 0m
-    labels:
-      severity: warning
-    annotations:
-      summary: Nomad job lost (instance {{ $labels.instance }})
-      description: "Nomad job lost\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
   - alert: NomadJobQueued
     expr: nomad_nomad_job_summary_queued > 0
     for: 2m
@@ -170,6 +163,27 @@ groups:
     expr: nomad_nomad_job_summary_running{exported_job="git"}==0
     labels:
             severity: warning
+- name: nut_alerts
+  rules:
+  - alert: UPSonBattery
+    expr: network_ups_tools_ups_status{flag="OB"}==1
+    labels:
+        severity: warning
+    annotations: 
+      summary: UPS switched on battery
+  - alert: UPSLowBattery
+    expr: network_ups_tools_ups_status{flag="LB"}==1
+    labels:
+        severity: critical
+    annotations: 
+      summary: UPS is now on low battery please shutdown all device
+  - alert: "UPS Battery needed to be replaced"
+    expr: network_ups_tools_ups_status{flag="RB"}==1
+    labels:
+      severity: warning
+    annotations:
+      summary: UPS battery is detected to replace
+
 
 
 EOH

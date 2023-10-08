@@ -65,7 +65,8 @@ route:
 receivers:
   - name: "default"
     email_configs:
-      - to: "vincent@ducamps.eu"
+      - send_resolved: true
+        to: "vincent@ducamps.eu"
 EOH
         destination = "local/alertmanager.yml"
       }
