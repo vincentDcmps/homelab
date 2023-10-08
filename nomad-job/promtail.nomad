@@ -77,7 +77,7 @@ scrape_configs:
       target_label:  'alloc_id'
       replacement: '$1'
     - source_labels: [__meta_consul_service]
-      target_label: job
+      target_label: service
     - source_labels: ['__meta_consul_node']
       regex:         '(.*)'
       target_label:  'instance'
@@ -86,6 +86,15 @@ scrape_configs:
       regex: '_nomad-task-([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})-.*'
       target_label:  '__path__'
       replacement: '/nomad/alloc/$1/alloc/logs/*std*.{?,??}'
+  pipeline_stages:
+    - match:
+        selector: '{source="nomad"}'
+        stages:
+          - regex:
+              source: filename
+              expression: '\/nomad\/alloc\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\/alloc\/logs\/(?P<task_file>[-_\w]*)\.std.*\.\d*'
+          - labels:
+              task_file:
 EOTC
         destination = "/local/promtail.yml"
       }
