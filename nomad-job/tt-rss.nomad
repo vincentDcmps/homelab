@@ -9,7 +9,7 @@ job "tt-rss" {
   }
 
 
-  group "tt-rss" {
+  group "ttrss" {
     ephemeral_disk {
       migrate = true
       size    = 200
