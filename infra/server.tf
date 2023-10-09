@@ -8,6 +8,7 @@ resource "hcloud_server" "HomeLab2" {
   firewall_ids = [
     hcloud_firewall.prod.id,
     hcloud_firewall.Gitea_SSH.id,
+    hcloud_firewall.torrent.id,
     hcloud_firewall.mail.id,
   ]
   labels = {

@@ -1,6 +1,24 @@
 resource "hcloud_firewall" "prod" {
   name= "prod"
+   
   rule {
+    direction ="in"
+    protocol = "icmp"
+    source_ips = [
+      "0.0.0.0/0",
+      "::/0"
+    ]
+  }
+  rule {
+    direction ="in"
+    protocol = "udp"
+    port = "51820"
+    source_ips = [
+      "0.0.0.0/0",
+      "::/0"
+    ]
+  }
+   rule {
     direction ="in"
     protocol = "tcp"
     port = "80"
@@ -18,28 +36,11 @@ resource "hcloud_firewall" "prod" {
       "::/0"
     ]
   }
-  # torrent UDH port
-  rule {
-    direction ="in"
-    protocol = "udp"
-    port = "6881"
-    source_ips = [
-      "0.0.0.0/0",
-      "::/0"
-    ]
-  }
-  # wireguard port
-  rule {
-    direction ="in"
-    protocol = "udp"
-    port = "51820"
-    source_ips = [
-      "0.0.0.0/0",
-      "::/0"
-    ]
+}
 
-  }
-# torrent listen port
+
+resource "hcloud_firewall" "torrent" {
+  name = "torrent"
   rule {
     direction ="in"
     protocol = "tcp"
@@ -50,9 +51,10 @@ resource "hcloud_firewall" "prod" {
     ]
 
   }
-  rule {
+ rule {
     direction ="in"
-    protocol = "icmp"
+    protocol = "udp"
+    port = "6881"
     source_ips = [
       "0.0.0.0/0",
       "::/0"
