@@ -1,0 +1,19 @@
+pdns_config:
+  local-address: "127.0.0.1"
+  local-port: "5300"
+  api: yes
+  api-key: 
+
+pdns_backends:
+  gsqlite3:
+    dnssec: yes
+    database: "/var/lib/powerdns/powerdns.sqlite"
+pdns_sqlite_databases_locations: 
+  - "/var/lib/powerdns/powerdns.sqlite"
+
+pdns_rec_config:
+  forward-zones:
+    - "consul=127.0.0.1:8600"
+    - "ducamps.win=192.168.1.10"
+    - "ducamps.eu=192.168.1.10"
+  local-address: "{{ ansible_default_ipv4.address }}"

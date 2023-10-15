@@ -5,6 +5,9 @@ gerard-dev
 [VPS]
 merlin-dev
 
+[DNS]
+oscar-dev
+
 [database]
 oscar-dev
 

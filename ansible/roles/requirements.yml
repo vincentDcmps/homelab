@@ -39,3 +39,5 @@
   scm: git
 - src: git@github.com:vincentDcmps/ansible-role-nfs.git
   scm: git
+- src: https://github.com/PowerDNS/pdns-ansible.git
+- src: https://github.com/PowerDNS/pdns_recursor-ansible.git
