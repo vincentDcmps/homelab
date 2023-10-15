@@ -3,7 +3,7 @@ Vagrant.configure('2') do |config|
     config.cache.scope = 'machine'
   end
   config.vm.provider :libvirt do |libvirt|
-    libvirt.management_network_domain = "ducamps-dev.win"
+    libvirt.management_network_domain = "ducamps-dev.eu"
 
   end
   config.vm.define "oscar-dev" do |c|
