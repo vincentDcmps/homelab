@@ -1,0 +1,6 @@
+---
+- name: DNS playbook
+  hosts: DNS
+  roles:
+    - role: pdns_recursor-ansible
+      become: true
