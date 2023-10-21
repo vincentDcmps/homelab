@@ -66,7 +66,12 @@ resource "hetznerdns_record" "submissionAutodiscoverEU" {
   value = "0 0 465 mail.ducamps.eu"
   type  = "SRV"
 }
-
+resource "hetznerdns_record" "NSEU" {
+    zone_id = hetznerdns_zone.externalZoneEU.id
+    name    = "@"
+    value   = "hydrogen.ns.hetzner.com."
+    type    = "NS"
+}
 resource "hetznerdns_record" "rootalias" {
   zone_id = hetznerdns_zone.externalZone.id
   name    = "@"
@@ -78,6 +83,12 @@ resource "hetznerdns_record" "MX1" {
   name    = "@"
   value   = "20 spool.mail.gandi.net."
   type    = "MX"
+}
+resource "hetznerdns_record" "NS" {
+    zone_id = hetznerdns_zone.externalZone.id
+    name    = "@"
+    value   = "hydrogen.ns.hetzner.com."
+    type    = "NS"
 }
 resource "hetznerdns_record" "MX2" {
   zone_id = hetznerdns_zone.externalZone.id

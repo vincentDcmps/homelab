@@ -123,12 +123,12 @@ job "traefik-local" {
           insecure = true
         [ping]
         [certificatesResolvers.myresolver.acme]
-        email = "vincent@ducamps.win"
+        email = "vincent@ducamps.eu"
         storage = "acme.json"
         [certificatesResolvers.myresolver.acme.dnsChallenge]
         provider = "hetzner"
         delayBeforeCheck = 0
-        resolvers = ["hydrogen.ns.hetzner.com"]
+        resolvers = ["hydrogen.ns.hetzner.com","oxygen.ns.hetzner.com"]
         [metrics]
           [metrics.prometheus]
 
