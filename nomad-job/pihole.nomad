@@ -101,6 +101,7 @@ server=/ducamps.eu/192.168.1.10
 {{end}}
 domain=ducamps.win
 no-negcache
+bind-interfaces
 local-ttl=2
         EOH
         destination = "local/dnsmasq.d/02-localresolver.conf"
