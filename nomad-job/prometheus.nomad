@@ -243,7 +243,7 @@ EOH
         args = [
           "--config.file=/etc/prometheus/prometheus.yml",
           "--storage.tsdb.path=/prometheus",
-          "--storage.tsdb.retention.time=15d",
+          "--storage.tsdb.retention.time=1m",
         ]
         volumes = [
           "local/nomad-alert-rules.yml:/etc/prometheus/nomad-alert-rules.yml",
