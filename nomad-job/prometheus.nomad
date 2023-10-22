@@ -183,9 +183,56 @@ groups:
       severity: warning
     annotations:
       summary: UPS battery is detected to replace
-
-
-
+- name: Node_alerts
+  rules:
+  - alert: HostOutOfMemory
+    expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10) 
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: Host out of memory (instance {{ $labels.instance }})
+      description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  - alert: HostMemoryUnderMemoryPressure
+    expr: (rate(node_vmstat_pgmajfault[1m]) > 600) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: Host memory under memory pressure (instance {{ $labels.instance }})
+      description: "The node is under heavy memory pressure. High rate of major page faults\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  - alert: HostOutOfDiskSpace
+    expr: ((node_filesystem_avail_bytes * 100) / node_filesystem_size_bytes < 10 and ON (instance, device, mountpoint) node_filesystem_readonly == 0) 
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: Host out of disk space (instance {{ $labels.instance }})
+      description: "Disk is almost full (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  - alert: HostHighCpuLoad
+    expr: (sum by (instance) (avg by (mode, instance) (rate(node_cpu_seconds_total{mode!="idle"}[2m]))) > 0.8)
+    for: 10m
+    labels:
+      severity: warning
+    annotations:
+      summary: Host high CPU load (instance {{ $labels.instance }})
+      description: "CPU load is > 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  - alert: HostUnusualDiskWriteLatency
+    expr: (rate(node_disk_write_time_seconds_total[1m]) / rate(node_disk_writes_completed_total[1m]) > 0.1 and rate(node_disk_writes_completed_total[1m]) > 0) 
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: Host unusual disk write latency (instance {{ $labels.instance }})
+      description: "Disk latency is growing (write operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  - alert: HostUnusualDiskReadLatency
+    expr: (rate(node_disk_read_time_seconds_total[1m]) / rate(node_disk_reads_completed_total[1m]) > 0.1 and rate(node_disk_reads_completed_total[1m]) > 0) 
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: Host unusual disk read latency (instance {{ $labels.instance }})
+      description: "Disk latency is growing (read operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 EOH
       }
 
