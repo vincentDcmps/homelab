@@ -241,7 +241,7 @@ EOH
         args = [
           "--config.file=/etc/prometheus/prometheus.yml",
           "--storage.tsdb.path=/prometheus",
-          "--storage.tsdb.retention.time=1m",
+          "--storage.tsdb.retention.time=40d",
         ]
         volumes = [
           "local/nomad-alert-rules.yml:/etc/prometheus/nomad-alert-rules.yml",
@@ -262,7 +262,6 @@ EOH
           "homer.logo=https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/173px-Prometheus_software_logo.svg.png",
           "homer.target=_blank",
           "homer.url=http://${NOMAD_ADDR_prometheus_ui}",
-
 
         ]
         port = "prometheus_ui"
