@@ -63,8 +63,6 @@ scrape_configs:
       action: keep
     - source_labels: ['__meta_consul_dc']
       target_label:  'dc'
-    - source_labels: [__meta_consul_node]
-      target_label: instance
 
     scrape_interval: 5s
     metrics_path: /v1/metrics
