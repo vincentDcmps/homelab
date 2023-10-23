@@ -6,7 +6,9 @@ job "prometheus" {
     attribute = "${attr.cpu.arch}"
     value     = "amd64"
   }
-
+  meta{
+    force_deploy= 1
+  }
 
   group "prometheus" {
     count = 1
@@ -275,7 +277,7 @@ EOH
         }
       }
       resources {
-        memory = 250
+        memory = 350
       }
     }
   }
