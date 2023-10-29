@@ -1,0 +1,20 @@
+
+postgresql_databases:
+  - name: ttrss
+    owner: ttrss
+  - name: gitea
+    owner: gitea
+  - name: supysonic
+    owner: supysonic
+  - name: hass
+    owner: hass
+  - name: vaultwarden
+    owner: vaultwarden
+  - name: drone
+    owner: drone
+  - name: paperless
+    owner: paperless
+  - name: vikunja
+    owner: vikunja
+  - name: ghostfolio
+    owner: ghostfolio

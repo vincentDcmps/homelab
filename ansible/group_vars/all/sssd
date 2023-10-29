@@ -3,7 +3,3 @@ sssd_configure: true
 ldap_search_base: "dc=ducamps,dc=win"
 ldap_uri: "ldaps://ldap.ducamps.win"
 ldap_sudo_search_base: "ou=sudoers,dc=ducamps,dc=win"
-ldap_default_bind_dn : "uid=vaultserviceaccount,cn=users,dc=ducamps,dc=win"
-ldap_password : "{{lookup('hashi_vault', 'secret=secrets/data/ansible/other:vaulserviceaccount')}}"
-userPassword: "{{lookup('hashi_vault', 'secret=secrets/data/ansible/user:userPassword')}}"
-

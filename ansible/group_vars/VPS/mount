@@ -18,15 +18,6 @@ systemd_mounts:
       - mfsymlinks
     automount: true
 
-credentials_files:
-  1:
-      type: smb
-      path: /etc/creds/hetzner_credentials
-      username: u304977
-      password: "{{ lookup('hashi_vault','secret=secrets/data/ansible/storage:hetzner') }}"
-
-
-
 systemd_mounts_enabled:
   - diskstation_nomad
   - hetzner_storage

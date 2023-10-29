@@ -11,7 +11,7 @@ user:
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCYHkEIa38p3e4+m/LScHm8Ei7H2X/pDksjVAzoJ4fHr8oXc6DKkC8SWwMnh3L4WzWBhfTbzwUgFTNpsxhp/UyJf+fdzmzetlbVlYSuA6yWuSmgMeFbXFImhZ+Sn3i59hLeqAAyrkQLjba2waehdEsuOQ/AGoDbMYm38Xf9Wka/1YIeUPE4gLeLvymRnGw7BSug6Unycy52WlFAquollObOvc7tNiX0uLDh81Dp0KZhqWRs75hfmQ9du4g4uNhFLiF11hOGNgj3PWV+nWe8GWNQYVUBChWX1dsP8ct/ahG9IFXSPEaFD1IZeFp29u2ln3mgKkBtcRTRe1e3CLQqiRsUq2aixVFbSgFMFgGSUiNGNqKR4f9DeyJrYBplSj6HXjWoBny4Wm8+yfk8qR2RtQpS6AUu81xtKnXOaj9Q5VZO3kVF0U3EXHAZutTYDj9mDlhLSBS7x7hmrkRBbIy7adSx9Gx5Ck3/RllqG6KD+LdJa4I0pUTRNetpLpYDeZpwjnDP1r7udaSQMyRMH5YKLzhtHqIV/imn9QO4KCxNxTgwxt9ho6HDvlDGERCxm+yeHUu3CPyq2ZGSF5HHsYTGUtYvQw4JfQyw/5DrZ7IIdU1e7ZuaE3h/NvFgKJPVTP52nmUtIW7pIOkHpn9mddjm/oKMayOzMspLn9HLFVbqi7A5Xw== vincent@zen-pc
     privatekey:
         - keyname: "id_gitea"
-          key: "{{lookup('hashi_vault', 'secret=secrets/data/ansible/privatekey:gitea')}}"
+          key: "{{lookup('file', '~/.ssh/id_gitea')}}"
 
 
 
@@ -19,11 +19,6 @@ system_user:
     - name: drone-deploy
       home: /home/drone-deploy
       shell: /bin/bash
-      privatekey:
-        - keyname: id_gitea
-          key: "{{lookup('hashi_vault', 'secret=secrets/data/ansible/privatekey:gitea')}}"
-
-
       authorized_keys: 
         - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDUaK+pQlosmopbZfucll9UdqDOTaODOBwoxRwkJEk1i drone@oscar
 
@@ -35,15 +30,13 @@ system_user:
       home: /root
       privatekey:
         - keyname: id_gitea
-          key: "{{lookup('hashi_vault', 'secret=secrets/data/ansible/privatekey:gitea')}}"
+          key: "{{lookup('file', '~/.ssh/id_gitea')}}"
+
 
 
 user_custom_host:
   - host: "git.ducamps.win"
     user: "git"
     keyfile: "~/.ssh/id_gitea"
-  - host: "gitlab.com"
-    user: "git"
-    keyfile: "~/.ssh/id_consort"
 
 user_config_repo: "ssh://git@git.{{ domain.name }}:2222/vincent/conf2.git"
