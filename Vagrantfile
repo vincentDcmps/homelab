@@ -40,11 +40,17 @@ Vagrant.configure('2') do |config|
       libvirt.cpus = 2
            
     end
+    c.vm.provision "ansible" do |bootstrap|
+      bootstrap.playbook= "ansible/playbooks/bootstrap.yml"
+      bootstrap.galaxy_roles_path= "ansible/roles"
+      bootstrap.limit="merlin-dev"
+      bootstrap.extra_vars = { ansible_python_interpreter:"/usr/bin/python3" }
+    end
   end
 
   config.vm.define "gerard-dev" do |c|
     # Box definition
-    c.vm.box = "debian/bookworm64"
+    c.vm.box = "generic/debian12"
     # Config options
     
     c.vm.synced_folder ".", "/vagrant", disabled: true
