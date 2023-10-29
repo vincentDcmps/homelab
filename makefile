@@ -14,6 +14,11 @@ create-dev:
 	vagrant up
 	make -C ansible deploy_staging
 
+create-dev-base:
+	vagrant up
+	make -C ansible deploy_staging_base
+
+
 destroy-dev:
 	vagrant destroy --force
 

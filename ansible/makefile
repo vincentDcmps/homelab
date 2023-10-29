@@ -8,6 +8,13 @@ deploy_production: generate-token
 deploy_staging: generate-token
 	ansible-playbook site.yml -i staging -u ansible
 
+
+deploy_staging_base: generate-token
+	ansible-playbook playbooks/sssd.yml -i staging -u ansible
+	ansible-playbook playbooks/wireguard.yml -i staging -u ansible
+	ansible-playbook playbooks/server.yml -i staging -u ansible
+
+
 generate-token:
 	export VAULT_TOKEN=`vault token create -policy=ansible -field="token" -period 6h`
 
