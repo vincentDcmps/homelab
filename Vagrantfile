@@ -22,6 +22,12 @@ Vagrant.configure('2') do |config|
       libvirt.memory = 1024
       libvirt.cpus = 2
     end
+    c.vm.provision "ansible" do |bootstrap|
+      bootstrap.playbook= "ansible/playbooks/bootstrap.yml"
+      bootstrap.galaxy_roles_path= "ansible/roles"
+      bootstrap.limit="oscar-dev"
+      bootstrap.extra_vars = { ansible_python_interpreter:"/usr/bin/python3" }
+    end
   end
 
   config.vm.define "merlin-dev" do |c|
@@ -63,6 +69,12 @@ Vagrant.configure('2') do |config|
       libvirt.memory = 1024
       libvirt.cpus = 2
     end
+    c.vm.provision "ansible" do |bootstrap|
+      bootstrap.playbook= "ansible/playbooks/bootstrap.yml"
+      bootstrap.galaxy_roles_path= "ansible/roles"
+      bootstrap.limit="gerard-dev"
+      bootstrap.extra_vars = { ansible_python_interpreter:"/usr/bin/python3" }
+    end
   end
 
   config.vm.define "nas-dev" do |c|
@@ -84,7 +96,7 @@ Vagrant.configure('2') do |config|
     c.vm.provision "ansible" do |bootstrap|
       bootstrap.playbook= "ansible/playbooks/bootstrap.yml"
       bootstrap.galaxy_roles_path= "ansible/roles"
-      bootstrap.limit="all"
+      bootstrap.limit="nas-dev"
       bootstrap.extra_vars = { ansible_python_interpreter:"/usr/bin/python3" }
     end
   end
