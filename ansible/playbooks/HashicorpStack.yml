@@ -1,10 +1,35 @@
 ---
-- hosts: all
-  name: Hashicorp stack
+- name: Vault install
+  hosts: homelab
+  
   roles:
     - role: ansible-hashicorp-vault
-      when: inventory_hostname not in groups['VPS']
       become: true
+  post_tasks:
+    - name: Generate nomad token
+      community.hashi_vault.vault_token_create:
+        renewable: true
+        policies: "nomad-server-policy"
+        period: 72h
+        no_parent: true
+        token: "{{ vault_init_parsed.root_token }}"
+        url: http://{{ ansible_default_ipv4.address }}:8200
+        retries: 4
+      run_once: true
+      delegate_to: localhost
+      when: vault_init_parsed.root_token is defined
+      register: nomad_token_data
+
+    - name: Gather nomad token
+      ansible.builtin.set_fact:
+        nomad_vault_token: "{{ nomad_token_data.login.auth.client_token }}"
+      when: nomad_token_data.login
+
+- name: Hashicorp stack
+  hosts: all
+  vars:
+    unseal_keys_dir_output: ~/vaultunseal
+  roles:
     - role: ansible-consul
       become: true
     - role: ansible-nomad
