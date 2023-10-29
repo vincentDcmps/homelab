@@ -23,6 +23,4 @@
   roles:
     - system
     - autofs
-    - role: msmtp
-      when: ansible_os_family != "RedHat"
     - cronie

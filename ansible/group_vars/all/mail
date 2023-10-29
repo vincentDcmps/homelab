@@ -1,5 +1,0 @@
-notification_mail: "{{inventory_hostname}}@{{ domain.name }}"
-msmtp_mailhub: smtp.{{ domain.name }}
-msmtp_auth_user: "{{ user.mail }}"
-msmtp_auth_pass: "{{ lookup('hashi_vault','secret=secrets/data/ansible/other:email') }}"
-
