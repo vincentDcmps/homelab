@@ -11,7 +11,7 @@ wireguard_postup:
   - iptables -A FORWARD -i %i -j ACCEPT
   - iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
   - sysctl -w net.ipv4.ip_forward=1
-  - resolvectl dns %i 192.168.1.4 192.168.1.41; resolvectl domain %i '~ducamps.win' '~ducamps.eu' '~consul'
+  - resolvectl dns %i 192.168.1.4 192.168.1.41; resolvectl domain %i '~ducamps.win' '~ducamps.eu' '~{{ consul_domain }}'
 
 wireguard_postdown:
   - iptables -D FORWARD -i %i -j ACCEPT
