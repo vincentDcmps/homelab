@@ -18,3 +18,6 @@ deploy_staging_base: generate-token
 generate-token:
 	export VAULT_TOKEN=`vault token create -policy=ansible -field="token" -period 6h`
 
+view-allvault:
+	ansible-vault view `git grep -l "ANSIBLE_VAULT;1.1;AES256$$"`
+
