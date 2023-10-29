@@ -1,36 +1,6 @@
 ansible_python_interpreter: /usr/bin/python3
-user:
-    name: vincent
-    home: /home/vincent
-    uid: 1024
-    mail: vincent@ducamps.win
-    groups:
-        - docker
-    authorized_keys:
-        - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINN5V9WPPi2/HwAQuDeaJO3hUPf8HxNMHqVmkf1pDjWg JuiceSSH
-        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDBrP9akjyailPU9tUMvKrtDsqjI191W1L95u3OFjBqqapXgbDVx1FVtSlIIKcCHZyTII1zgC7woZmNRpmaIJRh6N+VIuRrRs29xx2GUVc4pxflUwwIAK36hgZS3nqmA2biacmPR9HogZLZMcPtZdLhWGlLuUv1cWqbqW7UcDa0lbubCo2v4OQMx/zt37voKAZSkkbH9mVszH6eKxNFy1KXbLYhwXiKfYBnAHbivhiSkZUGV6D4HNj8Jx6IY1YF3bfwMXmt841Q/7OY+t3RTIS8ewvSF+jpQ7GKHBEsZTZUGwIoSyZFFvCgKQVOJu/ZJJS4HNkluilir9Sxtx2LRgy+HHQ251trnsVsJp3ts4uTiMkKJQy1PXy1ZvQXYkip9Af3vlXUMmTyVj8cv+No07G1rZ1pZ3wXKX4RkTsoep5GsYlhyUd7GzsAQQiX9YhYyWDQ6NHBYAGAWbw2BLNxltWa4AyWOa1C8v+1+mRwdvpdMY7powJNCXQaIJmiOZiI/Us= vincent@fixe-pc-2020-03-01
-        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCYHkEIa38p3e4+m/LScHm8Ei7H2X/pDksjVAzoJ4fHr8oXc6DKkC8SWwMnh3L4WzWBhfTbzwUgFTNpsxhp/UyJf+fdzmzetlbVlYSuA6yWuSmgMeFbXFImhZ+Sn3i59hLeqAAyrkQLjba2waehdEsuOQ/AGoDbMYm38Xf9Wka/1YIeUPE4gLeLvymRnGw7BSug6Unycy52WlFAquollObOvc7tNiX0uLDh81Dp0KZhqWRs75hfmQ9du4g4uNhFLiF11hOGNgj3PWV+nWe8GWNQYVUBChWX1dsP8ct/ahG9IFXSPEaFD1IZeFp29u2ln3mgKkBtcRTRe1e3CLQqiRsUq2aixVFbSgFMFgGSUiNGNqKR4f9DeyJrYBplSj6HXjWoBny4Wm8+yfk8qR2RtQpS6AUu81xtKnXOaj9Q5VZO3kVF0U3EXHAZutTYDj9mDlhLSBS7x7hmrkRBbIy7adSx9Gx5Ck3/RllqG6KD+LdJa4I0pUTRNetpLpYDeZpwjnDP1r7udaSQMyRMH5YKLzhtHqIV/imn9QO4KCxNxTgwxt9ho6HDvlDGERCxm+yeHUu3CPyq2ZGSF5HHsYTGUtYvQw4JfQyw/5DrZ7IIdU1e7ZuaE3h/NvFgKJPVTP52nmUtIW7pIOkHpn9mddjm/oKMayOzMspLn9HLFVbqi7A5Xw== vincent@zen-pc
-    privatekey:
-        - keyname: "id_gitea"
-          key: "{{lookup('hashi_vault', 'secret=secrets/data/ansible/privatekey:gitea')}}"
-
-user_config_repo: "ssh://git@git.{{ domain.name }}:2222/vincent/conf2.git"
-domain:
-    name: ducamps.win
-
 hass_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDfVei9iC/Ra5qmSZcLu8z2CTaXCmfn4JSS4o3eu0HhykdYGSqhBTcUDD3/FhcTPQJVFsu1P4Gwqq1dCE+EvaZZRQaMUqVKUpOliThSG6etbImkvqLQQsC1qt+/NqSvfzu2+28A6+YspzuxsViGo7e3Gg9MdwV3LMGh0mcOr/uXb/HIk18sJg5yQpwMfYTj0Wda90nyegcN3F2iZMeauh/aaFJzWcHNakAAewceDYOErU07NhlZgVA2C8HgkJ8HL7AqIVqt9VOx3xLp91DbKTNXSxvyM0X4NQP24P7ZFxAOk/j0AX3hAWhaNmievCHyBWvQve1VshZXFwEIiuHm8q4GSCxK2r0oQudKdtIuQMfuUALigdiSxo522oEiML/2kSk17WsxZwh7SxfD0DKa82fy9iAwcAluWLwJ+yN3nGnDFF/tHYaamSiowpmTTmQ9ycyIPWPLVZclt3BlEt9WH/FPOdzAyY7YLzW9X6jhsU3QwViyaTRGqAdqzUAiflKCMsNzb5kq0oYsDFC+/eqp1USlgTZDhoKtTKRGEjW2KuUlDsXGBeB6w1D8XZxXJXAaHuMh4oMUgLswjLUdTH3oLnnAvfOrl8O66kTkmcQ8i/kr1wDODMy/oNUzs8q4DeRuhD5dpUiTUGYDTWPYj6m6U/GAEHvN/2YEqSgfVff1iQ4VBw==
-
 system_arch_local_mirror: "https://arch.{{domain.name}}/repo/archlinux_$arch"
-
-
 system_sudoers_group: "serverAdmin"
 system_ipV6_disable: True
-
-user_custom_host:
-  - host: "git.ducamps.win"
-    user: "git"
-    keyfile: "~/.ssh/id_gitea"
-  - host: "gitlab.com"
-    user: "git"
-    keyfile: "~/.ssh/id_consort"
 

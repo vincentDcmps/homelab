@@ -1,0 +1,5 @@
+consul_client_addr: "0.0.0.0"
+consul_datacenter: "homelab"
+consul_backup_location: "/mnt/diskstation/git/backup/consul"
+consul_ansible_group: all
+consul_systemd_resolved_enable: true

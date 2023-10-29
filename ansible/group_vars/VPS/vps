@@ -42,35 +42,4 @@ nomad_datacenter: hetzner
 
 consul_server: False
 nomad_server: False
-systemd_mounts:
-  diskstation_nomad:
-    share: diskstation.ducamps.win:/volume2/nomad
-    mount: /mnt/diskstation/nomad
-    type: nfs
-    options:
-        - " "
-    automount: true
-  hetzner_storage:
-    share: //u304977.your-storagebox.de/backup
-    mount: /mnt/hetzner/storagebox
-    type: cifs
-    options:
-      - credentials=/etc/creds/hetzner_credentials
-      - uid= 1024
-      - gid= 10
-      - vers=3.0
-      - mfsymlinks
-    automount: true
 
-credentials_files:
-  1:
-      type: smb
-      path: /etc/creds/hetzner_credentials
-      username: u304977
-      password: "{{ lookup('hashi_vault','secret=secrets/data/ansible/storage:hetzner') }}"
-
-
-
-systemd_mounts_enabled:
-  - diskstation_nomad
-  - hetzner_storage

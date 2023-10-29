@@ -1,0 +1,2 @@
+vault_raft_group_name: "homelab"
+vault_unseal_token: 8f2aceff5fcf8452a65a281709b6d6398e9d788dacf78a500c4be64545230a88
