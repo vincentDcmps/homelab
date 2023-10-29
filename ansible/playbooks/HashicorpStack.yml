@@ -23,7 +23,7 @@
     - name: Gather nomad token
       ansible.builtin.set_fact:
         nomad_vault_token: "{{ nomad_token_data.login.auth.client_token }}"
-      when: nomad_token_data.login
+      when: nomad_token_data.login is defined
 
 - name: Hashicorp stack
   hosts: all
