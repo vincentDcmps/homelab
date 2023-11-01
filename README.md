@@ -22,7 +22,6 @@ make create-dev
 
 ## Rebuild
 
-
 ## Architecture
 
 ```mermaid
