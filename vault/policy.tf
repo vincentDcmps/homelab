@@ -96,6 +96,26 @@ data "vault_policy_document" "admin_policy" {
     capabilities = ["create", "read", "update", "delete", "list", "sudo"]
   }
   rule {
+    path = "database/*"
+    capabilities = ["create", "read", "update", "delete", "list", "sudo"]
+  }
+  rule {
+    path = "pki/*"
+    capabilities = ["create", "read", "update", "delete", "list", "sudo"]
+  }
+  rule {
+    path = "ssh/*"
+    capabilities = ["create", "read", "update", "delete", "list", "sudo"]
+  }
+  rule {
+    path = "nomad/*"
+    capabilities = ["create", "read", "update", "delete", "list", "sudo"]
+  }
+  rule {
+    path = "consul/*"
+    capabilities = ["create", "read", "update", "delete", "list", "sudo"]
+  }
+  rule {
     path = "sys/mounts/*"
     capabilities = ["create", "read", "update", "delete", "list", "sudo"]
    } 

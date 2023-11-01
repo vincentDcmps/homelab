@@ -22,6 +22,7 @@ locals {
     "vikunja",
     "ghostfolio",
     "alertmanager",
+    "vault-backup"
   ]
 
 }

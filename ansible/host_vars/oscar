@@ -17,8 +17,6 @@ wireguard_postdown:
   - iptables -t nat -D POSTROUTING -o enp2s0 -j MASQUERADE
 consul_snapshot: True
 
-vault_snapshot: true
-vault_backup_location: "/mnt/diskstation/git/backup/vault"
 partition_table:
   - device: "/dev/sda"
     label: gpt
