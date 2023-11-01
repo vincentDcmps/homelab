@@ -7,5 +7,4 @@
 - import_playbook: playbooks/HashicorpStack.yml
 - import_playbook: playbooks/database.yml
 - import_playbook: playbooks/rsyncd.yml
-- import_playbook: playbooks/music-player.yml
-- import_playbook: playbooks/user_config.yml
+- import_playbook: playbooks/create_user.yml
