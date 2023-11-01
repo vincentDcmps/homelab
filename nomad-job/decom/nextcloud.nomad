@@ -63,7 +63,7 @@ job "nextcloud" {
           NEXTCLOUD_ADMIN_USER="vincent"
           NEXTCLOUD_ADMIN_PASSWORD="{{ .Data.data.ADMIN_PASSWORD }}"
           NEXTCLOUD_TRUSTED_DOMAINS="file.ducamps.win"
-          POSTGRES_HOST="db1.ducamps.win"
+          POSTGRES_HOST="active.db.service.consul"
           {{end}}
           EOH
         destination = "secrets/nextcloud.env"

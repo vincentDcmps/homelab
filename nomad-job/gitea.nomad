@@ -74,7 +74,7 @@ job "git" {
         GITEA__server__SSH_LISTEN_PORT       = "2222"
         GITEA__server__START_SSH_SERVER      = "false"
         GITEA__database__DB_TYPE             = "postgres"
-        GITEA__database__HOST                = "db1.ducamps.win"
+        GITEA__database__HOST                = "active.db.service.consul"
         GITEA__database__NAME                = "gitea"
         GITEA__database__USER                = "gitea"
         GITEA__service__DISABLE_REGISTRATION = "true"

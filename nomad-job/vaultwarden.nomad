@@ -67,7 +67,7 @@ job "vaultwarden" {
       template {
         data        = <<EOH
           {{ with secret "secrets/data/database/vaultwarden"}}
-          DATABASE_URL=postgresql://vaultwarden:{{ .Data.data.password }}@db1.ducamps.win/vaultwarden
+          DATABASE_URL=postgresql://vaultwarden:{{ .Data.data.password }}@active.db.service.consul/vaultwarden
           {{end}}
           EOH
         destination = "secrets/vaultwarden.env"

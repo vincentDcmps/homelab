@@ -4,9 +4,15 @@ gerard
 [dhcp]
 gerard
 
-[database]
-oscar
+[database_active]
 bleys
+
+[database_standby]
+oscar
+
+[database:children]
+database_active
+database_standby
 
 [rsyncd]
 oscar

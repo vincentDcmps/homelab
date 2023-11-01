@@ -114,7 +114,7 @@ http {
       template {
         data        = <<EOH
           {{ with secret "secrets/data/database/supysonic"}}
-            SUPYSONIC_DB_URI = "postgres://supysonic:{{ .Data.data.password}}@db1.ducamps.win/supysonic"
+            SUPYSONIC_DB_URI = "postgres://supysonic:{{ .Data.data.password}}@active.db.service.consul/supysonic"
           {{end}}
           {{ with secret "secrets/data/nomad/supysonic"}}
             SUPYSONIC_LDAP_BIND_DN     = "{{ .Data.data.serviceAccountName }}"

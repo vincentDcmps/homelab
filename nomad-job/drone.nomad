@@ -68,7 +68,7 @@ job "drone" {
           {{end}}
 
           {{ with secret "secrets/data/database/droneci"}}
-          DRONE_DATABASE_DATASOURCE="postgres://drone:{{ .Data.data.password }}@db1.ducamps.win:5432/drone?sslmode=disable"
+          DRONE_DATABASE_DATASOURCE="postgres://drone:{{ .Data.data.password }}@active.db.service.consul:5432/drone?sslmode=disable"
           {{end}}
           EOH
         destination = "secrets/drone.env"

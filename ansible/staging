@@ -1,8 +1,14 @@
 [DNS]
 oscar-dev
 
-[database]
+[database_active]
 oscar-dev
+
+[database_standby]
+
+[database:children]
+database_active
+database_standby
 
 [wireguard:children]
 staging

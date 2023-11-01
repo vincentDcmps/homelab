@@ -39,7 +39,7 @@ job "vikunja" {
         ports = ["api"]
       }
       env {
-        VIKUNJA_DATABASE_HOST = "db1.ducamps.win"
+        VIKUNJA_DATABASE_HOST = "active.db.service.consul"
         VIKUNJA_DATABASE_TYPE = "postgres"
         VIKUNJA_DATABASE_USER = "vikunja"
         VIKUNJA_DATABASE_DATABASE = "vikunja"

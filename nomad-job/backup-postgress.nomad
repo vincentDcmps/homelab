@@ -12,7 +12,7 @@ job "backup-postgress" {
     value     = "amd64"
   }
   periodic {
-    cron             = "0 3 * * *"
+    crons             = ["0 3 * * *"]
     prohibit_overlap = true
   }
   group "backup-postgress" {
@@ -38,7 +38,7 @@ job "backup-postgress" {
           {{ with secret "secrets/data/database/dump"}}
           PGUSER = "dump"
           PGPASSWORD = "{{ .Data.data.password }}"
-          PGHOST = "db1.ducamps.win"
+          PGHOST = "active.db.service.consul"
           {{end}}
           EOH
         destination = "secrets/secrets.env"

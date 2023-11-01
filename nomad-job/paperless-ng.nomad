@@ -75,7 +75,7 @@ job "paperless-ng" {
       }
       env {
         PAPERLESS_REDIS            = "redis://${NOMAD_ADDR_redis}"
-        PAPERLESS_DBHOST           = "db1.ducamps.win"
+        PAPERLESS_DBHOST           = "active.db.service.consul"
         PAPERLESS_DBNAME           = "paperless"
         PAPERLESS_DBUSER           = "paperless"
         PAPERLESS_OCR_LANGUAGE     = "fra"

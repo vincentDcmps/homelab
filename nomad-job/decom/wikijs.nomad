@@ -56,7 +56,7 @@ job "wikijs" {
         data= <<EOH
 {{ with secret "secrets/data/database/wikijs"}}
 DB_TYPE="postgres"
-DB_HOST="db1.ducamps.win"
+DB_HOST="active.db.service.consul"
 DB_PORT="5432"
 DB_USER="wikijs"
 DB_PASS="{{.Data.data.password}}"

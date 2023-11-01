@@ -69,7 +69,7 @@ job "ghostfolio" {
       template {
         data= <<EOH
           {{ with secret "secrets/data/database/ghostfolio"}}
-           DATABASE_URL = postgresql://ghostfolio:{{.Data.data.password}}@db1.ducamps.win:5432/ghostfolio?connect_timeout=300&sslmode=prefer
+           DATABASE_URL = postgresql://ghostfolio:{{.Data.data.password}}@active.db.service.consul/ghostfolio?connect_timeout=300&sslmode=prefer
           {{end}}
           {{ with secret "secrets/data/nomad/ghostfolio"}}
           ACCESS_TOKEN_SALT = {{.Data.data.token}}

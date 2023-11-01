@@ -64,7 +64,7 @@ global:
   database:
 
   {{ with secret "secrets/data/database/dendrite"}}
-    connection_string: postgresql://dendrite:{{.Data.data.password}}@db1.ducamps.win/dendrite?sslmode=disable
+    connection_string: postgresql://dendrite:{{.Data.data.password}}@active.db.service.consul/dendrite?sslmode=disable
   {{end}}
 
     max_open_conns: 100

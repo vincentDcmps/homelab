@@ -12,7 +12,7 @@ job "seedboxsync" {
     value     = "amd64"
   }
   periodic {
-    cron             = "0,30 * * * *"
+    crons             = ["0,30 * * * *"]
     prohibit_overlap = true
   }
   group "seedboxsync" {
