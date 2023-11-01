@@ -1,0 +1,3 @@
+docker_daemon_config:
+  dns:
+    - 172.17.0.1
