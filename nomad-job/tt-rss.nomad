@@ -60,7 +60,7 @@ job "tt-rss" {
       }
       env {
         TTRSS_DB-TYPE       = "pgsql"
-        TTRSS_DB_HOST       = "active.db.serice.consul"
+        TTRSS_DB_HOST       = "active.db.service.consul"
         TTRSS_DB_NAME       = "ttrss"
         TTRSS_DB_USER       = "ttrss"
         TTRSS_SELF_URL_PATH = "https://www.ducamps.win/tt-rss"
