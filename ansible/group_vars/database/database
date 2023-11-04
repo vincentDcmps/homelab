@@ -18,6 +18,10 @@ postgresql_databases:
     owner: vikunja
   - name: ghostfolio
     owner: ghostfolio
+  - name: pdns-auth
+    owner: pdns-auth
+  - name: pdns-admin
+    owner: pdns-admin
 
 postgres_consul_service: true
 postgres_consul_service_name: db

@@ -1,0 +1,56 @@
+# This file is maintained automatically by "terraform init".
+# Manual edits may be lost in future updates.
+
+provider "registry.terraform.io/hashicorp/vault" {
+  version = "3.22.0"
+  hashes = [
+    "h1:AyHIjPpd3CMimsJiwRCpi3Jo9SF8MhWkWHj7TjmUyvc=",
+    "zh:2ebe83a6d3c03c69610899408c3b9fcc6eb7a47e62a5c50126a20244fe2e0e2e",
+    "zh:46985c7bc1070f4cbb7241063046c165112aed47b0ef3d323197d11525a7c3e1",
+    "zh:4f3b1cc0eb4990b02a30d366e4c0b77e56e70610f283fb223f60171ab8ba4ee1",
+    "zh:6b445c90130201f6babb83b3d68969c7fc8936ddb29bd62597782b973a204a67",
+    "zh:78d5eefdd9e494defcb3c68d282b8f96630502cac21d1ea161f53cfe9bb483b3",
+    "zh:9097ca5bc78c701126c610b34127f58aeeba446ae2e03e94d8a42b4fb7ed6e4c",
+    "zh:98a81d03a45ada9a10a4d3cfdf4a7c223e5da3251aa0aaa6e24a48cea475903f",
+    "zh:b878afb67d3aa57413071321cc293cd67ab064fc1d6b3747b8702aef2351327d",
+    "zh:c546747894fd1ca8108c00bfed8888d0f2cbd60e4bdc2122b1652fb4f0f8b9d4",
+    "zh:cd6cc39872ed1439897e3f63d4251f31e5758b303ff8f471aac3dff32fb53e54",
+    "zh:d149c68271db77344b278e7e6c40db5dcf35a83642a60d588fbe72822bb40977",
+    "zh:fe29e024658c6ae9306c0847469508e835f86c961c998efc298aa1a5b928f72c",
+  ]
+}
+
+provider "registry.terraform.io/pan-net/powerdns" {
+  version = "1.5.0"
+  hashes = [
+    "h1:bsz18KLloevlTZkXwZr8u0sFCZKcOYyts2RaWkV6YNc=",
+    "zh:02d1a87c28635779f66d1dcf165b5f16530f809deb6c71c35c3e58d715a88bf4",
+    "zh:1285a419c7fd2947f891771bd77d2f6e7dd0cb00621c547b6993947085616009",
+    "zh:340faecd0a0036e721480564acbad2ba0da6a9c0c0cd633957dcde76a4ba3798",
+    "zh:5646f78d9980038c4ae70e09828da01c7cc6ba2b3b1e9ea8a1988efafaba1b75",
+    "zh:66fef65aede775d9972be163a2bd25d8fda5a8ad2235ceef30d515bf35e2e5d4",
+    "zh:7130faa5dd892b1d41b9b3ebd1b2d7854bf780193073de58806e088311bb554c",
+    "zh:9f47b66ce7f4b23d25c4a726ffc5e504f797f247912cfa5dff23b3da0ba18982",
+    "zh:ada63a886bc5d7980eeb22b59b166713617847626627007d2e8429eeb4346327",
+    "zh:c853237b7831942d3d0f0f7a7a334e8f9df8a12f217c5680a76db256e368230d",
+    "zh:d2e8827d9d8662a892dbd1df6155823c8167db6f6762f38885037c7da87612b1",
+    "zh:d6e1069bb9d9f368e5d55a8bdf55de23636a586d698515f0075733499d6b9ccc",
+    "zh:dd224d521af2f72bfdc3498c5ccd54b09844cfaa347b3008f61faad465cc9769",
+    "zh:e02960d79ccfeeaea64c07aa1ad88cdd3688f49b670c9b607ea188283cd519d6",
+  ]
+}
+
+provider "registry.terraform.io/timohirt/hetznerdns" {
+  version = "2.2.0"
+  hashes = [
+    "h1:HyskQAglrOueur79gSCBgx9MNDOs0tz39aNYQiFgxz8=",
+    "zh:5bb0ab9f62be3ed92070235e507f3c290491d51391ef4edcc70df53b65a83019",
+    "zh:5ccdfac7284f5515ac3cff748336b77f21c64760e429e811a1eeefa8ebb86e12",
+    "zh:687c35665139ae37c291e99085be2e38071f6b355c4e1e8957c5a6a3bcdf9caf",
+    "zh:6de27f0d0d1513b3a4b7e81923b4a8506c52759bd466e2b4f8156997b0478931",
+    "zh:85770a9199a4c2d16ca41538d7a0f7a7bfc060678104a1faac19213e6f0a800c",
+    "zh:a5ff723774a9ccfb27d5766c5e6713537f74dd94496048c89c5d64dba597e59e",
+    "zh:bf9ab76fd37cb8aebb6868d73cbe8c08cee36fc25224cc1ef5949efa3c34b06c",
+    "zh:db998fe3bdcd4902e99fa470bb3f355883170cf4c711c8da0b5f1f4510f1be41",
+  ]
+}

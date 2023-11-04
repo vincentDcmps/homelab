@@ -22,7 +22,9 @@ locals {
     "vikunja",
     "ghostfolio",
     "alertmanager",
-    "vault-backup"
+    "vault-backup",
+    "pdns",
+    "torrent"
   ]
 
 }

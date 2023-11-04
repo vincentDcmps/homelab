@@ -16,7 +16,7 @@ variable "instances" {
 
 variable "server_type" {
   type=string
-  default = "cpx21"
+  default = "CPX21"
 }
 
 variable "os_type" {
