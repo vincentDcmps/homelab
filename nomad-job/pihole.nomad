@@ -26,9 +26,9 @@ job "pihole" {
         "homer.name=Pi-hole",
         "homer.service=Application",
         "homer.type=PiHole",
-        "homer.logo=http://${NOMAD_ADDR_http}/admin/img/logo.svg",
+        "homer.logo=http://192.168.1.4:${NOMAD_PORT_http}/admin/img/logo.svg",
         "homer.target=_blank",
-        "homer.url=http://${NOMAD_ADDR_http}/admin",
+        "homer.url=http://192.168.1.4:${NOMAD_PORT_http}/admin",
 
       ]
       port = "http"
@@ -40,20 +40,10 @@ job "pihole" {
         port = "dns"
 
         check {
-          name     = "service: dns tcp check"
-          type     = "tcp"
-          interval = "10s"
-          timeout  = "2s"
-
-          success_before_passing   = "3"
-          failures_before_critical = "3"
-        }
-
-        check {
           name     = "service: dns dig check"
           type     = "script"
           command  = "/usr/bin/dig"
-          args     = ["+short", "@127.0.0.1"]
+          args     = ["+short", "@192.168.1.4"]
           interval = "10s"
           timeout  = "2s"
 
@@ -86,7 +76,7 @@ job "pihole" {
       template {
         data        = <<EOH
         INTERFACE     = {{ sockaddr "GetPrivateInterfaces | include \"network\" \"192.168.1.0/24\" | attr \"name\"" }}
-        FTLCONF_LOCAL_IPV4 = {{ env "NOMAD_IP_dns" }}
+        FTLCONF_LOCAL_IPV4 = 192.168.1.4
         WEBPASSWORD="{{with secret "secrets/data/nomad/pihole"}}{{.Data.data.WEBPASSWORD}}{{end}}"
         EOH
         destination = "local/file.env"
@@ -101,6 +91,7 @@ server=/ducamps.eu/192.168.1.10
 {{end}}
 domain=ducamps.win
 no-negcache
+listen-address=192.168.1.4
 bind-interfaces
 local-ttl=2
         EOH
