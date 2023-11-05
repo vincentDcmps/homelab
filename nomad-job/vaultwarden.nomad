@@ -29,11 +29,11 @@ job "vaultwarden" {
           "homer.service=Application",
           "homer.logo=https://yunohost.org/user/images/bitwarden_logo.png",
           "homer.target=_blank",
-          "homer.url=https://${NOMAD_JOB_NAME}.ducamps.win",
+          "homer.url=https://${NOMAD_JOB_NAME}.ducamps.eu",
 
           "traefik.enable=true",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`vault.ducamps.win`)",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=vault.ducamps.win",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`vault.ducamps.eu`)",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=vault.ducamps.eu",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
           "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
         ]
@@ -60,7 +60,7 @@ job "vaultwarden" {
       env {
         DATA_FOLDER       = "/data"
         WEB_VAULT_ENABLED = "true"
-        DOMAIN            = "https://vault.ducamps.win"
+        DOMAIN            = "https://vault.ducamps.eu"
 
       }
 

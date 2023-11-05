@@ -6,14 +6,14 @@
     "tags": [
       "homer.enable=true",
       "homer.name=Diskstation",
-      "homer.url=https://syno.ducamps.win",
-      "homer.logo=https://syno.ducamps.win/webman/resources/images/icon_dsm_96.png",
+      "homer.url=https://syno.ducamps.eu",
+      "homer.logo=https://syno.ducamps.eu/webman/resources/images/icon_dsm_96.png",
       "homer.service=Application",
       "homer.target=_blank",
 
       "traefik.enable=true",
-      "traefik.http.routers.syno.rule=Host(`syno.ducamps.win`)",
-      "traefik.http.routers.syno.tls.domains[0].sans=syno.ducamps.win",
+      "traefik.http.routers.syno.rule=Host(`syno.ducamps.eu`)",
+      "traefik.http.routers.syno.tls.domains[0].sans=syno.ducamps.eu",
       "traefik.http.routers.syno.tls.certresolver=myresolver",
        "traefik.http.routers.syno.entrypoints=web,websecure"
     ]

@@ -43,16 +43,16 @@ job "paperless-ng" {
         port = "http"
         tags = [
           "traefik.enable=true",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`)",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
           "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
           "homer.enable=true",
           "homer.name=Paperless",
           "homer.service=Application",
-          "homer.logo=https://${NOMAD_JOB_NAME}.ducamps.win/static/frontend/fr-FR/apple-touch-icon.png",
+          "homer.logo=https://${NOMAD_JOB_NAME}.ducamps.eu/static/frontend/fr-FR/apple-touch-icon.png",
           "homer.target=_blank",
-          "homer.url=https://${NOMAD_JOB_NAME}.ducamps.win",
+          "homer.url=https://${NOMAD_JOB_NAME}.ducamps.eu",
         ]
         check {
           type     = "http"
@@ -80,7 +80,7 @@ job "paperless-ng" {
         PAPERLESS_DBUSER           = "paperless"
         PAPERLESS_OCR_LANGUAGE     = "fra"
         PAPERLESS_CONSUMER_POLLING = "60"
-        PAPERLESS_URL              = "https://${NOMAD_JOB_NAME}.ducamps.win"
+        PAPERLESS_URL              = "https://${NOMAD_JOB_NAME}.ducamps.eu"
         PAPERLESS_ALLOWED_HOSTS    = "192.168.1.42,192.168.1.40"
       }
 

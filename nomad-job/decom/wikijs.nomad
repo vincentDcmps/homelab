@@ -32,11 +32,11 @@ job "wikijs" {
             "homer.subtitle=projet Infotech",
             "homer.logo=https://repository-images.githubusercontent.com/65848095/7655d480-b066-11e9-991b-81088c474331",
             "homer.target=_blank",
-            "homer.url=https://${NOMAD_JOB_NAME}.ducamps.win",
+            "homer.url=https://${NOMAD_JOB_NAME}.ducamps.eu",
 
             "traefik.enable=true",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
+            "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`)",
+            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
             "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
 
 

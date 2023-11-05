@@ -21,8 +21,8 @@ job "pacoloco" {
         port = "http"
         tags = [
           "traefik.enable=true",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`arch.ducamps.win`)",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=arch.ducamps.win",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`arch.ducamps.eu`)",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=arch.ducamps.eu",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
           "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
         ]

@@ -131,7 +131,7 @@ job "traefik-ingress" {
           insecure = true
         [ping]
         [certificatesResolvers.myresolver.acme]
-        email = "vincent@ducamps.win"
+        email = "vincent@ducamps.eu"
         storage = "acme.json"
         [certificatesResolvers.myresolver.acme.httpChallenge]
         entryPoint= "web"

@@ -1,41 +1,41 @@
 ---
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/ansible-arch-provissionning.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/ansible-arch-provissionning.git
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/ansible-role-postgresql.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/ansible-role-postgresql.git
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/ansible-role-sssd
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/ansible-role-sssd
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/ansible_bootstrap.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/ansible_bootstrap.git
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/autofs.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/autofs.git
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/cronie.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/cronie.git
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/docker.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/docker.git
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/hass-client-control.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/hass-client-control.git
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/msmtp.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/msmtp.git
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/rsyncd.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/rsyncd.git
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/system.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/system.git
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/user_config.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/user_config.git
   scm: git
 - src: git@github.com:vincentDcmps/ansible-role-wireguard.git
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/ansible-consul.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/ansible-consul.git
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/ansible-hashicorp-vault.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/ansible-hashicorp-vault.git
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/ansible-nomad.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/ansible-nomad.git
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/mpd.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/mpd.git
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/ansible-dhcpd.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/ansible-dhcpd.git
   scm: git
-- src: ssh://git@git.ducamps.win:2222/ansible-roles/ansible-user.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/ansible-user.git
   scm: git
 - src: git@github.com:vincentDcmps/ansible-role-nfs.git
   scm: git

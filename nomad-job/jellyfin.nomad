@@ -26,11 +26,11 @@ job "jellyfin" {
           "homer.name=${NOMAD_TASK_NAME}",
           "homer.service=Application",
           "homer.target=_blank",
-          "homer.logo=https://${NOMAD_TASK_NAME}.ducamps.win/icon.png",
-          "homer.url=https://${NOMAD_TASK_NAME}.ducamps.win",
+          "homer.logo=https://${NOMAD_TASK_NAME}.ducamps.eu/icon.png",
+          "homer.url=https://${NOMAD_TASK_NAME}.ducamps.eu",
           "traefik.enable=true",
-          "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.win`)",
-          "traefik.http.routers.${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_TASK_NAME}.ducamps.win",
+          "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.eu`)",
+          "traefik.http.routers.${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_TASK_NAME}.ducamps.eu",
           "traefik.http.routers.${NOMAD_TASK_NAME}.tls.certresolver=myresolver",
           "traefik.http.routers.${NOMAD_TASK_NAME}.entrypoints=web,websecure",
         ]
@@ -41,7 +41,7 @@ job "jellyfin" {
         ports = ["http"]
       }
       env {
-        DEFAULT_SERVERS = "${NOMAD_TASK_NAME}.ducamps.win"
+        DEFAULT_SERVERS = "${NOMAD_TASK_NAME}.ducamps.eu"
       }
 
       resources {
@@ -70,11 +70,11 @@ job "jellyfin" {
           "homer.name=jellyfin",
           "homer.service=Application",
           "homer.target=_blank",
-          "homer.logo=https://${NOMAD_JOB_NAME}.ducamps.win/web/assets/img/banner-light.png",
-          "homer.url=https://${NOMAD_JOB_NAME}.ducamps.win",
+          "homer.logo=https://${NOMAD_JOB_NAME}.ducamps.eu/web/assets/img/banner-light.png",
+          "homer.url=https://${NOMAD_JOB_NAME}.ducamps.eu",
           "traefik.enable=true",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`)",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
           "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
 

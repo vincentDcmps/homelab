@@ -84,14 +84,14 @@ resource "powerdns_record" "mail" {
 }
 
 resource "powerdns_record" "merlin" {
-    zone= powerdns_zone.ducampseu.name
+    zone= powerdns_zone.landucampseu.name
     type= "A"
     name= "merlin.lan.${powerdns_zone.ducampseu.name}"
     ttl= 1700
     records = ["10.0.0.4"]
 }
 resource "powerdns_record" "corwin" {
-    zone= powerdns_zone.ducampseu.name
+    zone= powerdns_zone.landucampseu.name
     type= "A"
     name= "corwin.lan.${powerdns_zone.ducampseu.name}"
     ttl= 1700
@@ -99,7 +99,7 @@ resource "powerdns_record" "corwin" {
 }
 
 resource "powerdns_record" "gerard" {
-    zone= powerdns_zone.ducampseu.name
+    zone= powerdns_zone.landucampseu.name
     type= "A"
     name= "gerard.lan.${powerdns_zone.ducampseu.name}"
     ttl= 1700
@@ -107,9 +107,16 @@ resource "powerdns_record" "gerard" {
 }
 
 resource "powerdns_record" "diskstation" {
-      zone= powerdns_zone.ducampseu.name
+      zone= powerdns_zone.landucampseu.name
       type= "A"
       name= "diskstation.lan.${powerdns_zone.ducampseu.name}"
+      ttl= 1700
+      records = ["192.168.1.10"]
+}
+resource "powerdns_record" "ldap" {
+      zone= powerdns_zone.ducampseu.name
+      type= "A"
+      name= "ldap.${powerdns_zone.ducampseu.name}"
       ttl= 1700
       records = ["192.168.1.10"]
 }

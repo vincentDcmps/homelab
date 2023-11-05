@@ -30,13 +30,13 @@ job "drone" {
           "homer.enable=true",
           "homer.name=DroneCI",
           "homer.service=Platform",
-          "homer.logo=https://drone.ducamps.win/static/media/logo.76c744d4.svg",
+          "homer.logo=https://drone.ducamps.eu/static/media/logo.76c744d4.svg",
           "homer.target=_blank",
-          "homer.url=https://${NOMAD_JOB_NAME}.ducamps.win",
+          "homer.url=https://${NOMAD_JOB_NAME}.ducamps.eu",
 
           "traefik.enable=true",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`)",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
           "traefik.http.middlewares.httpsRedirect.redirectscheme.scheme=https",
           "traefik.http.routers.${NOMAD_JOB_NAME}.middlewares=httpsRedirect",
@@ -56,14 +56,14 @@ job "drone" {
       template {
         data        = <<EOH
           {{ with secret "secrets/data/nomad/droneci"}}
-          DRONE_GITEA_SERVER="https://git.ducamps.win"
+          DRONE_GITEA_SERVER="https://git.ducamps.eu"
           DRONE_GITEA_CLIENT_ID="{{ .Data.data.DRONE_GITEA_CLIENT_ID }}"
           DRONE_GITEA_CLIENT_SECRET="{{ .Data.data.DRONE_GITEA_CLIENT_SECRET }}"
           DRONE_GITEA_ALWAYS_AUTH="True"
           DRONE_USER_CREATE="username:vincent,admin:true"
           DRONE_DATABASE_DRIVER="postgres"
           DRONE_RPC_SECRET="{{ .Data.data.DRONE_RPC_SECRET }}"
-          DRONE_SERVER_HOST="drone.ducamps.win"
+          DRONE_SERVER_HOST="drone.ducamps.eu"
           DRONE_SERVER_PROTO="https"
           {{end}}
 

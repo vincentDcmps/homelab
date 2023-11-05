@@ -28,8 +28,8 @@ job "vikunja" {
         port = "api"
         tags = [
             "traefik.enable=true",
-            "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`) && PathPrefix(`/api/v1`, `/dav/`, `/.well-known/`)",
-            "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
+            "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`) && PathPrefix(`/api/v1`, `/dav/`, `/.well-known/`)",
+            "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
             "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.tls.certresolver=myresolver",
             "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.entrypoints=web,websecure",
         ]
@@ -44,7 +44,7 @@ job "vikunja" {
         VIKUNJA_DATABASE_USER = "vikunja"
         VIKUNJA_DATABASE_DATABASE = "vikunja"
         VIKUNJA_SERVICE_JWTSECRET = uuidv4()
-        VIKUNJA_SERVICE_FRONTENDURL = "https://${NOMAD_JOB_NAME}.ducamps.win/"
+        VIKUNJA_SERVICE_FRONTENDURL = "https://${NOMAD_JOB_NAME}.ducamps.eu/"
       }
 
       template {
@@ -67,16 +67,16 @@ job "vikunja" {
         port = "front"
         tags = [
             "traefik.enable=true",
-            "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
-            "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
+            "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`)",
+            "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
             "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.tls.certresolver=myresolver",
             "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.entrypoints=web,websecure",
             "homer.enable=true",
             "homer.name=vikunka",
             "homer.service=Application",
-            "homer.logo=https://${NOMAD_JOB_NAME}.ducamps.win/images/icons/apple-touch-icon-180x180.png",
+            "homer.logo=https://${NOMAD_JOB_NAME}.ducamps.eu/images/icons/apple-touch-icon-180x180.png",
             "homer.target=_blank",
-            "homer.url=https://${NOMAD_JOB_NAME}.ducamps.win",
+            "homer.url=https://${NOMAD_JOB_NAME}.ducamps.eu",
         ]
       }
       config {

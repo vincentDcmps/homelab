@@ -25,12 +25,12 @@ job "torrent" {
         tags = [
             "homer.enable=true",
             "homer.name=torrent",
-            "homer.url=https://torrent.ducamps.win",
+            "homer.url=https://torrent.ducamps.eu",
             "homer.service=Application",
             "homer.logo=https://cdn.icon-icons.com/icons2/2429/PNG/512/bittorrent_logo_icon_147310.png",
             "traefik.enable=true",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
+            "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`)",
+            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
             "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
 
 

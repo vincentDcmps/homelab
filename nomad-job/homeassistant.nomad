@@ -38,10 +38,10 @@ job "homeassistant" {
           "homer.subtitle=Home Assistant",
           "homer.logo=https://raw.githubusercontent.com/home-assistant/assets/master/logo/logo-small.svg",
           "homer.target=_blank",
-          "homer.url=https://${NOMAD_TASK_NAME}.ducamps.win",
+          "homer.url=https://${NOMAD_TASK_NAME}.ducamps.eu",
           "traefik.enable=true",
-          "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.win`)",
-          "traefik.http.routers.${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_TASK_NAME}.ducamps.win",
+          "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.eu`)",
+          "traefik.http.routers.${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_TASK_NAME}.ducamps.eu",
           "traefik.http.routers.${NOMAD_TASK_NAME}.tls.certresolver=myresolver",
           "traefik.http.routers.${NOMAD_TASK_NAME}.entrypoints=web,websecure",
         ]

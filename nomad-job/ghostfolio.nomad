@@ -42,8 +42,8 @@ job "ghostfolio" {
         port = "http"
         tags = [
             "traefik.enable=true",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
+            "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`)",
+            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
             "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
             "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
 

@@ -18,17 +18,17 @@ job "www" {
         "homer.service=Application",
         "homer.icon=fas fa-blog",
         "homer.target=_blank",
-        "homer.url=https://www.ducamps.win",
+        "homer.url=https://www.ducamps.eu",
 
         "traefik.enable=true",
-        "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
-        "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
+        "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`)",
+        "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
         "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
         "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
 
-        "traefik.http.routers.default.rule=Host(`ducamps.win`)",
+        "traefik.http.routers.default.rule=Host(`ducamps.eu`)",
         "traefik.http.routers.default.entrypoints=web,websecure",
-        "traefik.http.routers.default.tls.domains[0].sans=ducamps.win",
+        "traefik.http.routers.default.tls.domains[0].sans=ducamps.eu",
         "traefik.http.routers.default.tls.certresolver=myresolver",
       ]
       port = "http"

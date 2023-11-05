@@ -36,11 +36,11 @@ job "tt-rss" {
         "homer.service=Application",
         "homer.logo=https://framalibre.org/sites/default/files/styles/thumbnail/public/leslogos/ic_launcher_1.png",
         "homer.target=_blank",
-        "homer.url=https://www.ducamps.win/tt-rss",
+        "homer.url=https://www.ducamps.eu/tt-rss",
 
         "traefik.enable=true",
-        "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`www.ducamps.win`)&&PathPrefix(`/tt-rss`)",
-        "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=www.ducamps.win",
+        "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`www.ducamps.eu`)&&PathPrefix(`/tt-rss`)",
+        "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=www.ducamps.eu",
         "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
         "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
       ]
@@ -63,7 +63,7 @@ job "tt-rss" {
         TTRSS_DB_HOST       = "active.db.service.consul"
         TTRSS_DB_NAME       = "ttrss"
         TTRSS_DB_USER       = "ttrss"
-        TTRSS_SELF_URL_PATH = "https://www.ducamps.win/tt-rss"
+        TTRSS_SELF_URL_PATH = "https://www.ducamps.eu/tt-rss"
       }
       template {
         data        = <<EOH
@@ -95,7 +95,7 @@ job "tt-rss" {
         TTRSS_DB_HOST       = "active.db.service.consul"
         TTRSS_DB_NAME       = "ttrss"
         TTRSS_DB_USER       = "ttrss"
-        TTRSS_SELF_URL_PATH = "https://www.ducamps.win/tt-rss"
+        TTRSS_SELF_URL_PATH = "https://www.ducamps.eu/tt-rss"
       }
       template {
         data        = <<EOH

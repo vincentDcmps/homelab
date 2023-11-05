@@ -32,11 +32,11 @@ job "git" {
           "homer.name=Gitea",
           "homer.service=Platform",
           "homer.target=_blank",
-          "homer.logo=https://git.ducamps.win/assets/img/logo.svg",
-          "homer.url=https://${NOMAD_JOB_NAME}.ducamps.win",
+          "homer.logo=https://git.ducamps.eu/assets/img/logo.svg",
+          "homer.url=https://${NOMAD_JOB_NAME}.ducamps.eu",
           "traefik.enable=true",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`)",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
           "traefik.http.middlewares.httpsRedirect.redirectscheme.scheme=https",
           "traefik.http.routers.${NOMAD_JOB_NAME}.middlewares=httpsRedirect",
@@ -67,9 +67,9 @@ job "git" {
       env {
         USER_UID                             = 1000000
         USER_GID                            = 984
-        GITEA__server__DOMAIN                = "git.ducamps.win"
-        GITEA__server__ROOT_URL              = "https://git.ducamps.win"
-        GITEA__server__SSH_DOMAIN            = "git.ducamps.win"
+        GITEA__server__DOMAIN                = "git.ducamps.eu"
+        GITEA__server__ROOT_URL              = "https://git.ducamps.eu"
+        GITEA__server__SSH_DOMAIN            = "git.ducamps.eu"
         GITEA__server__SSH_PORT              = "2222"
         GITEA__server__SSH_LISTEN_PORT       = "2222"
         GITEA__server__START_SSH_SERVER      = "false"
@@ -81,7 +81,7 @@ job "git" {
         GITEA__repository__ROOT              = "/repo"
         GITEA__server__APP_DATA_PATH         = "/data"
         GITEA__server__LFS_CONTENT_PATH      = "/repo/LFS"
-        GITEA__webhook__ALLOWED_HOST_LIST    = "drone.ducamps.win"
+        GITEA__webhook__ALLOWED_HOST_LIST    = "drone.ducamps.eu"
         GITEA__webhook__DELIVER_TIMEOUT       = "30" 
       }
       template {

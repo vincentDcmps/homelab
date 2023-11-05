@@ -27,8 +27,8 @@ job "matrix" {
         port = "dendrite"
         tags = [
             "traefik.enable=true",
-            "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.win`)",
-            "traefik.http.routers.${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_TASK_NAME}.ducamps.win",
+            "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.eu`)",
+            "traefik.http.routers.${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_TASK_NAME}.ducamps.eu",
             "traefik.http.routers.${NOMAD_TASK_NAME}.tls.certresolver=myresolver",
 
 
@@ -53,7 +53,7 @@ job "matrix" {
 version: 2
 
 global:
-  server_name: dendrite.ducamps.win
+  server_name: dendrite.ducamps.eu
 
   private_key: matrix_key.pem
 
@@ -238,15 +238,15 @@ template {
         port = "element"
         tags = [
             "traefik.enable=true",
-            "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.win`)",
-            "traefik.http.routers.${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_TASK_NAME}.ducamps.win",
+            "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.eu`)",
+            "traefik.http.routers.${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_TASK_NAME}.ducamps.eu",
             "traefik.http.routers.${NOMAD_TASK_NAME}.tls.certresolver=myresolver",
             "homer.enable=true",
             "homer.name=element",
             "homer.service=Application",
-            "homer.logo=https://${NOMAD_TASK_NAME}.ducamps.win",
+            "homer.logo=https://${NOMAD_TASK_NAME}.ducamps.eu",
             "homer.target=_blank",
-            "homer.url=https://${NOMAD_TASK_NAME}.ducamps.win",
+            "homer.url=https://${NOMAD_TASK_NAME}.ducamps.eu",
 
         ]
 
@@ -262,8 +262,8 @@ template {
 {
     "default_server_config": {
         "m.homeserver": {
-            "base_url": "https://dendrite.ducamps.win",
-            "server_name": "dendrite.ducamps.win"
+            "base_url": "https://dendrite.ducamps.eu",
+            "server_name": "dendrite.ducamps.eu"
         },
         "m.identity_server": {
             "base_url": "https://vector.im"

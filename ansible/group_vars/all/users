@@ -2,7 +2,7 @@ user:
     name: vincent
     home: /home/vincent
     uid: 1024
-    mail: vincent@ducamps.win
+    mail: vincent@ducamps.eu
     groups:
         - docker
     authorized_keys:
@@ -35,7 +35,7 @@ system_user:
 
 
 user_custom_host:
-  - host: "git.ducamps.win"
+  - host: "git.ducamps.eu"
     user: "git"
     keyfile: "~/.ssh/id_gitea"
 

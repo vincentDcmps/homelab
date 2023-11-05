@@ -30,11 +30,11 @@ job "nextcloud" {
         port = "http"
         tags = [
             "traefik.enable=true",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`file.ducamps.win`)",
-            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=file.ducamps.win",
+            "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`file.ducamps.eu`)",
+            "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=file.ducamps.eu",
             "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
             "traefik.http.routers.${NOMAD_JOB_NAME}_insecure.entrypoints=web",
-            "traefik.http.routers.${NOMAD_JOB_NAME}_insecure.rule=Host(`file.ducamps.win`)",
+            "traefik.http.routers.${NOMAD_JOB_NAME}_insecure.rule=Host(`file.ducamps.eu`)",
             "traefik.http.routers.${NOMAD_JOB_NAME}_insecure.middlewares=httpsRedirect",
             "traefik.http.middlewares.httpsRedirect.redirectscheme.scheme=https",
 
@@ -62,7 +62,7 @@ job "nextcloud" {
           POSTGRES_PASSWORD="{{ .Data.data.POSTGRES_PASSWORD }}"
           NEXTCLOUD_ADMIN_USER="vincent"
           NEXTCLOUD_ADMIN_PASSWORD="{{ .Data.data.ADMIN_PASSWORD }}"
-          NEXTCLOUD_TRUSTED_DOMAINS="file.ducamps.win"
+          NEXTCLOUD_TRUSTED_DOMAINS="file.ducamps.eu"
           POSTGRES_HOST="active.db.service.consul"
           {{end}}
           EOH

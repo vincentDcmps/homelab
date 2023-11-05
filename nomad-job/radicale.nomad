@@ -24,12 +24,12 @@ job "radicale" {
           "homer.service=Application",
           "homer.logo=https://radicale.org/assets/logo.svg",
           "homer.target=_blank",
-          "homer.url=https://www.ducamps.win/${NOMAD_JOB_NAME}",
+          "homer.url=https://www.ducamps.eu/${NOMAD_JOB_NAME}",
 
 
           "traefik.enable=true",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`www.ducamps.win`)&&PathPrefix(`/radicale`)",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=www.ducamps.win",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`www.ducamps.eu`)&&PathPrefix(`/radicale`)",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=www.ducamps.eu",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
           "traefik.http.routers.${NOMAD_JOB_NAME}.middlewares=radicaleHeader,radicalestrip",
           "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",

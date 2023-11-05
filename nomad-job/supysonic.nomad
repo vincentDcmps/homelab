@@ -34,11 +34,11 @@ job "supysonic" {
         "homer.service=Application",
         "homer.icon=fas fa-headphones",
         "homer.target=_blank",
-        "homer.url=http://${NOMAD_JOB_NAME}.ducamps.win",
+        "homer.url=http://${NOMAD_JOB_NAME}.ducamps.eu",
 
         "traefik.enable=true",
-        "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
-        "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
+        "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`)",
+        "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
         "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
         "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
 
@@ -105,7 +105,7 @@ http {
         SUPYSONIC_DAEMON_ENABLED   = "true"
         SUPYSONIC_WEBAPP_LOG_LEVEL = "DEBUG"
         SUPYSONIC_DAEMON_LOG_LEVEL = "INFO"
-        SUPYSONIC_LDAP_SERVER      = "LDAP://ldap.ducamps.win"
+        SUPYSONIC_LDAP_SERVER      = "LDAP://ldap.ducamps.eu"
         SUPYSONIC_LDAP_BASE_DN     = "dc=ducamps,dc=win"
         SUPYSONIC_LDAP_USER_FILTER = "(&(memberOf=CN=SupysonicUsers,cn=groups,dc=ducamps,dc=win))"
         SUPYSONIC_LDAP_ADMIN_FILTER= "(&(memberOf=CN=SupysonicAdmins,cn=groups,dc=ducamps,dc=win))"

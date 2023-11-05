@@ -19,14 +19,14 @@ job "grafana" {
         "homer.enable=true",
         "homer.name=Grafana",
         "homer.service=Monitoring",
-        "homer.logo=https://grafana.ducamps.win/public/img/grafana_icon.svg",
+        "homer.logo=https://grafana.ducamps.eu/public/img/grafana_icon.svg",
         "homer.target=_blank",
-        "homer.url=https://${NOMAD_JOB_NAME}.ducamps.win",
+        "homer.url=https://${NOMAD_JOB_NAME}.ducamps.eu",
 
         "traefik.enable=true",
         "traefik.http.routers.grafana.entryPoints=websecure",
-        "traefik.http.routers.grafana.rule=Host(`grafana.ducamps.win`)",
-        "traefik.http.routers.grafana.tls.domains[0].sans=grafana.ducamps.win",
+        "traefik.http.routers.grafana.rule=Host(`grafana.ducamps.eu`)",
+        "traefik.http.routers.grafana.tls.domains[0].sans=grafana.ducamps.eu",
         "traefik.http.routers.grafana.tls.certresolver=myresolver",
         "traefik.http.routers.grafana.entrypoints=web,websecure",
 

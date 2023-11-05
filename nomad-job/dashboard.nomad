@@ -22,8 +22,8 @@ job "dashboard" {
         port = "http"
         tags = [
           "traefik.enable=true",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.win`)",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.win",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`)",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
           "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
         ]
@@ -109,7 +109,7 @@ links:
   - name: "notebook"
     icon: "fas fa-book"
     target: "_blank" # optional html tag target attribute
-    url: "https://www.ducamps.win/notebook/"
+    url: "https://www.ducamps.eu/notebook/"
 services:
   - name: Application
     icon: "fas fa-heartbeet"
