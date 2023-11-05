@@ -33,7 +33,8 @@ variable cnameList{
     "torrent",
     "vault",
     "vikunja",
-    "www"
+    "www",
+    "mail"
   ]
 }
 

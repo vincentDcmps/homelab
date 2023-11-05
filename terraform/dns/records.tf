@@ -78,7 +78,7 @@ resource "hetznerdns_record" "rootalias" {
 resource "powerdns_record" "mail" {
   zone= powerdns_zone.ducampseu.name
   type= "MX"
-  name= "mail.${powerdns_zone.ducampseu.name}"
+  name= "${powerdns_zone.ducampseu.name}"
   ttl= 1700
   records = ["10 ${var.localEndpoint}"]
 }
