@@ -1,4 +1,3 @@
-
 job "pihole" {
   datacenters = ["homelab"]
   priority    = 100
@@ -54,7 +53,7 @@ job "pihole" {
         }
       }
       config {
-        image = "pihole/pihole:latest"
+        image = "pihole/pihole:2023.10.0"
         network_mode = "host"
         volumes = [
           "local/dnsmasq.d/02-localresolver.conf:/etc/dnsmasq.d/02-localresolver.conf",
@@ -86,7 +85,7 @@ job "pihole" {
       template {
         data        = <<EOH
 server=/ducamps.win/192.168.1.10
-server=/ducamps.eu/192.168.1.10
+server=/ducamps.eu/192.168.1.5
 {{range service "consul"}}server=/consul/{{.Address}}#8600
 {{end}}
 domain=ducamps.win

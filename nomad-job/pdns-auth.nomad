@@ -3,7 +3,7 @@ job "pdns-auth" {
   datacenters = ["homelab"]
   priority    = 100
   meta {
-    force = 2
+    force = 3
   }
   type = "service"
   constraint {
@@ -32,20 +32,12 @@ job "pdns-auth" {
         name = "pdns-auth"
         port = "dns"
 
-        check {
-          name     = "service: dns tcp check"
-          type     = "tcp"
-          interval = "10s"
-          timeout  = "2s"
-
-          success_before_passing   = "3"
-          failures_before_critical = "3"
-        }
       }
       config {
         image = "powerdns/pdns-auth-48:latest"        
         network_mode = "host"
-
+        privileged=true
+        cap_add= ["NET_BIND_SERVICE"]
         volumes = [
           "/mnt/diskstation/nomad/pdns-auth/var:/var/lib/powerdns/",
           "local/dnsupdate.conf:/etc/powerdns/pdns.d/dnsupdate.conf",
@@ -67,7 +59,6 @@ job "pdns-auth" {
         data = <<EOH
 dnsupdate=yes
 allow-dnsupdate-from=192.168.1.41/24
-local-address=0.0.0.0:5300
 local-port=5300
         EOH
       }
@@ -127,7 +118,7 @@ SQLALCHEMY_DATABASE_URI=postgresql://pdns-admin:{{ .Data.data.pdnsadmin }}@activ
   task "keepalived" {
     driver = "docker"
       lifecycle {
-        hook    = "poststart"
+        hook    = "prestart"
         sidecar = true
       }
 

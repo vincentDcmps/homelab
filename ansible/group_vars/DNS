@@ -15,6 +15,7 @@ pdns_rec_config:
   forward-zones:
     - "{{ consul_domain }}=127.0.0.1:8600"
     - "ducamps.win=192.168.1.10"
-    - "ducamps.eu=192.168.1.10"
+    - "ducamps.eu=192.168.1.5:5300"
+    - "1.168.192.in-addr.arpa=192.168.1.5:5300"
   local-address: "{{ ansible_default_ipv4.address }}"
   dnssec: "off"
