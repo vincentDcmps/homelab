@@ -3,7 +3,7 @@ job "pdns-auth" {
   datacenters = ["homelab"]
   priority    = 100
   meta {
-    force = 3
+    force = 2
   }
   type = "service"
   constraint {
@@ -34,10 +34,10 @@ job "pdns-auth" {
 
       }
       config {
-        image = "powerdns/pdns-auth-48:latest"        
+        image = "powerdns/pdns-auth-master:latest"        
         network_mode = "host"
         privileged=true
-        cap_add= ["NET_BIND_SERVICE"]
+        cap_add= ["net_bind_service"]
         volumes = [
           "/mnt/diskstation/nomad/pdns-auth/var:/var/lib/powerdns/",
           "local/dnsupdate.conf:/etc/powerdns/pdns.d/dnsupdate.conf",
@@ -59,7 +59,8 @@ job "pdns-auth" {
         data = <<EOH
 dnsupdate=yes
 allow-dnsupdate-from=192.168.1.41/24
-local-port=5300
+local-address=192.168.1.5
+local-port=53
         EOH
       }
       template{

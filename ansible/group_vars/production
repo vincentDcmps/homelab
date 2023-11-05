@@ -1,5 +1,5 @@
 domain:
-  name: ducamps.win
+  name: ducamps.eu
 consul_bootstrap_expect: 3
 consul_domain: "consul"
 nomad_bootstrap_expect: 3

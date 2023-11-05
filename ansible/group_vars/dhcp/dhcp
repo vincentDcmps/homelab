@@ -7,11 +7,11 @@ dhcpd_nameservers:
 
 dhcpd_zones:
   - zone: "lan.{{ domain.name }}."
-    primary: "192.168.1.10"
-    key: "dhcp"
+    primary: "192.168.1.5"
+    key: "dhcpdupdate"
   - zone: "1.168.192.in-addr.arpa."
-    primary: "192.168.1.10"
-    key: "dhcp"
+    primary: "192.168.1.5"
+    key: "dhcpdupdate"
 
 dhcpd_options: |
   ddns-updates           on;
