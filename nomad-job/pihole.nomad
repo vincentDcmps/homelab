@@ -67,8 +67,8 @@ job "pihole" {
       }
       env {
         TZ   = "Europe/Paris"
-        DNS1 = "1.1.1.1"
-        DNS2 = "80.67.169.40"
+        DNS1 = "192.168.1.5"
+        DNS2 = "192.168.1.41"
         WEB_PORT      = "${NOMAD_PORT_http}"
 
       }
@@ -84,8 +84,6 @@ job "pihole" {
       }
       template {
         data        = <<EOH
-server=/ducamps.win/192.168.1.10
-server=/ducamps.eu/192.168.1.5
 {{range service "consul"}}server=/consul/{{.Address}}#8600
 {{end}}
 domain=ducamps.eu

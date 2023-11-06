@@ -116,6 +116,30 @@ SQLALCHEMY_DATABASE_URI=postgresql://pdns-admin:{{ .Data.data.pdnsadmin }}@activ
       }
 
   }
+  task "pdns-recursor" {
+
+    driver = "docker"
+    config {
+     image = "powerdns/pdns-recursor-master:latest"        
+    network_mode = "host"
+      volumes = [
+        "local/recursor.conf:/etc/powerdns/recursor.conf",
+      ]
+    }
+    template{
+      destination = "local/recursor.conf"
+      data= <<EOH
+config-dir=/etc/powerdns
+dnssec=off
+forward-zones=consul=127.0.0.1:8600,ducamps.eu=192.168.1.5,1.168.192.in-addr.arpa=192.168.1.5
+local-address=192.168.1.6
+      EOH
+    }
+    resources {
+      cpu    = 100
+      memory = 100
+    }
+  }
   task "keepalived" {
     driver = "docker"
       lifecycle {
@@ -126,7 +150,7 @@ SQLALCHEMY_DATABASE_URI=postgresql://pdns-admin:{{ .Data.data.pdnsadmin }}@activ
       env {
         KEEPALIVED_ROUTER_ID     = "52"
         KEEPALIVED_STATE         = "MASTER"
-        KEEPALIVED_VIRTUAL_IPS   = "192.168.1.5"
+        KEEPALIVED_VIRTUAL_IPS   = "#PYTHON2BASH:['192.168.1.5','192.168.1.6']"
       }
       template{
         destination = "local/env.yaml"
