@@ -114,6 +114,10 @@ SQLALCHEMY_DATABASE_URI=postgresql://pdns-admin:{{ .Data.data.pdnsadmin }}@activ
 {{end}}
         EOH
       }
+    resources {
+      cpu    = 100
+      memory = 200
+}
 
   }
   task "pdns-recursor" {
@@ -137,7 +141,7 @@ local-address=192.168.1.6
     }
     resources {
       cpu    = 100
-      memory = 100
+      memory = 50
     }
   }
   task "keepalived" {
