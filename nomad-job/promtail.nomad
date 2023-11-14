@@ -36,7 +36,6 @@ job "promtail" {
       config {
         image = "grafana/promtail"
         ports = ["http"]
-        dns_servers= ["192.168.1.10","192.168.1.4"]
         args = [
           "-config.file=/local/promtail.yml",
           "-server.http-listen-port=${NOMAD_PORT_http}",
