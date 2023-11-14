@@ -1,0 +1,46 @@
+---
+prerun: false
+dependency:
+  name: galaxy
+  enabled: false
+driver:
+  name: vagrant
+  provider:
+    name: libvirt
+    default_box: archlinux/archlinux
+platforms:
+  - name: oscar-dev
+    cpu: 1
+    memory: 1024
+    box: archlinux/archlinux
+  - name: merlin-dev
+    cpu: 1
+    memory: 1024
+    box: generic/rocky9
+  - name: gerard-dev
+    cpu: 1
+    memory: 1024
+    box: debian/bookworm64
+  - name: nas-dev
+    cpu: 1
+    memory: 1024
+    box: archlinux/archlinux
+
+provisioner:
+  name: ansible
+  connection_options:
+    ansible_ssh_user: vagrant
+    ansible_become: true
+  env:
+    ANSIBLE_CONFIG: ../../ansible.cfg
+    ANSIBLE_ROLES_PATH: "../../roles"
+  log: true
+  lint:
+    name: ansible-lint
+  inventory:
+    host_vars: []
+    links:
+      group_vars: ../../group_vars
+      hosts: ../../staging
+verifier:
+  name: ansible
