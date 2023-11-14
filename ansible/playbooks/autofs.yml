@@ -1,0 +1,9 @@
+---
+- hosts:
+    - homelab
+    - VPS
+    - NAS
+  vars:
+  # certbot_force: true
+  roles:
+    - autofs
