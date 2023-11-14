@@ -41,5 +41,6 @@ nomad_host_networks:
     interface: eth0
   - name: "default"
     interface: wg0
+nomad_client_network_interface : "wg0"
 vault_listener_address: 10.0.0.1
 nomad_plugins_podman: True
