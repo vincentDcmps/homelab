@@ -49,6 +49,8 @@ repos:
       - http://archlinux.mailtunnel.eu
       - http://mirror.cyberbits.eu/archlinux
       - http://mirrors.niyawe.de/archlinux
+  archlinux_armv8:
+    url: http://mirror.archlinuxarm.org
   archlinux_armv7h:
     url: http://mirror.archlinuxarm.org
 prefetch:
