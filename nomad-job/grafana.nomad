@@ -44,7 +44,7 @@ job "grafana" {
         ]
       }
       resources {
-        memory = 150
+        memory = 250
       }
     }
   }
