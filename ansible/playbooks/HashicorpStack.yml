@@ -1,7 +1,6 @@
 ---
 - name: Vault install
   hosts: homelab
-  
   roles:
     - role: ansible-hashicorp-vault
       become: true

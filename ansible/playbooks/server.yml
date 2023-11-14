@@ -2,6 +2,7 @@
 - hosts:
     - homelab
     - VPS
+    - NAS
   vars:
   # certbot_force: true
   tasks:

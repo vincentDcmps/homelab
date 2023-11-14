@@ -1,4 +1,5 @@
 ---
+- import_playbook: playbooks/server.yml
 - import_playbook: playbooks/nas.yml
 - import_playbook: playbooks/sssd.yml
 - import_playbook: playbooks/wireguard.yml
