@@ -1,6 +1,6 @@
 resource "vault_ldap_auth_backend" "ldap" {
     path        = "ldap"
-    url         = "ldap://ldap.ducamps.win"
+    url         = "ldap://ldap.ducamps.eu"
     userdn      = "dc=ducamps,dc=win"
     userattr    = "uid"
     discoverdn  = false
