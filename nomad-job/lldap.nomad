@@ -16,7 +16,7 @@ job "lldap" {
       mode = "host"
       port "ldap" {
         to = 3890
-        static = 3890
+        static = 389
       }
       port "http" {
         to = 17170
