@@ -12,7 +12,7 @@ systemd_mounts:
     type: cifs
     options:
       - credentials=/etc/creds/hetzner_credentials
-      - uid= 1024
+      - uid= 100001
       - gid= 10
       - vers=3.0
       - mfsymlinks

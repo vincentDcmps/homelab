@@ -41,6 +41,7 @@ job "seedboxsync" {
           "${USERNAME}@${REMOTE_SERVER}:${REMOTE_PATH}",
           "/media",
           "--exclude=seed",
+          "--remove-source-files",
           "-v"
         ]
       }
