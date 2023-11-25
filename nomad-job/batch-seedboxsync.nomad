@@ -1,5 +1,5 @@
 
-job "seedboxsync" {
+job "batch-seedboxsync" {
   datacenters = ["homelab"]
   priority    = 50
   type        = "batch"

@@ -1,5 +1,5 @@
 
-job "vault-backup" {
+job "backup-vault" {
   datacenters = ["homelab"]
   priority    = 50
   type        = "batch"
@@ -15,14 +15,14 @@ job "vault-backup" {
     crons             = ["30 3 * * *"]
     prohibit_overlap = true
   }
-  group "vault-backup" {
+  group "backup-vault" {
     network {
       mode = "host"
     }
     vault {
       policies = ["vault-backup"]
     }
-    task "vault-backup" {
+    task "backup-vault" {
       driver = "docker"
       config {
         image = "ducampsv/docker-vault-backup:latest"

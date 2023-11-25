@@ -1,5 +1,5 @@
 
-job "consul-backup" {
+job "backup-consul" {
   datacenters = ["homelab"]
   priority    = 50
   type        = "batch"
@@ -15,7 +15,7 @@ job "consul-backup" {
     crons             = ["30 3 * * *"]
     prohibit_overlap = true
   }
-  group "consul-backup" {
+  group "backup-consul" {
     network {
       mode = "host"
     }
