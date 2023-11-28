@@ -115,7 +115,7 @@ job "dockermailserver" {
     task "docker-mailserver" {
       driver = "docker"
       config {
-        image = "ghcr.io/docker-mailserver/docker-mailserver:edge"
+        image = "ghcr.io/docker-mailserver/docker-mailserver:latest"
         ports = ["smtp", "esmtp", "imap","rspamd"]
         volumes = [
           "/mnt/diskstation/nomad/dms/mail-data:/var/mail",
@@ -141,6 +141,8 @@ job "dockermailserver" {
         ENABLE_OPENDKIM=0
         ENABLE_OPENDMARC=0
         ENABLE_POLICYD_SPF=0
+        ENABLE_UPDATE_CHECK=0
+        UPDATE_CHECK_INTERVAL="1d"
         RSPAMD_CHECK_AUTHENTICATED=0
 
       }
