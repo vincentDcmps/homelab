@@ -5,4 +5,4 @@ nomad_docker_allow_caps:
 nomad_vault_enabled: true
 nomad_vault_address: "http://active.vault.service.{{consul_domain}}:8200"
 nomad_vault_role: "nomad-cluster"
-
+nomad_docker_extra_labels: ["job_name", "task_group_name", "task_name", "namespace", "node_name"]
