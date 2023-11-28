@@ -101,6 +101,13 @@ scrape_configs:
     relabel_configs:
       - source_labels: [__meta_consul_node]
         target_label: instance
+  - job_name: 'loki'
+    consul_sd_configs:
+    - server: consul.service.consul:8500
+      services: ['loki']
+    relabel_configs:
+      - source_labels: ['__meta_consul_dc']
+        target_label: instance
   - job_name: 'HASS'
     consul_sd_configs:
     - server: 'consul.service.consul:8500'
