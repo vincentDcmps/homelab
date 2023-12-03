@@ -6,7 +6,7 @@ job "batch-rutorrent" {
     forcedeploy="0"
   }
   periodic {
-    crons = ["0 0 * * *"]
+    crons = ["0 * * * *"]
     prohibit_overlap = true
   }
   group "batch-rutorrent" {
