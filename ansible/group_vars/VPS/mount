@@ -1,6 +1,6 @@
 systemd_mounts:
   diskstation_nomad:
-    share: diskstation.lan.ducamps.eu:/volume2/nomad
+    share: "{{ nas_ip }}:/volume2/nomad"
     mount: /mnt/diskstation/nomad
     type: nfs
     options:

@@ -4,3 +4,4 @@ system_arch_local_mirror: "https://arch.{{domain.name}}/repo/archlinux_$arch"
 system_sudoers_group: "serverAdmin"
 system_ipV6_disable: True
 system_ip_unprivileged_port_start: 0
+nas_ip: "192.168.1.10"

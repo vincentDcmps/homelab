@@ -1,13 +1,13 @@
 systemd_mounts:
     diskstation_git:
-        share: diskstation.lan.ducamps.eu:/volume2/git
+        share: "{{ nas_ip }}:/volume2/git"
         mount: /mnt/diskstation/git
         type: nfs
         options:
             - " "
         automount: true
     diskstation_CardDav:
-        share: diskstation.lan.ducamps.eu:/volume2/CardDav
+        share: "{{ nas_ip }}:/volume2/CardDav"
         mount: /mnt/diskstation/CardDav
         type: nfs
         options:
@@ -21,49 +21,49 @@ systemd_mounts:
             - " "
         automount: true
     diskstation_home:
-        share: diskstation.lan.ducamps.eu:/volume2/homes/admin
+        share: "{{ nas_ip }}:/volume2/homes/admin"
         mount: /mnt/diskstation/home
         type: nfs
         options:
             - " "
         automount: true
     diskstation_photo:
-        share: diskstation.lan.ducamps.eu:/volume2/photo
+        share: "{{ nas_ip }}:/volume2/photo"
         mount: /mnt/diskstation/photo
         type: nfs
         options:
             - " "
         automount: true
     diskstation_music:
-        share: diskstation.lan.ducamps.eu:/volume2/music
+        share: "{{ nas_ip }}:/volume2/music"
         mount: /mnt/diskstation/music
         type: nfs
         options:
             - " "
         automount: true
     diskstation_media:
-        share: diskstation.lan.ducamps.eu:/volume1/media
+        share: "{{ nas_ip }}:/volume1/media"
         mount: /mnt/diskstation/media
         type: nfs
         options:
             - " "
         automount: true
     diskstation_ebook:
-        share: diskstation.lan.ducamps.eu:/volume2/ebook
+        share: "{{ nas_ip }}:/volume2/ebook"
         mount: /mnt/diskstation/ebook
         type: nfs
         options:
             - " "
         automount: true
     diskstation_archMirror:
-        share: diskstation.lan.ducamps.eu:/volume2/archMirror
+        share: "{{ nas_ip }}:/volume2/archMirror"
         mount: /mnt/diskstation/archMirror
         type: nfs
         options:
             - " "
         automount: true
     diskstation_nomad:
-        share: diskstation.lan.ducamps.eu:/volume2/nomad
+        share: "{{ nas_ip }}:/volume2/nomad"
         mount: /mnt/diskstation/nomad
         type: nfs
         options:
