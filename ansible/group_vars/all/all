@@ -4,4 +4,4 @@ system_arch_local_mirror: "https://arch.{{domain.name}}/repo/archlinux_$arch"
 system_sudoers_group: "serverAdmin"
 system_ipV6_disable: True
 system_ip_unprivileged_port_start: 0
-nas_ip: "192.168.1.10"
+nas_ip: "{{ hostvars[groups['NAS'][0]]['ansible_facts']['default_ipv4']['address']|default('192.168.1.10')}}"
