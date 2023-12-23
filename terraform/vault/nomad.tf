@@ -24,7 +24,8 @@ locals {
     "alertmanager",
     "vault-backup",
     "pdns",
-    "torrent"
+    "torrent",
+    "borgmatic",
   ]
 
 }
