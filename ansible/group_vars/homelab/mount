@@ -1,74 +1,74 @@
 systemd_mounts:
     diskstation_git:
-        share: "{{ nas_ip }}:/volume2/git"
+        share: "{{ nas_ip }}:{{ env_default_nfs_path }}//git"
         mount: /mnt/diskstation/git
         type: nfs
         options:
             - " "
-        automount: true
+        automount: "{{ env_automount }}"
     diskstation_CardDav:
-        share: "{{ nas_ip }}:/volume2/CardDav"
+        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/CardDav"
         mount: /mnt/diskstation/CardDav
         type: nfs
         options:
             - " "
-        automount: true
+        automount: "{{ env_automount }}"
     backup_disk:
         share: /dev/sdb1
         mount: /mnt/backup
         type: ntfs-3g
         options:
             - " "
-        automount: true
+        automount: "{{ env_automount }}"
     diskstation_home:
-        share: "{{ nas_ip }}:/volume2/homes/admin"
+        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/homes/admin"
         mount: /mnt/diskstation/home
         type: nfs
         options:
             - " "
-        automount: true
+        automount: "{{ env_automount }}"
     diskstation_photo:
-        share: "{{ nas_ip }}:/volume2/photo"
+        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/photo"
         mount: /mnt/diskstation/photo
         type: nfs
         options:
             - " "
-        automount: true
+        automount: "{{ env_automount }}"
     diskstation_music:
-        share: "{{ nas_ip }}:/volume2/music"
+        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/music"
         mount: /mnt/diskstation/music
         type: nfs
         options:
             - " "
-        automount: true
+        automount: "{{ env_automount }}"
     diskstation_media:
-        share: "{{ nas_ip }}:/volume1/media"
+        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/media"
         mount: /mnt/diskstation/media
         type: nfs
         options:
             - " "
-        automount: true
+        automount: "{{ env_automount }}"
     diskstation_ebook:
-        share: "{{ nas_ip }}:/volume2/ebook"
+        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/ebook"
         mount: /mnt/diskstation/ebook
         type: nfs
         options:
             - " "
-        automount: true
+        automount: "{{ env_automount }}"
     diskstation_archMirror:
-        share: "{{ nas_ip }}:/volume2/archMirror"
+        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/archMirror"
         mount: /mnt/diskstation/archMirror
         type: nfs
         options:
             - " "
-        automount: true
+        automount: "{{ env_automount }}"
     diskstation_nomad:
-        share: "{{ nas_ip }}:/volume2/nomad"
+        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/nomad"
         mount: /mnt/diskstation/nomad
         type: nfs
         options:
             - " "
-        automount: true
+        automount: "{{ env_automount }}"
 
 systemd_mounts_enabled:
     - diskstation_git
