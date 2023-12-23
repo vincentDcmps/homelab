@@ -1,11 +1,11 @@
 systemd_mounts:
   diskstation_nomad:
-    share: "{{ nas_ip }}:/volume2/nomad"
+    share: "{{ nas_ip }}:{{ env_default_nfs_path }}/nomad"
     mount: /mnt/diskstation/nomad
     type: nfs
     options:
         - " "
-    automount: true
+    automount: "{{ env_automount }}"
   hetzner_storage:
     share: //u304977.your-storagebox.de/backup
     mount: /mnt/hetzner/storagebox
@@ -16,7 +16,14 @@ systemd_mounts:
       - gid= 10
       - vers=3.0
       - mfsymlinks
-    automount: true
+    automount: "{{ env_automount }}"
+
+credentials_files:
+  1:
+      type: smb
+      path: /etc/creds/hetzner_credentials
+      username: u304977
+      password: "{{ lookup('hashi_vault','secret=secrets/data/ansible/storage:hetzner') }}"
 
 systemd_mounts_enabled:
   - diskstation_nomad

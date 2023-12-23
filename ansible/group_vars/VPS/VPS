@@ -1,0 +1,45 @@
+# defaults file for ansible-arch-provissionning
+partition_table:
+  - device: "/dev/sda"
+    label: gpt
+    settings:
+      - number: 1
+        part_end: 64MB
+        flags: [boot, esp]
+        fstype: vfat
+        format: yes
+      - number: 2
+        part_start: 512MB
+        part_end: 1524MB
+        flags: []
+        fstype: swap
+        format: yes
+      - number: 3
+        part_start: 1524MB
+        flags: [lvm]
+        fstype: ext4
+        format: yes
+  #- device: "/dev/sdb"
+  #settings:
+  #- number: 1
+  #name: home
+  #fstype: ext4
+  #format:
+mount_table:
+  - device: "/dev/sda"
+    settings:
+      - number: 3
+        mountpath: /mnt
+        fstype: ext4
+      - number: 1
+        mountpath: /mnt/boot
+        fstype: vfat
+
+#need vfat boot partition with esp label
+provissionning_UEFI_Enable: True
+#sssd_configure: False
+nomad_datacenter: hetzner
+
+consul_server: False
+nomad_server: False
+

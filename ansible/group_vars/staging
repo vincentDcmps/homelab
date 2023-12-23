@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 domain:
   name: ducamps-dev.win
-systemd_mounts: []
-systemd_mounts_enabled: []
+#systemd_mounts: []
+#systemd_mounts_enabled: []
 consul_bootstrap_expect: 2
 consul_domain: "consul"
 nomad_bootstrap_expect: 2
 vault_unseal_keys_dir_output: "~/vaultUnseal/staging"
+hosts_entries:
+    - ip: "{{ hostvars['nas-dev']['ansible_default_ipv4']['address'] }}"
+      name: diskstation.ducamps.win
+
+env_default_nfs_path: "/var/local/volume1"
+env_media_nfs_path: "{{ env_default_nfs_path }}"
+env_automount: false

@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 domain:
   name: ducamps.eu
 consul_bootstrap_expect: 3
 consul_domain: "consul"
 nomad_bootstrap_expect: 3
 vault_unseal_keys_dir_output: "~/vaultUnseal/production"
+env_default_nfs_path: "/volume2"
+env_media_nfs_path: "/volume1"
+env_automount: true
