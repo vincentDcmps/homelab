@@ -6,6 +6,7 @@ systemd_mounts:
     options:
         - " "
     automount: "{{ env_automount }}"
+    enabled: true
   hetzner_storage:
     share: //u304977.your-storagebox.de/backup
     mount: /mnt/hetzner/storagebox
@@ -17,6 +18,7 @@ systemd_mounts:
       - vers=3.0
       - mfsymlinks
     automount: "{{ env_automount }}"
+    enabled: true
 
 credentials_files:
   1:
@@ -24,7 +26,3 @@ credentials_files:
       path: /etc/creds/hetzner_credentials
       username: u304977
       password: "{{ lookup('hashi_vault','secret=secrets/data/ansible/storage:hetzner') }}"
-
-systemd_mounts_enabled:
-  - diskstation_nomad
-  - hetzner_storage
