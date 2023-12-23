@@ -1,4 +1,4 @@
-nfs_cluster_list: "{% for server in groups['all']%}{{ hostvars[server]['inventory_hostname'] }}.{{ nfs_domain_name }}(rw,no_root_squash,async,insecure_locks,sec=sys)  {%endfor%}"
+nfs_cluster_list: "{% for server in groups['all']%}{{ hostvars[server]['ansible_default_ipv4']['address'] }}(rw,no_root_squash,async,insecure_locks,sec=sys)  {%endfor%}"
 
 
 nfs_exports:
