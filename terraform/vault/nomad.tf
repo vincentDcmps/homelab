@@ -25,7 +25,8 @@ locals {
     "vault-backup",
     "pdns",
     "torrent",
-    "ldap"
+    "ldap",
+    "borgmatic",
   ]
 
 }
