@@ -6,6 +6,7 @@ systemd_mounts:
         options:
             - " "
         automount: "{{ env_automount }}"
+        enabled: true
     diskstation_CardDav:
         share: "{{ nas_ip }}:{{ env_default_nfs_path }}/CardDav"
         mount: /mnt/diskstation/CardDav
@@ -13,6 +14,7 @@ systemd_mounts:
         options:
             - " "
         automount: "{{ env_automount }}"
+        enabled: true
     backup_disk:
         share: /dev/sdb1
         mount: /mnt/backup
@@ -20,6 +22,7 @@ systemd_mounts:
         options:
             - " "
         automount: "{{ env_automount }}"
+        enabled: "{%if inventory_hostname in groups['staging'] %} false {% else %} true {% endif %}"
     diskstation_home:
         share: "{{ nas_ip }}:{{ env_default_nfs_path }}/homes/admin"
         mount: /mnt/diskstation/home
@@ -27,6 +30,7 @@ systemd_mounts:
         options:
             - " "
         automount: "{{ env_automount }}"
+        enabled: true
     diskstation_photo:
         share: "{{ nas_ip }}:{{ env_default_nfs_path }}/photo"
         mount: /mnt/diskstation/photo
@@ -34,6 +38,7 @@ systemd_mounts:
         options:
             - " "
         automount: "{{ env_automount }}"
+        enabled: true
     diskstation_music:
         share: "{{ nas_ip }}:{{ env_default_nfs_path }}/music"
         mount: /mnt/diskstation/music
@@ -41,6 +46,7 @@ systemd_mounts:
         options:
             - " "
         automount: "{{ env_automount }}"
+        enabled: true
     diskstation_media:
         share: "{{ nas_ip }}:{{ env_default_nfs_path }}/media"
         mount: /mnt/diskstation/media
@@ -48,6 +54,7 @@ systemd_mounts:
         options:
             - " "
         automount: "{{ env_automount }}"
+        enabled: true
     diskstation_ebook:
         share: "{{ nas_ip }}:{{ env_default_nfs_path }}/ebook"
         mount: /mnt/diskstation/ebook
@@ -55,6 +62,7 @@ systemd_mounts:
         options:
             - " "
         automount: "{{ env_automount }}"
+        enabled: true
     diskstation_archMirror:
         share: "{{ nas_ip }}:{{ env_default_nfs_path }}/archMirror"
         mount: /mnt/diskstation/archMirror
@@ -62,6 +70,7 @@ systemd_mounts:
         options:
             - " "
         automount: "{{ env_automount }}"
+        enabled: true
     diskstation_nomad:
         share: "{{ nas_ip }}:{{ env_default_nfs_path }}/nomad"
         mount: /mnt/diskstation/nomad
@@ -69,15 +78,4 @@ systemd_mounts:
         options:
             - " "
         automount: "{{ env_automount }}"
-
-systemd_mounts_enabled:
-    - diskstation_git
-    - diskstation_music
-    - backup_disk
-    - diskstation_photo
-    - diskstation_home
-    - diskstation_CardDav
-    - diskstation_media
-    - diskstation_ebook
-    - diskstation_archMirror
-    - diskstation_nomad
+        enabled: true
