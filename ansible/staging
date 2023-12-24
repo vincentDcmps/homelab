@@ -13,9 +13,16 @@ database_standby
 [wireguard:children]
 staging
 
-[homelab]
+[NAS]
+nas-dev
+
+[cluster]
 oscar-dev
 gerard-dev
+
+[homelab:children]
+NAS
+cluster
 
 [VPS]
 merlin-dev
@@ -25,8 +32,7 @@ homelab
 VPS
 staging
 
-[NAS]
-nas-dev
+
 
 [staging]
 oscar-dev

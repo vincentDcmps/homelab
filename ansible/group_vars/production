@@ -3,6 +3,9 @@ domain:
 consul_bootstrap_expect: 3
 consul_domain: "consul"
 nomad_bootstrap_expect: 3
+nomad_client_meta: 
+  - name: "env"
+    value: "production"
 vault_unseal_keys_dir_output: "~/vaultUnseal/production"
 env_default_nfs_path: "/volume2"
 env_media_nfs_path: "/volume1"

@@ -1,0 +1,3 @@
+vsftpd_config:
+    local_root: "/var/local/volume1"
+    seccomp_sandbox: False

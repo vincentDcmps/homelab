@@ -5,6 +5,10 @@ domain:
 consul_bootstrap_expect: 2
 consul_domain: "consul"
 nomad_bootstrap_expect: 2
+nomad_client_meta: 
+  - name: "env"
+    value: "staging"
+
 vault_unseal_keys_dir_output: "~/vaultUnseal/staging"
 hosts_entries:
     - ip: "{{ hostvars['nas-dev']['ansible_default_ipv4']['address'] }}"

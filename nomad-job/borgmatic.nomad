@@ -7,9 +7,9 @@ job "borgmatic" {
     forcedeploy = "0"
   }
   constraint {
-    attribute = "${node.unique.name}"
+    attribute = "${node.class}"
     operator = "set_contains"
-    value = "nas"
+    value = "NAS"
   }
 
   group "borgmatic"{
@@ -25,7 +25,7 @@ job "borgmatic" {
           "/var/local/volume1:/var/local/volume1",
           "local/borgmatic.d:/etc/borgmatic.d",
           "secret/id_rsa:/root/.ssh/id_rsa",
-      "/mnt/diskstation/nomad/borgmatic:/root/.cache/borg",
+          "/mnt/diskstation/nomad/borgmatic:/root/.cache/borg",
         ]
 
       }
@@ -65,7 +65,8 @@ location:
     - /volume1/photo
 
     repositories:
-    - u304977@u304977.your-storagebox.de:backup_syno
+    - u304977@u304977.your-storagebox.de:{{if eq "production"  (env "meta.env") }}backup_hamelab{{else}}backup_homelab_dev{{end}}
+
     exclude_patterns:
         - '*/nomad/jellyfin/cache'
         - '*/loki/chunks'
@@ -207,6 +208,7 @@ consistency:
 {{end}}
           EOH
         destination = "secret/id_rsa"
+        perms= "700"
       }
       resources {
         memory = 300

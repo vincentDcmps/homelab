@@ -21,12 +21,18 @@ bleys
 [wireguard:children]
 production
 
+[NAS]
+nas
 
-
-[homelab]
+[cluster]
 oscar
-bleys
 gerard
+bleys
+
+
+[homelab:children]
+NAS
+cluster
 
 [VPS]
 corwin
