@@ -45,7 +45,7 @@ job "backup-postgress" {
         env         = true
       }
       resources {
-        memory = 100
+        memory = 125
       }
     }
 
