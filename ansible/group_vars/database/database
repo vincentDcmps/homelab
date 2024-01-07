@@ -1,3 +1,5 @@
+postgres_consul_service: true
+postgres_consul_service_name: db
 
 postgresql_databases:
   - name: ttrss
@@ -23,5 +25,12 @@ postgresql_databases:
   - name: pdns-admin
     owner: pdns-admin
 
-postgres_consul_service: true
-postgres_consul_service_name: db
+postgresql_hba_entries:
+  - {type: local, database: all, user: postgres, auth_method: peer}
+  - {type: local, database: all, user: all, auth_method: peer}
+  - {type: host, database: all, user: all, address: '127.0.0.1/32', auth_method: md5}
+  - {type: host, database: all, user: all, address: '::1/128', auth_method: md5}
+  - {type: host, database: all, user: all, address: '::0/128', auth_method: md5}
+  - {type: host, database: all, user: all, address: '0.0.0.0/0', auth_method: md5}
+  - {type: host, database: replication, user: repli, address:192.168.1.42/32, auth_method: md5}
+  - {type: host, database: replication, user: repli, address:192.168.1.40/32, auth_method: md5}
