@@ -5,18 +5,26 @@
     - role: ansible-hashicorp-vault
       become: true
   post_tasks:
+    - name: Reading root contents
+      ansible.builtin.command: cat "{{ vault_unseal_keys_dir_output }}/rootkey"
+      register: root_token
+      delegate_to: localhost
+      changed_when: false
+    - name: debug
+      ansible.builtin.debug:
+        var: root_token
     - name: Generate nomad token
       community.hashi_vault.vault_token_create:
         renewable: true
         policies: "nomad-server-policy"
         period: 72h
         no_parent: true
-        token: "{{ vault_init_parsed.root_token }}"
+        token: "{{ root_token.stdout }}"
         url: http://{{ ansible_default_ipv4.address }}:8200
         retries: 4
       run_once: true
       delegate_to: localhost
-      when: vault_init_parsed.root_token is defined
+      when: root_token.stdout is defined
       register: nomad_token_data
 
     - name: Gather nomad token
