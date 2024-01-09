@@ -41,7 +41,7 @@ job "lldap" {
     task "lldap" {
       driver = "docker"
       config {
-        image = "lldap/lldap:latest"
+        image = "ducampsv/lldap:latest"
         ports = ["ldap","http"]
         volumes = [
           "/mnt/diskstation/nomad/lldap:/data"
@@ -51,6 +51,7 @@ job "lldap" {
       template {
         data= <<EOH
             UID=1000000
+            GID=1000
             LLDAP_JWT_SECRET=
             LLDAP_LDAP_USER_PASS=REPLACE_WITH_PASSWORD
             LLDAP_LDAP_BASE_DN=dc=ducamps,dc=eu
