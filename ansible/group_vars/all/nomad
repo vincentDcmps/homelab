@@ -2,6 +2,7 @@ nomad_docker_allow_caps:
   - NET_ADMIN
   - NET_BROADCAST
   - NET_RAW
+nomad_allow_privileged: True
 nomad_vault_enabled: true
 nomad_vault_address: "http://active.vault.service.{{consul_domain}}:8200"
 nomad_vault_role: "nomad-cluster"
