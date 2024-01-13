@@ -1,4 +1,6 @@
 ---
+- name: gather all
+  hosts: all
 - name: NAS playbook
   hosts: NAS
   vars:
@@ -7,11 +9,12 @@
     - name: Bind NFS export
       ansible.posix.mount:
         path: "{{ nfs_bind_target }}/{{ item.split('/')[-1] }}"
-        src: "{{ items }}"
+        src: "{{ item }}"
         opts: bind
         fstype: none
         state: mounted
-      loop: nfs_bind_source
+      loop: "{{ nfs_bind_source }}"
+      become: true
   roles:
     - role: ansible-role-nfs
       become: true
