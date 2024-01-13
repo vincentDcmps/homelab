@@ -3,7 +3,7 @@ job "grafana" {
   priority    = 50
   type        = "service"
   meta {
-    forcedeploiement = 1
+    forcedeploiement = 2
   }
   group "grafana" {
     network {
@@ -11,7 +11,12 @@ job "grafana" {
         to = 3000
       }
     }
-
+    volume "grafana" {
+      type = "csi"
+      source = "grafana"
+      access_mode = "multi-node-multi-writer"
+      attachment_mode = "file-system"
+    }
     service {
       name = "grafana"
       port = "http"
@@ -34,13 +39,17 @@ job "grafana" {
     }
 
     task "dashboard" {
+      volume_mount {
+        volume = "grafana"
+        destination = "/grafana"
+      }
       driver = "docker"
       config {
         image = "grafana/grafana"
         ports = ["http"]
         volumes = [
-          "/mnt/diskstation/nomad/grafana/config:/etc/grafana",
-          "/mnt/diskstation/nomad/grafana/lib:/var/lib/grafana"
+          "grafana:/etc/grafana",
+          "grafana:/var/lib/grafana"
         ]
       }
       resources {
