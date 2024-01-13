@@ -1,10 +1,20 @@
 ---
-- hosts: NAS
+- name: NAS playbook
+  hosts: NAS
   vars:
   # certbot_force: true
+  pre_tasks:
+    - name: Bind NFS export
+      ansible.posix.mount:
+        path: "{{ nfs_bind_target }}/{{ item.split('/')[-1] }}"
+        src: "{{ items }}"
+        opts: bind
+        fstype: none
+        state: mounted
+      loop: nfs_bind_source
   roles:
-    - role: ansible-role-nfs 
+    - role: ansible-role-nfs
       become: true
-    - role: ansible-role-vsftpd 
+    - role: ansible-role-vsftpd
       become: true
     #- samba
