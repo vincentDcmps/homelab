@@ -30,7 +30,7 @@ job "backup-postgress" {
       config {
         image = "ducampsv/docker-backup-postgres:latest"
         volumes = [
-          "/mnt/diskstation/git/backup/postgres:/backup"
+          "/mnt/diskstation/backup/postgres:/backup"
         ]
       }
       template {

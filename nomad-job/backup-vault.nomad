@@ -27,7 +27,7 @@ job "backup-vault" {
       config {
         image = "ducampsv/docker-vault-backup:latest"
         volumes = [
-          "/mnt/diskstation/git/backup/vault:/backup"
+          "/mnt/diskstation/backup/vault:/backup"
         ]
       }
       template {

@@ -24,7 +24,7 @@ job "backup-consul" {
       config {
         image = "ducampsv/docker-consul-backup:latest"
         volumes = [
-          "/mnt/diskstation/git/backup/consul:/backup"
+          "/mnt/diskstation/backup/consul:/backup"
         ]
       }
       resources {
