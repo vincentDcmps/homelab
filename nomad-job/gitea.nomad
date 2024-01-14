@@ -60,7 +60,6 @@ job "git" {
           "ssh"
         ]
         volumes = [
-          "/mnt/diskstation/git:/repo",
           "/mnt/diskstation/nomad/gitea:/data"
         ]
       }
@@ -78,9 +77,9 @@ job "git" {
         GITEA__database__NAME                = "gitea"
         GITEA__database__USER                = "gitea"
         GITEA__service__DISABLE_REGISTRATION = "true"
-        GITEA__repository__ROOT              = "/repo"
+        GITEA__repository__ROOT              = "/data/gitea-repositories"
         GITEA__server__APP_DATA_PATH         = "/data"
-        GITEA__server__LFS_CONTENT_PATH      = "/repo/LFS"
+        GITEA__server__LFS_CONTENT_PATH      = "/data/lfs"
         GITEA__webhook__ALLOWED_HOST_LIST    = "drone.ducamps.eu"
         GITEA__webhook__DELIVER_TIMEOUT       = "30" 
       }

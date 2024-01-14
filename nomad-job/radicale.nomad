@@ -43,7 +43,7 @@ job "radicale" {
         ports = ["http"]
         volumes = [
           "local/config:/config/config",
-          "/mnt/diskstation/CardDav:/data"
+          "/mnt/diskstation/nomad/radicale:/data"
         ]
 
       }

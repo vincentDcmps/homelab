@@ -31,7 +31,7 @@ job "pacoloco" {
         image = "ducampsv/pacoloco"
         ports = ["http"]
         volumes = [
-          "/mnt/diskstation/archMirror:/var/cache/pacoloco",
+          "/mnt/diskstation/nomad/pacoloco:/var/cache/pacoloco",
           "local/pacoloco.yaml:/etc/pacoloco.yaml"
         ]
 
