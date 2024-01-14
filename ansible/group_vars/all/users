@@ -39,4 +39,4 @@ user_custom_host:
     user: "git"
     keyfile: "~/.ssh/id_gitea"
 
-user_config_repo: "ssh://git@git.{{ domain.name }}:2222/vincent/conf2.git"
+user_config_repo: "ssh://git@git.ducamps.eu:2222/vincent/conf2.git"
