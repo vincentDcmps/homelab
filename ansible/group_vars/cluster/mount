@@ -1,6 +1,6 @@
 systemd_mounts:
     diskstation_git:
-        share: "{{ nas_ip }}:{{ env_default_nfs_path }}//git"
+        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/git"
         mount: /mnt/diskstation/git
         type: nfs
         options:
