@@ -14,6 +14,9 @@ hosts_entries:
     - ip: "{{ hostvars['nas-dev']['ansible_default_ipv4']['address'] }}"
       name: diskstation.ducamps.eu
 
-env_default_nfs_path: "/var/local/volume1"
+env_default_nfs_path: ""
 env_media_nfs_path: "{{ env_default_nfs_path }}"
 env_automount: false
+nas_ip: "nfs.service.consul"
+
+
