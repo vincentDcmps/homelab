@@ -127,7 +127,7 @@ job "openldap" {
         tags = [
           "traefik.enable=true",
           "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`ldap.ducamps.eu`)",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=ldap.ducamps.win",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=ldap.ducamps.eu",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
         ]
       }
