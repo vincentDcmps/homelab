@@ -1,5 +1,5 @@
 sssd_configure: true
 # sssd_configure is False by default - by default nothing is done by this role.
-ldap_search_base: "dc=ducamps,dc=win"
-ldap_uri: "ldaps://ldap.ducamps.eu"
-ldap_sudo_search_base: "ou=sudoers,dc=ducamps,dc=win"
+ldap_search_base: "dc=ducamps,dc=eu"
+ldap_uri: "ldaps://ldaps.service.consul"
+ldap_sudo_search_base: "ou=sudoers,dc=ducamps,dc=eu"

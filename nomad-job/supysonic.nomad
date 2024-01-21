@@ -105,10 +105,10 @@ http {
         SUPYSONIC_DAEMON_ENABLED   = "true"
         SUPYSONIC_WEBAPP_LOG_LEVEL = "DEBUG"
         SUPYSONIC_DAEMON_LOG_LEVEL = "INFO"
-        SUPYSONIC_LDAP_SERVER      = "LDAP://ldap.ducamps.eu"
-        SUPYSONIC_LDAP_BASE_DN     = "dc=ducamps,dc=win"
-        SUPYSONIC_LDAP_USER_FILTER = "(&(memberOf=CN=SupysonicUsers,cn=groups,dc=ducamps,dc=win))"
-        SUPYSONIC_LDAP_ADMIN_FILTER= "(&(memberOf=CN=SupysonicAdmins,cn=groups,dc=ducamps,dc=win))"
+        SUPYSONIC_LDAP_SERVER      = "LDAPS://ldaps.service.consul"
+        SUPYSONIC_LDAP_BASE_DN     = "dc=ducamps,dc=eu"
+        SUPYSONIC_LDAP_USER_FILTER = "(&(memberOf=cn=SupysonicUsers,ou=groups,dc=ducamps,dc=eu))"
+        SUPYSONIC_LDAP_ADMIN_FILTER= "(&(memberOf=cn=SupysonicAdmins,ou=groups,dc=ducamps,dc=eu))"
       }
 
       template {

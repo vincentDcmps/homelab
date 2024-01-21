@@ -1,0 +1,368 @@
+version: 1
+
+dn: dc=ducamps,dc=eu
+objectClass: dcObject
+objectClass: organization
+dc: ducamps
+o: ducamps
+
+dn: ou=users,dc=ducamps,dc=eu
+objectClass: organizationalUnit
+ou: users
+
+dn: ou=groups,dc=ducamps,dc=eu
+objectClass: organizationalUnit
+ou: groups
+
+dn: cn=lastGID,dc=ducamps,dc=eu
+objectClass: device
+objectClass: top
+cn: lastGID
+description: Records the last GID used to create a Posix group. This prevent
+ s the re-use of a GID from a deleted group.
+serialNumber: 1000019
+
+dn: cn=lastUID,dc=ducamps,dc=eu
+objectClass: device
+objectClass: top
+cn: lastUID
+description: Records the last UID used to create a Posix account. This preve
+ nts the re-use of a UID from a deleted account.
+serialNumber: 1000006
+
+
+dn: uid=hubert,ou=users,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: top
+cn: hubert
+gidNumber: 1000001
+homeDirectory: /home/hubert
+sn: hubert
+uid: hubert
+uidNumber: 1000003
+displayName: hubert
+loginShell: /bin/sh
+mail: hubertducamps@gmail.com
+shadowExpire: -1
+shadowFlag: 0
+shadowInactive: 0
+shadowLastChange: 19136
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+
+dn: uid=olivier,ou=users,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: top
+cn: olivier
+gidNumber: 1000001
+homeDirectory: /home/olivier
+sn: olivier
+uid: olivier
+uidNumber: 1000002
+displayName: olivier
+loginShell: /bin/sh
+mail: olivier@ducamps.eu
+shadowExpire: -1
+shadowFlag: 0
+shadowInactive: 0
+shadowLastChange: 18857
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+
+dn: uid=vincent,ou=users,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: top
+cn: vincent
+gidNumber: 1000001
+homeDirectory: /home/vincent
+sn: vincent
+uid: vincent
+uidNumber: 1000001
+displayName: vincent
+loginShell: /bin/zsh
+mail: vincent@ducamps.eu
+shadowExpire: -1
+shadowFlag: 0
+shadowInactive: 0
+shadowLastChange: 19213
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+
+dn: uid=vaultServiceAccount,ou=users,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: top
+cn: vaultServiceAccount
+gidNumber: 1000001
+homeDirectory: /home/vaultServiceAccount
+sn: vaultServiceAccount
+uid: vaultServiceAccount
+uidNumber: 1000005
+displayName: vaultServiceAccount
+loginShell: /bin/sh
+shadowExpire: -1
+shadowFlag: 0
+shadowInactive: 0
+shadowLastChange: 19213
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+
+dn: uid=supysonicServiceAccount,ou=users,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: top
+cn: supysonicServiceAccount
+gidNumber: 1000001
+homeDirectory: /home/supysonicServiceAccount
+sn: supysonicServiceAccount
+uid: supysonicServiceAccount
+uidNumber: 1000006
+displayName: supysonicServiceAccount
+loginShell: /bin/sh
+shadowExpire: -1
+shadowFlag: 0
+shadowInactive: 0
+shadowLastChange: 19437
+shadowMax: 99999
+shadowMin: 100000
+shadowWarning: 7
+
+dn: cn=na_a,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: na_a
+gidNumber: 1000011
+member: cn=Directory Consumers,ou=groups,dc=ducamps,dc=eu
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+displayName: na_a
+memberUid: vincent
+
+dn: cn=NAS_user,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: NAS_user
+gidNumber: 1000013
+member: uid=hubert,ou=users,dc=ducamps,dc=eu
+member: uid=loic,ou=users,dc=ducamps,dc=eu
+member: uid=olivier,ou=users,dc=ducamps,dc=eu
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+displayName: NAS_user
+memberUid: admin
+memberUid: hubert
+memberUid: loic
+memberUid: olivier
+memberUid: vincent
+
+dn: cn=NAS_ebook,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: NAS_ebook
+gidNumber: 1000006
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+description: group owner of ebook folder
+displayName: NAS_ebook
+memberUid: admin
+memberUid: vincent
+
+dn: cn=NAS_media,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: NAS_media
+gidNumber: 1000003
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+description: group owner of media folder
+displayName: media
+memberUid: admin
+memberUid: vincent
+
+dn: cn=NAS_music,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: NAS_music
+gidNumber: 1000005
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+description: group owner of Music folder
+displayName: NAS_music
+memberUid: admin
+memberUid: vincent
+
+dn: cn=NAS_photo,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: NAS_photo
+gidNumber: 1000004
+member: uid=hubert,ou=users,dc=ducamps,dc=eu
+member: uid=olivier,ou=users,dc=ducamps,dc=eu
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+description: group owner of photo folder
+displayName: photo
+memberUid: admin
+memberUid: hubert
+memberUid: olivier
+memberUid: vincent
+
+dn: cn=serverAdmin,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: serverAdmin
+gidNumber: 1000016
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+displayName: server_admin
+memberUid: vincent
+
+dn: cn=vault_admin,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: vault_admin
+gidNumber: 1000014
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+displayName: vaultaccess
+memberUid: vincent
+
+dn: cn=NAS_download,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: NAS_download
+gidNumber: 1000007
+member: uid=olivier,ou=users,dc=ducamps,dc=eu
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+description: group owner du dossier download
+displayName: NAS_download
+memberUid: olivier
+memberUid: vincent
+
+dn: cn=JellyfinUsers,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: JellyfinUsers
+gidNumber: 1000012
+member: uid=hubert,ou=users,dc=ducamps,dc=eu
+member: uid=loic,ou=users,dc=ducamps,dc=eu
+member: uid=olivier,ou=users,dc=ducamps,dc=eu
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+displayName: JellyfinUsers
+memberUid: admin
+memberUid: loic
+memberUid: olivier
+memberUid: vincent
+
+dn: cn=administrators,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: administrators
+gidNumber: 1000002
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+description: System default admin group
+displayName: administrators
+memberUid: vincent
+
+dn: cn=LDAP Operators,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: Directory Operators
+cn: LDAP Operators
+gidNumber: 1000000
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+description: Directory default admin group
+displayName: Directory Operators
+memberUid: vincent
+
+dn: cn=SupysonicUsers,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: SupysonicUsers
+gidNumber: 1000018
+member: uid=hubert,ou=users,dc=ducamps,dc=eu
+member: uid=olivier,ou=users,dc=ducamps,dc=eu
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+displayName: SupysonicUsers
+memberUid: hubert
+memberUid: olivier
+memberUid: vincent
+
+dn: cn=SupysonicAdmins,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: SupysonicAdmins
+gidNumber: 1000019
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+displayName: SupysonicAdmins
+memberUid: vincent
+
+dn: cn=workstationAdmin,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: workstationAdmin
+gidNumber: 1000017
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+displayName: workstation_admin
+memberUid: vincent
+
+dn: cn=JellyfinAdministrator,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: JellyfinAdministrator
+gidNumber: 1000015
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+displayName: JellyfinAdministrator
+memberUid: vincent
+

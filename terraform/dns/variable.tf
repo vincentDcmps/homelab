@@ -34,7 +34,8 @@ variable cnameList{
     "vault",
     "vikunja",
     "www",
-    "mail"
+    "mail",
+    "ldap"
   ]
 }
 

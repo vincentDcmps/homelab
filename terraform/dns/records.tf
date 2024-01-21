@@ -78,7 +78,7 @@ resource "hetznerdns_record" "rootalias" {
 resource "powerdns_record" "mail" {
   zone= powerdns_zone.ducampseu.name
   type= "MX"
-  name= "${powerdns_zone.ducampseu.name}"
+  name= powerdns_zone.ducampseu.name
   ttl= 1700
   records = ["10 ${var.localEndpoint}"]
 }
@@ -110,13 +110,6 @@ resource "powerdns_record" "diskstation" {
       zone= powerdns_zone.landucampseu.name
       type= "A"
       name= "diskstation.lan.${powerdns_zone.ducampseu.name}"
-      ttl= 1700
-      records = ["192.168.1.10"]
-}
-resource "powerdns_record" "ldap" {
-      zone= powerdns_zone.ducampseu.name
-      type= "A"
-      name= "ldap.${powerdns_zone.ducampseu.name}"
       ttl= 1700
       records = ["192.168.1.10"]
 }
