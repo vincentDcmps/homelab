@@ -366,3 +366,21 @@ member: uid=vincent,ou=users,dc=ducamps,dc=eu
 displayName: JellyfinAdministrator
 memberUid: vincent
 
+dn: cn=users,ou=groups,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: top
+cn: users
+gidNumber: 1000001
+member: uid=hubert,ou=users,dc=ducamps,dc=eu
+member: uid=loic,ou=users,dc=ducamps,dc=eu
+member: uid=olivier,ou=users,dc=ducamps,dc=eu
+member: uid=vincent,ou=users,dc=ducamps,dc=eu
+sambaGroupType: 2
+displayName: NAS_user
+memberUid: admin
+memberUid: hubert
+memberUid: loic
+memberUid: olivier
+memberUid: vincent
