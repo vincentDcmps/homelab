@@ -70,7 +70,8 @@ http {
       default_type text/html;
     }
     location =/ {
-      rewrite ^ /welcome;
+     rewrite ^ /welcome redirect;
+     #return 301 https://$host/welcome
     }
   }
 
