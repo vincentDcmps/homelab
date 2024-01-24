@@ -129,6 +129,7 @@ job "openldap" {
           "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`ldap.ducamps.eu`)",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=ldap.ducamps.eu",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
         ]
       }
       config {
