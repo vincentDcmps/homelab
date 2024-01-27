@@ -1,5 +1,5 @@
 job "dockermailserver" {
-  datacenters = ["hetzner"]
+  datacenters = ["homelab"]
   priority    = 90
   type        = "service"
   meta {
@@ -133,7 +133,7 @@ job "dockermailserver" {
       env {
         OVERRIDE_HOSTNAME = "mail.ducamps.eu"
         DMS_VMAIL_UID = 1000000
-        DMS_VMAIL_GID = 100
+        DMS_VMAIL_GID = 984
         SSL_TYPE= "letsencrypt"
         LOG_LEVEL="info"
         POSTMASTER_ADDRESS="vincent@ducamps.eu"
