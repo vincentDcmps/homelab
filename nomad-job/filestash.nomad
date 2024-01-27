@@ -1,6 +1,6 @@
 
 job "filestash" {
-  datacenters = ["hetzner"]
+  datacenters = ["homelab"]
   priority    = 50
   type        = "service"
   meta {
