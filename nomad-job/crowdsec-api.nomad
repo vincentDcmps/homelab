@@ -39,7 +39,7 @@ job "crowdsec-api" {
         ports = ["http", "metric"]
         volumes = [
           "/mnt/diskstation/nomad/crowdsec/db:/var/lib/crowdsec/data",
-          "/mnt/diskstation/nomad/crowdsec/data:/etc/crowdsec_data",
+          "/mnt/diskstation/nomad/crowdsec/data:/etc/crowdsec",
         ]
 
       }
