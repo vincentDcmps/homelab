@@ -1,10 +1,12 @@
 ---
 ansible_host: 10.0.0.1
-
+#ansible_host: 135.181.150.203
 wireguard_address: "10.0.0.1/24"
 wireguard_endpoint: "135.181.150.203"
 wireguard_persistent_keepalive: "20"
-wireguard_allowed_ips: "10.0.0.1/32,10.0.0.3/32,10.0.0.5/32"
+wireguard_byhost_allowed_ips:
+  gerard: 10.0.0.1,10.0.0.3,10.0.0.5
+wireguard_allowed_ips: "0.0.0.0/0"
 
 wireguard_postup:
   - iptables -A FORWARD -o %i -j ACCEPT
