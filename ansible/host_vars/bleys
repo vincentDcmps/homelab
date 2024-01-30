@@ -1,6 +1,10 @@
 ---
 ansible_host: "192.168.1.42"
 ansible_python_interpreter: "/usr/bin/python3"
+default_interface: "enp2s0"
+consul_iface: "{{ default_interface}}"
+vault_iface:  "{{ default_interface}}"
+
 wireguard_address: "10.0.0.7/24"
 wireguard_byhost_allowed_ips:
   merlin: 10.0.0.7,192.168.1.42,192.168.1.0/24
@@ -11,13 +15,13 @@ wireguard_endpoint: ""
 wireguard_postup:
   - iptables -A FORWARD -i wg0 -j ACCEPT
   - iptables -A FORWARD -o wg0 -j ACCEPT
-  - iptables -t nat -A POSTROUTING -o enp2s0 -j MASQUERADE
+  - iptables -t nat -A POSTROUTING -o {{default_interface}} -j MASQUERADE
   - sysctl -w net.ipv4.ip_forward=1
 
 wireguard_postdown:
   - iptables -D FORWARD -i wg0 -j ACCEPT
   - iptables -D FORWARD -o wg0 -j ACCEPT
-  - iptables -t nat -D POSTROUTING -o enp2s0 -j MASQUERADE
+  - iptables -t nat -D POSTROUTING -o {default_interface} -j MASQUERADE
   - sysctl -w net.ipv4.ip_forward=0
 
 partition_table:

@@ -1,4 +1,8 @@
 ---
+default_interface: "enp2s0"
+consul_iface: "{{ default_interface}}"
+vault_iface: "{{ default_interface}}"
+
 wireguard_address: "10.0.0.2/24"
 wireguard_byhost_allowed_ips:
   merlin: 10.0.0.2,192.168.1.40
@@ -9,12 +13,12 @@ wireguard_endpoint: ""
 wireguard_postup:
   - iptables -A FORWARD -i wg0 -j ACCEPT
   - iptables -A FORWARD -o wg0 -j ACCEPT
-  - iptables -t nat -A POSTROUTING -o enp2s0 -j MASQUERADE
+  - iptables -t nat -A POSTROUTING -o {{ default_interface }} -j MASQUERADE
 
 wireguard_postdown:
   - iptables -D FORWARD -i wg0 -j ACCEPT
   - iptables -D FORWARD -o wg0 -j ACCEPT
-  - iptables -t nat -D POSTROUTING -o enp2s0 -j MASQUERADE
+  - iptables -t nat -D POSTROUTING -o {{ default_interface }} -j MASQUERADE
 
 partition_table:
   - device: "/dev/sda"
