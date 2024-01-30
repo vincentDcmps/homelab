@@ -1,24 +1,23 @@
 ---
-ansible_host: 10.0.0.1
-#ansible_host: 135.181.150.203
+#ansible_host: 10.0.0.1
+ansible_host: 135.181.150.203
+default_interface: "eth0"
 wireguard_address: "10.0.0.1/24"
 wireguard_endpoint: "135.181.150.203"
 wireguard_persistent_keepalive: "20"
-wireguard_byhost_allowed_ips:
-  gerard: 10.0.0.1,10.0.0.3,10.0.0.5
-wireguard_allowed_ips: "0.0.0.0/0"
+wireguard_allowed_ips: 10.0.0.1
 
 wireguard_postup:
   - iptables -A FORWARD -o %i -j ACCEPT
   - iptables -A FORWARD -i %i -j ACCEPT
-  - iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+  - iptables -t nat -A POSTROUTING -o {{ default_interface }} -j MASQUERADE
   - sysctl -w net.ipv4.ip_forward=1
   - resolvectl dns %i 192.168.1.4 192.168.1.41; resolvectl domain %i '~ducamps.win' '~ducamps.eu' '~{{ consul_domain }}'
 
 wireguard_postdown:
   - iptables -D FORWARD -i %i -j ACCEPT
   - iptables -D FORWARD -o %i -j ACCEPT
-  - iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+  - iptables -t nat -D POSTROUTING -o {{ default_interface }} -j MASQUERADE
   - sysctl -w net.ipv4.ip_forward=0
 
 wireguard_unmanaged_peers:

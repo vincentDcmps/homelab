@@ -45,5 +45,5 @@ variable localEndpoint{
 }
 variable cloudEndpoint{
   type= string
-  default= "135.181.150.203"
+  default= "65.21.2.14"
 }
