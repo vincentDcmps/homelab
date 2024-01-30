@@ -34,7 +34,7 @@ set -euo pipefail
 echo 'Server = ${ARCH_MIRROR}/\$repo/os/\$arch' > /etc/pacman.d/mirrorlist
 pacman-key --init
 pacman-key --populate archlinux
-pacstrap  /mnt base linux grub nano btrfs-progs openssh curl jq python-yaml $EXTRA_PACKAGES
+pacstrap  /mnt base linux grub nano btrfs-progs openssh curl jq python-yaml systemd-resolvconf  $EXTRA_PACKAGES
 
 # fstab
 genfstab -U /mnt > /mnt/etc/fstab
@@ -53,7 +53,9 @@ hwclock --systohc
 # locale
 echo 'KEYMAP=${KEYMAP}' > /etc/vconsole.conf
 echo '${LOCALE} UTF-8' > /etc/locale.gen
-echo 'LANG=${LOCALE}' > /etc/locale.conf
+if [ "$LOCALE" != "en_US.UTF-8" ]; then
+  echo 'en_US.UTF-8 UTF8' >> /etc/locale.gen
+fi
 locale-gen
 
 # network
@@ -79,10 +81,15 @@ done
 # misc
 systemctl set-default multi-user.target
 usermod -L root
+useradd -m -s /bin/bash ansible
+mkdir /home/ansible/.ssh
+echo 'ansible ALL = (ALL) NOPASSWD:ALL' > /etc/sudoers.d/ansible
+
 echo 'archlinux' > /etc/hostname
 
 EOF
 
+ln -sf ../run/systemd/resolve/stub-resolv.conf /mnt/etc/resolv.conf
 # clean up
 rm /mnt/root/.bash_history
 rm -r /mnt/var/cache/*

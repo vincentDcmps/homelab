@@ -1,6 +1,6 @@
 variable "extra-packages" {
   type    = list(string)
-  default = []
+  default = ["python","sudo","inetutils","zsh"]
 }
 
 variable "hcloud-servertype" {
