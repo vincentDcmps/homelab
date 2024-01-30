@@ -42,8 +42,8 @@ job "www" {
         ]
         volumes = [
           "local/nginx.conf:/etc/nginx/nginx.conf",
-          "/srv/http/welcome:/usr/share/nginx/html/welcome",
-          "/mnt/diskstation/nomad/archiso:/usr/share/nginx/html/archiso"
+          "/srv/http/:/usr/share/nginx/html/",
+          "/mnt/diskstation/nomad/archiso:/usr/share/nginx/archiso"
         ]
 
       }
@@ -73,6 +73,10 @@ http {
     location =/ {
      rewrite ^ /welcome redirect;
      #return 301 https://$host/welcome
+    }
+    location /archiso {
+      alias /usr/share/nginx/archiso/;
+
     }
   }
 
