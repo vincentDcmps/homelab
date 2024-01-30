@@ -5,10 +5,15 @@
     - role: ansible-hashicorp-vault
       become: true
   post_tasks:
+    - name: Stat root file
+      ansible.builtin.stat:
+        path: "{{ vault_unseal_keys_dir_output }}/rootkey"
+      register: rootkey_exist
     - name: Reading root contents
       ansible.builtin.command: cat "{{ vault_unseal_keys_dir_output }}/rootkey"
       register: root_token
       delegate_to: localhost
+      when: rootkey_exist.stat.exists
       changed_when: false
     - name: debug
       ansible.builtin.debug:
@@ -20,7 +25,7 @@
         period: 72h
         no_parent: true
         token: "{{ root_token.stdout }}"
-        url: http://{{ ansible_default_ipv4.address }}:8200
+        url: "{{ vault_api_addr }}"
         retries: 4
       run_once: true
       delegate_to: localhost
