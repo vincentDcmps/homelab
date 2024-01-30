@@ -42,7 +42,8 @@ job "www" {
         ]
         volumes = [
           "local/nginx.conf:/etc/nginx/nginx.conf",
-          "/srv/http:/usr/share/nginx/html"
+          "/srv/http/welcome:/usr/share/nginx/html/welcome",
+          "/mnt/diskstation/nomad/archiso:/usr/share/nginx/html/archiso"
         ]
 
       }
