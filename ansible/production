@@ -22,7 +22,7 @@ bleys
 production
 
 [NAS]
-nas
+#nas
 
 [cluster]
 oscar
@@ -49,3 +49,5 @@ oscar
 merlin
 gerard
 bleys
+
+[staging]
