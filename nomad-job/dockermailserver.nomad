@@ -169,7 +169,7 @@ submissions/inet/smtpd_upstream_proxy_protocol=haproxy
       }
       template {
         data        = <<EOH
-haproxy_trusted_networks = 10.0.0.0/24, 127.0.0.0/8, 172.17.0.1
+haproxy_trusted_networks = 10.0.0.0/24, 127.0.0.0/8, 172.17.0.1, 192.168.1.0/24
 haproxy_timeout = 3 secs
 service imap-login {
     inet_listener imaps {
