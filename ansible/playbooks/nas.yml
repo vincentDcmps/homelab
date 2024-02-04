@@ -6,6 +6,13 @@
   vars:
   # certbot_force: true
   pre_tasks:
+    - name: Ensure base NFS directory exist
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+      loop: "{{ nfs_bind_source }}"
+      become: true
+        
     - name: Bind NFS export
       ansible.posix.mount:
         path: "{{ nfs_bind_target }}/{{ item.split('/')[-1] }}"
