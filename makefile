@@ -10,12 +10,14 @@ vault-dev:
 		./vault/standalone_vault.sh $(FILE);\
 	fi
 
-create-dev:
+vagranup:
 	vagrant up
-	make -C ansible deploy_staging
 
-create-dev-base:
-	vagrant up
+create-dev: vagranup DNS-stagging
+	make -C ansible deploy_staging
+	make -C terraform deploy_vault
+
+create-dev-base: vagranup DNS-stagging
 	make -C ansible deploy_staging_base
 
 
@@ -24,3 +26,11 @@ destroy-dev:
 
 serve:
 	mkdocs serve
+
+DNS-stagging: 
+	 $(eval dns := $(shell dig oscar-dev.ducamps-dev.eu +short))
+	 sudo  resolvectl dns virbr2 "$(dns)";sudo resolvectl domain virbr2 "~consul"
+
+
+DNS-production:
+	 sudo  resolvectl dns virbr2 "";sudo resolvectl domain virbr2 "" 
