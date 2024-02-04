@@ -1,4 +1,8 @@
 ---
+
+ansible_host: merlin-dev.ducamps-dev.eu
+default_interface: eth0
+vault_iface: "{{ default_interface}}"
 wireguard_address: "10.0.1.4/24"
 wireguard_endpoint: "{{ ansible_default_ipv4.address }}"
 wireguard_persistent_keepalive: "30"
@@ -6,12 +10,12 @@ wireguard_persistent_keepalive: "30"
 wireguard_postup:
   - iptables -A FORWARD -o %i -j ACCEPT
   - iptables -A FORWARD -i %i -j ACCEPT
-  - iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+  - iptables -t nat -A POSTROUTING -o {{ default_interface }} -j MASQUERADE
 
 wireguard_postdown:
   - iptables -D FORWARD -i %i -j ACCEPT
   - iptables -D FORWARD -o %i -j ACCEPT
-  - iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+  - iptables -t nat -D POSTROUTING -o {{ default_interface }} -j MASQUERADE
 
 wireguard_unmanaged_peers:
   phone:

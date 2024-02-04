@@ -1,4 +1,8 @@
 ---
+
+default_interface: eth0
+vault_iface: "{{ default_interface}}"
+ansible_host: gerard-dev.ducamps-dev.eu
 wireguard_address: "10.0.1.6/24"
 perrsistent_keepalive: "20"
 wireguard_endpoint: ""
@@ -6,10 +10,10 @@ wireguard_endpoint: ""
 wireguard_postup:
   - iptables -A FORWARD -i wg0 -j ACCEPT
   - iptables -A FORWARD -o wg0 -j ACCEPT
-  - iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+  - iptables -t nat -A POSTROUTING -o {{ default_interface }} -j MASQUERADE
 
 wireguard_postdown:
   - iptables -D FORWARD -i wg0 -j ACCEPT
   - iptables -D FORWARD -o wg0 -j ACCEPT
-  - iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+  - iptables -t nat -D POSTROUTING -o {{ default_interface}} -j MASQUERADE
 
