@@ -32,7 +32,7 @@ Vagrant.configure('2') do |config|
 
   config.vm.define "merlin-dev" do |c|
     # Box definition
-    c.vm.box = "generic/rocky9"
+    c.vm.box = "archlinux/archlinux"
     # Config options
     c.vm.synced_folder ".", "/vagrant", disabled: true
     c.ssh.insert_key = true
