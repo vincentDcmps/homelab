@@ -7,14 +7,6 @@ systemd_mounts:
             - " "
         automount: "{{ env_automount }}"
         enabled: "{%if inventory_hostname in groups['staging'] %} false {% else %} true {% endif %}"
-    diskstation_home:
-        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/homes/admin"
-        mount: /mnt/diskstation/home
-        type: nfs
-        options:
-            - " "
-        automount: "{{ env_automount }}"
-        enabled: true
     diskstation_photo:
         share: "{{ nas_ip }}:{{ env_default_nfs_path }}/photo"
         mount: /mnt/diskstation/photo

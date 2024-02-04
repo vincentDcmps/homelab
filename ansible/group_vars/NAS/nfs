@@ -6,6 +6,7 @@ nfs_bind_source:
     - /var/local/volume1/music
     - /var/local/volume1/media
     - /var/local/volume1/photo
+    - /var/local/volume1/homes
     - /var/local/volume1/ebook
 
 
@@ -15,6 +16,7 @@ nfs_exports:
     - "{{ nfs_bind_target }}/music {{nfs_cluster_list}}"
     - "{{ nfs_bind_target }}/media {{nfs_cluster_list}}"
     - "{{ nfs_bind_target }}/photo {{nfs_cluster_list}}"
+    - "{{ nfs_bind_target }}/homes {{nfs_cluster_list}}"
     - "{{ nfs_bind_target }}/ebook {{nfs_cluster_list}}"
 
 
