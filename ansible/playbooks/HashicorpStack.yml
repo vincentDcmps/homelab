@@ -1,4 +1,10 @@
 ---
+- name: Consul install
+  hosts: all
+  roles:
+    - role: ansible-consul
+      become: true
+
 - name: Vault install
   hosts: homelab
   roles:
@@ -9,6 +15,7 @@
       ansible.builtin.stat:
         path: "{{ vault_unseal_keys_dir_output }}/rootkey"
       register: rootkey_exist
+      delegate_to: localhost
     - name: Reading root contents
       ansible.builtin.command: cat "{{ vault_unseal_keys_dir_output }}/rootkey"
       register: root_token
@@ -37,13 +44,11 @@
         nomad_vault_token: "{{ nomad_token_data.login.auth.client_token }}"
       when: nomad_token_data.login is defined
 
-- name: Hashicorp stack
+- name: nomad
   hosts: all
   vars:
     unseal_keys_dir_output: ~/vaultunseal
   roles:
-    - role: ansible-consul
-      become: true
     - role: ansible-nomad
       become: true
     - role: docker
