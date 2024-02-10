@@ -15,7 +15,7 @@ vagranup:
 
 create-dev: vagranup DNS-stagging
 	make -C ansible deploy_staging
-	make -C terraform deploy_vault
+	make -C terraform deploy_vault env=stagging
 
 create-dev-base: vagranup DNS-stagging
 	make -C ansible deploy_staging_base
