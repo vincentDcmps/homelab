@@ -73,6 +73,8 @@ gpgsql-user=pdns-auth
 {{ with secret "secrets/data/database/pdns"}}
 gpgsql-password={{ .Data.data.pdnsauth }}
 {{ end }}
+resolver=192.168.1.6
+expand-alias=yes
 include-dir=/etc/powerdns/pdns.d
         EOH
       }

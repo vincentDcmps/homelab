@@ -2,7 +2,7 @@ resource "powerdns_record" "Cname" {
   for_each = toset(var.cnameList)
     zone    = powerdns_zone.ducampseu.name
     name    = "${each.key}.${powerdns_zone.ducampseu.name}"
-    type    = "CNAME"
+    type    = "ALIAS"
     ttl     = 1700
     records = [var.localEndpoint]
 }
