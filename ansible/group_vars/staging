@@ -16,7 +16,7 @@ hosts_entries:
 
 env_default_nfs_path: ""
 env_media_nfs_path: "{{ env_default_nfs_path }}"
-env_automount: false
+env_automount: true
 nas_ip: "nfs.service.consul"
 
 
