@@ -129,6 +129,7 @@ shadowLastChange: 19213
 shadowMax: 99999
 shadowMin: 0
 shadowWarning: 7
+userPassword: {CRYPT}$6$M9qb6CQc$kUKBfyUL7RJwrKWI64HJd2wfJ0Wj19bKEYnyhU6bgVqBnapWQztlvUitgBP5d3nAJVb3vYaxJdFbnmxrmjmHb1
 
 dn: uid=supysonicServiceAccount,ou=users,dc=ducamps,dc=eu
 objectClass: extensibleObject
