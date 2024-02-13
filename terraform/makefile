@@ -2,9 +2,9 @@ env := production
 
 deploy_vault:
 ifneq (,$(wildcard ~/vaultUnseal/$(env)/rootkey))
-	VAULT_TOKEN=$(shell cat ~/vaultUnseal/$(env)/rootkey)  terraform -chdir=vault apply
+	VAULT_TOKEN=$(shell cat ~/vaultUnseal/$(env)/rootkey)  terraform -chdir=vault apply  -auto-approve
 else 
-	terraform -chdir=vault apply
+	terraform -chdir=vault apply  -auto-approve
 endif
 
 deploy_dns:
