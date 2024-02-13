@@ -1,4 +1,5 @@
 ---
+roles:
 - src: ssh://git@git.ducamps.eu:2222/ansible-roles/ansible-arch-provissionning.git
   scm: git
 - src: ssh://git@git.ducamps.eu:2222/ansible-roles/ansible-role-postgresql.git
@@ -40,5 +41,5 @@
 - src: git@github.com:vincentDcmps/ansible-role-nfs.git
   scm: git
 - src: https://github.com/PowerDNS/pdns_recursor-ansible.git
-- src: ssh://git@git.ducamps.eu:2222/ansible-roles/ansible-role-samba.git
-  scm: git
+collections:
+  - name: vladgh.samba

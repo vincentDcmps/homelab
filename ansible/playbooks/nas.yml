@@ -34,4 +34,5 @@
       become: true
     - role: ansible-role-vsftpd
       become: true
-    #- samba
+    - role: vladgh.samba.server
+      become: true
