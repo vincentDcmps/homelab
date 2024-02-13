@@ -1,5 +1,5 @@
 domain:
-  name: ducamps-dev.eu
+  name: ducamps.dev
 #systemd_mounts: []
 #systemd_mounts_enabled: []
 consul_bootstrap_expect: 2

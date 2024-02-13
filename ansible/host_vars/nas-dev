@@ -1,5 +1,5 @@
 ---
-ansible_host: nas-dev.ducamps-dev.eu
+ansible_host: nas-dev.lan.ducamps.dev
 default_interface: eth0
 vault_iface: "{{ default_interface}}"
 wireguard_address: "10.0.1.8/24"
