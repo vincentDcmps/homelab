@@ -82,6 +82,16 @@ job "openldap" {
         LDAP_TLS_CA_FILE = "${NOMAD_ALLOC_DIR}/data/ca.pem"
 
       }
+
+      template {
+        data = <<EOH
+          {{ with secret "secrets/data/nomad/ldap"}}
+          LDAP_ADMIN_PASSWORD="{{ .Data.data.admin}}"
+          {{end}}
+        EOH
+        env=true
+        destination= "secrets/env"
+      }
       #memberOf issue
       #https://github.com/bitnami/containers/issues/28335
       # https://tylersguides.com/guides/openldap-memberof-overlay
