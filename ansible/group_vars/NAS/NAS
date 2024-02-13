@@ -1,0 +1,3 @@
+NAS_nomad_folder:
+  - name: openldap
+    owner: 1001
