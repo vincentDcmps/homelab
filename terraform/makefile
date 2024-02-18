@@ -8,7 +8,7 @@ else
 endif
 
 deploy_dns:
-	TF_VAR_powerDnsApiKey=$(shell vault kv get -field=API_KEY secrets/nomad/pdns) TF_VAR_hcloud_token=$(vault kv get -field=hcloud_token secrets/hetzner) terraform -chdir dns apply
+	TF_VAR_powerDnsApiKey=$(shell vault kv get -field=API_KEY secrets/nomad/pdns) TF_VAR_hetznerApiKey=$(shell vault kv get -field=hdns_token secrets/hetzner) terraform -chdir=dns apply
 
 deploy_cloud:
 	TF_VAR_hetznerApiKey=$(shell vault kv get -field=hdns_token secrets/hetzner)  terraform -chdir=cloud apply
