@@ -3,7 +3,7 @@ resource "powerdns_record" "Cname" {
     zone    = powerdns_zone.ducampseu.name
     name    = "${each.key}.${powerdns_zone.ducampseu.name}"
     type    = "ALIAS"
-    ttl     = 1700
+    ttl     = 600
     records = [var.localEndpoint]
 }
 
