@@ -24,7 +24,7 @@ systemd_mounts:
         automount: "{{ env_automount }}"
         enabled: true
     diskstation_media:
-        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/media"
+        share: "{{ nas_ip }}:{{ env_media_nfs_path }}/media"
         mount: /mnt/diskstation/media
         type: nfs
         options:

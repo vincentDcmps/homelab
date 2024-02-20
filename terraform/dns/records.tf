@@ -106,6 +106,14 @@ resource "powerdns_record" "gerard" {
     records = ["192.168.1.41"]
 }
 
+resource "powerdns_record" "oberon" {
+      zone= powerdns_zone.landucampseu.name
+      type= "A"
+      name= "oberon.lan.${powerdns_zone.ducampseu.name}"
+      ttl= 1700
+      records = ["192.168.1.43"]
+}
+
 resource "powerdns_record" "diskstation" {
       zone= powerdns_zone.landucampseu.name
       type= "A"

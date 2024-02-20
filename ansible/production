@@ -1,8 +1,10 @@
 [DNS]
 gerard
+oberon
 
 [dhcp]
 gerard
+oberon
 
 [database_active]
 bleys
@@ -22,7 +24,7 @@ bleys
 production
 
 [NAS]
-#nas
+oberon
 
 [cluster]
 oscar
