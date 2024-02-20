@@ -4,7 +4,7 @@ ansible_python_interpreter: "/usr/bin/python3"
 default_interface: "enp2s0"
 consul_iface: "{{ default_interface}}"
 vault_iface:  "{{ default_interface}}"
-
+nfs_iface:  "{{ default_interface}}"
 wireguard_address: "10.0.0.7/24"
 wireguard_byhost_allowed_ips:
   merlin: 10.0.0.7,192.168.1.42,192.168.1.0/24

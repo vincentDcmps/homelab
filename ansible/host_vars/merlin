@@ -2,6 +2,7 @@
 ansible_host: 10.0.0.4
 #ansible_host: 65.21.2.14
 default_interface: "ens3"
+nfs_iface: "wg0"
 wireguard_address: "10.0.0.4/24"
 wireguard_endpoint: "65.21.2.14"
 wireguard_persistent_keepalive: "20"

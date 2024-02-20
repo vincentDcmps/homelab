@@ -1,22 +1,15 @@
-nfs_cluster_list: "{% for server in groups['all']%}{{ hostvars[server]['ansible_default_ipv4']['address'] }}(rw,no_root_squash,async,insecure_locks,sec=sys)  {%endfor%}"
+nfs_cluster_list: "{% for server in groups['all']%} {{hostvars[server]['ansible_' + hostvars[server]['nfs_iface']|default('')].ipv4.address|default(hostvars[server]['ansible_default_ipv4']['address'],true)}}(rw,no_root_squash,async,insecure_locks,sec=sys)  {%endfor%}"
 nfs_consul_service: true
 nfs_bind_target: "/exports"
-nfs_bind_source:
-    - /var/local/volume1/nomad
-    - /var/local/volume1/music
-    - /var/local/volume1/media
-    - /var/local/volume1/photo
-    - /var/local/volume1/homes
-    - /var/local/volume1/ebook
 
 
 nfs_exports:
-    - "{{nfs_bind_target }} *(fsid=0,insecure,no_subtree_check)" 
-    - "{{ nfs_bind_target }}/nomad {{nfs_cluster_list}}"
-    - "{{ nfs_bind_target }}/music {{nfs_cluster_list}}"
-    - "{{ nfs_bind_target }}/media {{nfs_cluster_list}}"
-    - "{{ nfs_bind_target }}/photo {{nfs_cluster_list}}"
-    - "{{ nfs_bind_target }}/homes {{nfs_cluster_list}}"
-    - "{{ nfs_bind_target }}/ebook {{nfs_cluster_list}}"
-
-
+    - "{{ nas_bind_target }} *(fsid=0,insecure,no_subtree_check)" 
+    - "{{ nas_bind_target }}/nomad {{nfs_cluster_list}}"
+    - "{{ nas_bind_target }}/download {{nfs_cluster_list}}"
+    - "{{ nas_bind_target }}/music {{nfs_cluster_list}}"
+#    - "{{ nas_bind_target }}/film {{nfs_cluster_list}}"
+#    - "{{ nas_bind_target }}/serie {{nfs_cluster_list}}"
+    - "{{ nas_bind_target }}/photo {{nfs_cluster_list}}"
+    - "{{ nas_bind_target }}/homes {{nfs_cluster_list}}"
+    - "{{ nas_bind_target }}/ebook {{nfs_cluster_list}}"

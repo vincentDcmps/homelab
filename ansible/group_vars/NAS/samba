@@ -1,21 +1,21 @@
 samba_passdb_backend: tdbsam
 samba_shares_root: /exports
 samba_shares:
-  - name: media
-    comment: "media"
-    write_list: @NAS_media
-    browseable: true
+#  - name: media
+#    comment: "media"
+#    write_list: "@NAS_media"
+#    browseable: true
   - name: ebook
     comment: "ebook"
-    write_list: @NAS_ebook
+    write_list: "@NAS_ebook"
     browseable: true
   - name: music
     comment: "music"
-    write_list: @NAS_music
+    write_list: "@NAS_music"
     browseable: true
   - name: photo
     comment: "photo"
-    write_list: @NAS_photo
+    write_list: "@NAS_photo"
     browseable: true
 
 samba_load_homes: True

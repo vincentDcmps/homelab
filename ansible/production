@@ -37,7 +37,6 @@ NAS
 cluster
 
 [VPS]
-corwin
 merlin
 
 [region:children]
@@ -46,10 +45,10 @@ VPS
 production
 
 [production]
-corwin
 oscar
 merlin
 gerard
 bleys
+oberon
 
 [staging]

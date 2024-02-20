@@ -10,22 +10,22 @@
       ansible.builtin.file:
         path: "{{ item }}"
         state: directory
-      loop: "{{ nfs_bind_source }}"
+      loop: "{{ nas_bind_source }}"
       become: true
         
-    - name: Bind NFS export
+    - name: Bind NAS export
       ansible.posix.mount:
-        path: "{{ nfs_bind_target }}/{{ item.split('/')[-1] }}"
+        path: "{{ nas_bind_target }}/{{ item.split('/')[-1] }}"
         src: "{{ item }}"
         opts: bind
         fstype: none
         state: mounted
-      loop: "{{ nfs_bind_source }}"
+      loop: "{{ nas_bind_source }}"
       become: true
     - name: create nomad folder
-      file:
-        path: "{{ nfs_bind_target}}/nomad/{{item.name}}"
-        owner: "{{item.owner}}"
+      ansible.builtin.file:
+        path: "{{ nas_bind_target }}/nomad/{{ item.name }}"
+        owner: "{{ item.owner }}"
         state: directory
       loop: "{{ NAS_nomad_folder }}"
       become: true
