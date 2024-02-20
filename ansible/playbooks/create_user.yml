@@ -15,7 +15,6 @@
       become: true
       become_user: '{{ user.name }}'
 
----
 - hosts: all
   roles:
     - role: user_config
