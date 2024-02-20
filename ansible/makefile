@@ -5,7 +5,11 @@ requirements:
 deploy_production: 
 	ansible-playbook site.yml -i production -u ansible
 
+deploy_production_wiregard: 
+	ansible-playbook playbooks/wireguard.yml -i production -u ansible
+
 deploy_staging: 
+	ansible-playbook playbooks/wireguard.yml -i staging -u ansible
 	ansible-playbook site.yml -i staging -u ansible
 
 

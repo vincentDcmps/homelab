@@ -1,6 +1,5 @@
 ---
 - import_playbook: playbooks/server.yml
-- import_playbook: playbooks/wireguard.yml
 - import_playbook: playbooks/dhcpd.yml
 - import_playbook: playbooks/dns.yml
 - import_playbook: playbooks/HashicorpStack.yml
