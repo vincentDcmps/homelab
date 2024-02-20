@@ -28,15 +28,21 @@ job "vikunja" {
         port = "api"
         tags = [
             "traefik.enable=true",
-            "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`) && PathPrefix(`/api/v1`, `/dav/`, `/.well-known/`)",
+            "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`)",
             "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
             "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.tls.certresolver=myresolver",
             "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.entrypoints=web,websecure",
+            "homer.enable=true",
+            "homer.name=vikunka",
+            "homer.service=Application",
+            "homer.logo=https://${NOMAD_JOB_NAME}.ducamps.eu/images/icons/apple-touch-icon-180x180.png",
+            "homer.target=_blank",
+            "homer.url=https://${NOMAD_JOB_NAME}.ducamps.eu",
         ]
       }
       config {
-        image = "vikunja/api"
-        ports = ["api"]
+        image = "vikunja/vikunja"
+        ports = ["api","front"]
       }
       env {
         VIKUNJA_DATABASE_HOST = "active.db.service.consul"
@@ -58,33 +64,6 @@ job "vikunja" {
       }
       resources {
         memory = 100
-      }
-    }
-    task "front" {
-      driver = "docker"
-      service {
-        name = "vikunja-front"
-        port = "front"
-        tags = [
-            "traefik.enable=true",
-            "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`)",
-            "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
-            "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.tls.certresolver=myresolver",
-            "traefik.http.routers.${NOMAD_JOB_NAME}-${NOMAD_TASK_NAME}.entrypoints=web,websecure",
-            "homer.enable=true",
-            "homer.name=vikunka",
-            "homer.service=Application",
-            "homer.logo=https://${NOMAD_JOB_NAME}.ducamps.eu/images/icons/apple-touch-icon-180x180.png",
-            "homer.target=_blank",
-            "homer.url=https://${NOMAD_JOB_NAME}.ducamps.eu",
-        ]
-      }
-      config {
-        image = "vikunja/frontend"
-        ports = ["front"]
-      }
-      resources {
-        memory = 20
       }
     }
     
