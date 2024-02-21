@@ -6,7 +6,11 @@ job "pacoloco" {
   meta {
     forcedeploy = "0"
   }
-
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
   group "pacoloco" {
     network {
       mode = "host"

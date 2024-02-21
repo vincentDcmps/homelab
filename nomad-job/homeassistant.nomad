@@ -3,6 +3,11 @@ job "homeassistant" {
   datacenters = ["homelab"]
   priority    = 90
   type        = "service"
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
   meta {
     forcedeploy = "0"
   }

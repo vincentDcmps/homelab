@@ -2,6 +2,11 @@ job "grafana" {
   datacenters = ["homelab"]
   priority    = 50
   type        = "service"
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
   meta {
     forcedeploiement = 2
   }

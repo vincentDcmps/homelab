@@ -9,7 +9,11 @@ job "prometheus" {
   meta{
     force_deploy= 1
   }
-
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
   group "prometheus" {
     count = 1
 

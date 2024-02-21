@@ -9,6 +9,11 @@ job "pihole" {
     attribute = "${attr.cpu.arch}"
     value     = "amd64"
   }
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
   group "pi-hole" {
     network {
       port "dns" {

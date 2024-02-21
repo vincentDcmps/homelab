@@ -5,9 +5,15 @@ job "crowdsec-api" {
   meta {
     forcedeploy = "-1"
   }
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
   vault {
     policies = ["crowdsec"]
   }
+
   group "crowdsec-api" {
     network {
       mode = "host"

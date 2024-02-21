@@ -6,7 +6,11 @@ job "dashboard" {
   meta {
     forcedeploy = "1"
   }
-
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
   group "dashboard" {
     network {
       mode = "host"

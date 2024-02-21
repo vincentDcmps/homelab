@@ -6,7 +6,11 @@ job "loki" {
   meta {
     forcedeploy = "0"
   }
-
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
   group "loki" {
     network {
       mode = "host"

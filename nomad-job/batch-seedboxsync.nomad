@@ -6,7 +6,11 @@ job "batch-seedboxsync" {
   meta {
     forcedeploy = "0"
   }
-
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
   constraint {
     attribute = "${attr.cpu.arch}"
     value     = "amd64"

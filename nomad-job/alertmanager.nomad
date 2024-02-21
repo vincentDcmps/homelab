@@ -8,6 +8,11 @@ job "alertmanager" {
   vault {
     policies = ["alertmanager"]
   }
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
   group "alertmanager" {
     network {
       mode = "host"

@@ -2,12 +2,18 @@ job "jellyfin" {
   datacenters = ["homelab"]
   priority    = 30
   type        = "service"
+
   meta {
     forcedeploy = "1"
   }
   constraint {
     attribute = "${attr.cpu.arch}"
     value     = "amd64"
+  }
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
   }
   group jellyfin-vue {
     network {

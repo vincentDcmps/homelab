@@ -6,7 +6,11 @@ job "vaultwarden" {
   meta {
     forcedeploy = "0"
   }
-
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
   group "vaultwarden" {
     network {
       mode = "host"

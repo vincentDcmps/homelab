@@ -2,7 +2,11 @@ job "traefik-local" {
   datacenters = ["homelab"]
   priority    = 90
   type        = "service"
-
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
   group "traefik-local" {
     network {
       mode = "host"

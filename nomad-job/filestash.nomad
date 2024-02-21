@@ -10,7 +10,11 @@ job "filestash" {
     attribute = "${attr.cpu.arch}"
     value     = "amd64"
   }
-
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
 
   group "filestash" {
     network {
