@@ -1,3 +1,4 @@
 vsftpd_config:
     local_root: "{{ nfs_bind_target }}"
     seccomp_sandbox: False
+    session_support: True
