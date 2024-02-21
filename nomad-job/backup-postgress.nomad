@@ -6,7 +6,11 @@ job "backup-postgress" {
   meta {
     forcedeploy = "0"
   }
-
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
   constraint {
     attribute = "${attr.cpu.arch}"
     value     = "amd64"
@@ -30,7 +34,7 @@ job "backup-postgress" {
       config {
         image = "ducampsv/docker-backup-postgres:latest"
         volumes = [
-          "/mnt/diskstation/backup/postgres:/backup"
+          "/mnt/diskstation/nomad/backup/postgres:/backup"
         ]
       }
       template {

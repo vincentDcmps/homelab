@@ -6,7 +6,11 @@ job "backup-consul" {
   meta {
     forcedeploy = "0"
   }
-
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
   constraint {
     attribute = "${attr.cpu.arch}"
     value     = "amd64"
@@ -24,7 +28,7 @@ job "backup-consul" {
       config {
         image = "ducampsv/docker-consul-backup:latest"
         volumes = [
-          "/mnt/diskstation/backup/consul:/backup"
+          "/mnt/diskstation/nomad/backup/consul:/backup"
         ]
       }
       resources {

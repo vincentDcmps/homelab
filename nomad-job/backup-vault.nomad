@@ -6,7 +6,11 @@ job "backup-vault" {
   meta {
     forcedeploy = "0"
   }
-
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
   constraint {
     attribute = "${attr.cpu.arch}"
     value     = "amd64"
@@ -27,7 +31,7 @@ job "backup-vault" {
       config {
         image = "ducampsv/docker-vault-backup:latest"
         volumes = [
-          "/mnt/diskstation/backup/vault:/backup"
+          "/mnt/diskstation/nomad/backup/vault:/backup"
         ]
       }
       template {
