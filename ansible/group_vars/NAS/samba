@@ -19,4 +19,4 @@ samba_shares:
     browseable: true
 
 samba_load_homes: True
-
+samba_homes_include: samba_homes_include.conf
