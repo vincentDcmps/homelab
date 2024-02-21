@@ -22,10 +22,10 @@ job "borgmatic" {
       config {
         image = "ghcr.io/borgmatic-collective/borgmatic"
         volumes = [
-          "/var/local/volume1:/var/local/volume1",
+          "/exports:/volume1",
           "local/borgmatic.d:/etc/borgmatic.d",
           "secret/id_rsa:/root/.ssh/id_rsa",
-          "/mnt/diskstation/nomad/borgmatic:/root/.cache/borg",
+          "/exports/nomad/borgmatic:/root/.cache/borg",
         ]
 
       }
