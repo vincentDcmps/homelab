@@ -72,7 +72,7 @@ job "torrent" {
       }
       env {
         PUID       = 100001
-        PGID       = 984
+        PGID       = 10
         UMASK      = 002
         WEBUI_PORT = "8080"
       }
