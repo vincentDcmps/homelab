@@ -30,6 +30,7 @@
       loop: "{{ NAS_nomad_folder }}"
       become: true
   roles:
+    - role: ansible-role-nut
     - role: ansible-role-nfs
       become: true
     - role: ansible-role-vsftpd

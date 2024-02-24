@@ -40,6 +40,8 @@ roles:
   scm: git
 - src: git@github.com:vincentDcmps/ansible-role-nfs.git
   scm: git
+- src: git@github.com:vincentDcmps/ansible-role-nut.git
+  scm: git
 - src: https://github.com/PowerDNS/pdns_recursor-ansible.git
 collections:
   - name: vladgh.samba
