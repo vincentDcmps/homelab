@@ -7,7 +7,7 @@ nomad_client_meta:
   - name: "env"
     value: "production"
 vault_unseal_keys_dir_output: "~/vaultUnseal/production"
-env_default_nfs_path: "/volume2"
+env_default_nfs_path: "/exports"
 env_media_nfs_path: "/volume1"
 env_automount: true
-nas_ip: "192.168.1.10"
+nas_ip: "192.168.1.43"

@@ -6,8 +6,8 @@ nas_bind_source:
     - /data/data1/nomad
     - /data/data1/music
     - /data/data1/download
-#    - /data/data2/serie
-#    - /data/data3/film
+    - /data/data2/serie
+    - /data/data3/film
     - /data/data1/photo
     - /data/data1/homes
     - /data/data1/ebook

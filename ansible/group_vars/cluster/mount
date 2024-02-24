@@ -23,14 +23,23 @@ systemd_mounts:
             - " "
         automount: "{{ env_automount }}"
         enabled: true
-    diskstation_media:
-        share: "{{ nas_ip }}:{{ env_media_nfs_path }}/media"
-        mount: /mnt/diskstation/media
+    diskstation_serie:
+        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/serie"
+        mount: /mnt/diskstation/serie
         type: nfs
         options:
             - " "
         automount: "{{ env_automount }}"
         enabled: true
+    diskstation_film:
+        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/film"
+        mount: /mnt/diskstation/film
+        type: nfs
+        options:
+            - " "
+        automount: "{{ env_automount }}"
+        enabled: true
+
     diskstation_ebook:
         share: "{{ nas_ip }}:{{ env_default_nfs_path }}/ebook"
         mount: /mnt/diskstation/ebook
@@ -42,6 +51,14 @@ systemd_mounts:
     diskstation_nomad:
         share: "{{ nas_ip }}:{{ env_default_nfs_path }}/nomad"
         mount: /mnt/diskstation/nomad
+        type: nfs
+        options:
+            - " "
+        automount: "{{ env_automount }}"
+        enabled: true
+    diskstation_download:
+        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/download"
+        mount: /mnt/diskstation/download
         type: nfs
         options:
             - " "

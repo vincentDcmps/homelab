@@ -1,10 +1,15 @@
 samba_passdb_backend: tdbsam
 samba_shares_root: /exports
 samba_shares:
-#  - name: media
-#    comment: "media"
-#    write_list: "@NAS_media"
-#    browseable: true
+  - name: film
+    comment: "film"
+    write_list: "@NAS_film"
+    browseable: true
+  - name: serie
+    comment: "serie"
+    write_list: "@NAS_serie"
+    browseable: true
+
   - name: ebook
     comment: "ebook"
     write_list: "@NAS_ebook"
@@ -17,6 +22,9 @@ samba_shares:
     comment: "photo"
     write_list: "@NAS_photo"
     browseable: true
-
+  - name: download
+    comment: "downlaod"
+    write_list: "@NAS_download"
+    browseable: true
 samba_load_homes: True
 samba_homes_include: samba_homes_include.conf

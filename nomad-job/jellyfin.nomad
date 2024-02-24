@@ -93,8 +93,10 @@ job "jellyfin" {
         volumes = [
           "/mnt/diskstation/nomad/jellyfin/config:/config",
           "/mnt/diskstation/nomad/jellyfin/cache:/cache",
-          "/mnt/diskstation/media/:/media",
-          "/mnt/diskstation/music/:/media2"
+          "/mnt/diskstation/film:/film",
+          "/mnt/diskstation/serie:/serie",
+          "/mnt/diskstation/music:/music",
+          "/mnt/diskstation/download/:/download"
         ]
         devices = [
           {

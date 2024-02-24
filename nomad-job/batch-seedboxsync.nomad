@@ -34,7 +34,7 @@ job "batch-seedboxsync" {
       config {
         image = "ducampsv/rsync:latest"
         volumes = [
-          "/mnt/diskstation/media/download:/media",
+          "/mnt/diskstation/download:/media",
           "local/id_rsa:/home/rsyncuser/.ssh/id_rsa"
         ]
         command = "rsync"

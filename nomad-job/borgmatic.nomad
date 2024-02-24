@@ -22,7 +22,7 @@ job "borgmatic" {
       config {
         image = "ghcr.io/borgmatic-collective/borgmatic"
         volumes = [
-          "/exports:/volume1",
+          "/exports:/exports",
           "local/borgmatic.d:/etc/borgmatic.d",
           "secret/id_rsa:/root/.ssh/id_rsa",
           "/exports/nomad/borgmatic:/root/.cache/borg",
@@ -44,8 +44,8 @@ BORG_PASSPHRASE= {{.Data.data.passphrase}}
       }
       template {
         data= <<EOH
-0 2 * * * PATH=$PATH:/usr/local/bin /usr/local/bin/borgmatic --create --prune -v 1
-0 23 1 * * PATH=$PATH:/usr/local/bin /usr/local/bin/borgmatic  -check
+0 2 * * * PATH=$PATH:/usr/local/bin /usr/local/bin/borgmatic create prune --verbosity 1
+0 23 1 * * PATH=$PATH:/usr/local/bin /usr/local/bin/borgmatic  check
           EOH
         destination = "local/borgmatic.d/crontab.txt"
       }
@@ -55,14 +55,11 @@ location:
     # List of source directories to backup (required). Globs and
     # tildes are expanded. Do not backslash spaces in path names.
     source_directories:
-    - /volume1/CardDav
-    - /volume1/ebook
-    - /volume1/git
-    - /volume1/homes
-    - /volume1/hubert
-    - /volume1/music
-    - /volume1/nomad
-    - /volume1/photo
+    - /exports/ebook
+    - /exports/homes
+    - /exports/music
+    - /exports/nomad
+    - /exports/photo
 
     repositories:
     - u304977@u304977.your-storagebox.de:{{if eq "production"  (env "meta.env") }}backup_hamelab{{else}}backup_homelab_dev{{end}}
@@ -212,6 +209,7 @@ consistency:
       }
       resources {
         memory = 300
+        memory_max = 1000
       }
     }
 
