@@ -33,7 +33,7 @@ job "nut_exporter" {
         ports = ["http"]
       }
       env {
-        NUT_EXPORTER_SERVER= "192.168.1.10"
+        NUT_EXPORTER_SERVER= "192.168.1.43"
         NUT_EXPORTER_VARIABLES = "battery.runtime,battery.charge,input.voltage,output.voltage,output.voltage.nominal,ups.load,ups.status,ups.realpower"  
       }
 

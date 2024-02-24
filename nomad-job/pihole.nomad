@@ -73,7 +73,7 @@ job "pihole" {
       env {
         TZ   = "Europe/Paris"
         DNS1 = "192.168.1.5"
-        DNS2 = "192.168.1.41"
+        DNS2 = "192.168.1.43"
         WEB_PORT      = "${NOMAD_PORT_http}"
 
       }

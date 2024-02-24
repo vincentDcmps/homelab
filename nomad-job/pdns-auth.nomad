@@ -63,7 +63,7 @@ job "pdns-auth" {
         destination = "local/dnsupdate.conf"
         data = <<EOH
 dnsupdate=yes
-allow-dnsupdate-from=192.168.1.41/24
+allow-dnsupdate-from=192.168.1.43/24
 local-address=192.168.1.5
 local-port=53
         EOH
