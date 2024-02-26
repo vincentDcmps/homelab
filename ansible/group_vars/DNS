@@ -18,5 +18,7 @@ pdns_rec_config:
     - "{{ domain.name }}=192.168.1.5"
     - "lan.{{ domain.name }}=192.168.1.5"
     - "1.168.192.in-addr.arpa=192.168.1.5:5300"
-  local-address: "{{ ansible_default_ipv4.address }}"
+                
+  local-address: "{{ hostvars[inventory_hostname]['ansible_'+ default_interface].ipv4.address|default(ansible_default_ipv4.address) }}"  
   dnssec: "off"
+

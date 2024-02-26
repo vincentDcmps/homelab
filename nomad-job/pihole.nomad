@@ -43,19 +43,6 @@ job "pihole" {
         name = "dns"
         port = "dns"
 
-        check {
-          name     = "service: dns dig check"
-          type     = "script"
-          command  = "/usr/bin/dig"
-          args     = ["+short", "@192.168.1.4"]
-          interval = "10s"
-          timeout  = "2s"
-
-          check_restart {
-            limit = 3
-            grace = "60s"
-          }
-        }
       }
       config {
         image = "pihole/pihole:2023.10.0"
@@ -73,7 +60,7 @@ job "pihole" {
       env {
         TZ   = "Europe/Paris"
         DNS1 = "192.168.1.5"
-        DNS2 = "192.168.1.43"
+        DNS2 = "192.168.1.40"
         WEB_PORT      = "${NOMAD_PORT_http}"
 
       }
