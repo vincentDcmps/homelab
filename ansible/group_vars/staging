@@ -15,7 +15,6 @@ hosts_entries:
       name: diskstation.ducamps.eu
 
 env_default_nfs_path: ""
-env_media_nfs_path: "{{ env_default_nfs_path }}"
 env_automount: true
 nas_ip: "nfs.service.consul"
 

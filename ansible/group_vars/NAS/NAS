@@ -2,18 +2,33 @@ NAS_nomad_folder:
   - name: openldap
     owner: 1001
 
-nas_bind_source:
-    - /data/data1/nomad
-    - /data/data1/music
-    - /data/data1/download
-    - /data/data2/serie
-    - /data/data3/film
-    - /data/data1/photo
-    - /data/data1/homes
-    - /data/data1/ebook
-
-
 nas_bind_target: "/exports"
+
+nas_bind_source:
+    - dest: "{{ nas_bind_target }}/nomad"
+      source: /data/data1/nomad
+    - dest: "{{ nas_bind_target }}/music"
+      source: /data/data1/music
+    - dest: "{{ nas_bind_target }}/download"
+      source: /data/data1/download
+    - dest: "{{ nas_bind_target }}/media/serie"
+      source: /data/data2/serie
+    - dest: "{{ nas_bind_target }}/media/film"
+      source: /data/data3/film
+    - dest: "{{ nas_bind_target }}/photo"
+      source: /data/data1/photo
+    - dest: "{{ nas_bind_target }}/homes"
+      source: /data/data1/homes
+    - dest: "{{ nas_bind_target }}/ebook"
+      source: /data/data1/ebook
+    - dest: "{{ nas_bind_target }}/media/download/serie"
+      source: /data/data1/download/serie
+    - dest: "{{ nas_bind_target }}/media/download/film"
+      source: /data/data1/download/film
+    - dest: "{{ nas_bind_target }}/music/download/"
+      source: /data/data1/download/music
+
+
 
 
 

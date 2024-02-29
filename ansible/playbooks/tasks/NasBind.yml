@@ -1,0 +1,13 @@
+- name: Ensure base NFS directory exist
+  ansible.builtin.file:
+    path: "{{ item.dest }}"
+    state: directory
+  become: true
+- name: Bind NAS export
+  ansible.posix.mount:
+    path: "{{ item.dest }}"
+    src: "{{ item.source }}"
+    opts: bind
+    fstype: none
+    state: mounted
+  become: true

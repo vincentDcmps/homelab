@@ -23,17 +23,9 @@ systemd_mounts:
             - " "
         automount: "{{ env_automount }}"
         enabled: true
-    diskstation_serie:
-        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/serie"
+    diskstation_media:
+        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/media"
         mount: /mnt/diskstation/serie
-        type: nfs
-        options:
-            - " "
-        automount: "{{ env_automount }}"
-        enabled: true
-    diskstation_film:
-        share: "{{ nas_ip }}:{{ env_default_nfs_path }}/film"
-        mount: /mnt/diskstation/film
         type: nfs
         options:
             - " "

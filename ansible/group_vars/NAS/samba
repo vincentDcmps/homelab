@@ -1,15 +1,10 @@
 samba_passdb_backend: tdbsam
 samba_shares_root: /exports
 samba_shares:
-  - name: film
-    comment: "film"
-    write_list: "@NAS_film"
+  - name: media
+    comment: "media"
+    write_list: "@NAS_media"
     browseable: true
-  - name: serie
-    comment: "serie"
-    write_list: "@NAS_serie"
-    browseable: true
-
   - name: ebook
     comment: "ebook"
     write_list: "@NAS_ebook"

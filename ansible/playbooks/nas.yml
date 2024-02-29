@@ -6,29 +6,16 @@
   vars:
   # certbot_force: true
   pre_tasks:
-    - name: Ensure base NFS directory exist
-      ansible.builtin.file:
-        path: "{{ item }}"
-        state: directory
+    - name: include task NasBind
+      ansible.builtin.include_tasks:
+        file: tasks/NasBind.yml
       loop: "{{ nas_bind_source }}"
-      become: true
-        
-    - name: Bind NAS export
-      ansible.posix.mount:
-        path: "{{ nas_bind_target }}/{{ item.split('/')[-1] }}"
-        src: "{{ item }}"
-        opts: bind
-        fstype: none
-        state: mounted
-      loop: "{{ nas_bind_source }}"
-      become: true
     - name: create nomad folder
       ansible.builtin.file:
         path: "{{ nas_bind_target }}/nomad/{{ item.name }}"
         owner: "{{ item.owner }}"
         state: directory
       loop: "{{ NAS_nomad_folder }}"
-      become: true
   roles:
     - role: ansible-role-nut
       become: true
