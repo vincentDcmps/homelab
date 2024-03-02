@@ -52,150 +52,143 @@ BORG_PASSPHRASE= {{.Data.data.passphrase}}
       }
       template {
         data= <<EOH
-location:
-    # List of source directories to backup (required). Globs and
-    # tildes are expanded. Do not backslash spaces in path names.
-    source_directories:
-    - /exports/ebook
-    - /exports/homes
-    - /exports/music
-    - /exports/nomad
-    - /exports/photo
+# List of source directories to backup (required). Globs and
+# tildes are expanded. Do not backslash spaces in path names.
+source_directories:
+  - /exports/ebook
+  - /exports/homes
+  - /exports/music
+  - /exports/nomad
+  - /exports/photo
 
-    repositories:
-    - u304977@u304977.your-storagebox.de:{{if eq "production"  (env "meta.env") }}backup_hamelab{{else}}backup_homelab_dev{{end}}
+repositories:
+  - path: ssh://u304977@u304977.your-storagebox.de/./{{if eq "production"  (env "meta.env") }}backup_hamelab{{else}}backup_homelab_dev{{end}}
+    label: {{if eq "production"  (env "meta.env") }}backup_hamelab{{else}}backup_homelab_dev{{end}}
 
-    exclude_patterns:
-        - '*/nomad/jellyfin/cache'
-        - '*/loki/chunks'
-        # - /home/*/.cache
-        # - '*/.vim*.tmp'
-        # - /etc/ssl
-        # - /home/user/path with spaces
+exclude_patterns:
+  - '*/nomad/jellyfin/cache'
+  - '*/loki/chunks'
+match_archives: '*'
+archive_name_format: '{{ env "node.datacenter" }}-{now:%Y-%m-%dT%H:%M:%S.%f}'
+extra_borg_options:
+  # Extra command-line options to pass to "borg init".
+  # init: --extra-option
 
-storage:
-    extra_borg_options:
-        # Extra command-line options to pass to "borg init".
-        # init: --extra-option
+  #   Extra command-line options to pass to "borg prune".
+  # prune: --extra-option
 
-        # Extra command-line options to pass to "borg prune".
-        # prune: --extra-option
+  # Extra command-line options to pass to "borg compact".
+  # compact: --extra-option
 
-        # Extra command-line options to pass to "borg compact".
-        # compact: --extra-option
+  # Extra command-line options to pass to "borg create".
+  create: --progress --stats
 
-        # Extra command-line options to pass to "borg create".
-        create: --progress --stats
+  # Extra command-line options to pass to "borg check".
+  # check: --extra-option
 
-        # Extra command-line options to pass to "borg check".
-        # check: --extra-option
+# Keep all archives within this time interval.
+# keep_within: 3H
 
-retention:
-    # Keep all archives within this time interval.
-    # keep_within: 3H
+# Number of secondly archives to keep.
+# keep_secondly: 60
 
-    # Number of secondly archives to keep.
-    # keep_secondly: 60
+# Number of minutely archives to keep.
+# keep_minutely: 60
 
-    # Number of minutely archives to keep.
-    # keep_minutely: 60
+# Number of hourly archives to keep.
+# keep_hourly: 24
 
-    # Number of hourly archives to keep.
-    # keep_hourly: 24
+# Number of daily archives to keep.
+keep_daily: 7
 
-    # Number of daily archives to keep.
-    keep_daily: 7
+# Number of weekly archives to keep.
+keep_weekly: 4
 
-    # Number of weekly archives to keep.
-    keep_weekly: 4
+# Number of monthly archives to keep.
+# keep_monthly: 6
 
-    # Number of monthly archives to keep.
-    # keep_monthly: 6
+# Number of yearly archives to keep.
+# keep_yearly: 1
 
-    # Number of yearly archives to keep.
-    # keep_yearly: 1
-
-consistency:
-    checks:
-    - repository
-        # - archives
-    # check_repositories:
-        # - user@backupserver:sourcehostname.borg
-    # check_last: 3
+checks:
+  - name: repository
+      # - archives
+  # check_repositories:
+      # - user@backupserver:sourcehostname.borg
+  # check_last: 3
 # output:
-    # color: false
+  # color: false
 
-# hooks:
-    # List of one or more shell commands or scripts to execute
-    # before creating a backup, run once per configuration file.
-    # before_backup:
-        # - echo "Starting a backup."
+  # List of one or more shell commands or scripts to execute
+  # before creating a backup, run once per configuration file.
+  # before_backup:
+  # - echo "Starting a backup."
 
-    # List of one or more shell commands or scripts to execute
-    # before pruning, run once per configuration file.
-    # before_prune:
-        # - echo "Starting pruning."
+  # List of one or more shell commands or scripts to execute
+  # before pruning, run once per configuration file.
+  # before_prune:
+  # - echo "Starting pruning."
 
-    # List of one or more shell commands or scripts to execute
-    # before compaction, run once per configuration file.
-    # before_compact:
-        # - echo "Starting compaction."
+  # List of one or more shell commands or scripts to execute
+  # before compaction, run once per configuration file.
+  # before_compact:
+  # - echo "Starting compaction."
 
-    # List of one or more shell commands or scripts to execute
-    # before consistency checks, run once per configuration file.
-    # before_check:
-        # - echo "Starting checks."
+  # List of one or more shell commands or scripts to execute
+  # before consistency checks, run once per configuration file.
+  # before_check:
+  # - echo "Starting checks."
 
-    # List of one or more shell commands or scripts to execute
-    # before extracting a backup, run once per configuration file.
-    # before_extract:
-        # - echo "Starting extracting."
+  # List of one or more shell commands or scripts to execute
+  # before extracting a backup, run once per configuration file.
+  # before_extract:
+  # - echo "Starting extracting."
 
-    # List of one or more shell commands or scripts to execute
-    # after creating a backup, run once per configuration file.
-    # after_backup:
-        # - echo "Finished a backup."
+  # List of one or more shell commands or scripts to execute
+  # after creating a backup, run once per configuration file.
+  # after_backup:
+  # - echo "Finished a backup."
 
-    # List of one or more shell commands or scripts to execute
-    # after compaction, run once per configuration file.
-    # after_compact:
-        # - echo "Finished compaction."
+  # List of one or more shell commands or scripts to execute
+  # after compaction, run once per configuration file.
+  # after_compact:
+  # - echo "Finished compaction."
 
-    # List of one or more shell commands or scripts to execute
-    # after pruning, run once per configuration file.
+  # List of one or more shell commands or scripts to execute
+  # after pruning, run once per configuration file.
     # after_prune:
-        # - echo "Finished pruning."
+    # - echo "Finished pruning."
 
     # List of one or more shell commands or scripts to execute
     # after consistency checks, run once per configuration file.
     # after_check:
-        # - echo "Finished checks."
+    # - echo "Finished checks."
 
     # List of one or more shell commands or scripts to execute
     # after extracting a backup, run once per configuration file.
     # after_extract:
-        # - echo "Finished extracting."
+    # - echo "Finished extracting."
 
     # List of one or more shell commands or scripts to execute
     # when an exception occurs during a "prune", "compact",
     # "create", or "check" action or an associated before/after
     # hook.
     # on_error:
-        # - echo "Error during prune/compact/create/check."
+    # - echo "Error during prune/compact/create/check."
 
     # List of one or more shell commands or scripts to execute
     # before running all actions (if one of them is "create").
     # These are collected from all configuration files and then
     # run once before all of them (prior to all actions).
     # before_everything:
-        # - echo "Starting actions."
+    # - echo "Starting actions."
 
     # List of one or more shell commands or scripts to execute
     # after running all actions (if one of them is "create").
     # These are collected from all configuration files and then
     # run once after all of them (after any action).
     # after_everything:
-        # - echo "Completed actions."
+    # - echo "Completed actions."
           EOH
         destination = "local/borgmatic.d/config.yaml"
       }
