@@ -10,6 +10,12 @@ dn: ou=users,dc=ducamps,dc=eu
 objectClass: organizationalUnit
 ou: users
 
+dn: ou=serviceAccount,ou=users,dc=ducamps,dc=eu
+objectClass: organizationalUnit
+ou: serviceAccount
+
+
+
 dn: ou=groups,dc=ducamps,dc=eu
 objectClass: organizationalUnit
 ou: groups
@@ -106,7 +112,7 @@ shadowMax: 99999
 shadowMin: 0
 shadowWarning: 7
 
-dn: uid=vaultServiceAccount,ou=users,dc=ducamps,dc=eu
+dn: uid=vaultServiceAccount,ou=serviceAccount,ou=users,dc=ducamps,dc=eu
 objectClass: extensibleObject
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
@@ -131,7 +137,7 @@ shadowMin: 0
 shadowWarning: 7
 userPassword: {CRYPT}$6$M9qb6CQc$kUKBfyUL7RJwrKWI64HJd2wfJ0Wj19bKEYnyhU6bgVqBnapWQztlvUitgBP5d3nAJVb3vYaxJdFbnmxrmjmHb1
 
-dn: uid=supysonicServiceAccount,ou=users,dc=ducamps,dc=eu
+dn: uid=supysonicServiceAccount,ou=serviceAccount,ou=users,dc=ducamps,dc=eu
 objectClass: extensibleObject
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
