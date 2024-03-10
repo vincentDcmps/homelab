@@ -1,13 +1,13 @@
 resource "vault_ldap_auth_backend" "ldap" {
     path        = "ldap"
     url         = "ldaps://ldaps.service.consul"
-    userdn      = "dc=ducamps,dc=eu"
+    userdn      = "ou=users,dc=ducamps,dc=eu"
     userattr    = "uid"
     discoverdn  = false
     insecure_tls = true
     groupdn     = "ou=groups,dc=ducamps,dc=eu"
     groupfilter = "(|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))"
-    binddn      = "uid=vaultserviceaccount,ou=users,dc=ducamps,dc=eu"
+    binddn      = "uid=vaultserviceaccount,ou=serviceAccount,ou=users,dc=ducamps,dc=eu"
     groupattr   = "cn"
     bindpass    = var.ldap_bindpass
 }
