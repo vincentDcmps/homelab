@@ -15,6 +15,7 @@
         path: "{{ nas_bind_target }}/nomad/{{ item.name }}"
         owner: "{{ item.owner }}"
         state: directory
+      become: true
       loop: "{{ NAS_nomad_folder }}"
   roles:
     - role: ansible-role-nut
