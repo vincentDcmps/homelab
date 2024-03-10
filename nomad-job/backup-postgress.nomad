@@ -50,6 +50,7 @@ job "backup-postgress" {
       }
       resources {
         memory = 180
+        memory_max = 400
       }
     }
 
