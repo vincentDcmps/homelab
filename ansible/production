@@ -26,7 +26,7 @@ oberon
 
 [cluster]
 oscar
-gerard
+#gerard
 bleys
 
 
@@ -45,7 +45,7 @@ production
 [production]
 oscar
 merlin
-gerard
+#gerard
 bleys
 oberon
 
