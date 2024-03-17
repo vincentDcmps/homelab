@@ -35,7 +35,8 @@ variable cnameList{
     "vikunja",
     "www",
     "mail",
-    "ldap"
+    "ldap",
+    "budget"
   ]
 }
 
