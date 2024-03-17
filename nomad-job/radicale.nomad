@@ -44,7 +44,7 @@ job "radicale" {
         ]
       }
       config {
-        image = "tomsquest/docker-radicale"
+        image = "docker.service.consul:5000/tomsquest/docker-radicale"
         ports = ["http"]
         volumes = [
           "local/config:/config/config",

@@ -67,7 +67,7 @@ job "traefik-ingress" {
       }
 
       config {
-        image = "traefik"
+        image = "docker.service.consul:5000/library/traefik"
         ports = [
           "http",
           "https",

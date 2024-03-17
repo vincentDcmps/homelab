@@ -26,7 +26,7 @@ job "backup-consul" {
     task "consul-backup" {
       driver = "docker"
       config {
-        image = "ducampsv/docker-consul-backup:latest"
+        image = "docker.service.consul:5000/ducampsv/docker-consul-backup:latest"
         volumes = [
           "/mnt/diskstation/nomad/backup/consul:/backup"
         ]

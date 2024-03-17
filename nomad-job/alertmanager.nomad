@@ -45,7 +45,7 @@ job "alertmanager" {
       }
 
       config {
-        image = "prom/alertmanager"
+        image = "docker.service.consul:5000/prom/alertmanager"
         args= ["--log.level=debug", "--config.file=/etc/alertmanager/alertmanager.yml"]
         ports = ["http"]
         volumes = [

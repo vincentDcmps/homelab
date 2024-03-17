@@ -27,7 +27,7 @@ job "ghostfolio" {
     task "redis" {
         driver = "docker"
         config {
-            image = "redis"
+            image = "docker.service.consul:5000/library/redis"
             ports = ["redis"]
         }
         resources {
@@ -51,7 +51,7 @@ job "ghostfolio" {
         ]
       }
       config {
-        image = "ghostfolio/ghostfolio:latest"
+        image = "docker.service.consul:5000/ghostfolio/ghostfolio:latest"
         ports = ["http"]
         volumes = [
         ]

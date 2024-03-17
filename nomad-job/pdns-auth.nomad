@@ -39,7 +39,7 @@ job "pdns-auth" {
 
       }
       config {
-        image = "powerdns/pdns-auth-master:latest"        
+        image = "docker.service.consul:5000/powerdns/pdns-auth-master:latest"        
         network_mode = "host"
         privileged=true
         cap_add= ["net_bind_service"]
@@ -102,7 +102,7 @@ include-dir=/etc/powerdns/pdns.d
     }
     driver = "docker"
     config {
-     image = "powerdnsadmin/pda-legacy:latest"        
+     image = "docker.service.consul:5000/powerdnsadmin/pda-legacy:latest"        
      ports= ["pdnsadmin"]  
       volumes = [
         "/mnt/diskstation/nomad/pdns-admin/:/data/node_module/",
@@ -131,7 +131,7 @@ SQLALCHEMY_DATABASE_URI=postgresql://pdns-admin:{{ .Data.data.pdnsadmin }}@activ
 
     driver = "docker"
     config {
-     image = "powerdns/pdns-recursor-master:latest"        
+     image = "docker.service.consul:5000/powerdns/pdns-recursor-master:latest"        
     network_mode = "host"
       volumes = [
         "local/recursor.conf:/etc/powerdns/recursor.conf",
@@ -172,7 +172,7 @@ local-address=192.168.1.6
         EOH
       }
       config {
-        image        = "osixia/keepalived:2.0.20"
+        image        = "docker.service.consul:5000/osixia/keepalived:2.0.20"
         network_mode = "host"
         cap_add = [
           "NET_ADMIN",

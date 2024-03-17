@@ -32,7 +32,7 @@ job "batch-seedboxsync" {
         name = "seedboxsync"
       }
       config {
-        image = "ducampsv/rsync:latest"
+        image = "docker.service.consul:5000/ducampsv/rsync:latest"
         volumes = [
           "/mnt/diskstation/download:/media",
           "local/id_rsa:/home/rsyncuser/.ssh/id_rsa"

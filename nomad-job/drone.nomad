@@ -45,7 +45,7 @@ job "drone" {
         ]
       }
       config {
-        image = "drone/drone:latest"
+        image = "docker.service.consul:5000/drone/drone:latest"
         ports = [
           "http"
         ]

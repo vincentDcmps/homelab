@@ -57,7 +57,7 @@ job "torrent" {
       user = "root"
       config {
         
-        image = "docker.io/crazymax/rtorrent-rutorrent:edge"
+        image = "docker.service.consul:5000/crazymax/rtorrent-rutorrent:edge"
         privileged = "true"
         ports = [
           "http",

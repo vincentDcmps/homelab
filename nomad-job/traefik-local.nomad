@@ -29,7 +29,7 @@ job "traefik-local" {
         static= 993
       }
       port "admin" {
-        static = 9080
+        static = 8080
       }
     }
     vault {
@@ -62,7 +62,7 @@ job "traefik-local" {
       }
 
       config {
-        image = "traefik"
+        image = "docker.service.consul:5000/library/traefik"
         ports = [
           "http",
           "https",

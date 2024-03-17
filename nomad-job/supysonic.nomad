@@ -53,7 +53,7 @@ job "supysonic" {
     task "supysonic-frontend" {
       driver = "docker"
       config {
-        image = "nginx:alpine"
+        image = "docker.service.consul:5000/library/nginx:alpine"
         ports = [
           "http"
         ]
@@ -96,7 +96,7 @@ http {
     task "supysonic-server" {
       driver = "docker"
       config {
-        image      = "ducampsv/supysonic:latest"
+        image      = "docker.service.consul:5000/ducampsv/supysonic:latest"
         ports      = ["fcgi"]
         force_pull = true
         volumes = [

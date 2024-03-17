@@ -32,7 +32,7 @@ job "backup-postgress" {
         name = "backup-postgress"
       }
       config {
-        image = "ducampsv/docker-backup-postgres:latest"
+        image = "docker.service.consul:5000/ducampsv/docker-backup-postgres:latest"
         volumes = [
           "/mnt/diskstation/nomad/backup/postgres:/backup"
         ]

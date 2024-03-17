@@ -41,7 +41,7 @@ job "lldap" {
     task "lldap" {
       driver = "docker"
       config {
-        image = "ducampsv/lldap:latest"
+        image = "docker.service.consul:5000/ducampsv/lldap:latest"
         ports = ["ldap","http"]
         volumes = [
           "/mnt/diskstation/nomad/lldap:/data"

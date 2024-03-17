@@ -36,7 +36,7 @@ job "www" {
     task "server" {
       driver = "docker"
       config {
-        image = "nginx"
+        image = "docker.service.consul:5000/library/nginx"
         ports = [
           "http"
         ]

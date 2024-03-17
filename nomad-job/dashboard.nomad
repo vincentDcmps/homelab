@@ -33,7 +33,7 @@ job "dashboard" {
         ]
       }
       config {
-        image = "b4bz/homer"
+        image = "docker.service.consul:5000/b4bz/homer"
         ports = ["http"]
         volumes = [
           "/mnt/diskstation/nomad/homer:/www/assets"

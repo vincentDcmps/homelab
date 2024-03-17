@@ -59,7 +59,7 @@ job "git" {
         ]
       }
       config {
-        image = "gitea/gitea:latest"
+        image = "docker.service.consul:5000/gitea/gitea:latest"
         ports = [
           "http",
           "ssh"

@@ -43,7 +43,7 @@ job "jellyfin" {
 
       }
       config {
-        image = "ghcr.io/jellyfin/jellyfin-vue:unstable"
+        image = "ghcr.service.consul:5000/jellyfin/jellyfin-vue:unstable"
         ports = ["http"]
       }
       env {
@@ -88,7 +88,7 @@ job "jellyfin" {
         ]
       }
       config {
-        image = "jellyfin/jellyfin"
+        image = "docker.service.consul:5000/jellyfin/jellyfin"
         ports = ["http"]
         volumes = [
           "/mnt/diskstation/nomad/jellyfin/config:/config",

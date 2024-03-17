@@ -16,7 +16,7 @@ job "drone-runner" {
     task "drone-runner" {
       driver = "docker"
       config {
-        image = "drone/drone-runner-docker:latest"
+        image = "docker.service.consul:5000/drone/drone-runner-docker:latest"
         volumes = [
           "/var/run/docker.sock:/var/run/docker.sock",
         ]

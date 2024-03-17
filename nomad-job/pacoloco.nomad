@@ -32,7 +32,7 @@ job "pacoloco" {
         ]
       }
       config {
-        image = "ducampsv/pacoloco"
+        image = "docker.service.consul:5000/ducampsv/pacoloco"
         ports = ["http"]
         volumes = [
           "/mnt/diskstation/nomad/pacoloco:/var/cache/pacoloco",

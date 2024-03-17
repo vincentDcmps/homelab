@@ -27,7 +27,7 @@ job "crowdsec-agent" {
       }
       driver = "docker"
       config {
-        image = "crowdsecurity/crowdsec"
+        image = "docker.service.consul:5000/crowdsecurity/crowdsec"
         ports = ["metric"]
         volumes = [
           "/var/run/docker.sock:/var/run/docker.sock",

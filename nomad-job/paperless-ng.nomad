@@ -33,7 +33,7 @@ job "paperless-ng" {
     task "redis" {
       driver = "docker"
       config {
-        image = "redis"
+        image = "docker.service.consul:5000/library/redis"
         ports = ["redis"]
       }
       resources {
@@ -67,7 +67,7 @@ job "paperless-ng" {
         }
       }
       config {
-        image = "ghcr.io/paperless-ngx/paperless-ngx"
+        image = "ghcr.service.consul:5000/paperless-ngx/paperless-ngx"
         ports = ["http"]
         volumes = [
           "/mnt/diskstation/nomad/paperless-ng/media:/usr/src/paperless/media",

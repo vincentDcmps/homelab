@@ -35,7 +35,7 @@ job "MQTT" {
         ]
       }
       config {
-        image = "eclipse-mosquitto"
+        image = "docker.service.consul:5000/library/eclipse-mosquitto"
         ports = ["mosquittoWS", "mosquittoMQTT"]
         volumes = [
           "/mnt/diskstation/nomad/mosquitto:/mosquitto/data",

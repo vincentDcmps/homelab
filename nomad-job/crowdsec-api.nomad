@@ -41,7 +41,7 @@ job "crowdsec-api" {
         ]
       }
       config {
-        image = "crowdsecurity/crowdsec"
+        image = "docker.service.consul:5000/crowdsecurity/crowdsec"
         ports = ["http", "metric"]
         volumes = [
           "/mnt/diskstation/nomad/crowdsec/db:/var/lib/crowdsec/data",

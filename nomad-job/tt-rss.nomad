@@ -50,7 +50,7 @@ job "tt-rss" {
     task "ttrss-app" {
       driver = "docker"
       config {
-        image = "cthulhoo/ttrss-fpm-pgsql-static"
+        image = "docker.service.consul:5000/cthulhoo/ttrss-fpm-pgsql-static"
         ports = [
           "appPort"
         ]
@@ -83,7 +83,7 @@ job "tt-rss" {
     task "ttrss-updater" {
       driver = "docker"
       config {
-        image = "cthulhoo/ttrss-fpm-pgsql-static"
+        image = "docker.service.consul:5000/cthulhoo/ttrss-fpm-pgsql-static"
         volumes = [
           "${NOMAD_ALLOC_DIR}/data:/var/www/html"
         ]
@@ -115,7 +115,7 @@ job "tt-rss" {
     task "ttrss-frontend" {
       driver = "docker"
       config {
-        image = "nginx:alpine"
+        image = "docker.service.consul:5000/library/nginx:alpine"
         ports = [
           "http"
         ]

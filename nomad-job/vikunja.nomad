@@ -41,7 +41,7 @@ job "vikunja" {
         ]
       }
       config {
-        image = "vikunja/vikunja"
+        image = "docker.service.consul:5000/vikunja/vikunja"
         ports = ["api","front"]
       }
       env {

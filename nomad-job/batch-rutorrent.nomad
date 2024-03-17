@@ -13,7 +13,7 @@ job "batch-rutorrent" {
     task "cleanForwardFolder" {
       driver= "docker"
       config {
-        image = "alpine"
+        image = "docker.service.consul:5000/library/alpine"
         volumes = [
           "/mnt/hetzner/storagebox/file/forward:/file"
         ]

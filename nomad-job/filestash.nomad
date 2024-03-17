@@ -48,7 +48,7 @@ job "filestash" {
         ]
       }
       config {
-        image = "machines/filestash"
+        image = "docker.service.consul:5000/machines/filestash"
         ports = ["http"]
         volumes = [
           "/mnt/diskstation/nomad/filestash:/app/data/state"

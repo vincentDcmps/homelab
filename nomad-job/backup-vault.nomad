@@ -29,7 +29,7 @@ job "backup-vault" {
     task "backup-vault" {
       driver = "docker"
       config {
-        image = "ducampsv/docker-vault-backup:latest"
+        image = "docker.service.consul:5000/ducampsv/docker-vault-backup:latest"
         volumes = [
           "/mnt/diskstation/nomad/backup/vault:/backup"
         ]

@@ -39,7 +39,7 @@ job "chainetv" {
         ]
       }
       config {
-        image = "ducampsv/chainetv:latest"
+        image = "docker.service.consul:5000/ducampsv/chainetv:latest"
         ports = ["http"]
       }
       resources {

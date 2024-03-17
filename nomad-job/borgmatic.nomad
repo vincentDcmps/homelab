@@ -20,7 +20,7 @@ job "borgmatic" {
     task "borgmatic" {
       driver = "docker"
       config {
-        image = "ghcr.io/borgmatic-collective/borgmatic"
+        image = "ghcr.service.consul:5000/borgmatic-collective/borgmatic"
         volumes = [
           "/exports:/exports",
           "local/borgmatic.d:/etc/borgmatic.d",
