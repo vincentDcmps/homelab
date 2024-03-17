@@ -97,6 +97,7 @@ job "paperless-ng" {
       }
       resources {
         memory = 950
+        memory_max = 1500
         cpu    = 2000
       }
     }
