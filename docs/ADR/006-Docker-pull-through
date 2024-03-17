@@ -1,0 +1,25 @@
+# Docker Pull throught
+
+# 001  architecture consideration
+
+## Status
+
+Accepted
+
+## Context
+
+docker hub get a pull limit if somebody go wrong on our infrastructure we can get quickyly this limit solution will be to implement a pull throught proxy.
+
+
+### Decision
+
+create two container task to create a dockerhub pull through and a ghcr one 
+
+we can add these registry to traefick to have both under the port 5000 but this will add a traefik dependancy on rebuild
+
+so to begin we will use one trafick service on two diferent static port
+
+## Consequences
+
+- this registry need to be start first on cluster creation
+- need to update all job image with local proxy url
