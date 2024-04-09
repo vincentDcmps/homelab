@@ -18,6 +18,19 @@ job "borgmatic" {
 
     }
     task "borgmatic" {
+      action "manual-backup" {
+        command = "/usr/local/bin/borgmatic"
+        args = ["create",
+          "prune",
+          "--verbosity",
+          "1"
+
+        ]
+      }
+      action "list-backup" {
+        command = "/usr/local/bin/borgmatic"
+        args = ["rlist"]
+      }
       driver = "docker"
       config {
         image = "ghcr.service.consul:5000/borgmatic-collective/borgmatic"
