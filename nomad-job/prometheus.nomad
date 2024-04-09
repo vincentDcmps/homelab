@@ -289,6 +289,7 @@ EOH
       }
       resources {
         memory = 350
+        memory_max = 500
       }
     }
   }
