@@ -80,7 +80,13 @@ repositories:
 
 exclude_patterns:
   - '*/nomad/jellyfin/cache'
-  - '*/loki/chunks'
+  - '*nomad/loki/'
+  - '*nomad/prometheus'
+  - '*nomad/registry'
+  - '*nomad/pacoloco'
+  - '*nomad/pihole'
+  - '*nomad/jellyfin'
+
 match_archives: '*'
 archive_name_format: '{{ env "node.datacenter" }}-{now:%Y-%m-%dT%H:%M:%S.%f}'
 extra_borg_options:
