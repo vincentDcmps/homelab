@@ -53,56 +53,48 @@ job "loki" {
 auth_enabled: false
 server:
   http_listen_port: 3100
-ingester:
-  lifecycler:
-    address: 127.0.0.1
-    ring:
-      kvstore:
-        store: inmemory
-      replication_factor: 1
-    final_sleep: 0s
-  # Any chunk not receiving new logs in this time will be flushed
-  chunk_idle_period: 1h
-  # All chunks will be flushed when they hit this age, default is 1h
-  max_chunk_age: 1h
-  # Loki will attempt to build chunks up to 1.5MB, flushing if chunk_idle_period or max_chunk_age is reached first
-  chunk_target_size: 1048576
-  # Must be greater than index read cache TTL if using an index cache (Default index read cache TTL is 5m)
-  chunk_retain_period: 30s
-  max_transfer_retries: 0     # Chunk transfers disabled
+
+common:
+  instance_addr: 127.0.0.1
+  path_prefix: /loki
+  storage:
+    filesystem:
+      chunks_directory: /loki/chunks
+      rules_directory: /loki/rules
+  replication_factor: 1
+  ring:
+    kvstore:
+      store: inmemory
+
 schema_config:
   configs:
-    - from: 2020-10-24
-      store: boltdb-shipper
-      object_store: filesystem
-      schema: v11
+    - from: "2023-04-08" # <---- A date in the future
       index:
-        prefix: index_
         period: 24h
-storage_config:
-  boltdb_shipper:
-    active_index_directory: /loki/boltdb-shipper-active
-    cache_location: /loki/boltdb-shipper-cache
-    cache_ttl: 24h         # Can be increased for faster performance over longer query periods, uses more disk space
-    shared_store: filesystem
-  filesystem:
-    directory: /loki/chunks
+        prefix: index_
+      object_store: filesystem
+      schema: v13
+      store: tsdb
 compactor:
-  working_directory: /tmp/loki/boltdb-shipper-compactor
+  retention_enabled: true
+  working_directory: /loki/tsdb-shipper-compactor
   shared_store: filesystem
 limits_config:
+  retention_period: 90d
   reject_old_samples: true
   reject_old_samples_max_age: 168h
-chunk_store_config:
-  max_look_back_period: 0s
-table_manager:
-  retention_deletes_enabled: false
-  retention_period: 0s
+query_range:
+  results_cache:
+    cache:
+      embedded_cache:
+        enabled: true
+        max_size_mb: 100
 EOH
         destination = "local/loki/local-config.yaml"
       }
       resources {
         memory = 300
+        memory_max = 1000
       }
     }
 
