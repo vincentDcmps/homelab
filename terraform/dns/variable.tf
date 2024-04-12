@@ -17,6 +17,7 @@ variable powerDnsURL {
 variable cnameList{
   type=list
   default= [
+    "auth",
     "arch",
     "dashboard",
     "drone",

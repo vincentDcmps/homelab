@@ -29,7 +29,7 @@ job "traefik-local" {
         static= 993
       }
       port "admin" {
-        static = 8080
+        static = 9080
       }
     }
     vault {
@@ -56,6 +56,13 @@ job "traefik-local" {
           "homer.logo=https://upload.wikimedia.org/wikipedia/commons/1/1b/Traefik.logo.png",
           "homer.target=_blank",
           "homer.url=http://${NOMAD_ADDR_admin}",
+          "traefik.enable=true",
+          "traefik.http.middlewares.authelia.forwardauth.address=https://auth.ducamps.eu/api/authz/forward-auth",
+          "traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email",
+          "traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true",
+          "traefik.http.middlewares.authelia-basic.forwardauth.address=https://auth.ducamps.eu/api/verify?auth=basic",
+          "traefik.http.middlewares.authelia-basic.forwardauth.trustForwardHeader=true",
+          "traefik.http.middlewares.authelia-basic.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email"
 
 
         ]
@@ -103,6 +110,10 @@ job "traefik-local" {
 
           [entryPoints.websecure]
             address = ":443"
+            [entryPoints.websecure.forwardedHeaders]
+              trustedIPs = ["127.0.0.1/32", "192.168.0.0/24" ,"10.0.0.0/8","172.16.0.0/12"]
+            [entryPoints.websecure.proxyProtocol] 
+              trustedIPs = ["127.0.0.1/32", "192.168.0.0/24" ,"10.0.0.0/8","172.16.0.0/12"]
           [entryPoints.traefik]
             address = ":9080"
           [entrypoints.ssh]

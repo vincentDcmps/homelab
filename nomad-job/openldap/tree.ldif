@@ -158,6 +158,21 @@ shadowLastChange: 19437
 shadowMax: 99999
 shadowMin: 100000
 shadowWarning: 7
+
+dn: uid=authelia,ou=serviceAccount,ou=users,dc=ducamps,dc=eu
+objectClass: extensibleObject
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: top
+cn: authelia
+gidNumber: 1000001
+sn: supysonicServiceAccount
+uid: supysonicServiceAccount
+uidNumber: 1000008
+displayName: authelia
 shadowExpire: -1
 shadowFlag: 0
 shadowInactive: 0

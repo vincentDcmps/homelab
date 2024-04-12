@@ -107,8 +107,14 @@ job "traefik-ingress" {
                 [entryPoints.web.http.redirections.entryPoint]
                   to = "websecure"
                   scheme = "https"
+
           [entryPoints.websecure]
+
             address = ":443"
+            [entryPoints.websecure.forwardedHeaders]
+              trustedIPs = ["127.0.0.1/32", "192.168.0.0/24" ,"10.0.0.0/8","172.16.0.0/12"]
+            [entryPoints.websecure.proxyProtocol] 
+              trustedIPs = ["127.0.0.1/32", "192.168.0.0/24" ,"10.0.0.0/8","172.16.0.0/12"]
           [entryPoints.traefik]
             address = ":9080"
           [entrypoints.smtp]

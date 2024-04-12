@@ -3,6 +3,7 @@ locals {
   ])
  
   nomad_policy=[
+    "authelia",
     "crowdsec",
     "dump",
     "dentrite",
