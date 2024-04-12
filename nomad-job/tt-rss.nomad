@@ -34,7 +34,7 @@ job "tt-rss" {
         "homer.enable=true",
         "homer.name=TT-RSS",
         "homer.service=Application",
-        "homer.logo=https://framalibre.org/sites/default/files/styles/thumbnail/public/leslogos/ic_launcher_1.png",
+        "homer.logo=https://www.ducamps.eu/tt-rss/images/favicon-72px.png",
         "homer.target=_blank",
         "homer.url=https://www.ducamps.eu/tt-rss",
 

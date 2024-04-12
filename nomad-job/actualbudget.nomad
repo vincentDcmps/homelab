@@ -37,7 +37,7 @@ job "actualbudget" {
             "homer.name=${NOMAD_TASK_NAME}",
             "homer.service=Application",
             "homer.target=_blank",
-            "homer.logo=https://budget.ducamps.eu/icon.png",
+            "homer.logo=https://budget.ducamps.eu/apple-touch-icon.png",
             "homer.url=https://budget.ducamps.eu",
 
         ]

@@ -94,6 +94,7 @@ include-dir=/etc/powerdns/pdns.d
         "homer.enable=true",
         "homer.name=PDNS-ADMIN",
         "homer.service=Application",
+        "homer.logo=http://${NOMAD_ADDR_pdnsadmin}/static/img/favicon.png",
         "homer.target=_blank",
         "homer.url=http://${NOMAD_ADDR_pdnsadmin}",
 

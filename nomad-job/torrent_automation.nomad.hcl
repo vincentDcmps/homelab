@@ -53,7 +53,7 @@ job "torrent_automation" {
           "homer.enable=true",
           "homer.name=Prowlarr",
           "homer.service=Application",
-          "homer.logo=",
+          "homer.logo=http://${NOMAD_ADDR_prowlarr}/Content/Images/logo.png",
           "homer.target=_blank",
           "homer.url=http://${NOMAD_ADDR_prowlarr}",
 
