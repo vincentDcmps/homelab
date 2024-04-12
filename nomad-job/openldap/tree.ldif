@@ -127,7 +127,6 @@ sn: vaultServiceAccount
 uid: vaultServiceAccount
 uidNumber: 1000005
 displayName: vaultServiceAccount
-loginShell: /bin/sh
 shadowExpire: -1
 shadowFlag: 0
 shadowInactive: 0
@@ -152,7 +151,13 @@ sn: supysonicServiceAccount
 uid: supysonicServiceAccount
 uidNumber: 1000006
 displayName: supysonicServiceAccount
-loginShell: /bin/sh
+shadowExpire: -1
+shadowFlag: 0
+shadowInactive: 0
+shadowLastChange: 19437
+shadowMax: 99999
+shadowMin: 100000
+shadowWarning: 7
 shadowExpire: -1
 shadowFlag: 0
 shadowInactive: 0
