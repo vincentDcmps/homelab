@@ -58,7 +58,7 @@ job "alertmanager" {
 global:
   smtp_from: alert@ducamps.eu
   smtp_smarthost: mail.ducamps.eu:465
-  smtp_hello: "mail.ducamps.win"
+  smtp_hello: "mail.ducamps.eu"
   smtp_require_tls: false
   {{with secret "secrets/data/nomad/alertmanager/mail"}}
   smtp_auth_username: {{.Data.data.username}}
