@@ -43,16 +43,8 @@ job "torrent" {
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
           "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.middlewares=torrentauth",
-          "traefik.http.middlewares.torrentauth.basicauth.users=admin:${ADMIN_HASHED_PWD}"
+          "traefik.http.routers.${NOMAD_JOB_NAME}.middlewares=authelia-basic",
         ]
-      }
-      template {
-        data = <<-EOF
-          ADMIN_HASHED_PWD={{ with secret "secrets/nomad/torrent" }}{{.Data.data.hashed_pwd}}{{ end }}
-        EOF
-        destination = "secrets/env"
-        env = true
       }
       user = "root"
       config {
