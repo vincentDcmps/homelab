@@ -52,6 +52,11 @@ job "syncthing" {
         ]
 
       }
+
+      env{
+        PUID = 1000001
+        GUID = 1000001
+      }
       resources {
         memory = 200
       }
