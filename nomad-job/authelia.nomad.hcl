@@ -43,6 +43,19 @@ job "authelia" {
 
         ]
       }
+      action "generate-client-secret" {
+        command = "authelia"
+        args = ["crypto",
+                "hash",
+                "generate",
+                "pbkdf2",
+                "--random",
+                "--random.length",
+                "72",
+                "--random.charset",
+                "rfc3986"
+              ]
+      }
       config {
         image = "authelia/authelia"
         ports = ["authelia"]
@@ -79,6 +92,29 @@ server:
       legacy:
         implementation: 'Legacy'
 
+identity_providers:
+  oidc:
+    hmac_secret: {{ with secret "secrets/data/nomad/authelia"}}{{ .Data.data.hmac}}{{end}}
+    jwks:
+     - key_id: 'key'
+       key: |
+{{ with secret "secrets/data/nomad/authelia"}}{{ .Data.data.rsakey|indent 8 }}{{end}}
+    clients:
+      - client_id: 'ttrss'
+        client_name: 'ttrss'
+#        client_secret: $pbkdf2-sha512$310000$5igZ9BADDMeXml91wcIq3w$fNFeVMHDxXx758cYQe0kmgidZMedEgtN.zQd12xE9DzmSk8QRRUYx56zpjzLTO8PcKhDgR3qCdUPnO/XDdEDLg
+        client_secret: {{ with secret "secrets/data/authelia/ttrss"}} {{ .Data.data.hash }} {{end}}
+        public: false
+        scopes:
+          - openid
+          - email
+          - profile
+        redirect_uris:
+          - 'https://www.ducamps.eu/tt-rss'
+        userinfo_signed_response_alg: none
+        authorization_policy: 'one_factor'
+        pre_configured_consent_duration: 15d
+
 log:
   level: 'debug'
 
@@ -86,7 +122,6 @@ totp:
   issuer: 'authelia.com'
 
 
-{{ with secret "secrets/data/nomad/authelia"}}
 authentication_backend:
   ldap:
     address: 'ldaps://ldap.ducamps.eu'
@@ -102,7 +137,7 @@ authentication_backend:
     additional_groups_dn: 'OU=groups'
     groups_filter: '(&(member=UID={input},OU=users,DC=ducamps,DC=eu)(objectClass=groupOfNames))'
     user: 'uid=authelia,ou=serviceAccount,ou=users,dc=ducamps,dc=eu'
-    password: '{{ .Data.data.ldapPassword }}'
+    password:{{ with secret "secrets/data/nomad/authelia"}} '{{ .Data.data.ldapPassword }}'{{ end }}
     attributes:
       distinguished_name: 'distinguishedname'
       username: 'uid'
@@ -122,7 +157,7 @@ session:
     - name: 'authelia_session'
       domain: 'ducamps.eu'  # Should match whatever your root protected domain is
       authelia_url: 'https://auth.ducamps.eu'
-      expiration: '1 hour'
+      expiration: '12 hour'
       inactivity: '5 minutes'
 
 
@@ -132,23 +167,24 @@ regulation:
   ban_time: '5 minutes'
 
 storage:
+{{ with secret "secrets/data/nomad/authelia"}}
   encryption_key: '{{.Data.data.encryptionKeys }}'
+{{end}}
   local:
     path: '/config/db.sqlite3'
 
 notifier:
   smtp:
     username: 'authelia@ducamps.eu'
-#    # This secret can also be set using the env variables AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE
+{{ with secret "secrets/data/nomad/authelia"}}
     password: '{{ .Data.data.mailPassword}}'
-    host: 'mail.ducamps.eu'
-    port: 465
+{{end}}
+    address: submissions://mail.ducamps.eu:465
     disable_require_tls: true
     sender: 'authelia@ducamps.eu'
     tls:
       server_name: 'mail.ducamps.eu'
       skip_verify: true
-{{end}}
           EOH
         destination = "local/configuration.yml"
       }

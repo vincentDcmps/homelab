@@ -55,7 +55,8 @@ job "tt-rss" {
           "appPort"
         ]
         volumes = [
-          "${NOMAD_ALLOC_DIR}/data:/var/www/html"
+          "${NOMAD_ALLOC_DIR}/data:/var/www/html",
+          "/mnt/diskstation/nomad/tt-rss/ttrss-auth-oidc:/var/www/html/tt-rss/plugins.local/auth_oidc"
         ]
       }
       env {
@@ -64,16 +65,18 @@ job "tt-rss" {
         TTRSS_DB_NAME       = "ttrss"
         TTRSS_DB_USER       = "ttrss"
         TTRSS_SELF_URL_PATH = "https://www.ducamps.eu/tt-rss"
+        TTRSS_PLUGINS       = "auth_oidc, auth_internal"
+        TTRSS_AUTH_OIDC_NAME= "Authelia"
+        TTRSS_AUTH_OIDC_URL = "https://auth.ducamps.eu"
+        TTRSS_AUTH_OIDC_CLIENT_ID = "ttrss"
       }
       template {
         data        = <<EOH
-            {{ with secret "secrets/data/database/ttrss"}}
-            TTRSS_DB_PASS = "{{ .Data.data.password }}"
-            {{end}}
+            {{ with secret "secrets/data/database/ttrss"}}TTRSS_DB_PASS = "{{ .Data.data.password }}"{{end}} 
+            TTRSS_AUTH_OIDC_CLIENT_SECRET = {{ with secret "secrets/data/authelia/ttrss"}}"{{ .Data.data.password }}"{{end}}
           EOH
-        destination = "secrets/tt-rss.env"
+        destination = "secret/tt-rss.env"
         env         = true
-
       }
       resources {
         memory = 150

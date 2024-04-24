@@ -1,9 +1,7 @@
 locals {
-  allowed_policies= concat(local.nomad_policy, [
-  ])
+  allowed_policies= concat(local.nomad_policy,local.nomad_custom_policy[*].name)
  
   nomad_policy=[
-    "authelia",
     "crowdsec",
     "dump",
     "dentrite",
@@ -27,6 +25,19 @@ locals {
     "pdns",
     "ldap",
     "borgmatic",
+  ]
+nomad_custom_policy = [
+    {
+      name = "authelia",
+      policy=<<EOT
+path "secrets/data/nomad/authelia" {
+      capabilities = ["read"]
+      }
+path "secrets/data/authelia/*" {
+      capabilities = ["read"]
+      }
+      EOT
+    }
   ]
 
 }
@@ -54,6 +65,11 @@ data "vault_policy_document" "nomad_jobs" {
     path = "secrets/data/database/${each.key}"
     capabilities = ["read"]
   }
+  rule {
+    path = "secrets/data/authelia/${each.key}"
+    capabilities = ["read"]
+  }
+
 }
 resource "vault_policy" "nomad_jobs" {
     for_each = toset(local.nomad_policy)
@@ -62,5 +78,10 @@ resource "vault_policy" "nomad_jobs" {
     policy = data.vault_policy_document.nomad_jobs[each.key].hcl
 }
 
+resource "vault_policy" "nomad_jobs_custom" {
+    for_each = {for policy in local.nomad_custom_policy: policy.name => policy}
 
+    name   = each.value.name
+    policy = each.value.policy
+}
 

@@ -6,9 +6,6 @@ job "torrent" {
   meta {
     forcedeploy = "0"
   }
-  vault {
-    policies= ["torrent"]
-  }
   group "bittorent" {
     network {
       mode = "host"
@@ -57,13 +54,13 @@ job "torrent" {
           "ecoute"
         ]
         volumes = [
-          "/mnt/hetzner/storagebox/rutorrentConfig:/data",
+          "/opt/rutorrentConfig:/data",
           "/mnt/hetzner/storagebox/file:/downloads"
         ]
 
       }
       env {
-        PUID       = 100001
+        PUID       = 1000001
         PGID       = 10
         UMASK      = 002
         WEBUI_PORT = "8080"
