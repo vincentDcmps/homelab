@@ -18,6 +18,12 @@ job "sample" {
         to = 0000
       }
     }
+    volume "sample-data" {
+      type            = "csi"
+      source          = "sapmle-data"
+      access_mode     = "multi-node-multi-writer"
+      attachment_mode = "file-system"
+    }
     vault{
       policies= ["policy_name"]
 
@@ -36,6 +42,10 @@ job "sample" {
 
 
         ]
+      }
+      volume_mount {
+        volume      = "sample-data"
+        destination = "/app/data"
       }
       config {
         image = "sample"
