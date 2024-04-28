@@ -25,6 +25,7 @@ locals {
     "pdns",
     "ldap",
     "borgmatic",
+    "mealie",
   ]
 nomad_custom_policy = [
     {

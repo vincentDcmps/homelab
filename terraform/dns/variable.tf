@@ -37,7 +37,8 @@ variable cnameList{
     "www",
     "mail",
     "ldap",
-    "budget"
+    "budget",
+    "mealie",
   ]
 }
 

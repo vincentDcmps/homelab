@@ -99,10 +99,19 @@ identity_providers:
      - key_id: 'key'
        key: |
 {{ with secret "secrets/data/nomad/authelia"}}{{ .Data.data.rsakey|indent 8 }}{{end}}
+    cors:
+      endpoints:
+        - userinfo
+        - authorization
+        - token
+        - revocation
+        - introspection
+      allowed_origins: 
+        - https://mealie.ducamps.eu
+      allowed_origins_from_client_redirect_uris: true
     clients:
       - client_id: 'ttrss'
         client_name: 'ttrss'
-#        client_secret: $pbkdf2-sha512$310000$5igZ9BADDMeXml91wcIq3w$fNFeVMHDxXx758cYQe0kmgidZMedEgtN.zQd12xE9DzmSk8QRRUYx56zpjzLTO8PcKhDgR3qCdUPnO/XDdEDLg
         client_secret: {{ with secret "secrets/data/authelia/ttrss"}} {{ .Data.data.hash }} {{end}}
         public: false
         scopes:
@@ -114,9 +123,24 @@ identity_providers:
         userinfo_signed_response_alg: none
         authorization_policy: 'one_factor'
         pre_configured_consent_duration: 15d
+      - client_id: 'mealie'
+        client_name: 'mealie'
+        public: true
+        require_pkce: true
+        pkce_challenge_method: 'S256'
+        scopes:
+          - openid
+          - email
+          - profile
+          - groups
+        redirect_uris:
+          - 'https://mealie.ducamps.eu/login'
+        userinfo_signed_response_alg: none
+        authorization_policy: 'one_factor'
+        token_endpoint_auth_method: 'none'
 
 log:
-  level: 'debug'
+  level: 'trace'
 
 totp:
   issuer: 'authelia.com'
@@ -124,7 +148,7 @@ totp:
 
 authentication_backend:
   ldap:
-    address: 'ldaps://ldap.ducamps.eu'
+    address: 'ldaps://ldap.service.consul'
     implementation: 'custom'
     timeout: '5s'
     start_tls: false
@@ -135,11 +159,13 @@ authentication_backend:
     additional_users_dn: 'OU=users'
     users_filter: '(&(|({username_attribute}={input})({mail_attribute}={input}))(objectClass=person))'
     additional_groups_dn: 'OU=groups'
-    groups_filter: '(&(member=UID={input},OU=users,DC=ducamps,DC=eu)(objectClass=groupOfNames))'
+    #groups_filter: '(&(member=UID={input},OU=users,DC=ducamps,DC=eu)(objectClass=groupOfNames))'
+    groups_filter: '(&(|{memberof:rdn})(objectClass=groupOfNames))'
+    group_search_mode: 'memberof'
     user: 'uid=authelia,ou=serviceAccount,ou=users,dc=ducamps,dc=eu'
     password:{{ with secret "secrets/data/nomad/authelia"}} '{{ .Data.data.ldapPassword }}'{{ end }}
     attributes:
-      distinguished_name: 'distinguishedname'
+      distinguished_name: ''
       username: 'uid'
       mail: 'mail'
       member_of: 'memberOf'
