@@ -1,6 +1,7 @@
 Vagrant.configure('2') do |config|
   if Vagrant.has_plugin?('vagrant-cachier')
     config.cache.scope = 'machine'
+    config.cache.enable :pacman
   end
   config.vm.provider :libvirt do |libvirt|
     libvirt.management_network_domain = "lan.ducamps.dev"
@@ -56,7 +57,7 @@ Vagrant.configure('2') do |config|
 
   config.vm.define "gerard-dev" do |c|
     # Box definition
-    c.vm.box = "generic/debian12"
+    c.vm.box = "archlinux/archlinux"
     # Config options
     
     c.vm.synced_folder ".", "/vagrant", disabled: true
