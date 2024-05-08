@@ -7,7 +7,7 @@ resource "vault_ldap_auth_backend" "ldap" {
     insecure_tls = true
     groupdn     = "ou=groups,dc=ducamps,dc=eu"
     groupfilter = "(|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))"
-    binddn      = "uid=vaultserviceaccount,ou=serviceAccount,ou=users,dc=ducamps,dc=eu"
+    binddn      = "uid=vaultServiceAccount,ou=serviceAccount,ou=users,dc=ducamps,dc=eu"
     groupattr   = "cn"
     bindpass    = var.ldap_bindpass
 }
