@@ -168,6 +168,13 @@ job "openldap" {
           LDAP_USER_OU="users"
           NO_HTTPS="true"
           EMAIL_DOMAIN="ducamps.eu"
+          DEFAULT_USER_GROUP="users"
+          DEFAULT_USER_SHELL="/bin/sh"
+          USERNAME_FORMAT="{first_name}"
+          LDAP_RFC2307BIS_SCHEMA="TRUE"
+          USERNAME_REGEX="^[a-zA-Z][a-zA-Z0-9._-]{3,32}$"
+          LDAP_GROUP_ADDITIONAL_OBJECTCLASSES="groupOfNames,posixGroup,top"
+          SHOW_POSIX_ATTRIBUTES="TRUE"
 
         EOH
         destination = "secrets/env"
