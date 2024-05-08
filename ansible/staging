@@ -5,6 +5,7 @@ oscar-dev
 oscar-dev
 
 [database_standby]
+gerard-dev
 
 [database:children]
 database_active

@@ -2,6 +2,16 @@
 - hosts: database
   vars:
   # certbot_force: true
+  pre_tasks:
+    - name: Add database member to pg_hba replication
+      set_fact:
+        postgresql_hba_entries: "{{postgresql_hba_entries + [\
+          {'type':'host', \
+          'database': 'replication',\
+          'user':'repli',\
+          'address':hostvars[item]['ansible_'+default_interface]['ipv4']['address']+'/32',\
+          'auth_method':'trust'}] }}"
+      loop: "{{ groups.database }}"
   roles:
     - role: ansible-role-postgresql
       become: true
@@ -14,3 +24,20 @@
           - pg_read_all_data
       become: true
       become_user: "{{ postgresql_user }}"
+      when: inventory_hostname in groups["database_active"]
+    - name: Check if inactive database is initialised
+      ansible.builtin.stat:
+        path: /var/lib/postgres/data/postgresql.conf
+      become: true
+      register: in_recovery
+    - name: Launch replication
+      command: pg_basebackup -D /var/lib/postgres/data  -h {{groups["database_active"]|first}} -U repli -Fp -Xs -P -R -w
+      become: true
+      become_user: postgres
+      when: inventory_hostname in groups["database_standby"] and not in_recovery.stat.exists
+    - name: Ensure PostgreSQL is started and enabled on boot.
+      service:
+        name: "{{ postgresql_daemon }}"
+        state: "{{ postgresql_service_state }}"
+        enabled: "{{ postgresql_service_enabled }}"
+      become: true

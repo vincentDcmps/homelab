@@ -169,8 +169,9 @@ objectClass: shadowAccount
 objectClass: top
 cn: authelia
 gidNumber: 1000001
-sn: supysonicServiceAccount
-uid: supysonicServiceAccount
+homeDirectory: /home/authelia
+sn: authelia
+uid: authelia
 uidNumber: 1000008
 displayName: authelia
 shadowExpire: -1
@@ -191,7 +192,6 @@ gidNumber: 1000011
 member: cn=Directory Consumers,ou=groups,dc=ducamps,dc=eu
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
 displayName: na_a
-memberUid: vincent
 
 dn: cn=NAS_user,ou=groups,dc=ducamps,dc=eu
 objectClass: extensibleObject
@@ -201,15 +201,9 @@ objectClass: top
 cn: NAS_user
 gidNumber: 1000013
 member: uid=hubert,ou=users,dc=ducamps,dc=eu
-member: uid=loic,ou=users,dc=ducamps,dc=eu
 member: uid=olivier,ou=users,dc=ducamps,dc=eu
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
 displayName: NAS_user
-memberUid: admin
-memberUid: hubert
-memberUid: loic
-memberUid: olivier
-memberUid: vincent
 
 dn: cn=NAS_ebook,ou=groups,dc=ducamps,dc=eu
 objectClass: extensibleObject
@@ -221,8 +215,6 @@ gidNumber: 1000006
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
 description: group owner of ebook folder
 displayName: NAS_ebook
-memberUid: admin
-memberUid: vincent
 
 dn: cn=NAS_media,ou=groups,dc=ducamps,dc=eu
 objectClass: extensibleObject
@@ -234,8 +226,6 @@ gidNumber: 1000003
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
 description: group owner of media folder
 displayName: media
-memberUid: admin
-memberUid: vincent
 
 dn: cn=NAS_music,ou=groups,dc=ducamps,dc=eu
 objectClass: extensibleObject
@@ -247,8 +237,6 @@ gidNumber: 1000005
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
 description: group owner of Music folder
 displayName: NAS_music
-memberUid: admin
-memberUid: vincent
 
 dn: cn=NAS_photo,ou=groups,dc=ducamps,dc=eu
 objectClass: extensibleObject
@@ -262,10 +250,6 @@ member: uid=olivier,ou=users,dc=ducamps,dc=eu
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
 description: group owner of photo folder
 displayName: photo
-memberUid: admin
-memberUid: hubert
-memberUid: olivier
-memberUid: vincent
 
 dn: cn=serverAdmin,ou=groups,dc=ducamps,dc=eu
 objectClass: extensibleObject
@@ -276,7 +260,6 @@ cn: serverAdmin
 gidNumber: 1000016
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
 displayName: server_admin
-memberUid: vincent
 
 dn: cn=vault_admin,ou=groups,dc=ducamps,dc=eu
 objectClass: extensibleObject
@@ -287,7 +270,6 @@ cn: vault_admin
 gidNumber: 1000014
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
 displayName: vaultaccess
-memberUid: vincent
 
 dn: cn=NAS_download,ou=groups,dc=ducamps,dc=eu
 objectClass: extensibleObject
@@ -300,8 +282,6 @@ member: uid=olivier,ou=users,dc=ducamps,dc=eu
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
 description: group owner du dossier download
 displayName: NAS_download
-memberUid: olivier
-memberUid: vincent
 
 dn: cn=JellyfinUsers,ou=groups,dc=ducamps,dc=eu
 objectClass: extensibleObject
@@ -315,10 +295,6 @@ member: uid=loic,ou=users,dc=ducamps,dc=eu
 member: uid=olivier,ou=users,dc=ducamps,dc=eu
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
 displayName: JellyfinUsers
-memberUid: admin
-memberUid: loic
-memberUid: olivier
-memberUid: vincent
 
 dn: cn=administrators,ou=groups,dc=ducamps,dc=eu
 objectClass: extensibleObject
@@ -330,7 +306,6 @@ gidNumber: 1000002
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
 description: System default admin group
 displayName: administrators
-memberUid: vincent
 
 dn: cn=LDAP Operators,ou=groups,dc=ducamps,dc=eu
 objectClass: extensibleObject
@@ -343,7 +318,6 @@ gidNumber: 1000000
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
 description: Directory default admin group
 displayName: Directory Operators
-memberUid: vincent
 
 dn: cn=SupysonicUsers,ou=groups,dc=ducamps,dc=eu
 objectClass: extensibleObject
@@ -356,9 +330,6 @@ member: uid=hubert,ou=users,dc=ducamps,dc=eu
 member: uid=olivier,ou=users,dc=ducamps,dc=eu
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
 displayName: SupysonicUsers
-memberUid: hubert
-memberUid: olivier
-memberUid: vincent
 
 dn: cn=SupysonicAdmins,ou=groups,dc=ducamps,dc=eu
 objectClass: extensibleObject
@@ -369,7 +340,6 @@ cn: SupysonicAdmins
 gidNumber: 1000019
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
 displayName: SupysonicAdmins
-memberUid: vincent
 
 dn: cn=workstationAdmin,ou=groups,dc=ducamps,dc=eu
 objectClass: extensibleObject
@@ -380,7 +350,6 @@ cn: workstationAdmin
 gidNumber: 1000017
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
 displayName: workstation_admin
-memberUid: vincent
 
 dn: cn=JellyfinAdministrator,ou=groups,dc=ducamps,dc=eu
 objectClass: extensibleObject
@@ -391,7 +360,6 @@ cn: JellyfinAdministrator
 gidNumber: 1000015
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
 displayName: JellyfinAdministrator
-memberUid: vincent
 
 dn: cn=users,ou=groups,dc=ducamps,dc=eu
 objectClass: extensibleObject
@@ -401,13 +369,6 @@ objectClass: top
 cn: users
 gidNumber: 1000001
 member: uid=hubert,ou=users,dc=ducamps,dc=eu
-member: uid=loic,ou=users,dc=ducamps,dc=eu
 member: uid=olivier,ou=users,dc=ducamps,dc=eu
 member: uid=vincent,ou=users,dc=ducamps,dc=eu
-sambaGroupType: 2
 displayName: NAS_user
-memberUid: admin
-memberUid: hubert
-memberUid: loic
-memberUid: olivier
-memberUid: vincent
