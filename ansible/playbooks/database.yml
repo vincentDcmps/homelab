@@ -41,3 +41,10 @@
         state: "{{ postgresql_service_state }}"
         enabled: "{{ postgresql_service_enabled }}"
       become: true
+    - name: Install pg_vector.rs
+      aur:
+        name: pgvecto.rs-bin
+      become: true
+      become_user: aur_builder
+        
+        
