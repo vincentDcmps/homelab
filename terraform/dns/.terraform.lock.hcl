@@ -1,26 +1,24 @@
-# This file is maintained automatically by "terraform init".
+# This file is maintained automatically by "tofu init".
 # Manual edits may be lost in future updates.
 
-provider "registry.terraform.io/hashicorp/vault" {
-  version = "3.22.0"
+provider "registry.opentofu.org/hashicorp/vault" {
+  version = "4.2.0"
   hashes = [
-    "h1:AyHIjPpd3CMimsJiwRCpi3Jo9SF8MhWkWHj7TjmUyvc=",
-    "zh:2ebe83a6d3c03c69610899408c3b9fcc6eb7a47e62a5c50126a20244fe2e0e2e",
-    "zh:46985c7bc1070f4cbb7241063046c165112aed47b0ef3d323197d11525a7c3e1",
-    "zh:4f3b1cc0eb4990b02a30d366e4c0b77e56e70610f283fb223f60171ab8ba4ee1",
-    "zh:6b445c90130201f6babb83b3d68969c7fc8936ddb29bd62597782b973a204a67",
-    "zh:78d5eefdd9e494defcb3c68d282b8f96630502cac21d1ea161f53cfe9bb483b3",
-    "zh:9097ca5bc78c701126c610b34127f58aeeba446ae2e03e94d8a42b4fb7ed6e4c",
-    "zh:98a81d03a45ada9a10a4d3cfdf4a7c223e5da3251aa0aaa6e24a48cea475903f",
-    "zh:b878afb67d3aa57413071321cc293cd67ab064fc1d6b3747b8702aef2351327d",
-    "zh:c546747894fd1ca8108c00bfed8888d0f2cbd60e4bdc2122b1652fb4f0f8b9d4",
-    "zh:cd6cc39872ed1439897e3f63d4251f31e5758b303ff8f471aac3dff32fb53e54",
-    "zh:d149c68271db77344b278e7e6c40db5dcf35a83642a60d588fbe72822bb40977",
-    "zh:fe29e024658c6ae9306c0847469508e835f86c961c998efc298aa1a5b928f72c",
+    "h1:B2TeJRBRbPqW7qMkazQ4DzY+4++KxYhPRD5nM0RWTos=",
+    "zh:0c97843a9c4619aa9708c833764448e8db472510785f886772fa798e9f14786e",
+    "zh:16267cfb01aec8ffe331bbc8558e35c2220951a2d431818c074499c97e7b2ae0",
+    "zh:2c7c3417b296e45277f7363c248edf9228e1946d528f1870c86d3417cc701b90",
+    "zh:368d6ec24d2de29964f1570463d8bd4cfda4a67fbccabf3d955007f58b5cf4e9",
+    "zh:5cdebc223e76765738fc33b5c754fcf152edc4fd80ae47083c561231c7e19bcb",
+    "zh:8cee20e4845892546eab929ee266882fabf74484ab858a0fd1b967152943ff99",
+    "zh:9edbb74e8b0b143550f59c6a6b44a9d97c84ab6f230087761eb4e559d1482097",
+    "zh:b571b643bb671cd4726fe60a2bd558ab1ceb46edad7aca23174b8ceac0c59643",
+    "zh:c6032c5ec771b964cb36074215808351c1cb9e9d71d6f323a348c60edcde1f4b",
+    "zh:dcf2b711f08d1dc83082860087fd57f5dcd78c77392cec913a9c8573ab95b26a",
   ]
 }
 
-provider "registry.terraform.io/pan-net/powerdns" {
+provider "registry.opentofu.org/pan-net/powerdns" {
   version = "1.5.0"
   hashes = [
     "h1:bsz18KLloevlTZkXwZr8u0sFCZKcOYyts2RaWkV6YNc=",
@@ -40,7 +38,7 @@ provider "registry.terraform.io/pan-net/powerdns" {
   ]
 }
 
-provider "registry.terraform.io/timohirt/hetznerdns" {
+provider "registry.opentofu.org/timohirt/hetznerdns" {
   version = "2.2.0"
   hashes = [
     "h1:HyskQAglrOueur79gSCBgx9MNDOs0tz39aNYQiFgxz8=",

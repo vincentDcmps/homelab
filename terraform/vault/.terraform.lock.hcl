@@ -1,21 +1,19 @@
-# This file is maintained automatically by "terraform init".
+# This file is maintained automatically by "tofu init".
 # Manual edits may be lost in future updates.
 
-provider "registry.terraform.io/hashicorp/vault" {
-  version = "3.23.0"
+provider "registry.opentofu.org/hashicorp/vault" {
+  version = "4.2.0"
   hashes = [
-    "h1:+MSu9iMAo/4bBfVuKnf1Q+FVj7O1MLk5JO3TxFZ+dHU=",
-    "zh:0f5d14007a4ae668cb2f52ed91985ace0169153643026bd44b9cf3704f271ded",
-    "zh:2e6b6435f3ee58c0a2c633e05b9e0091d31e653433028e455b681b601ac36712",
-    "zh:342bf9ff3f2500576354612fd5b04dd18e9f79d32fc9d913c435db78f72b2c50",
-    "zh:55e08eed3b1d8e5c395fa1ffd71cb98755dad6c52dcc4f48ea1faa3538ebe995",
-    "zh:613379682dc8ff5e447fc0a1d99a5f94015d18555cafc1adb8d3e5766c491222",
-    "zh:78d5eefdd9e494defcb3c68d282b8f96630502cac21d1ea161f53cfe9bb483b3",
-    "zh:8417ba0ac1c0708e4192a8eb4855cef6c64dc8e9b18e0944579d4b5031824ba9",
-    "zh:9218066d107c14dbc53061966dde55f88c056782458e2b59df1d185a948e2308",
-    "zh:b4f87e51739ccba8429f6d03f037a236261373dcd49df9edb6e17d41e013b155",
-    "zh:b864a6766d6690d416658b6996de06c844bcca2eb516cde4c639a3a267174440",
-    "zh:da1343c22bc096810f4902dfb035ae42920fd74fb9346c8ab4a0f93809b529c6",
-    "zh:e49210cc09b96932844950ff4fd2cf034fea0041612f43fb79d01e44ce030c8c",
+    "h1:B2TeJRBRbPqW7qMkazQ4DzY+4++KxYhPRD5nM0RWTos=",
+    "zh:0c97843a9c4619aa9708c833764448e8db472510785f886772fa798e9f14786e",
+    "zh:16267cfb01aec8ffe331bbc8558e35c2220951a2d431818c074499c97e7b2ae0",
+    "zh:2c7c3417b296e45277f7363c248edf9228e1946d528f1870c86d3417cc701b90",
+    "zh:368d6ec24d2de29964f1570463d8bd4cfda4a67fbccabf3d955007f58b5cf4e9",
+    "zh:5cdebc223e76765738fc33b5c754fcf152edc4fd80ae47083c561231c7e19bcb",
+    "zh:8cee20e4845892546eab929ee266882fabf74484ab858a0fd1b967152943ff99",
+    "zh:9edbb74e8b0b143550f59c6a6b44a9d97c84ab6f230087761eb4e559d1482097",
+    "zh:b571b643bb671cd4726fe60a2bd558ab1ceb46edad7aca23174b8ceac0c59643",
+    "zh:c6032c5ec771b964cb36074215808351c1cb9e9d71d6f323a348c60edcde1f4b",
+    "zh:dcf2b711f08d1dc83082860087fd57f5dcd78c77392cec913a9c8573ab95b26a",
   ]
 }
