@@ -46,5 +46,18 @@
         name: pgvecto.rs-bin
       become: true
       become_user: aur_builder
-        
-        
+    - name: Set Postgress shared libraries
+      community.postgresql.postgresql_set:
+        name: shared_preload_libraries
+        value: vectors.so
+      become: true
+      become_user: postgres
+      when: inventory_hostname in groups["database_active"]
+      notify: Restart postgresql
+    - name: Set Postgress shared libraries
+      community.postgresql.postgresql_set:
+        name: search_path
+        value: '$user, public, vectors'
+      become: true
+      become_user: postgres
+      when: inventory_hostname in groups["database_active"]

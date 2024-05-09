@@ -26,6 +26,8 @@ postgresql_databases:
     owner: pdns-admin
   - name: mealie
     owner: mealie
+  - name: immich
+    owner: immich
 
 postgresql_hba_entries:
   - {type: local, database: all, user: postgres, auth_method: peer}
