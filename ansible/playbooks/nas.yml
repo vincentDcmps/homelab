@@ -13,7 +13,7 @@
     - name: create nomad folder
       ansible.builtin.file:
         path: "{{ nas_bind_target }}/nomad/{{ item.name }}"
-        owner: "{{ item.owner }}"
+        owner: "{{ item.owner|default('root') }}"
         state: directory
       become: true
       loop: "{{ NAS_nomad_folder }}"

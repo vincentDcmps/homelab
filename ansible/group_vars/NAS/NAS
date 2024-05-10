@@ -1,7 +1,39 @@
 NAS_nomad_folder:
+  - name: actualbudget
+  - name: archiso
+  - name: backup
+  - name: borgmatic
+  - name: crowdsec
+  - name: dms
+  - name: filestash
+  - name: gitea
+  - name: grafana
+  - name: hass
+  - name: homer
+  - name: immich/cache
+  - name: immich/upload
+  - name: jellyfin
+  - name: loki
+  _ name: mealie
+  - name: mosquito
+    owner: 1883
+  - name: pacoloco
+  - name: pdns-auth
+  - name: pdns-admin
+  - name: pihole
+    owner: 999
+  - name: prometheus
+  - name: prowlarr
+  - name: radicale
   - name: openldap
     owner: 1001
-
+  - name: registry/ghcr
+  - name: registry/docker
+  - name: syncthing
+  - name: traefik
+  - name: tt-rss
+  - name: vaultwarden
+  - name: zigbee2mqtt
 nas_bind_target: "/exports"
 
 nas_bind_source:
