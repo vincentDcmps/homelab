@@ -138,6 +138,20 @@ identity_providers:
         userinfo_signed_response_alg: none
         authorization_policy: 'one_factor'
         token_endpoint_auth_method: 'none'
+      - client_id: 'immich'
+        client_name: 'immich'
+        client_secret: {{ with secret "secrets/data/authelia/immich"}} {{ .Data.data.hash }} {{end}}
+        public: false
+        authorization_policy: 'one_factor'
+        redirect_uris:
+          - 'https://immich.ducamps.eu/auth/login'
+          - 'https://immich.ducamps.eu/user-settings'
+          - 'app.immich:/'
+        scopes:
+          - 'openid'
+          - 'profile'
+          - 'email'
+        userinfo_signed_response_alg: 'none'
 
 log:
   level: 'trace'
