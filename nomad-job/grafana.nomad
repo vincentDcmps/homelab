@@ -10,6 +10,10 @@ job "grafana" {
   meta {
     forcedeploiement = 2
   }
+
+  vault {
+    policies = ["grafana"]
+  }
   group "grafana" {
     network {
       port "http" {
@@ -43,9 +47,33 @@ job "grafana" {
         image = "docker.service.consul:5000/grafana/grafana"
         ports = ["http"]
         volumes = [
-          "/mnt/diskstation/nomad/grafana/config:/etc/grafana",
+          "local/grafana.ini:/etc/grafana/grafana.ini",
           "/mnt/diskstation/nomad/grafana/lib:/var/lib/grafana"
         ]
+      }
+      template {
+        data = <<EOH
+force_migration=true 
+[server]
+root_url = https://grafana.ducamps.eu
+[auth.generic_oauth]
+enabled = true
+name = Authelia
+icon = signin
+client_id = grafana
+client_secret = {{ with secret "secrets/data/authelia/grafana"}} {{ .Data.data.password }} {{end}}
+scopes = openid profile email groups
+empty_scopes = false
+auth_url = https://auth.ducamps.eu/api/oidc/authorization
+token_url = https://auth.ducamps.eu/api/oidc/token
+api_url = https://auth.ducamps.eu/api/oidc/userinfo
+login_attribute_path = preferred_username
+groups_attribute_path = groups
+name_attribute_path = name
+use_pkce = true
+role_attribute_path=contains(groups[*], 'GrafanaAdmins') && 'Admin' || contains(groups[*], 'GrafanaUsers') && 'Viewer'
+EOH
+        destination = "local/grafana.ini"
       }
       resources {
         memory = 250

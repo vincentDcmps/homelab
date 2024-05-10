@@ -152,6 +152,22 @@ identity_providers:
           - 'profile'
           - 'email'
         userinfo_signed_response_alg: 'none'
+      - client_id: 'grafana'
+        client_name: 'Grafana'
+        client_secret:{{ with secret "secrets/data/authelia/grafana"}} {{ .Data.data.hash }} {{end}}
+        public: false
+        authorization_policy: 'one_factor'
+        require_pkce: true
+        pkce_challenge_method: 'S256'
+        redirect_uris:
+          - 'https://grafana.ducamps.eu/login/generic_oauth'
+        scopes:
+          - 'openid'
+          - 'profile'
+          - 'groups'
+          - 'email'
+        userinfo_signed_response_alg: 'none'
+        token_endpoint_auth_method: 'client_secret_basic'
 
 log:
   level: 'trace'

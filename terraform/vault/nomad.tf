@@ -8,6 +8,7 @@ locals {
     "droneci",
     "traefik",
     "gitea",
+    "grafana",
     "nextcloud",
     "paperless",
     "pihole",
