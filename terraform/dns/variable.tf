@@ -39,6 +39,7 @@ variable cnameList{
     "ldap",
     "budget",
     "mealie",
+    "immich",
   ]
 }
 

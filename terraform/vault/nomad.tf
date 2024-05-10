@@ -26,6 +26,7 @@ locals {
     "ldap",
     "borgmatic",
     "mealie",
+    "immich",
   ]
 nomad_custom_policy = [
     {
