@@ -20,7 +20,7 @@ Vagrant.configure('2') do |config|
     # Provider
     c.vm.provider "libvirt" do |libvirt, override|
       
-      libvirt.memory = 1024
+      libvirt.memory = 2048
       libvirt.cpus = 2
     end
     c.vm.provision "ansible" do |bootstrap|
@@ -43,7 +43,7 @@ Vagrant.configure('2') do |config|
     # Provider
     c.vm.provider "libvirt" do |libvirt, override|
       
-      libvirt.memory = 1024
+      libvirt.memory = 512
       libvirt.cpus = 2
            
     end
@@ -67,7 +67,7 @@ Vagrant.configure('2') do |config|
     # instance_raw_config_args
     # Provider
     c.vm.provider "libvirt" do |libvirt, override|
-      libvirt.memory = 1024
+      libvirt.memory = 2048
       libvirt.cpus = 2
     end
     c.vm.provision "ansible" do |bootstrap|
@@ -90,7 +90,7 @@ Vagrant.configure('2') do |config|
     # Provider
     c.vm.provider "libvirt" do |libvirt, override|
       
-      libvirt.memory = 1024
+      libvirt.memory = 2048
       libvirt.cpus = 2
     end
  
