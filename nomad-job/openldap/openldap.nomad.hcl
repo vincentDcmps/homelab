@@ -49,6 +49,9 @@ job "openldap" {
       env {
         SSL_DNS="ldaps.service.consul,ldap.service.consul"
       }
+      resources {
+        memory = 50
+      }
     }
     task "openldap" {
       driver = "docker"
@@ -124,7 +127,7 @@ job "openldap" {
         destination = "local/ldif/tree.ldif"
       }
       resources {
-        memory = 300
+        memory = 150
       }
     }
   }
@@ -179,6 +182,9 @@ job "openldap" {
         EOH
         destination = "secrets/env"
         env         = true
+      }
+      resources {
+        memory = 70
       }
     }
   }
