@@ -230,6 +230,7 @@ storage:
     path: '/config/db.sqlite3'
 
 notifier:
+  disable_startup_check: true
   smtp:
     username: 'authelia@ducamps.eu'
 {{ with secret "secrets/data/nomad/authelia"}}
