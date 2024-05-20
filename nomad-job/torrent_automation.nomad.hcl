@@ -9,7 +9,11 @@ job "torrent_automation" {
     attribute = "${attr.cpu.arch}"
     value = "amd64"
   }
-
+  constraint {
+        attribute = "${node.class}"
+            operator = "set_contains"
+                value = "cluster"
+                  }
   group "prowlarr"{
     network {
       mode = "host"

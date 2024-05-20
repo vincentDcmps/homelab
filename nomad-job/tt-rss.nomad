@@ -7,7 +7,11 @@ job "tt-rss" {
     attribute = "${attr.cpu.arch}"
     value     = "amd64"
   }
-
+  constraint {
+    attribute = "${node.class}"
+    operator = "set_contains"
+    value = "cluster"
+  }
 
   group "ttrss" {
     ephemeral_disk {
