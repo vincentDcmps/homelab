@@ -168,6 +168,19 @@ identity_providers:
           - 'email'
         userinfo_signed_response_alg: 'none'
         token_endpoint_auth_method: 'client_secret_basic'
+      - client_id: 'vikunja'
+        client_name: 'vikunja'
+        client_secret:{{ with secret "secrets/data/authelia/vikunja"}} {{ .Data.data.hash }} {{end}}
+        public: false
+        authorization_policy: 'one_factor'
+        redirect_uris:
+          - 'https://vikunja.ducamps.eu/auth/openid/authelia'
+        scopes:
+          - 'openid'
+          - 'profile'
+          - 'email'
+        userinfo_signed_response_alg: 'none'
+        token_endpoint_auth_method: 'client_secret_basic'
 
 log:
   level: 'trace'
