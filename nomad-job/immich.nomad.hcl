@@ -56,7 +56,7 @@ job "immich" {
           "homer.enable=true",
           "homer.name=immich",
           "homer.service=Application",
-          "homer.logo=https://www.ducamps.eu/tt-rss/images/favicon-72px.png",
+          "homer.logo=https://immich.ducamps.eu/favicon-144.png",
           "homer.target=_blank",
           "homer.url=https://immich.ducamps.eu",
           "traefik.enable=true",
