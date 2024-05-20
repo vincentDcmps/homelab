@@ -143,6 +143,7 @@ job "immich" {
       }
       resources {
         memory = 300
+        memory_max = 800
       }
     }
     task "immich-machine-learning" {
@@ -172,7 +173,7 @@ job "immich" {
       }
       resources {
         memory = 200
-        max_memory = 300
+        memory_max = 1800
       }
     }
 
