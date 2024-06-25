@@ -22,9 +22,6 @@ job "immich" {
       port "machinelearning" {
         to = 3003
       }
-      port "microservices" {
-        to = 3002
-      }
     }
     volume "immich-upload" {
       type            = "csi"
@@ -76,8 +73,6 @@ job "immich" {
       }
       config {
         image   = "ghcr.service.consul:5000/immich-app/immich-server:release"
-        command = "start.sh"
-        args    = ["immich"]
         ports   = ["http"]
         volumes = [
           "/etc/localtime:/etc/localtime"
@@ -101,51 +96,10 @@ job "immich" {
         env         = true
       }
       resources {
-        memory = 300
+        memory = 500
       }
     }
-    task "immich-microservce" {
-      driver = "docker"
 
-      volume_mount {
-        volume      = "immich-upload"
-        destination = "/usr/src/app/upload"
-      }
-      volume_mount {
-        volume      = "photo"
-        destination = "/photo"
-      }
-      config {
-        image   = "ghcr.service.consul:5000/immich-app/immich-server:release"
-        command = "start.sh"
-        ports   = ["microservices"]
-        args    = ["microservices"]
-        volumes = [
-          "/etc/localtime:/etc/localtime"
-        ]
-
-      }
-
-      template {
-        data        = <<EOH
-          {{ with secret "secrets/data/database/immich"}}
-          DB_PASSWORD= {{ .Data.data.password }}
-          {{end}}
-          DB_DATABASE_NAME= immich
-          DB_USERNAME= immich
-          DB_HOSTNAME= active.db.service.consul
-          REDIS_HOSTNAME            = {{env "NOMAD_IP_redis"}}
-          REDIS_PORT            = {{env "NOMAD_HOST_PORT_redis"}}
-          IMMICH_MACHINE_LEARNING_URL = http://{{ env "NOMAD_ADDR_machinelearning"}}
-          EOH
-        destination = "secrets/immich.env"
-        env         = true
-      }
-      resources {
-        memory = 300
-        memory_max = 800
-      }
-    }
     task "immich-machine-learning" {
       driver = "docker"
       volume_mount {
@@ -153,7 +107,7 @@ job "immich" {
         destination = "/cache"
       }
       config {
-        image = "ghcr.service.consul:5000/immich-app/immich-machine-learning:release"
+        image = "ghcr.service.consul:5000/immich-app/immich-machine-learning:main"
         ports = ["machinelearning"]
       }
 
