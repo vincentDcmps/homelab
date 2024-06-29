@@ -1,5 +1,5 @@
 ---
-default_interface: "enp2s0"
+default_interface: "enp1s0"
 consul_iface: "{{ default_interface}}"
 vault_iface: "{{ default_interface}}"
 nfs_iface:  "{{ default_interface}}"
