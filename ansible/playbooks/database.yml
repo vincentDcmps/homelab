@@ -4,13 +4,19 @@
   vars:
   # certbot_force: true
   pre_tasks:
+    - name: Install Pg vertors (immich)
+      ansible.builtin.aur:
+        name: pgvecto.rs-bin
+        state: present
+      become: true
+      become_user: aur_builder
     - name: Add database member to pg_hba replication
       ansible.builtin.set_fact:
         postgresql_hba_entries: "{{ postgresql_hba_entries + [\
           {'type':'host', \
           'database': 'replication',\
           'user':'repli',\
-          'address':hostvars[item]['ansible_'+default_interface]['ipv4']['address']+'/32',\
+          'address':hostvars[item]['ansible_'+hostvars[item]['default_interface']]['ipv4']['address']+'/32',\
           'auth_method':'trust'}] }}"
       loop: '{{ groups.database }}'
   roles:
@@ -30,11 +36,7 @@
         state: '{{ postgresql_service_state }}'
         enabled: '{{ postgresql_service_enabled }}'
       become: true
-    - name: Install pg_vector.rs
-      aur:
-        name: pgvecto.rs-bin
-      become: true
-      become_user: aur_builder
+
     - name: Set Postgress shared libraries
       community.postgresql.postgresql_set:
         name: shared_preload_libraries
