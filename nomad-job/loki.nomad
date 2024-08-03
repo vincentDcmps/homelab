@@ -80,9 +80,19 @@ compactor:
   working_directory: /loki/tsdb-shipper-compactor
   shared_store: filesystem
 limits_config:
+  split_queries_by_interval: 24h
+  max_query_parallelism: 100
+  max_entries_limit_per_query: 10000
+  injection_rate_strategy: local
   retention_period: 90d
   reject_old_samples: true
   reject_old_samples_max_age: 168h
+query_scheduler:
+  max_outstanding_requests_per_tenant: 4096
+querier:
+  max_concurrent: 4096
+frontend:
+  max_outstanding_per_tenant: 4096
 query_range:
   results_cache:
     cache:
