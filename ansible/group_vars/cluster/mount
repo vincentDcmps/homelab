@@ -25,7 +25,7 @@ systemd_mounts:
         enabled: true
     diskstation_media:
         share: "{{ nas_ip }}:{{ env_default_nfs_path }}/media"
-        mount: /mnt/diskstation/serie
+        mount: /mnt/diskstation/media
         type: nfs
         options:
             - " "
