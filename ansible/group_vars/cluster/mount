@@ -1,12 +1,4 @@
 systemd_mounts:
-    backup_disk:
-        share: /dev/sdb1
-        mount: /mnt/backup
-        type: ntfs-3g
-        options:
-            - " "
-        automount: "{{ env_automount }}"
-        enabled: "{%if inventory_hostname in groups['staging'] %} false {% else %} true {% endif %}"
     diskstation_photo:
         share: "{{ nas_ip }}:{{ env_default_nfs_path }}/photo"
         mount: /mnt/diskstation/photo
