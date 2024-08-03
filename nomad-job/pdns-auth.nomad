@@ -84,6 +84,7 @@ include-dir=/etc/powerdns/pdns.d
         EOH
       }
       resources {
+        cpu    = 50
         memory = 100
       }
     }
@@ -123,7 +124,7 @@ SQLALCHEMY_DATABASE_URI=postgresql://pdns-admin:{{ .Data.data.pdnsadmin }}@activ
         EOH
       }
     resources {
-      cpu    = 100
+      cpu    = 50
       memory = 200
 }
 
@@ -148,7 +149,7 @@ local-address=192.168.1.6
       EOH
     }
     resources {
-      cpu    = 100
+      cpu    = 50
       memory = 50
     }
   }
