@@ -1,0 +1,5 @@
+---
+- name: k3s
+  hosts: all
+  roles:
+    - role: ansible-k3s

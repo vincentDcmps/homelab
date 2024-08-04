@@ -1,2 +1,3 @@
 nomad_datacenter: homelab
+k3s_consul_service: true
 system_wol_enable: True

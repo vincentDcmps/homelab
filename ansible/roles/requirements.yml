@@ -45,5 +45,7 @@ roles:
 - src: git@git.ducamps.eu:2222/ansible-roles/ansible-role-pureftpd.git
   scm: git
 - src: https://github.com/PowerDNS/pdns_recursor-ansible.git
+- src: ssh://git@git.ducamps.eu:2222/ansible-roles/ansible-k3s.git
+  scm: git
 collections:
   - name: vladgh.samba

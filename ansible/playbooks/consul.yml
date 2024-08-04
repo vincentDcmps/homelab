@@ -1,0 +1,8 @@
+---
+- name: Consul install
+  hosts: all
+  roles:
+    - role: ansible-consul
+      become: true
+
+

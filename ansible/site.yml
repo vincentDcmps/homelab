@@ -2,7 +2,9 @@
 - import_playbook: playbooks/server.yml
 - import_playbook: playbooks/dhcpd.yml
 - import_playbook: playbooks/dns.yml
-- import_playbook: playbooks/HashicorpStack.yml
+- import_playbook: playbooks/consul.yml
+- import_playbook: playbooks/kube.yml
+#- import_playbook: playbooks/HashicorpStack.yml
 - import_playbook: playbooks/nas.yml
 - import_playbook: playbooks/autofs.yml
 - import_playbook: playbooks/sssd.yml
