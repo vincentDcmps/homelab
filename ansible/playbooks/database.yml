@@ -5,7 +5,7 @@
   # certbot_force: true
   pre_tasks:
     - name: Install Pg vertors (immich)
-      ansible.builtin.aur:
+      aur:
         name: pgvecto.rs-bin
         state: present
       become: true
@@ -29,7 +29,7 @@
         creates: /var/lib/postgres/data/postgresql.conf
       become: true
       become_user: postgres
-      when: inventory_hostname in groups["database_standby"] 
+      when: inventory_hostname in groups["database_standby"]
     - name: Ensure PostgreSQL is started and enabled on boot.
       ansible.builtin.service:
         name: '{{ postgresql_daemon }}'
