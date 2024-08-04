@@ -1,10 +1,4 @@
 ---
-- name: Consul install
-  hosts: all
-  roles:
-    - role: ansible-consul
-      become: true
-
 - name: Vault install
   hosts: homelab
   roles:
@@ -46,8 +40,6 @@
 
 - name: nomad
   hosts: all
-  vars:
-    unseal_keys_dir_output: ~/vaultunseal
   roles:
     - role: ansible-nomad
       become: true
