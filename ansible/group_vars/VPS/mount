@@ -4,7 +4,7 @@ systemd_mounts:
     mount: /mnt/diskstation/nomad
     type: nfs
     options:
-        - " "
+        - "vers=4"
     automount: "{{ env_automount }}"
     enabled: true
   hetzner_storage:

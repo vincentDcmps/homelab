@@ -4,7 +4,7 @@ systemd_mounts:
         mount: /mnt/diskstation/photo
         type: nfs
         options:
-            - " "
+            - "vers=4"
         automount: "{{ env_automount }}"
         enabled: true
     diskstation_music:
@@ -12,7 +12,7 @@ systemd_mounts:
         mount: /mnt/diskstation/music
         type: nfs
         options:
-            - " "
+            - "vers=4"
         automount: "{{ env_automount }}"
         enabled: true
     diskstation_media:
@@ -20,7 +20,7 @@ systemd_mounts:
         mount: /mnt/diskstation/media
         type: nfs
         options:
-            - " "
+            - "vers=4"
         automount: "{{ env_automount }}"
         enabled: true
 
@@ -29,7 +29,7 @@ systemd_mounts:
         mount: /mnt/diskstation/ebook
         type: nfs
         options:
-            - " "
+            - "vers=4"
         automount: "{{ env_automount }}"
         enabled: true
     diskstation_nomad:
@@ -45,6 +45,6 @@ systemd_mounts:
         mount: /mnt/diskstation/download
         type: nfs
         options:
-            - " "
+            - "vers=4"
         automount: "{{ env_automount }}"
         enabled: true
