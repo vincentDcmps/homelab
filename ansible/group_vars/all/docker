@@ -1,7 +1,7 @@
 docker_daemon_config:
   dns:
     - 172.17.0.1
-    - 192.168.1.5
+    - 192.168.1.6
   mtu: 1420
   insecure-registries:
     - 192.168.1.0/24
