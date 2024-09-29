@@ -90,7 +90,7 @@ version: '0.1'
       }
       resources {
         memory = 150
-        memory_max = 400
+        memory_max = 600
       }
     }
     task "docker-ghcr" {
@@ -133,7 +133,7 @@ version: '0.1'
       }
       resources {
         memory = 150
-        memory_max = 400
+        memory_max = 600
       }
     }
 

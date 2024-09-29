@@ -74,6 +74,7 @@ job "batch-seedboxsync" {
       }
       resources {
         memory = 500
+        memory_max = 1000
       }
     }
 

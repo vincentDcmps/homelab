@@ -96,7 +96,8 @@ job "immich" {
         env         = true
       }
       resources {
-        memory = 500
+        memory = 600
+        memory_max = 1800
       }
     }
 
