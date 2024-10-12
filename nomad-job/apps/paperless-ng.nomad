@@ -52,6 +52,7 @@ job "paperless-ng" {
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
           "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=web,websecure",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.middlewares=authelia",
           "homer.enable=true",
           "homer.name=Paperless",
           "homer.service=Application",
@@ -87,6 +88,9 @@ job "paperless-ng" {
         PAPERLESS_CONSUMER_POLLING = "60"
         PAPERLESS_URL              = "https://${NOMAD_JOB_NAME}.ducamps.eu"
         PAPERLESS_ALLOWED_HOSTS    = "192.168.1.42,192.168.1.40"
+        PAPERLESS_ENABLE_HTTP_REMOTE_USER = "true"
+        PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME = "HTTP_REMOTE_USER"
+        PAPERLESS_LOGOUT_REDIRECT_URL= "https://auth.ducamps.eu/logout"
       }
 
       template {
