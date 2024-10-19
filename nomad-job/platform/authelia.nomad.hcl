@@ -180,6 +180,19 @@ identity_providers:
           - 'profile'
           - 'email'
         userinfo_signed_response_alg: 'none'
+        token_endpoint_auth_method: 'client_secret_basic' 
+      - client_id: 'gitea'
+        client_name: 'gitea'
+        client_secret:{{ with secret "secrets/data/authelia/gitea"}} {{ .Data.data.hash }} {{end}}
+        public: false
+        authorization_policy: 'one_factor'
+        redirect_uris:
+          - 'https://git.ducamps.eu/user/oauth2/authelia/callback'
+        scopes:
+          - 'openid'
+          - 'profile'
+          - 'email'
+        userinfo_signed_response_alg: 'none'
         token_endpoint_auth_method: 'client_secret_basic'
 
 log:
