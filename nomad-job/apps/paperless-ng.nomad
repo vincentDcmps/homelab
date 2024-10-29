@@ -38,7 +38,6 @@ job "paperless-ng" {
       }
       resources {
         memory = 50
-        cpu    = 50
       }
     }
     task "paperless-ng" {
@@ -103,7 +102,7 @@ job "paperless-ng" {
       resources {
         memory = 950
         memory_max = 1500
-        cpu    = 100
+        cpu    = 2000
       }
     }
 

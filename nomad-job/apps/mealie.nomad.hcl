@@ -86,7 +86,7 @@ job "mealie" {
         env         = true
       }
       resources {
-        memory = 400
+        memory = 300
       }
     }
 

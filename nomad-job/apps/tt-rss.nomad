@@ -83,7 +83,6 @@ job "tt-rss" {
         env         = true
       }
       resources {
-        cpu = 50
         memory = 150
       }
     }
@@ -116,7 +115,6 @@ job "tt-rss" {
 
       }
       resources {
-        cpu = 50
         memory = 150
       }
     }
@@ -201,7 +199,6 @@ job "tt-rss" {
       }
 
       resources {
-        cpu = 50
         memory = 50
       }
     }

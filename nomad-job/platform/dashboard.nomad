@@ -45,7 +45,6 @@ job "dashboard" {
       }
 
       resources {
-        cpu = 50
         memory = 20
       }
     }
@@ -145,7 +144,6 @@ services:
 
       }
       resources {
-        cpu = 50
         memory = 30
       }
     }

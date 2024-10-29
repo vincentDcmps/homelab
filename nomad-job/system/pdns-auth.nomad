@@ -81,7 +81,6 @@ include-dir=/etc/powerdns/pdns.d
         EOH
       }
       resources {
-        cpu    = 50
         memory = 100
       }
     }
@@ -96,9 +95,9 @@ include-dir=/etc/powerdns/pdns.d
           "local/recursor.conf:/etc/powerdns/recursor.conf",
         ]
       }
-      template {
-        destination = "local/recursor.conf"
-        data        = <<EOH
+    template{
+      destination = "local/recursor.conf"
+      data= <<EOH
 config-dir=/etc/powerdns
 dnssec=off
 forward-zones=consul=127.0.0.1:8600,ducamps.eu=192.168.1.5,1.168.192.in-addr.arpa=192.168.1.5
