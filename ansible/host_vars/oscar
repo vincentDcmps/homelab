@@ -3,6 +3,7 @@ default_interface: "enp1s0"
 consul_iface: "{{ default_interface}}"
 vault_iface: "{{ default_interface}}"
 nfs_iface:  "{{ default_interface}}"
+nomad_client_cpu_total_compute: 8000
 wireguard_address: "10.0.0.2/24"
 wireguard_byhost_allowed_ips:
   merlin: 10.0.0.2,192.168.1.40
