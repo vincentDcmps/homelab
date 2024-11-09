@@ -23,7 +23,7 @@ job "torrent" {
       }
     }
     task "bittorent" {
-      driver = "podman"
+      driver = "docker"
       service {
         name = "bittorent"
         port = "http"
@@ -43,11 +43,11 @@ job "torrent" {
           "traefik.http.routers.${NOMAD_JOB_NAME}.middlewares=authelia-basic",
         ]
       }
-      user = "root"
       config {
-        
+        ulimit {
+          nofile = "8192:8192"
+        }
         image = "docker.service.consul:5000/crazymax/rtorrent-rutorrent:edge"
-        privileged = "true"
         ports = [
           "http",
           "torrent",
