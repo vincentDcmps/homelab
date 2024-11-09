@@ -35,7 +35,7 @@ job "torrent_automation" {
         
       }
       config {
-        image = "ghcr.io/flaresolverr/flaresolverr:latest"
+        image = "alexfozor/flaresolverr:pr-1300-experimental"
         ports = ["flaresolverr"]
       }
       env {
