@@ -122,10 +122,11 @@ identity_providers:
           - 'https://www.ducamps.eu/tt-rss'
         userinfo_signed_response_alg: none
         authorization_policy: 'one_factor'
-        pre_configured_consent_duration: 15d
+        pre_configured_consent_duration: 3M
       - client_id: 'mealie'
         client_name: 'mealie'
-        public: true
+        client_secret: {{ with secret "secrets/data/authelia/mealie"}} {{ .Data.data.hash }} {{end}}
+        public: false
         require_pkce: true
         pkce_challenge_method: 'S256'
         scopes:
@@ -137,7 +138,7 @@ identity_providers:
           - 'https://mealie.ducamps.eu/login'
         userinfo_signed_response_alg: none
         authorization_policy: 'one_factor'
-        token_endpoint_auth_method: 'none'
+        pre_configured_consent_duration: 3M
       - client_id: 'immich'
         client_name: 'immich'
         client_secret: {{ with secret "secrets/data/authelia/immich"}} {{ .Data.data.hash }} {{end}}
@@ -152,6 +153,7 @@ identity_providers:
           - 'profile'
           - 'email'
         userinfo_signed_response_alg: 'none'
+        pre_configured_consent_duration: 3M
       - client_id: 'grafana'
         client_name: 'Grafana'
         client_secret:{{ with secret "secrets/data/authelia/grafana"}} {{ .Data.data.hash }} {{end}}
@@ -168,6 +170,7 @@ identity_providers:
           - 'email'
         userinfo_signed_response_alg: 'none'
         token_endpoint_auth_method: 'client_secret_basic'
+        pre_configured_consent_duration: 3M
       - client_id: 'vikunja'
         client_name: 'vikunja'
         client_secret:{{ with secret "secrets/data/authelia/vikunja"}} {{ .Data.data.hash }} {{end}}
@@ -181,6 +184,7 @@ identity_providers:
           - 'email'
         userinfo_signed_response_alg: 'none'
         token_endpoint_auth_method: 'client_secret_basic' 
+        pre_configured_consent_duration: 3M
       - client_id: 'gitea'
         client_name: 'gitea'
         client_secret:{{ with secret "secrets/data/authelia/gitea"}} {{ .Data.data.hash }} {{end}}
@@ -194,6 +198,7 @@ identity_providers:
           - 'email'
         userinfo_signed_response_alg: 'none'
         token_endpoint_auth_method: 'client_secret_basic'
+        pre_configured_consent_duration: 3M
 
 log:
   level: 'trace'
