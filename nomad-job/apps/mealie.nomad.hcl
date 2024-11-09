@@ -81,12 +81,13 @@ job "mealie" {
       template {
         data        = <<EOH
 {{ with secret "secrets/data/database/mealie"}}POSTGRES_PASSWORD= "{{ .Data.data.password }}" {{end}}
+{{ with secret "secrets/data/authelia/mealie"}}OIDC_CLIENT_SECRET= "{{ .Data.data.password }}" {{end}}
           EOH
         destination = "secrets/var.env"
         env         = true
       }
       resources {
-        memory = 300
+        memory = 400
       }
     }
 

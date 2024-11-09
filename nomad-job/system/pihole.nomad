@@ -90,6 +90,7 @@ local-ttl=2
       }
       resources {
         memory = 100
+        memory_max =200
       }
     }
 
