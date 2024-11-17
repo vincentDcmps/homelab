@@ -85,7 +85,8 @@ exclude_patterns:
   - '*nomad/registry'
   - '*nomad/pacoloco'
   - '*nomad/pihole'
-  - '*nomad/jellyfin/config/data/library*'
+  - '*nomad/jellyfin/*'
+  - '*.log*'
 
 match_archives: '*'
 archive_name_format: '{{ env "node.datacenter" }}-{now:%Y-%m-%dT%H:%M:%S.%f}'
