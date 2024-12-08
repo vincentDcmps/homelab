@@ -45,7 +45,8 @@ job "torrent" {
       }
       config {
         ulimit {
-          nofile = "8192:8192"
+          nproc=65535
+          nofile = "32000:40000"
         }
         image = "docker.service.consul:5000/crazymax/rtorrent-rutorrent:edge"
         ports = [
