@@ -47,4 +47,3 @@ nomad_host_networks:
   - name: "default"
     interface: wg0
 vault_listener_address: 10.0.0.4
-nomad_plugins_podman: True
