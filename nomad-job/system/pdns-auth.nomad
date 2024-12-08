@@ -98,11 +98,23 @@ include-dir=/etc/powerdns/pdns.d
     template{
       destination = "local/recursor.conf"
       data= <<EOH
-config-dir=/etc/powerdns
-dnssec=off
-forward-zones=consul=127.0.0.1:8600,ducamps.eu=192.168.1.5,1.168.192.in-addr.arpa=192.168.1.5
-local-address=192.168.1.6
-      EOH
+dnssec:
+ validation: off
+recursor:
+  forward_zones:
+    - zone: consul
+      forwarders:
+       - 127.0.0.1:8600
+    - zone : ducamps.eu
+      forwarders:
+       - 192.168.1.5
+    - zone: 1.168.192.in-addr.arpa
+      forwarders: 
+       - 192.168.1.5
+incoming:
+  listen:
+    - 192.168.1.6
+EOH
       }
       resources {
         cpu    = 50
