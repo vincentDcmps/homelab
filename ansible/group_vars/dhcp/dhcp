@@ -44,8 +44,7 @@ dhcpd_hosts:
     ethernet: '68:1D:EF:3C:F0:44'
   - hostname: 'bleys'
     address: '192.168.1.42'
-    ethernet: '68:1d:ef:2b:3d:24'
-
+    ethernet: '14:B3:1F:14:C0:D2'
 
   - hostname: 'xiaomi-chambre-gateway'
     address: '192.168.1.61'
