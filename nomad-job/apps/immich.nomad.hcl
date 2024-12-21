@@ -14,7 +14,7 @@ job "immich" {
     network {
       mode = "host"
       port "http" {
-        to = 3001
+        to = 2283
       }
       port "redis" {
         to = 6379
@@ -91,6 +91,7 @@ job "immich" {
           REDIS_HOSTNAME            = {{env "NOMAD_IP_redis"}}
           REDIS_PORT            = {{env "NOMAD_HOST_PORT_redis"}}
           IMMICH_MACHINE_LEARNING_URL = http://{{ env "NOMAD_ADDR_machinelearning"}}
+          IMMICH_HOST=0.0.0.0
           EOH
         destination = "secrets/immich.env"
         env         = true
