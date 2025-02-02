@@ -50,7 +50,7 @@ job "borgmatic" {
         data= <<EOH
 BORG_RSH="ssh -i /root/.ssh/id_rsa -p 23"
 {{ with secret "secrets/data/nomad/borgmatic"}}
-BORG_PASSPHRASE= {{.Data.data.passphrase}}
+BORG_PASSPHRASE= {{.Data.data.BORG_PASSPHRASE}}
 {{end}}
           EOH
         destination = "secrets/sample.env"
