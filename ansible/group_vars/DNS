@@ -11,14 +11,24 @@ pdns_backends:
 pdns_sqlite_databases_locations: 
   - "/var/lib/powerdns/powerdns.sqlite"
 
-pdns_rec_config:
-  forward-zones:
-    - "{{ consul_domain }}=127.0.0.1:8600"
-    - "ducamps.win=192.168.1.10"
-    - "{{ domain.name }}=192.168.1.5"
-    - "lan.{{ domain.name }}=192.168.1.5"
-    - "1.168.192.in-addr.arpa=192.168.1.5:5300"
-                
-  local-address: "{{ hostvars[inventory_hostname]['ansible_'+ default_interface].ipv4.address|default(ansible_default_ipv4.address) }}"  
-  dnssec: "off"
+pdns_rec_custom_config:
+  dnssec:
+    validation: "off"
+  recursor:
+    forward_zones:
+      - zone: "{{ consul_domain }}"
+        forwarders:
+          - 127.0.0.1:8600
+      - zone: "{{ domain.name }}"
+        forwarders:
+          - 192.168.1.5
+      - zone: "lan.{{ domain.name }}"
+        forwarders:
+          - 192.168.1.5
+      - zone: 1.168.192.in-addr.arpa
+        forwarders:
+          - 192.168.1.5
+  incoming:
+    listen:
+      - "{{ hostvars[inventory_hostname]['ansible_'+ default_interface].ipv4.address|default(ansible_default_ipv4.address) }}"  
 
