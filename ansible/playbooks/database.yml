@@ -6,7 +6,7 @@
   pre_tasks:
     - name: Install Pg vertors (immich)
       aur:
-        name: pgvecto.rs-bin
+        name: pgvecto.rs-immich-bin
         state: present
       become: true
       become_user: aur_builder
