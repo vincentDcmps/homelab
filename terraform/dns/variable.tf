@@ -19,6 +19,7 @@ variable cnameList{
   default= [
     "auth",
     "arch",
+    "budget",
     "dashboard",
     "drone",
     "file",
@@ -26,8 +27,12 @@ variable cnameList{
     "git",
     "grafana",
     "hass",
+    "immich",
     "jellyfin",
     "jellyfin-vue",
+    "ldap",
+    "mail",
+    "mealie",
     "paperless-ng",
     "supysonic",
     "syno",
@@ -35,11 +40,6 @@ variable cnameList{
     "vault",
     "vikunja",
     "www",
-    "mail",
-    "ldap",
-    "budget",
-    "mealie",
-    "immich",
   ]
 }
 
