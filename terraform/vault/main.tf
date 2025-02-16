@@ -13,3 +13,4 @@ resource "vault_mount" "kvv2-secret" {
     version = "2"
   }
 }
+

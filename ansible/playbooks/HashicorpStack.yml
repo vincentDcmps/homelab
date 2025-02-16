@@ -25,24 +25,6 @@
     - name: debug
       ansible.builtin.debug:
         var: root_token
-    - name: Generate nomad token
-      community.hashi_vault.vault_token_create:
-        renewable: true
-        policies: "nomad-server-policy"
-        period: 72h
-        no_parent: true
-        token: "{{ root_token.stdout }}"
-        url: "http://active.vault.service.consul:8200"
-        retries: 4
-      run_once: true
-      delegate_to: localhost
-      when: root_token.stdout is defined
-      register: nomad_token_data
-
-    - name: Gather nomad token
-      ansible.builtin.set_fact:
-        nomad_vault_token: "{{ nomad_token_data.login.auth.client_token }}"
-      when: nomad_token_data.login is defined
 
 - name: nomad
   hosts: all
