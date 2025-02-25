@@ -45,7 +45,7 @@ job "pihole" {
 
       }
       config {
-        image = "docker.service.consul:5000/pihole/pihole:2023.10.0"
+        image = "docker.service.consul:5000/pihole/pihole:2025.02.6"
         network_mode = "host"
         volumes = [
           "local/dnsmasq.d/02-localresolver.conf:/etc/dnsmasq.d/02-localresolver.conf",
@@ -59,16 +59,17 @@ job "pihole" {
       }
       env {
         TZ   = "Europe/Paris"
-        DNS1 = "192.168.1.5"
-        DNS2 = "192.168.1.40"
-        WEB_PORT      = "${NOMAD_PORT_http}"
+        FTLCONF_dns_upstreams = "192.168.1.6;192.168.1.40"
+        FTLCONF_webserver_port     = "${NOMAD_PORT_http}"
+        FTLCONF_misc_etc_dnsmasq_d= true
 
       }
       template {
         data        = <<EOH
-        INTERFACE     = {{ sockaddr "GetPrivateInterfaces | include \"network\" \"192.168.1.0/24\" | attr \"name\"" }}
+        FTLCONF_dns_interface     = {{ sockaddr "GetPrivateInterfaces | include \"network\" \"192.168.1.0/24\" | attr \"name\"" }}
+        FTLCONF_dns_listeningMode = none
         FTLCONF_LOCAL_IPV4 = 192.168.1.4
-        WEBPASSWORD="{{with secret "secrets/data/nomad/pihole"}}{{.Data.data.WEBPASSWORD}}{{end}}"
+        FTLCONF_webserver_api_password="{{with secret "secrets/data/nomad/pihole"}}{{.Data.data.WEBPASSWORD}}{{end}}"
         EOH
         destination = "local/file.env"
         change_mode = "noop"
@@ -90,7 +91,7 @@ local-ttl=2
       }
       resources {
         memory = 100
-        memory_max =200
+        memory_max =250
       }
     }
 
@@ -98,7 +99,7 @@ local-ttl=2
       driver = "docker"
 
       lifecycle {
-        hook    = "poststart"
+        hook    = "prestart"
         sidecar = true
       }
 
