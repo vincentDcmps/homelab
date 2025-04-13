@@ -45,7 +45,7 @@ job "pihole" {
 
       }
       config {
-        image = "docker.service.consul:5000/pihole/pihole:2025.02.6"
+        image = "docker.service.consul:5000/pihole/pihole:2025.03.0"
         network_mode = "host"
         volumes = [
           "local/dnsmasq.d/02-localresolver.conf:/etc/dnsmasq.d/02-localresolver.conf",
@@ -82,6 +82,7 @@ job "pihole" {
 domain=ducamps.eu
 no-negcache
 listen-address=192.168.1.4
+listen-address=127.0.0.1
 bind-interfaces
 local-ttl=2
         EOH
