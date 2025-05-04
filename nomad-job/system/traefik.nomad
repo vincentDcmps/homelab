@@ -1,4 +1,4 @@
-job "traefik-ingress" {
+job "traefik" {
   datacenters = ["hetzner"]
   priority    = 90
   type        = "service"
@@ -6,7 +6,7 @@ job "traefik-ingress" {
   meta {
     force_deploy = 1
   }
-  group "traefik-ingress" {
+  group "traefik" {
     network {
       mode = "host"
       port "http" {
@@ -67,7 +67,7 @@ job "traefik-ingress" {
       }
 
       config {
-        image = "docker.service.consul:5000/library/traefik"
+        image = "docker.service.consul:5000/library/traefik:v3.3"
         ports = [
           "http",
           "https",
