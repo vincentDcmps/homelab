@@ -136,7 +136,7 @@ job "immich" {
     task "redis" {
       driver = "docker"
       config {
-        image="docker.service.consul:5000/library/redis:6.2-alpine"
+        image="docker.service.consul:5000/library/redis:7.4-alpine"
         ports = ["redis"]
       }
       resources {
