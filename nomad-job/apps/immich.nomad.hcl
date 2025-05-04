@@ -72,7 +72,7 @@ job "immich" {
         destination = "/photo"
       }
       config {
-        image   = "ghcr.service.consul:5000/immich-app/immich-server:release"
+        image   = "ghcr.service.consul:5000/immich-app/immich-server:v1.132.0"
         ports   = ["http"]
         volumes = [
           "/etc/localtime:/etc/localtime"
@@ -109,7 +109,7 @@ job "immich" {
         destination = "/cache"
       }
       config {
-        image = "ghcr.service.consul:5000/immich-app/immich-machine-learning:main"
+        image = "ghcr.service.consul:5000/immich-app/immich-machine-learning:v1.132.1"
         ports = ["machinelearning"]
       }
 
