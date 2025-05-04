@@ -53,7 +53,7 @@ job "registry" {
     task "docker-registry" {
       driver = "docker"
       config {
-        image = "registry:2"
+        image = "registry:3"
         ports = ["docker_registry"]
         volumes = [
           "local/dockerhub.yaml:/etc/docker/registry/config.yml"
@@ -96,7 +96,7 @@ version: '0.1'
     task "docker-ghcr" {
       driver = "docker"
       config {
-        image = "registry:2"
+        image = "registry:3"
         ports = ["ghcr_registry"]
         volumes = [
           "local/ghcr.yaml:/etc/docker/registry/config.yml"
