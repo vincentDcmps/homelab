@@ -39,7 +39,7 @@ job "openldap" {
       }
       driver= "docker"
       config{
-        image= "stakater/ssl-certs-generator"
+        image= "stakater/ssl-certs-generator:1.0"
         mount {
           type = "bind"
           source = "..${NOMAD_ALLOC_DIR}/data"
@@ -69,7 +69,7 @@ job "openldap" {
       }
 
       config {
-        image = "bitnami/openldap"
+        image = "bitnami/openldap:2.6.9"
         ports = ["ldap", "ldaps"]
         volumes = [
           "/mnt/diskstation/nomad/openldap:/bitnami/openldap",
