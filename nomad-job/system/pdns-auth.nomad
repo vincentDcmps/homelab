@@ -36,7 +36,7 @@ job "pdns-auth" {
 
       }
       config {
-        image        = "docker.service.consul:5000/powerdns/pdns-auth-master:latest"
+        image        = "docker.service.consul:5000/powerdns/pdns-auth-49:4.9.4"
         network_mode = "host"
         privileged   = true
         cap_add      = ["net_bind_service"]
@@ -89,7 +89,7 @@ include-dir=/etc/powerdns/pdns.d
 
       driver = "docker"
       config {
-        image        = "docker.service.consul:5000/powerdns/pdns-recursor-master:latest"
+        image        = "docker.service.consul:5000/powerdns/pdns-recursor-52:5.2.2"
         network_mode = "host"
         volumes = [
           "local/recursor.conf:/etc/powerdns/recursor.conf",
@@ -178,7 +178,7 @@ EOH
       }
       driver = "docker"
       config {
-        image = "docker.service.consul:5000/powerdnsadmin/pda-legacy:latest"
+        image = "docker.service.consul:5000/powerdnsadmin/pda-legacy:v0.4.2"
         ports = ["pdnsadmin"]
         volumes = [
           "/mnt/diskstation/nomad/pdns-admin/:/data/node_module/",
