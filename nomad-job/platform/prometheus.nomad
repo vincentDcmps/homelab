@@ -171,7 +171,7 @@ groups:
     annotations:
         summary: Nomad batch {{ $labels.parent_id}} error
   - alert: test gitea
-    expr: nomad_nomad_job_summary_running{exported_job="git"}==0
+    expr: nomad_nomad_job_summary_running{exported_job="gitea"}==0
     labels:
             severity: warning
 - name: nut_alerts
