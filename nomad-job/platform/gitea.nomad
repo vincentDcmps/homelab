@@ -1,4 +1,4 @@
-job "git" {
+job "gitea" {
   datacenters = ["homelab"]
   priority    = 90
   type        = "service"
@@ -40,8 +40,8 @@ job "git" {
           "homer.logo=https://git.ducamps.eu/assets/img/logo.svg",
           "homer.url=https://${NOMAD_JOB_NAME}.ducamps.eu",
           "traefik.enable=true",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`)",
-          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=${NOMAD_JOB_NAME}.ducamps.eu",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`git.ducamps.eu`)",
+          "traefik.http.routers.${NOMAD_JOB_NAME}.tls.domains[0].sans=git.ducamps.eu",
           "traefik.http.routers.${NOMAD_JOB_NAME}.tls.certresolver=myresolver",
           "traefik.http.middlewares.httpsRedirect.redirectscheme.scheme=https",
           "traefik.http.routers.${NOMAD_JOB_NAME}.middlewares=httpsRedirect",
@@ -59,7 +59,7 @@ job "git" {
         ]
       }
       config {
-        image = "docker.service.consul:5000/gitea/gitea:latest"
+        image = "docker.service.consul:5000/gitea/gitea:1.23"
         ports = [
           "http",
           "ssh"
