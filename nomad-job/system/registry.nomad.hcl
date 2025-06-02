@@ -163,7 +163,7 @@ databases 2
     task "traefik" {
       driver = "docker"
       config {
-        image = "traefik:v3.3"
+        image = "traefik:v3.4"
         ports = ["traefik","admin"]
         volumes = [
           "local/traefik.toml:/etc/traefik/traefik.toml"
