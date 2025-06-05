@@ -53,7 +53,7 @@ job "registry" {
     task "docker-registry" {
       driver = "docker"
       config {
-        image = "registry:3"
+        image = "registry:2"
         ports = ["docker_registry"]
         volumes = [
           "local/dockerhub.yaml:/etc/docker/registry/config.yml"
@@ -68,6 +68,7 @@ job "registry" {
       }
       template {
         data        = <<EOH
+version: '0.1'
 http:
   addr: :5000
 log:
@@ -83,7 +84,6 @@ storage:
     blobdescriptor: redis
   filesystem:
     rootdirectory: /var/lib/registry
-version: '0.1'
 
           EOH
         destination = "local/dockerhub.yaml"
@@ -96,7 +96,7 @@ version: '0.1'
     task "docker-ghcr" {
       driver = "docker"
       config {
-        image = "registry:3"
+        image = "registry:2"
         ports = ["ghcr_registry"]
         volumes = [
           "local/ghcr.yaml:/etc/docker/registry/config.yml"
@@ -111,6 +111,7 @@ version: '0.1'
       }
       template {
         data        = <<EOH
+version: '0.1'
 http:
   addr: :5000
 log:
@@ -126,7 +127,6 @@ storage:
     blobdescriptor: redis
   filesystem:
     rootdirectory: /var/lib/registry
-version: '0.1'
 
           EOH
         destination = "local/ghcr.yaml"
@@ -163,7 +163,7 @@ databases 2
     task "traefik" {
       driver = "docker"
       config {
-        image = "traefik:v3.3"
+        image = "traefik:v3.4"
         ports = ["traefik","admin"]
         volumes = [
           "local/traefik.toml:/etc/traefik/traefik.toml"
