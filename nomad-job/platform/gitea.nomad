@@ -108,7 +108,7 @@ job "gitea" {
         env         = true
       }
       resources {
-        memory = 400
+        memory = 500
       }
     }
   }
