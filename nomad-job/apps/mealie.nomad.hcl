@@ -25,7 +25,6 @@ job "mealie" {
       attachment_mode = "file-system"
     }
     vault {
-      policies = ["mealie"]
 
     }
     task "mealie-server" {
@@ -49,7 +48,7 @@ job "mealie" {
         ]
       }
       config {
-        image = "ghcr.io/mealie-recipes/mealie"
+        image = "ghcr.service.consul:5000/mealie-recipes/mealie"
         ports = ["http"]
       }
       volume_mount {
@@ -57,6 +56,7 @@ job "mealie" {
         destination = "/app/data"
       }
       env {
+        ALLOW_PASSWORD_LOGIN   = "false"
         PUID                   = "1000001"
         PGID                   = "1000001"
         TZ                     = "Europe/Paris"
@@ -82,12 +82,14 @@ job "mealie" {
         data        = <<EOH
 {{ with secret "secrets/data/database/mealie"}}POSTGRES_PASSWORD= "{{ .Data.data.password }}" {{end}}
 {{ with secret "secrets/data/authelia/mealie"}}OIDC_CLIENT_SECRET= "{{ .Data.data.password }}" {{end}}
+{{ with secret "secrets/data/nomad/mealie"}}OPENAI_API_KEY= "{{ .Data.data.openai }}" {{end}}
           EOH
         destination = "secrets/var.env"
         env         = true
       }
       resources {
         memory = 400
+        memory_max = 800
       }
     }
 
