@@ -154,6 +154,7 @@ identity_providers:
           - 'email'
         userinfo_signed_response_alg: 'none'
         pre_configured_consent_duration: 3M
+        token_endpoint_auth_method: "client_secret_post"
       - client_id: 'grafana'
         client_name: 'Grafana'
         client_secret:{{ with secret "secrets/data/authelia/grafana"}} {{ .Data.data.hash }} {{end}}
