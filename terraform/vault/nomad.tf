@@ -126,6 +126,9 @@ resource "vault_policy" "nomad_workload" {
         path "secret/data/database/{{identity.entity.aliases.${vault_jwt_auth_backend.nomad.accessor}.metadata.nomad_job_id}}" {
             capabilities = ["read"]
         }
+        path "secret/data/authelia/{{identity.entity.aliases.${vault_jwt_auth_backend.nomad.accessor}.metadata.nomad_job_id}}" {
+            capabilities = ["read"]
+        }
 
         path "secret/metadata/*" {
             capabilities = ["list"]

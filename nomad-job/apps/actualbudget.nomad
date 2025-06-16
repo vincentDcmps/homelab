@@ -14,7 +14,10 @@ job "actualbudget" {
     attribute = "${node.class}"
     operator = "set_contains"
     value = "cluster"
+  } 
+  vault {
   }
+  
   group "actualbudget"{
     network {
       mode = "host"
@@ -51,6 +54,17 @@ job "actualbudget" {
 
       }
       env {
+        ACTUAL_OPENID_DISCOVERY_URL = "https://auth.ducamps.eu/.well-known/openid-configuration"
+        ACTUAL_OPENID_CLIENT_ID = "actual-budget"
+        ACTUAL_OPENID_SERVER_HOSTNAME = "https://budget.ducamps.eu"
+        ACTUAL_OPENID_AUTH_METHOD = "oauth2"
+      }
+      template {
+        data        = <<EOH
+{{ with secret "secrets/data/authelia/actualbudget"}}ACTUAL_OPENID_CLIENT_SECRET= "{{ .Data.data.password }}" {{end}}
+          EOH
+        destination = "secrets/var.env"
+        env         = true
       }
 
       resources {

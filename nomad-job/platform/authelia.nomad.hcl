@@ -110,6 +110,27 @@ identity_providers:
         - https://mealie.ducamps.eu
       allowed_origins_from_client_redirect_uris: true
     clients:
+      - client_id: 'actual-budget'
+        client_name: 'Actual Budget'
+        client_secret: {{ with secret "secrets/data/authelia/actualbudget"}} {{ .Data.data.hash }} {{end}}
+        public: false
+        authorization_policy: 'one_factor'
+        require_pkce: false
+        pkce_challenge_method: ''
+        redirect_uris:
+          - 'https://budget.ducamps.eu/openid/callback'
+        scopes:
+          - 'openid'
+          - 'profile'
+          - 'groups'
+          - 'email'
+        response_types:
+          - 'code'
+        grant_types:
+          - 'authorization_code'
+        access_token_signed_response_alg: 'none'
+        userinfo_signed_response_alg: 'none'
+        token_endpoint_auth_method: 'client_secret_basic'
       - client_id: 'ttrss'
         client_name: 'ttrss'
         client_secret: {{ with secret "secrets/data/authelia/ttrss"}} {{ .Data.data.hash }} {{end}}
