@@ -44,7 +44,7 @@ job "grafana" {
     task "dashboard" {
       driver = "docker"
       config {
-        image = "docker.service.consul:5000/grafana/grafana"
+        image = "docker.service.consul:5000/grafana/grafana:12.0.1"
         ports = ["http"]
         volumes = [
           "local/grafana.ini:/etc/grafana/grafana.ini",

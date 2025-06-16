@@ -29,7 +29,7 @@ job "nut_exporter" {
     task "nut_exporter" {
       driver = "docker"
       config {
-        image = "ghcr.service.consul:5000/druggeri/nut_exporter"
+        image = "ghcr.service.consul:5000/druggeri/nut_exporter:3.2.0"
         ports = ["http"]
       }
       env {

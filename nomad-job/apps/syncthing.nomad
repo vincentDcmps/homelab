@@ -44,7 +44,7 @@ job "syncthing" {
         ]
       }
       config {
-        image = "docker.service.consul:5000/linuxserver/syncthing"
+        image = "docker.service.consul:5000/linuxserver/syncthing:1.29.7"
         ports = ["http"]
         volumes = [
           "/mnt/diskstation/nomad/syncthing/config:/config",
