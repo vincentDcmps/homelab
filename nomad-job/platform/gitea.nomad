@@ -71,6 +71,7 @@ job "gitea" {
       env {
         USER_UID                             = 1000000
         USER_GID                            = 984
+        GITEA__action__ENABLED               = "true"
         GITEA__server__DOMAIN                = "git.ducamps.eu"
         GITEA__server__ROOT_URL              = "https://git.ducamps.eu"
         GITEA__server__SSH_DOMAIN            = "git.ducamps.eu"
