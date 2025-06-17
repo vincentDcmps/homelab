@@ -1,5 +1,5 @@
 locals {
-  allowed_policies= concat(local.nomad_policy,local.nomad_custom_policy[*].name,["nomad-workload"])
+  allowed_policies= concat(local.nomad_policy,local.nomad_custom_policy[*].name,["nomad-workloads"])
  
   nomad_policy=[
     "crowdsec",
@@ -112,25 +112,24 @@ resource "vault_policy" "nomad_workload" {
 
       name   = "nomad-workloads"
         policy = <<EOT
-        path "secret/data/nomad/{{identity.entity.aliases.${vault_jwt_auth_backend.nomad.accessor}.metadata.nomad_job_id}}/*" {
+        path "secrets/data/nomad/{{identity.entity.aliases.${vault_jwt_auth_backend.nomad.accessor}.metadata.nomad_job_id}}/*" {
+            capabilities = ["read"]
+        }
+        path "secrets/data/nomad/{{identity.entity.aliases.${vault_jwt_auth_backend.nomad.accessor}.metadata.nomad_job_id}}" {
+            capabilities = ["read"]
+        }
+        path "secrets/data/database/{{identity.entity.aliases.${vault_jwt_auth_backend.nomad.accessor}.metadata.nomad_job_id}}/*" {
             capabilities = ["read"]
         }
 
-        path "secret/data/nomad/{{identity.entity.aliases.${vault_jwt_auth_backend.nomad.accessor}.metadata.nomad_job_id}}" {
+        path "secrets/data/database/{{identity.entity.aliases.${vault_jwt_auth_backend.nomad.accessor}.metadata.nomad_job_id}}" {
             capabilities = ["read"]
         }
-        path "secret/data/database/{{identity.entity.aliases.${vault_jwt_auth_backend.nomad.accessor}.metadata.nomad_job_id}}/*" {
-            capabilities = ["read"]
-        }
-
-        path "secret/data/database/{{identity.entity.aliases.${vault_jwt_auth_backend.nomad.accessor}.metadata.nomad_job_id}}" {
-            capabilities = ["read"]
-        }
-        path "secret/data/authelia/{{identity.entity.aliases.${vault_jwt_auth_backend.nomad.accessor}.metadata.nomad_job_id}}" {
+        path "secrets/data/authelia/{{identity.entity.aliases.${vault_jwt_auth_backend.nomad.accessor}.metadata.nomad_job_id}}" {
             capabilities = ["read"]
         }
 
-        path "secret/metadata/*" {
+        path "secrets/metadata/*" {
             capabilities = ["list"]
         }
         EOT
