@@ -4,12 +4,13 @@
   vars:
   # certbot_force: true
   pre_tasks:
-    - name: Install Pg vertors (immich)
+    - name: Install vectorchord (immich)
       aur:
-        name: pgvecto.rs-immich-bin
+        name: vectorchord-immich-bin
         state: present
       become: true
       become_user: aur_builder
+       
     - name: Add database member to pg_hba replication
       ansible.builtin.set_fact:
         postgresql_hba_entries: "{{ postgresql_hba_entries + [\
@@ -40,7 +41,8 @@
     - name: Set Postgress shared libraries
       community.postgresql.postgresql_set:
         name: shared_preload_libraries
-        value: vectors.so
+        value: 'vchord.so'
+
       become: true
       become_user: postgres
       when: inventory_hostname in groups["database_active"]
@@ -48,7 +50,7 @@
     - name: Set Postgress shared libraries
       community.postgresql.postgresql_set:
         name: search_path
-        value: '$user, public, vectors'
+        value: '$user, public'
       become: true
       become_user: postgres
       when: inventory_hostname in groups["database_active"]
