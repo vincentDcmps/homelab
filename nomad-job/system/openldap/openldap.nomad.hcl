@@ -17,7 +17,6 @@ job "openldap" {
   }
 
   vault {
-    policies = ["ldap"]
   }
   group "openldap" {
     network {
@@ -94,7 +93,7 @@ job "openldap" {
 
       template {
         data = <<EOH
-          {{ with secret "secrets/data/nomad/ldap"}}
+          {{ with secret "secrets/data/nomad/openldap"}}
           LDAP_ADMIN_PASSWORD="{{ .Data.data.admin}}"
           {{end}}
         EOH
@@ -162,7 +161,7 @@ job "openldap" {
           LDAP_BASE_DN="dc=ducamps,dc=eu"
           LDAP_ADMIN_BIND_DN="cn=admin,dc=ducamps,dc=eu"
           LDAP_GROUP_MEMBERSHIP_ATTRIBUTE = "member"
-          {{ with secret "secrets/data/nomad/ldap"}}
+          {{ with secret "secrets/data/nomad/openldap"}}
           LDAP_ADMIN_BIND_PWD="{{ .Data.data.admin}}"
           {{end}}
           LDAP_IGNORE_CERT_ERRORS="true"

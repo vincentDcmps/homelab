@@ -16,7 +16,6 @@ job "pdns-auth" {
     value     = "cluster"
   }
   vault {
-    policies = ["pdns"]
   }
   group "pdns-auth" {
     network {
@@ -50,7 +49,7 @@ job "pdns-auth" {
         destination = "secrets/env"
 
         data = <<EOH
-{{ with secret "secrets/data/nomad/pdns"}}
+{{ with secret "secrets/data/nomad/pdns-auth"}}
           PDNS_AUTH_API_KEY="{{.Data.data.API_KEY}}"
 {{ end }}
         EOH
@@ -72,7 +71,7 @@ launch=gpgsql
 gpgsql-host=active.db.service.consul
 gpgsql-port=5432
 gpgsql-user=pdns-auth
-{{ with secret "secrets/data/database/pdns"}}
+{{ with secret "secrets/data/database/pdns-auth"}}
 gpgsql-password={{ .Data.data.pdnsauth }}
 {{ end }}
 resolver=192.168.1.6
@@ -188,11 +187,11 @@ EOH
         destination = "secrets/pdns-admin.env"
         env         = true
         data        = <<EOH
-{{ with secret "secrets/data/nomad/pdns"}}
+{{ with secret "secrets/data/nomad/pdns-auth"}}
 SECRET_KEY="{{ .Data.data.SECRET_KEY }}"
-GUNICORN_WORKERS=2
+GUNICORN_WORKERS=
 {{ end }}
-{{ with secret "secrets/data/database/pdns"}}
+{{ with secret "secrets/data/database/pdns-auth"}}
 SQLALCHEMY_DATABASE_URI=postgresql://pdns-admin:{{ .Data.data.pdnsadmin }}@active.db.service.consul/pdns-admin
 {{end}}
         EOH

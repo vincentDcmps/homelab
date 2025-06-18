@@ -7,7 +7,6 @@ job "crowdsec-agent" {
     forcedeploy = "2"
   }
   vault {
-    policies = ["crowdsec"]
 
   }
 
@@ -94,7 +93,7 @@ EOH
         data        = <<EOH
         LOCAL_API_URL =  {{- range service "crowdsec-api" }} "http://{{ .Address }}:{{ .Port }}"{{- end }}
 AGENT_USERNAME = "{{ env "node.unique.name" }}"
-{{with secret "secrets/data/nomad/crowdsec"}}
+{{with secret "secrets/data/nomad/crowdsec-agent"}}
   AGENT_PASSWORD = "{{.Data.data.AGENT_PASSWORD}}"
 {{end}}
 EOH

@@ -21,7 +21,6 @@ job "ghostfolio" {
       }
     }
     vault{
-      policies= ["ghostfolio"]
 
     }
     task "redis" {

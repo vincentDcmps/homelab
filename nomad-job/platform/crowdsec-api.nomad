@@ -10,9 +10,6 @@ job "crowdsec-api" {
     operator = "set_contains"
     value = "cluster"
   }
-  vault {
-    policies = ["crowdsec"]
-  }
 
   group "crowdsec-api" {
     network {

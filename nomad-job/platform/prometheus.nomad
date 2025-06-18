@@ -30,7 +30,6 @@ job "prometheus" {
       mode     = "fail"
     }
     vault {
-      policies = ["prometheus"]
     }
 
     ephemeral_disk {

@@ -1,5 +1,5 @@
 
-job "paperless-ng" {
+job "paperless" {
   datacenters = ["homelab"]
   priority    = 70
   type        = "service"
@@ -27,7 +27,6 @@ job "paperless-ng" {
       }
     }
     vault {
-      policies = ["paperless"]
 
     }
     task "redis" {

@@ -25,7 +25,6 @@ job "gitea" {
       }
     }
     vault {
-      policies = ["gitea"]
     }
     task "gitea" {
       driver = "docker"

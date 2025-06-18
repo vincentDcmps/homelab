@@ -24,7 +24,6 @@ job "batch-seedboxsync" {
       mode = "host"
     }
     vault {
-      policies = ["seedbox"]
     }
     task "rsync" {
       driver = "docker"

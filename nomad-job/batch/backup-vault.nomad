@@ -24,7 +24,6 @@ job "backup-vault" {
       mode = "host"
     }
     vault {
-      policies = ["vault-backup"]
     }
     task "backup-vault" {
       driver = "docker"
@@ -36,7 +35,7 @@ job "backup-vault" {
       }
       template {
         data        = <<EOH
-          {{ with secret "secrets/data/nomad/vault-backup"}}
+          {{ with secret "secrets/data/nomad/backup-vault"}}
           VAULT_APPROLEID = "{{ .Data.data.VAULT_APPROLEID }}"
           VAULT_SECRETID  = "{{ .Data.data.VAULT_SECRETID }}"
           {{end}}

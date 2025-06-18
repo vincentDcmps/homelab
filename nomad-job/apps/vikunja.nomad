@@ -18,7 +18,6 @@ job "vikunja" {
       }
     }
     vault {
-      policies = ["vikunja"]
 
     }
     task "api" {

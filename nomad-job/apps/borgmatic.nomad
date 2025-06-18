@@ -14,7 +14,6 @@ job "borgmatic" {
 
   group "borgmatic"{
     vault{
-      policies= ["borgmatic"]
 
     }
     task "borgmatic" {

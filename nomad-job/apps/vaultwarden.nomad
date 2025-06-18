@@ -19,7 +19,6 @@ job "vaultwarden" {
       }
     }
     vault {
-      policies = ["vaultwarden"]
 
     }
     task "vaultwarden" {

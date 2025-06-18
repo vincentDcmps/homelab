@@ -24,7 +24,6 @@ job "backup-postgress" {
       mode = "host"
     }
     vault {
-      policies = ["dump"]
     }
     task "backup" {
       driver = "docker"
@@ -39,7 +38,7 @@ job "backup-postgress" {
       }
       template {
         data        = <<EOH
-          {{ with secret "secrets/data/database/dump"}}
+          {{ with secret "secrets/data/nomad/backup-postgress"}}
           PGUSER = "dump"
           PGPASSWORD = "{{ .Data.data.password }}"
           PGHOST = "active.db.service.consul"

@@ -12,7 +12,6 @@ job "grafana" {
   }
 
   vault {
-    policies = ["grafana"]
   }
   group "grafana" {
     network {

@@ -54,7 +54,6 @@ job "pihole" {
 
       }
       vault {
-        policies = ["pihole"]
 
       }
       env {

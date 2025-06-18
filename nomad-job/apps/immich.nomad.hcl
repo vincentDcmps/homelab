@@ -42,7 +42,6 @@ job "immich" {
       attachment_mode = "file-system"
     }
     vault {
-      policies = ["immich"]
     }
     task "immich-server" {
       driver = "docker"

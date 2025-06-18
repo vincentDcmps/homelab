@@ -1,4 +1,4 @@
-job "tt-rss" {
+job "ttrss" {
   datacenters = ["homelab"]
   priority    = 90
   type        = "service"

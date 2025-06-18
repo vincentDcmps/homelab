@@ -38,9 +38,6 @@ job "traefik" {
         host_network = "public"
       }
     }
-    vault {
-      policies = ["traefik"]
-    }
     task "traefik" {
       driver = "docker"
       service {
@@ -86,13 +83,6 @@ job "traefik" {
       # vault{
       #}
       env {
-      }
-      template {
-        data        = <<EOH
-        HETZNER_API_KEY = "{{with secret "secrets/data/nomad/traefik"}}{{.Data.data.hetznerdnstoken}}{{end}}"
-        EOH
-        destination = "secrets/gandi.env"
-        env         = true
       }
       template {
         data            = <<EOH

@@ -6,7 +6,6 @@ job "alertmanager" {
     forcedeploy = "0"
   }
   vault {
-    policies = ["alertmanager"]
   }
   constraint {
     attribute = "${node.class}"

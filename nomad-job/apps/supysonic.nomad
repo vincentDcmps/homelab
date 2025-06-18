@@ -26,7 +26,6 @@ job "supysonic" {
       }
     }
     vault {
-      policies = ["supysonic"]
 
     }
     service {

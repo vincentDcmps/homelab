@@ -2,32 +2,7 @@ locals {
   allowed_policies= concat(local.nomad_policy,local.nomad_custom_policy[*].name,["nomad-workloads"])
  
   nomad_policy=[
-    "crowdsec",
-    "dump",
-    "dentrite",
     "droneci",
-    "traefik",
-    "gitea",
-    "grafana",
-    "nextcloud",
-    "paperless",
-    "pihole",
-    "prometheus",
-    "rsyncd",
-    "seedbox",
-    "supysonic",
-    "ttrss",
-    "vaultwarden",
-    "wikijs",
-    "vikunja",
-    "ghostfolio",
-    "alertmanager",
-    "vault-backup",
-    "pdns",
-    "ldap",
-    "borgmatic",
-    "mealie",
-    "immich",
   ]
 nomad_custom_policy = [
     {
