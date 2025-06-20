@@ -54,7 +54,7 @@ job "batch-seedboxsync" {
       }
       template {
         data        = <<EOH
-          {{ with secret "secrets/data/nomad/seedbox"}}
+          {{ with secret "secrets/data/nomad/batch-seedboxsync"}}
           USERNAME = "{{ .Data.data.username }}"
           REMOTE_PATH = "{{ .Data.data.remote_rsync_path }}"
           REMOTE_SERVER = "{{ .Data.data.remote_server }}"
@@ -64,7 +64,7 @@ job "batch-seedboxsync" {
         env         = true
       }
       template {
-        data = "{{ with secret \"secrets/data/nomad/seedbox\"}}{{ .Data.data.private_key }}{{end}}"
+        data = "{{ with secret \"secrets/data/nomad/batch-seedboxsync\"}}{{ .Data.data.private_key }}{{end}}"
 
         destination = "local/id_rsa"
         uid=1000001
