@@ -177,7 +177,7 @@ EOH
       }
       driver = "docker"
       config {
-        image = "docker.service.consul:5000/powerdnsadmin/pda-legacy:v0.4.2"
+        image = "docker.service.consul:5000/powerdnsadmin/pda-legacy:dev"
         ports = ["pdnsadmin"]
         volumes = [
           "/mnt/diskstation/nomad/pdns-admin/:/data/node_module/",
@@ -189,7 +189,7 @@ EOH
         data        = <<EOH
 {{ with secret "secrets/data/nomad/pdns-auth"}}
 SECRET_KEY="{{ .Data.data.SECRET_KEY }}"
-GUNICORN_WORKERS=
+GUNICORN_WORKERS=1
 {{ end }}
 {{ with secret "secrets/data/database/pdns-auth"}}
 SQLALCHEMY_DATABASE_URI=postgresql://pdns-admin:{{ .Data.data.pdnsadmin }}@active.db.service.consul/pdns-admin
