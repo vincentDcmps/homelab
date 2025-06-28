@@ -34,11 +34,13 @@ variable cnameList{
     "mail",
     "mealie",
     "paperless-ng",
+    "prestashop",
     "supysonic",
     "syno",
     "torrent",
     "vault",
     "vikunja",
+    "wordpress",
     "www",
   ]
 }
