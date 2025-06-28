@@ -9,7 +9,7 @@ else
 endif
 
 deploy_dns:
-	TF_VAR_powerDnsApiKey=$(shell vault kv get -field=API_KEY secrets/nomad/pdns) TF_VAR_hetznerApiKey=$(shell vault kv get -field=hdns_token secrets/hetzner) tofu -chdir=dns $(command)
+	TF_VAR_powerDnsApiKey=$(shell vault kv get -field=API_KEY secrets/nomad/pdns-auth) TF_VAR_hetznerApiKey=$(shell vault kv get -field=hdns_token secrets/hetzner) tofu -chdir=dns $(command)
 
 deploy_cloud:
 	TF_VAR_hetznerApiKey=$(shell vault kv get -field=hdns_token secrets/hetzner)  tofu -chdir=cloud $(command)
