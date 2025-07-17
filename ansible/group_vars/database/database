@@ -28,6 +28,8 @@ postgresql_databases:
     owner: mealie
   - name: immich
     owner: immich
+  - name: joplin
+    owner: joplin
 
 postgresql_hba_entries:
   - {type: local, database: all, user: postgres, auth_method: peer}

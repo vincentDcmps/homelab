@@ -30,6 +30,7 @@ variable cnameList{
     "immich",
     "jellyfin",
     "jellyfin-vue",
+    "joplin",
     "ldap",
     "mail",
     "mealie",
