@@ -33,7 +33,7 @@ variable cnameList{
     "ldap",
     "mail",
     "mealie",
-    "paperless-ng",
+    "paperless",
     "supysonic",
     "syno",
     "torrent",
