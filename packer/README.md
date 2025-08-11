@@ -6,8 +6,8 @@ This repo is used to build linux images (as snapshots) for use with
 
 Templates for the following distros are currently provided:
 
-  - archlinux
-  - nixos
+- archlinux
+- nixos
 
 I recommend the use of Hetzner's
 [hcloud](https://github.com/hetznercloud/cli/tree/master/cli) command
@@ -20,25 +20,25 @@ your images cannot yet be (easily) exported from Hetzner's Cloud.
 
 Please ensure that you have done the following:
 
-  - installed `packer` on your development machine
-  - set the `HCLOUD_TOKEN` environment variable to your API token
-  - reviewed/overriden the templates' variables (as necessary)
+- installed `packer` on your development machine
+- set the `HCLOUD_TOKEN` environment variable to your API token
+- reviewed/overriden the templates' variables (as necessary)
 
 ### Getting Started
 
 To build VM images:
 
-  - `$ packer build templates/archlinux.pkr.hcl`
-  - `$ packer build templates/nixos.pkr.hcl`
+- `$ packer build templates/archlinux.pkr.hcl`
+- `$ packer build templates/nixos.pkr.hcl`
 
 To view info about past builds:
 
-  - `$ less packer-manifest.json`
+- `$ less packer-manifest.json`
 
 To debug a build:
 
-  - `$ packer build -debug -on-error=ask packer/nixos.pkr.hcl`
-  - `$ ssh -F/dev/null -i ssh_key_hcloud.pem root@XXX.XXX.XXX.XXX -o StrictHostKeyChecking=no`
+- `$ packer build -debug -on-error=ask packer/nixos.pkr.hcl`
+- `$ ssh -F/dev/null -i ssh_key_hcloud.pem root@XXX.XXX.XXX.XXX -o StrictHostKeyChecking=no`
 
 ### Internals
 
@@ -46,7 +46,7 @@ The resulting images are intended to support a Terraform-based (or
 custom) workflow that feels close to the one of native Hetzner VMs.
 
 Hetzner's server infrastructure (mirrors, repos, DNS, NTP, DHCP) and
-configuration endpoints are used where possible.  This necessarily
+configuration endpoints are used where possible. This necessarily
 involves some analysis of their (partially undocumented) setups and
 translations of these to our images, so this may become outdated, may
 break, or may not work completely as expected. Error handling is also
@@ -55,17 +55,17 @@ pretty bare-bones.
 In particular, support for the following features available on
 standard Hetzner VMs is desired:
 
-  - dynamic hostname
-  - dynamic root ssh keys
-  - free-form cloud-init userdata
-  - full IPv6/IPv4 support
-  - Hetzner Cloud Networks
-  - Hetzner Cloud Volumes
+- dynamic hostname
+- dynamic root ssh keys
+- free-form cloud-init userdata
+- full IPv6/IPv4 support
+- Hetzner Cloud Networks
+- Hetzner Cloud Volumes
 
 The following features are notably unsupported:
 
-  - dynamic initial root passwords (please prefer ssh keys)
-  - automatic server resizing (use rescue mode, or a new server)
+- dynamic initial root passwords (please prefer ssh keys)
+- automatic server resizing (use rescue mode, or a new server)
 
 A general problem is that much of the data necessary for the features
 in the lists above is only allocated after a server is instantiated
@@ -91,10 +91,10 @@ Archlinux images use the file `/etc/hcloud-metadata.json` to drive a
 few systemd services, which in turn implement the dynamic features
 mentioned above:
 
-  - hcloud-hostname.service (sets hostname)
-  - hcloud-network.service (configures primary and attached networks)
-  - hcloud-ssh-keys.service (sets ssh root keys)
-  
+- hcloud-hostname.service (sets hostname)
+- hcloud-network.service (configures primary and attached networks)
+- hcloud-ssh-keys.service (sets ssh root keys)
+
 Any further configuration is up to your provisioning tool.
 
 #### NixOS
@@ -144,8 +144,8 @@ to use flakes instead, but this isn't implemented yet.
 The upstream for the GPG keys used by the installation scripts can be
 found on these pages:
 
-  - Archlinux: https://www.archlinux.org/master-keys/
-  - Nixos: https://nixos.org/nix/download.html
+- Archlinux: https://www.archlinux.org/master-keys/
+- Nixos: https://nixos.org/nix/download.html
 
 ## License
 
