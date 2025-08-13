@@ -1,0 +1,27 @@
+name: Homelab CI Workflow
+on: push
+
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: pipelinecomponents/yamllint
+          options: -v ${{ github.workspace }}:/work
+          run: |
+            cd /work
+            yamllint .
+      - uses: DavidAnson/markdownlint-cli2-action@v20
+        with:
+          config: .markdownlint.yaml
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: romw314/mkdocs-action@v2
+        with:
+          output-dir: dist
