@@ -22,6 +22,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: romw314/mkdocs-action@v2
+      - uses: addnab/docker-run-action@v3
         with:
-          output-dir: dist
+          image: squidfunk/mkdocs-material
+          options: -v ${{ github.workspace }}:/work
+          run: |
+            cd /work
+            mkdocs build --clean --strict --verbose --site-dir build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: copy on target
+        uses: appleboy/scp-action@v1
+        with:
+          host: www.service.consul
+          username: drone-deploy
+          key: ${{ secrets.PrivateKey }}
+          target: /srv/http
+          source: build
