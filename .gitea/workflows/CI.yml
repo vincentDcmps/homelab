@@ -21,18 +21,15 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    steps:
+    steps:     
+      - name: checkout
+        uses: actions/checkout@v4
       - uses: addnab/docker-run-action@v3
         with:
           image: squidfunk/mkdocs-material
-          options: -v ${{ github.workspace }}:/work
+          options: -v ${{ github.workspace }}:/docs
           run: |
-            cd /work
             mkdocs build --clean --strict --verbose --site-dir build
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: copy on target
         uses: appleboy/scp-action@v1
         with:

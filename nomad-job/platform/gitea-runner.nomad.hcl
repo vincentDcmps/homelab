@@ -34,7 +34,8 @@ EOH
         env         = true
       }
       resources {
-        memory = 50
+        memory = 100
+        memory_max = 300
       }
     }
 
