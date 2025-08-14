@@ -29,6 +29,7 @@ jobs:
           image: squidfunk/mkdocs-material
           options:  --volumes-from=${{ env.JOB_CONTAINER_NAME }}
           run: |
+            cd ${{ github.workspace }}
             mkdocs build --clean --strict --verbose --site-dir build
       - name: copy on target
         uses: appleboy/scp-action@v1
