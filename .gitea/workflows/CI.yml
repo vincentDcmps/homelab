@@ -27,7 +27,7 @@ jobs:
       - uses: addnab/docker-run-action@v3
         with:
           image: squidfunk/mkdocs-material
-        j  options:  --volumes-from=${{ env.JOB_CONTAINER_NAME }}
+          options:  --volumes-from=${{ env.JOB_CONTAINER_NAME }}
           run: |
             mkdocs build --clean --strict --verbose --site-dir build
       - name: copy on target
