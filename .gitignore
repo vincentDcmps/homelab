@@ -1,5 +1,6 @@
 nohup.out
-
+.ansible
+build
 # terraform gitignore
 # Local .terraform directories
 **/.terraform/*

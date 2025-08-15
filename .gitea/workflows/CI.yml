@@ -32,6 +32,7 @@ jobs:
             cd ${{ github.workspace }}
             mkdocs build --clean --strict --verbose --site-dir build
       - name: copy on target
+        if: github.ref == 'refs/heads/master'
         uses: appleboy/scp-action@v1
         with:
           host: www.service.consul
