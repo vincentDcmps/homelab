@@ -19,6 +19,7 @@ to launch dev stack provissionning :
 ```sh
 make create-dev
 ```
+
 ## Rebuild
 
 ## Architecture
@@ -42,6 +43,6 @@ flowchart LR
   bleys <--wireguard--> corwin
   oscar <--wiregard--> corwin
   gerard <--wiregard--> corwin
-  corwin <--> internet 
-  
+  corwin <--> internet
+
 ```

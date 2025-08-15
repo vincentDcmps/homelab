@@ -44,7 +44,7 @@ mailu
 
 ## Decision
 
-we will switch to another domain name on "https://www.bookmyname.com/": ducamps.eu""
+we will switch to another domain name on [bookmyname](https://www.bookmyname.com/): ducamps.eu""
 docker-mailserver will be more easier to configure because only one container to migrate to nomad
 for begining container will be launch on hetzner
 

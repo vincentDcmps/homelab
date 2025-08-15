@@ -144,8 +144,8 @@ to use flakes instead, but this isn't implemented yet.
 The upstream for the GPG keys used by the installation scripts can be
 found on these pages:
 
-- Archlinux: https://www.archlinux.org/master-keys/
-- Nixos: https://nixos.org/nix/download.html
+- Archlinux: [Archlinux](https://www.archlinux.org/master-keys/)
+- Nixos: [Nixos](https://nixos.org/nix/download.html)
 
 ## License
 
