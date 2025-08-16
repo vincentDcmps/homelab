@@ -37,7 +37,7 @@ dhcpd_hosts:
 
   - hostname: 'fixe-pc'
     address: '192.168.1.15'
-    ethernet: 'ee:35:20:fc:7b:04'
+    ethernet: '90:2b:34:55:87:6b'
 
   - hostname: 'oscar'
     address: '192.168.1.40'
