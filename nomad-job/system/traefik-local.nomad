@@ -31,6 +31,9 @@ job "traefik-local" {
       port "admin" {
         static = 9080
       }
+      port "anubis" {
+        static = 3443
+      }
     }
     vault {
     }
@@ -77,6 +80,7 @@ job "traefik-local" {
           "smtp",
           "esmtp",
           "imap",
+          "anubis",
         ]
         volumes = [
           "local/traefik.toml:/etc/traefik/traefik.toml",
@@ -115,6 +119,8 @@ job "traefik-local" {
               trustedIPs = ["127.0.0.1/32", "192.168.0.0/24" ,"10.0.0.0/8","172.16.0.0/12"]
           [entryPoints.traefik]
             address = ":9080"
+          [entrypoints.anubis]
+            address = ":3443"
           [entrypoints.ssh]
             address = ":2222"
           [entrypoints.smtp]
