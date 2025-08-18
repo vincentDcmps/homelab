@@ -1,4 +1,4 @@
-# 003-mailserver
+# Mailserver
 
 ## Status
 

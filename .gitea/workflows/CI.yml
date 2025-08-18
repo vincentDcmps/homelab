@@ -31,7 +31,7 @@ jobs:
           options:  --volumes-from=${{ env.JOB_CONTAINER_NAME }}
           run: |
             cd ${{ github.workspace }}
-            mkdocs build --clean --strict --verbose --site-dir build
+            mkdocs build --clean --strict --verbose --site-dir homelab
       - name: copy on target
         if: github.ref == 'refs/heads/master'
         uses: appleboy/scp-action@v1
@@ -39,5 +39,5 @@ jobs:
           host: www.service.consul
           username: drone-deploy
           key: ${{ secrets.PrivateKey }}
-          target: /srv/http
-          source: build
+          target: /srv/http/
+          source: homelab
