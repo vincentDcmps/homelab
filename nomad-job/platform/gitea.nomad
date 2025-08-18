@@ -41,7 +41,6 @@ job "gitea" {
           "traefik.enable=true",
           "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`git.ducamps.eu`)",
           "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=anubis",
-
         ]
       }
       service {
