@@ -16,7 +16,7 @@ wireguard_postup:
   - iptables -A FORWARD -i %i -j ACCEPT
   - iptables -t nat -A POSTROUTING -o {{ default_interface }} -j MASQUERADE
   - sysctl -w net.ipv4.ip_forward=1
-  - resolvectl dns %i 192.168.1.4 192.168.1.41; resolvectl domain %i '~ducamps.win' '~ducamps.eu' '~{{ consul_domain }}'
+  - resolvectl dns %i 192.168.1.4 192.168.1.40; resolvectl domain %i '~ducamps.win' '~ducamps.eu' '~{{ consul_domain }}'
 
 wireguard_postdown:
   - iptables -D FORWARD -i %i -j ACCEPT
@@ -33,7 +33,7 @@ wireguard_unmanaged_peers:
     public_key: rYYljQw8InmM95pxCP9KyZ8R+kcicgnjr6E9qtkI1Ag=
     allowed_ips: 10.0.0.5/32
     persistent_keepalive: 0
-wireguard_dns: "192.168.1.4,192.168.1.41"
+wireguard_dns: "192.168.1.4,192.168.1.40"
 consul_client_addr: "127.0.0.1 10.0.0.4"
 consul_bind_address: "10.0.0.4"
 consul_ui: True
