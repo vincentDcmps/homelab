@@ -10,7 +10,7 @@ Gitea instance is crawled several time by days by AI and hacker loocking for pas
 
 ## Decision
 
-We will implement (anubis)[https://github.com/TecharoHQ/anubis] to Protect Gitea
+We will implement [anubis](https://github.com/TecharoHQ/anubis) to Protect Gitea
 
 ## Consequences
 
