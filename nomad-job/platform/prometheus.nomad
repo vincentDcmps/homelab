@@ -6,13 +6,13 @@ job "prometheus" {
     attribute = "${attr.cpu.arch}"
     value     = "amd64"
   }
-  meta{
-    force_deploy= 1
+  meta {
+    force_deploy = 1
   }
   constraint {
     attribute = "${node.class}"
-    operator = "set_contains"
-    value = "cluster"
+    operator  = "set_contains"
+    value     = "cluster"
   }
   group "prometheus" {
     count = 1
@@ -147,6 +147,13 @@ EOH
 groups:
 - name: nomad_alerts
   rules:
+  - alert: vector not running on every node
+    expr: nomad_nomad_job_summary_running{exported_job="vector"} < 4
+    for: 1m
+    labels:
+        severity: warning
+    annotations:
+        summary: Vector allocation is not running on all node
   - alert: NomadBlockedEvaluation
     expr: nomad_nomad_blocked_evals_total_blocked > 0
     for: 0m
@@ -228,7 +235,7 @@ groups:
       summary: Host high CPU load (instance {{ $labels.instance }})
       description: "CPU load is > 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
   - alert: HostUnusualDiskWriteLatency
-    expr: (rate(node_disk_write_time_seconds_total[1m]) / rate(node_disk_writes_completed_total[1m]) > 0.1 and rate(node_disk_writes_completed_total[1m]) > 0) 
+    expr: (rate(node_disk_write_time_seconds_total[1m]) / rate(node_disk_writes_completed_total[1m]) > 0.2 and rate(node_disk_writes_completed_total[1m]) > 0) 
     for: 2m
     labels:
       severity: warning
@@ -236,7 +243,7 @@ groups:
       summary: Host unusual disk write latency (instance {{ $labels.instance }})
       description: "Disk latency is growing (write operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
   - alert: HostUnusualDiskReadLatency
-    expr: (rate(node_disk_read_time_seconds_total[1m]) / rate(node_disk_reads_completed_total[1m]) > 0.1 and rate(node_disk_reads_completed_total[1m]) > 0) 
+    expr: (rate(node_disk_read_time_seconds_total[1m]) / rate(node_disk_reads_completed_total[1m]) > 0.2 and rate(node_disk_reads_completed_total[1m]) > 0) 
     for: 2m
     labels:
       severity: warning
@@ -287,7 +294,7 @@ EOH
         }
       }
       resources {
-        memory = 350
+        memory     = 350
         memory_max = 500
       }
     }
