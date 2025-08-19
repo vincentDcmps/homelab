@@ -18,6 +18,8 @@ job "gitea-runner" {
         image = "docker.service.consul:5000/gitea/act_runner:0.2.11"
         volumes = [
           "/var/run/docker.sock:/var/run/docker.sock",
+          "/var/local/gitea_runner:/data",
+          "/var/local/gitea_runner_cache:/root/.cache/act"
         ]
       }
       env {
@@ -35,7 +37,7 @@ EOH
       }
       resources {
         memory = 100
-        memory_max = 300
+        memory_max = 500
       }
     }
 
