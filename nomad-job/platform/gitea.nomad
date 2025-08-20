@@ -84,7 +84,6 @@ job "gitea" {
         GITEA__repository__ROOT                          = "/data/gitea-repositories"
         GITEA__server__APP_DATA_PATH                     = "/data"
         GITEA__server__LFS_CONTENT_PATH                  = "/data/lfs"
-        GITEA__webhook__ALLOWED_HOST_LIST                = "drone.ducamps.eu"
         GITEA__webhook__DELIVER_TIMEOUT                  = "30"
       }
       template {

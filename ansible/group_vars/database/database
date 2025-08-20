@@ -12,8 +12,6 @@ postgresql_databases:
     owner: hass
   - name: vaultwarden
     owner: vaultwarden
-  - name: drone
-    owner: drone
   - name: paperless
     owner: paperless
   - name: vikunja

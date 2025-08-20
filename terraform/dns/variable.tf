@@ -21,7 +21,6 @@ variable cnameList{
     "arch",
     "budget",
     "dashboard",
-    "drone",
     "file",
     "ghostfolio",
     "git",

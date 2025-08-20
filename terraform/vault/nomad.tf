@@ -2,7 +2,6 @@ locals {
   allowed_policies= concat(local.nomad_policy,local.nomad_custom_policy[*].name,["nomad-workloads"])
  
   nomad_policy=[
-    "droneci",
   ]
 nomad_custom_policy = [
     {
