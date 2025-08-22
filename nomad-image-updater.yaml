@@ -1,0 +1,12 @@
+Git:
+  enabled: true
+LoggerOption:
+  level: DEBUG
+
+getTagReplaceURL:
+
+remoteCustomOption:
+- contain: consul
+  options:
+    insecureTLS: true
+
