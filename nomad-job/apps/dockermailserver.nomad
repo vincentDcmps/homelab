@@ -119,7 +119,7 @@ job "dockermailserver" {
     task "docker-mailserver" {
       driver = "docker"
       config {
-        image = "ghcr.service.consul:5000/docker-mailserver/docker-mailserver:15.0.2"
+        image = "ghcr.service.consul:5000/docker-mailserver/docker-mailserver:15.1.0"
         ports = ["smtp", "esmtp", "imap","rspamd"]
         volumes = [
           "/mnt/diskstation/nomad/dms/mail-data:/var/mail",
