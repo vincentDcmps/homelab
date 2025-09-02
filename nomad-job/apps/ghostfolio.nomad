@@ -79,7 +79,7 @@ job "ghostfolio" {
       }
       resources {
         memory = 400
-        memory_max = 600
+        memory_max = 800
       }
     }
 
