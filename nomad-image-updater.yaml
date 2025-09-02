@@ -1,5 +1,8 @@
 Git:
   enabled: true
+  remoteURL: https://git.ducamps.eu/vincent/homelab.git
+  remotecreatePR: gitea
+  refbranch: master
 LoggerOption:
   level: DEBUG
 
