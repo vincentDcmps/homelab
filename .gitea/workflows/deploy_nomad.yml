@@ -1,0 +1,21 @@
+name: Homelab Nomad deploy
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  nomad_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nomad
+        uses: hashicorp/setup-nomad@v1.0.0
+      - name: Nomad plan
+        run: |
+          make -C nomad-job deploy-all
+        env:
+          NOMAD_ADDR: http://nomad.service.consul:4646 
+

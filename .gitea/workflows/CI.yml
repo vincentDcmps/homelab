@@ -41,3 +41,16 @@ jobs:
           key: ${{ secrets.PrivateKey }}
           target: /srv/http/
           source: homelab
+  nomad_lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nomad
+        uses: hashicorp/setup-nomad@v1.0.0
+      - name: Nomad plan
+        run: |
+          make -C nomad-job plan-all
+        env:
+          NOMAD_ADDR: http://nomad.service.consul:4646 
