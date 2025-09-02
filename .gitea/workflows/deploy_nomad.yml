@@ -13,7 +13,7 @@ jobs:
 
       - name: Install Nomad
         uses: hashicorp/setup-nomad@v1.0.0
-      - name: Nomad plan
+      - name: Nomad deploy
         run: |
           make -C nomad-job deploy-all
         env:
