@@ -1,14 +1,15 @@
 validate:
-	for file in ${TARGET}/*.nomad; do \
+	for file in $(shell find ${TARGET}/*.nomad*); do \
 		nomad validate $$file; \
 	done
 deploy:
-	for file in ${TARGET}/*.nomad; do \
+	
+	for file in $(shell find ${TARGET}/*.nomad*); do \
 		nomad run -detach $$file; \
 	done
 
 plan:
-	for file in ${TARGET}/*.nomad; do \
+	for file in $(shell find ${TARGET}/*.nomad*); do \
 		nomad plan $$file; \
 	done
 
