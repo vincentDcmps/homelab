@@ -48,7 +48,7 @@ job "mealie" {
         ]
       }
       config {
-        image = "ghcr.service.consul:5000/mealie-recipes/mealie:v3.0.2"
+        image = "ghcr.service.consul:5000/mealie-recipes/mealie:v3.1.2"
         ports = ["http"]
       }
       volume_mount {
