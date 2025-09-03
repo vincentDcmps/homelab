@@ -13,8 +13,11 @@ jobs:
       uses: actions/checkout@v4
     - uses: addnab/docker-run-action@v3
       with:
-          image: ducampsv/nomad-image-updater
-          options: -v ${{ github.workspace }}:/src -e NID_GIT_REMOTETOKEN=${{ secrets.GITHUB_TOKEN }}
+          image: ducampsv/nomad-image-updater:latest
+          options:  --pull=always --volumes-from=${{ env.JOB_CONTAINER_NAME }} -e NID_GIT_REMOTETOKEN=${{ secrets.GITHUB_TOKEN }}
+          run: |
+            cd ${{ github.workspace }}
+            /app/nomad-image-updater update .
             
 
 
