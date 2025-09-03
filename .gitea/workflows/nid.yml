@@ -1,0 +1,20 @@
+name: Nomad Image Updater
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 5"
+    
+jobs:
+  nid:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+    - uses: addnab/docker-run-action@v3
+      with:
+          image: ducampsv/nomad-image-updater
+          options: -v ${{ github.workspace }}:/src -e NID_GIT_REMOTETOKEN=${{ secrets.GITHUB_TOKEN }}
+            
+
+
