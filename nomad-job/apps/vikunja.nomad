@@ -49,7 +49,6 @@ job "vikunja" {
         VIKUNJA_DATABASE_TYPE       = "postgres"
         VIKUNJA_DATABASE_USER       = "vikunja"
         VIKUNJA_DATABASE_DATABASE   = "vikunja"
-        VIKUNJA_SERVICE_JWTSECRET   = uuidv4()
         VIKUNJA_SERVICE_FRONTENDURL = "https://${NOMAD_JOB_NAME}.ducamps.eu/"
         VIKUNJA_AUTH_LOCAL          = False
       }
@@ -59,6 +58,9 @@ job "vikunja" {
           {{ with secret "secrets/data/database/vikunja"}}
             VIKUNJA_DATABASE_PASSWORD= "{{ .Data.data.password }}"
           {{end}}
+          {{ with secret "secrets/data/nomad/vikunja"}}
+            VIKUNJA_SERVICE_JWTSECRET   = "{{ .Data.data.jwtsecret }}"
+          {{ end }}
           EOH
         destination = "secrets/sample.env"
         env         = true

@@ -70,9 +70,6 @@ job "authelia" {
           volume      = "authelia-config"
           destination = "/config"
       }
-      env {
-        AUTHELIA_IDENTITY_VALIDATION_RESET_PASSWORD_JWT_SECRET = uuidv4()
-      }
 
       template {
         data        = <<EOH

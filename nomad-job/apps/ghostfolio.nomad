@@ -61,7 +61,6 @@ job "ghostfolio" {
           REDIS_HOST= "${NOMAD_IP_redis}"
           REDIS_PORT = "${NOMAD_HOST_PORT_redis}"
           PORT = "${NOMAD_PORT_http}"
-          JWT_SECRET_KEY = uuidv4()
 
       }
 
@@ -72,6 +71,7 @@ job "ghostfolio" {
           {{end}}
           {{ with secret "secrets/data/nomad/ghostfolio"}}
           ACCESS_TOKEN_SALT = {{.Data.data.token}}
+          JWT_SECRET_KEY = {{ .Data.data.jwtsecret}}
           {{end}}
           EOH
         destination = "secrets/ghostfolio.env"
