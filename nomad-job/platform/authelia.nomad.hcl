@@ -71,7 +71,6 @@ job "authelia" {
           destination = "/config"
       }
       env {
-        AUTHELIA_SESSION_SECRET = uuidv4()
         AUTHELIA_IDENTITY_VALIDATION_RESET_PASSWORD_JWT_SECRET = uuidv4()
       }
 
@@ -221,7 +220,9 @@ identity_providers:
         userinfo_signed_response_alg: 'none'
         token_endpoint_auth_method: 'client_secret_basic'
         pre_configured_consent_duration: 3M
-
+identity_validation:
+  reset_password:
+    jwt_secret: '{{ with secret "secrets/data/nomad/authelia"}} {{ .Data.data.resetPassword }} {{end}}'
 log:
   level: 'trace'
 
