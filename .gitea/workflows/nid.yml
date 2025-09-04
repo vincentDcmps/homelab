@@ -14,7 +14,7 @@ jobs:
     - uses: addnab/docker-run-action@v3
       with:
           image: ducampsv/nomad-image-updater:latest
-          options:  --pull=always --volumes-from=${{ env.JOB_CONTAINER_NAME }} -e NID_GIT_REMOTETOKEN=${{ secrets.GITHUB_TOKEN }}
+          options:  --pull=always --volumes-from=${{ env.JOB_CONTAINER_NAME }} -e NID_GIT_REMOTETOKEN=${{ secrets.GITEAPAT }}
           run: |
             cd ${{ github.workspace }}
             /app/nomad-image-updater update .
