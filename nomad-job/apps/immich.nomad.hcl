@@ -108,7 +108,7 @@ job "immich" {
         destination = "/cache"
       }
       config {
-        image = "ghcr.service.consul:5000/immich-app/immich-machine-learning:v1.143.1"
+        image = "ghcr.service.consul:5000/immich-app/immich-machine-learning:v2.0.0"
         ports = ["machinelearning"]
       }
 
