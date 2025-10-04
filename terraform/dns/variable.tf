@@ -33,6 +33,7 @@ variable cnameList{
     "mail",
     "mealie",
     "paperless",
+    "rss",
     "supysonic",
     "syno",
     "torrent",
