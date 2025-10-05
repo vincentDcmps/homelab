@@ -38,6 +38,7 @@ job "miniflux" {
       env {
         RUN_MIGRATIONS=1
         POLLING_FREQUENCY=15
+        SCHEDULER_ROUND_ROBIN_MIN_INTERVAL=15
         OAUTH2_OIDC_DISCOVERY_ENDPOINT= "https://auth.ducamps.eu"
         OAUTH2_CLIENT_ID="miniflux"
         OAUTH2_OIDC_PROVIDER_NAME="Authelia"
