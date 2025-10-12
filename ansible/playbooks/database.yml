@@ -10,7 +10,11 @@
         state: present
       become: true
       become_user: aur_builder
-       
+    - name: Install postgis (dawarich)
+      community.general.pacman:
+        name: postgis
+        state: present
+      become: true
     - name: Add database member to pg_hba replication
       ansible.builtin.set_fact:
         postgresql_hba_entries: "{{ postgresql_hba_entries + [\

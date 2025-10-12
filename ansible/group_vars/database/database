@@ -28,6 +28,8 @@ postgresql_databases:
     owner: immich
   - name: miniflux
     owner: miniflux
+  - name: dawarich
+    owner: dawarich
 
 postgresql_hba_entries:
   - {type: local, database: all, user: postgres, auth_method: peer}

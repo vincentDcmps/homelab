@@ -22,6 +22,7 @@ variable cnameList{
     "budget",
     "dashboard",
     "file",
+    "geo",
     "ghostfolio",
     "git",
     "grafana",
