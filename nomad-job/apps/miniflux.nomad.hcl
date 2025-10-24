@@ -32,7 +32,7 @@ job "miniflux" {
         ]
       }
       config {
-        image = "docker.service.consul:5000/miniflux/miniflux:2.2.13"
+        image = "docker.service.consul:5000/miniflux/miniflux:2.2.14"
         ports = ["http"]
       }
       env {
