@@ -256,7 +256,7 @@ EOH
       driver = "docker"
 
       config {
-        image = "docker.service.consul:5000/prom/prometheus:v3.7.0"
+        image = "docker.service.consul:5000/prom/prometheus:v3.7.3"
         args = [
           "--config.file=/etc/prometheus/prometheus.yml",
           "--storage.tsdb.path=/prometheus",
