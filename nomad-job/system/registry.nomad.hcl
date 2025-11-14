@@ -165,7 +165,7 @@ databases 2
     task "traefik" {
       driver = "docker"
       config {
-        image = "traefik:v3.5"
+        image = "traefik:v3.6"
         ports = ["traefik","admin"]
         volumes = [
           "local/traefik.toml:/etc/traefik/traefik.toml"
