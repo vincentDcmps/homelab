@@ -130,7 +130,7 @@ job "gitea" {
         ]
       }
       config {
-        image = "ghcr.service.consul:5000/techarohq/anubis:v1.23.0"
+        image = "ghcr.service.consul:5000/techarohq/anubis:v1.23.1"
         ports = [
           "anubis"
         ]
