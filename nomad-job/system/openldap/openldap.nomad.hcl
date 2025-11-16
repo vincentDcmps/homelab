@@ -68,7 +68,7 @@ job "openldap" {
       }
 
       config {
-        image = "bitnami/openldap:2.6.10"
+        image = "bitnamilegacy/openldap:2.6.10"
         ports = ["ldap", "ldaps"]
         volumes = [
           "/mnt/diskstation/nomad/openldap:/bitnami/openldap",
