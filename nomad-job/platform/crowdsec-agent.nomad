@@ -96,6 +96,7 @@ AGENT_USERNAME = "{{ env "node.unique.name" }}"
 {{with secret "secrets/data/nomad/crowdsec-agent"}}
   AGENT_PASSWORD = "{{.Data.data.AGENT_PASSWORD}}"
 {{end}}
+CROWDSEC_BYPASS_DB_VOLUME_CHECK = "true"
 EOH
         destination = "secret/agent.env"
         env         = "true"
