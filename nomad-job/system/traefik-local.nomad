@@ -71,7 +71,7 @@ job "traefik-local" {
       }
 
       config {
-        image = "docker.service.consul:5000/library/traefik:v3.5"
+        image = "docker.service.consul:5000/library/traefik:v3.6"
         ports = [
           "http",
           "https",
