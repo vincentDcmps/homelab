@@ -108,7 +108,7 @@ http {
         SUPYSONIC_DAEMON_ENABLED   = "true"
         SUPYSONIC_WEBAPP_LOG_LEVEL = "DEBUG"
         SUPYSONIC_DAEMON_LOG_LEVEL = "INFO"
-        SUPYSONIC_LDAP_SERVER      = "LDAPS://ldaps.service.consul"
+        SUPYSONIC_LDAP_SERVER_URL  = "LDAPS://ldaps.service.consul"
         SUPYSONIC_LDAP_BASE_DN     = "dc=ducamps,dc=eu"
         SUPYSONIC_LDAP_USER_FILTER = "(&(memberOf=cn=SupysonicUsers,ou=groups,dc=ducamps,dc=eu))"
         SUPYSONIC_LDAP_ADMIN_FILTER= "(&(memberOf=cn=SupysonicAdmins,ou=groups,dc=ducamps,dc=eu))"
@@ -121,7 +121,7 @@ http {
           {{end}}
           {{ with secret "secrets/data/nomad/supysonic"}}
             SUPYSONIC_LDAP_BIND_DN     = "{{ .Data.data.serviceAccountName }}"
-            SUPYSONIC_LDAP_BIND_PASSWORD = "{{ .Data.data.serviceAccountPassword }}"
+            SUPYSONIC_LDAP_BIND_PW = "{{ .Data.data.serviceAccountPassword }}"
           {{ end }}
           EOH
         destination = "secrets/supysonic.env"
