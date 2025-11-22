@@ -10,7 +10,7 @@ resource "hcloud_server" "merlin" {
   count       = var.instances
   name        = "merlin"
   image       = data.hcloud_image.arch.id
-  server_type = "cx11"
+  server_type = "cx23"
   location    = var.location
   ssh_keys     = [hcloud_ssh_key.default.id]
   firewall_ids = [
