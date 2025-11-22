@@ -95,7 +95,7 @@ http {
     task "supysonic-server" {
       driver = "docker"
       config {
-        image      = "docker.service.consul:5000/ducampsv/supysonic:latest"
+        image      = "docker.service.consul:5000/ducampsv/supysonic:ffmpeg-sql"
         ports      = ["fcgi"]
         force_pull = true
         volumes = [
