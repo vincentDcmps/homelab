@@ -110,8 +110,8 @@ http {
         SUPYSONIC_DAEMON_LOG_LEVEL = "INFO"
         SUPYSONIC_LDAP_SERVER_URL  = "LDAPS://ldaps.service.consul"
         SUPYSONIC_LDAP_BASE_DN     = "dc=ducamps,dc=eu"
-        SUPYSONIC_LDAP_USER_FILTER = "(&(memberOf=cn=SupysonicUsers,ou=groups,dc=ducamps,dc=eu))"
-        SUPYSONIC_LDAP_ADMIN_FILTER= "(&(memberOf=cn=SupysonicAdmins,ou=groups,dc=ducamps,dc=eu))"
+        SUPYSONIC_LDAP_USER_FILTER = "(&(uid={username})(memberOf=cn=SupysonicUsers,ou=groups,dc=ducamps,dc=eu))"
+        SUPYSONIC_LDAP_ADMIN_FILTER= "(&(uid={username})(memberOf=cn=SupysonicAdmins,ou=groups,dc=ducamps,dc=eu))"
       }
 
       template {
