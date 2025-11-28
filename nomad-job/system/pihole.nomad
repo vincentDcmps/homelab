@@ -45,7 +45,7 @@ job "pihole" {
 
       }
       config {
-        image = "docker.service.consul:5000/pihole/pihole:2025.11.0"
+        image = "docker.service.consul:5000/pihole/pihole:2025.11.1"
         network_mode = "host"
         volumes = [
           "local/dnsmasq.d/02-localresolver.conf:/etc/dnsmasq.d/02-localresolver.conf",
