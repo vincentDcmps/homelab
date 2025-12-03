@@ -46,7 +46,7 @@ job "actualbudget" {
         ]
       }
       config {
-        image = "ghcr.service.consul:5000/actualbudget/actual:25.11.0"
+        image = "ghcr.service.consul:5000/actualbudget/actual:25.12.0"
         ports = ["http"]
         volumes = [
           "/mnt/diskstation/nomad/actualbudget:/data"
