@@ -49,12 +49,9 @@ job "vector" {
           [sources.logs]
             type = "docker_logs"
             exclude_containers= ["loki"]
-          [sources.podman_logs]
-          type = "docker_logs"
-          docker_host = "unix:///var/run/podman/podman.sock"
           [sinks.loki]
             type = "loki"
-            inputs = ["logs","podman_logs"]
+            inputs = ["logs"]
             endpoint = "http://[[ range service "loki" ]][[ .Address ]]:[[ .Port ]][[ end ]]"
             encoding.codec = "json"
             healthcheck.enabled = true
