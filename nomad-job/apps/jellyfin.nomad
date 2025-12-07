@@ -15,49 +15,6 @@ job "jellyfin" {
     operator = "set_contains"
     value = "cluster"
   }
-  group jellyfin-vue {
-    network {
-      mode = "host"
-      port "http" {
-        to = 80
-      }
-    }
-    task "jellyfin-vue" {
-      driver = "docker"
-      service {
-        name = "jellyfin-vue"
-        port = "http"
-        tags = [
-          "homer.enable=true",
-          "homer.name=${NOMAD_TASK_NAME}",
-          "homer.service=Application",
-          "homer.target=_blank",
-          "homer.logo=https://jellyfin.ducamps.eu/web/favicons/touchicon144.png",
-          "homer.url=https://${NOMAD_TASK_NAME}.ducamps.eu",
-          "traefik.enable=true",
-          "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.eu`)",
-          "traefik.http.routers.${NOMAD_TASK_NAME}.tls.domains[0].sans=${NOMAD_TASK_NAME}.ducamps.eu",
-          "traefik.http.routers.${NOMAD_TASK_NAME}.tls.certresolver=myresolver",
-          "traefik.http.routers.${NOMAD_TASK_NAME}.entrypoints=web,websecure",
-        ]
-
-      }
-      config {
-        image = "ghcr.service.consul:5000/jellyfin/jellyfin-vue:unstable"
-        ports = ["http"]
-      }
-      env {
-        DEFAULT_SERVERS = "${NOMAD_TASK_NAME}.ducamps.eu"
-      }
-
-      resources {
-
-        memory = 50
-        cpu    = 100
-      }
-
-    }
-  }
   group "jellyfin" {
     network {
       mode = "host"
@@ -76,7 +33,7 @@ job "jellyfin" {
           "homer.name=jellyfin",
           "homer.service=Application",
           "homer.target=_blank",
-          "homer.logo=https://${NOMAD_JOB_NAME}.ducamps.eu/web/assets/img/banner-light.png",
+          "homer.logo=https://jellyfin.ducamps.eu/web/favicons/touchicon144.png",
           "homer.url=https://${NOMAD_JOB_NAME}.ducamps.eu",
           "traefik.enable=true",
           "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`)",

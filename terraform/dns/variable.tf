@@ -29,7 +29,6 @@ variable cnameList{
     "hass",
     "immich",
     "jellyfin",
-    "jellyfin-vue",
     "ldap",
     "mail",
     "mealie",
