@@ -33,7 +33,7 @@ job "torrent" {
           "homer.name=torrent",
           "homer.url=https://torrent.ducamps.eu",
           "homer.service=Application",
-          "homer.logo=https://fleet.linuxserver.io/images/linuxserver_rutorrent.png",
+          "homer.logo=https://raw.githubusercontent.com/Novik/ruTorrent/refs/heads/master/images/favicon-196x196.png",
           "homer.target=_blank",
           "traefik.enable=true",
           "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`${NOMAD_JOB_NAME}.ducamps.eu`)",

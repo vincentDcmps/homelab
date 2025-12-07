@@ -30,7 +30,7 @@ job "vaultwarden" {
           "homer.enable=true",
           "homer.name=VaultWarden",
           "homer.service=Application",
-          "homer.logo=https://yunohost.org/user/images/bitwarden_logo.png",
+          "homer.logo=https://vault.ducamps.eu/images/logo.svg",
           "homer.target=_blank",
           "homer.url=https://${NOMAD_JOB_NAME}.ducamps.eu",
 

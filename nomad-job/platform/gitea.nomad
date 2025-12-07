@@ -37,7 +37,7 @@ job "gitea" {
           "homer.service=Platform",
           "homer.target=_blank",
           "homer.logo=https://git.ducamps.eu/assets/img/logo.svg",
-          "homer.url=https://${NOMAD_JOB_NAME}.ducamps.eu",
+          "homer.url=https://git.ducamps.eu",
           "traefik.enable=true",
           "traefik.http.routers.${NOMAD_JOB_NAME}.rule=Host(`git.ducamps.eu`)",
           "traefik.http.routers.${NOMAD_JOB_NAME}.entrypoints=anubis",

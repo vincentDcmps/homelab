@@ -54,7 +54,7 @@ job "paperless" {
           "homer.enable=true",
           "homer.name=Paperless",
           "homer.service=Application",
-          "homer.logo=https://${NOMAD_JOB_NAME}.ducamps.eu/static/frontend/fr-FR/apple-touch-icon.png",
+          "homer.logo=https://paperless.ducamps.eu/favicon.ico",
           "homer.target=_blank",
           "homer.url=https://${NOMAD_JOB_NAME}.ducamps.eu",
         ]

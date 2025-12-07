@@ -66,7 +66,7 @@ job "dashboard" {
         data        = <<EOH
 title: "HomeLab dashboard"
 subtitle: "VincentDcmps"
-logo: "assets/logo.png"
+logo: "logo.png"
 header: True
 footer: "automatic updated by <a href='https://github.com/vincentDcmps/homer-service-discovery'>homer-service-discovery</a>"
 columns: "3"
@@ -126,7 +126,7 @@ services:
         url: http://nomad.service.consul:4646
         target: "_blank"
       - name: Consul
-        logo: http://consul.service.consul:8500/ui/assets/apple-touch-icon-01cd4680782fbb5bc02301347df9903d.png
+        logo: http://consul.service.consul:8500/ui/assets/favicon.svg
         url: http://consul.service.consul:8500
         target: "_blank"
       - name: Vault

@@ -32,7 +32,7 @@ job "jellyfin" {
           "homer.name=${NOMAD_TASK_NAME}",
           "homer.service=Application",
           "homer.target=_blank",
-          "homer.logo=https://${NOMAD_TASK_NAME}.ducamps.eu/icon.png",
+          "homer.logo=https://jellyfin.ducamps.eu/web/favicons/touchicon144.png",
           "homer.url=https://${NOMAD_TASK_NAME}.ducamps.eu",
           "traefik.enable=true",
           "traefik.http.routers.${NOMAD_TASK_NAME}.rule=Host(`${NOMAD_TASK_NAME}.ducamps.eu`)",
