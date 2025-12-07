@@ -127,6 +127,7 @@ identity_providers:
         access_token_signed_response_alg: 'none'
         userinfo_signed_response_alg: 'none'
         token_endpoint_auth_method: 'client_secret_basic'
+        pre_configured_consent_duration: 6M
       - client_id: 'ttrss'
         client_name: 'ttrss'
         client_secret: {{ with secret "secrets/data/authelia/ttrss"}} {{ .Data.data.hash }} {{end}}
@@ -139,7 +140,7 @@ identity_providers:
           - 'https://www.ducamps.eu/tt-rss'
         userinfo_signed_response_alg: none
         authorization_policy: 'one_factor'
-        pre_configured_consent_duration: 3M
+        pre_configured_consent_duration: 6M
       - client_id: 'mealie'
         client_name: 'mealie'
         client_secret: {{ with secret "secrets/data/authelia/mealie"}} {{ .Data.data.hash }} {{end}}
@@ -155,7 +156,7 @@ identity_providers:
           - 'https://mealie.ducamps.eu/login'
         userinfo_signed_response_alg: none
         authorization_policy: 'one_factor'
-        pre_configured_consent_duration: 3M
+        pre_configured_consent_duration: 6M
       - client_id: 'immich'
         client_name: 'immich'
         client_secret: {{ with secret "secrets/data/authelia/immich"}} {{ .Data.data.hash }} {{end}}
@@ -170,7 +171,7 @@ identity_providers:
           - 'profile'
           - 'email'
         userinfo_signed_response_alg: 'none'
-        pre_configured_consent_duration: 3M
+        pre_configured_consent_duration: 6M
         token_endpoint_auth_method: "client_secret_post"
       - client_id: 'grafana'
         client_name: 'Grafana'
@@ -188,7 +189,7 @@ identity_providers:
           - 'email'
         userinfo_signed_response_alg: 'none'
         token_endpoint_auth_method: 'client_secret_basic'
-        pre_configured_consent_duration: 3M
+        pre_configured_consent_duration: 6M
       - client_id: 'vikunja'
         client_name: 'vikunja'
         client_secret:{{ with secret "secrets/data/authelia/vikunja"}} {{ .Data.data.hash }} {{end}}
@@ -202,7 +203,7 @@ identity_providers:
           - 'email'
         userinfo_signed_response_alg: 'none'
         token_endpoint_auth_method: 'client_secret_basic' 
-        pre_configured_consent_duration: 3M
+        pre_configured_consent_duration: 6M
       - client_id: 'gitea'
         client_name: 'gitea'
         client_secret:{{ with secret "secrets/data/authelia/gitea"}} {{ .Data.data.hash }} {{end}}
@@ -216,7 +217,7 @@ identity_providers:
           - 'email'
         userinfo_signed_response_alg: 'none'
         token_endpoint_auth_method: 'client_secret_basic'
-        pre_configured_consent_duration: 3M
+        pre_configured_consent_duration: 6M
       - client_id: 'miniflux'
         client_name: 'Miniflux'
         client_secret: {{ with secret "secrets/data/authelia/miniflux"}} {{ .Data.data.hash }} {{end}}
@@ -237,6 +238,7 @@ identity_providers:
         access_token_signed_response_alg: 'none'
         userinfo_signed_response_alg: 'none'
         token_endpoint_auth_method: 'client_secret_basic'
+        pre_configured_consent_duration: 6M
       - client_id: 'filebrowser'
         client_name: 'FileBrowser Quantum'
         client_secret: {{ with secret "secrets/data/authelia/filebrowser"}} {{ .Data.data.hash }} {{end}}
@@ -258,6 +260,7 @@ identity_providers:
         access_token_signed_response_alg: 'none'
         userinfo_signed_response_alg: 'none'
         token_endpoint_auth_method: 'client_secret_basic'
+        pre_configured_consent_duration: 6M
 
 identity_validation:
   reset_password:
