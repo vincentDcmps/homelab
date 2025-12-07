@@ -45,4 +45,4 @@ postgresql_global_config_options:
   - option: listen_addresses
     value: '*'
   - option: wal_keep_size
-    value: 500
+    value: 2000
