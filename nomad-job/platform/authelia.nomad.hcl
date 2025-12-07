@@ -285,7 +285,7 @@ authentication_backend:
     #groups_filter: '(&(member=UID={input},OU=users,DC=ducamps,DC=eu)(objectClass=groupOfNames))'
     groups_filter: '(&(|{memberof:rdn})(objectClass=groupOfNames))'
     group_search_mode: 'memberof'
-    user: 'uid=authelia,ou=serviceAccount,ou=users,dc=ducamps,dc=eu'
+    user: 'uid=autheliaServiceAccount,ou=serviceAccount,ou=users,dc=ducamps,dc=eu'
     password:{{ with secret "secrets/data/nomad/authelia"}} '{{ .Data.data.ldapPassword }}'{{ end }}
     attributes:
       distinguished_name: ''
