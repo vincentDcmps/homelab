@@ -237,6 +237,27 @@ identity_providers:
         access_token_signed_response_alg: 'none'
         userinfo_signed_response_alg: 'none'
         token_endpoint_auth_method: 'client_secret_basic'
+      - client_id: 'filebrowser'
+        client_name: 'FileBrowser Quantum'
+        client_secret: {{ with secret "secrets/data/authelia/filebrowser"}} {{ .Data.data.hash }} {{end}}
+        public: false
+        authorization_policy: 'one_factor'
+        require_pkce: false
+        pkce_challenge_method: ''
+        redirect_uris:
+          - 'https://file.ducamps.eu/api/auth/oidc/callback'
+        scopes:
+          - 'openid'
+          - 'profile'
+          - 'groups'
+          - 'email'
+        response_types:
+          - 'code'
+        grant_types:
+          - 'authorization_code'
+        access_token_signed_response_alg: 'none'
+        userinfo_signed_response_alg: 'none'
+        token_endpoint_auth_method: 'client_secret_basic'
 
 identity_validation:
   reset_password:
