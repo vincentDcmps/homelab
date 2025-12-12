@@ -61,7 +61,7 @@ job "dawarich" {
         destination = "/data"
       }
       config {
-        image = "docker.service.consul:5000/freikin/dawarich:0.35.1"
+        image = "docker.service.consul:5000/freikin/dawarich:0.36.2"
         ports = ["http"]
         entrypoint = ["web-entrypoint.sh"]
         command = "bin/rails"
@@ -113,7 +113,7 @@ job "dawarich" {
         destination = "/data"
       }
       config {
-        image = "docker.service.consul:5000/freikin/dawarich:0.35.1"
+        image = "docker.service.consul:5000/freikin/dawarich:0.36.2"
         entrypoint = ["sidekiq-entrypoint.sh"]
         volumes = [
           "data/public:/var/app/public",
