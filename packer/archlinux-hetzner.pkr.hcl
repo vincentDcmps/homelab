@@ -5,7 +5,7 @@ variable "extra-packages" {
 
 variable "hcloud-servertype" {
   type    = string
-  default = "cx11"
+  default = "cx23"
 }
 
 variable "hcloud-token" {
@@ -30,7 +30,7 @@ variable "system-timezone" {
 }
 
 locals {
-  arch-release = "${ legacy_isotime("2006-01") }-01"
+  arch-release = "${ legacy_isotime("2006.01") }.01"
   build-id = "${ uuidv4() }"
   build-labels = {
     os-flavor               = "archlinux"
@@ -73,7 +73,7 @@ build {
 
   provisioner "file" {
     destination = "/mnt/"
-    source      = "files/archlinux/root/"
+    source      = "files/archlinux/root-hetzner/"
   }
 
   provisioner "file" {
@@ -92,11 +92,13 @@ build {
   provisioner "shell" {
     script           = "files/archlinux/install.sh"
     environment_vars = [
+      "ARCH_MIRROR=https://geo.mirror.pkgbuild.com",
       "ARCH_RELEASE=${local.arch-release}",
       "EXTRA_PACKAGES=${join(" ", var.extra-packages)}",
       "KEYMAP=${var.system-keymap}",
       "LOCALE=${var.system-locale}",
       "TIMEZONE=${var.system-timezone}",
+      "SSH_PUBLIC_KEY=''",
     ]
   }
 

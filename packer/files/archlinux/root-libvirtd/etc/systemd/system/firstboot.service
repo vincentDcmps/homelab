@@ -1,0 +1,11 @@
+[Unit]
+Description=Set hostname on first boot
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /usr/local/bin/set-hostname.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

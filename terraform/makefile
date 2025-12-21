@@ -14,3 +14,5 @@ deploy_dns:
 deploy_cloud:
 	TF_VAR_hetznerApiKey=$(shell vault kv get -field=hdns_token secrets/hetzner)  tofu -chdir=cloud $(command)
 
+deploy_dev: 
+	tofu -chdir=dev $(command)

@@ -10,20 +10,27 @@ vault-dev:
 		./vault/standalone_vault.sh $(FILE);\
 	fi
 
-vagranup:
-	vagrant up
+devapply:
+	make -C  terraform deploy_dev
 
-create-dev: vagranup DNS-stagging
+devdestroy:
+	make -C terraform deploy_dev command="destroy -auto-approve"
+
+devshutdown: 
+	sudo virsh list --all --name |grep ".*-dev" |xargs -I {} sudo virsh shutdown  {}
+
+devstart:
+	sudo virsh list --all --name |grep ".*-dev" |xargs -I {} sudo virsh start {}
+
+create-dev: devapply DNS-stagging
 	make -C ansible deploy_staging
 	make -C terraform deploy_vault env=staging
 	VAULT_TOKEN=$(shell cat ~/vaultUnseal/staging/rootkey) 	python ./script/generate-vault-secret
 
-create-dev-base: vagranup DNS-stagging
+create-dev-base: devapply DNS-stagging
 	make -C ansible deploy_staging_base
 
 
-destroy-dev:
-	vagrant destroy --force
 
 serve:
 	mkdocs serve
@@ -31,9 +38,9 @@ serve:
 DNS-stagging: 
 	 $(eval dns := $(shell dig oscar-dev.lan.ducamps.dev +short))
 	 $(eval dns1 := $(shell dig nas-dev.lan.ducamps.dev +short))
-	 sudo  resolvectl dns virbr2 "$(dns)" "$(dns1)";sudo resolvectl domain virbr2 "~consul";sudo systemctl restart systemd-resolved.service
+	 sudo resolvectl  dns homelab_dev 192.168.2.1;sudo resolvectl domain homelab_dev "~consul";sudo resolvectl domain homelab_dev "lan.ducamps.dev";sudo systemctl restart systemd-resolved.service
 
 
 DNS-production:
-	 sudo  resolvectl dns virbr2 "";sudo resolvectl domain virbr2 "";sudo systemctl restart systemd-resolved.service
+	 sudo resolvectl domain homelab_dev "";sudo systemctl restart systemd-resolved.service
 

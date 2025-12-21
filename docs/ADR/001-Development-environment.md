@@ -33,3 +33,23 @@ instead to build vagrant VM in a molecule playbooke we only use a vagrant file t
 ## Consequences
 
 migrate molecule provissioning on dedicated vagrant file
+
+
+# Vagrant obsolecence
+
+##  Context
+
+Vagrant is  natively build  for virtualbox we need to use libvirt plugin to  use qemu provider.
+Morever I meet often some issue with plugins on archlinux update.
+I would like migrate my dev workspace creation to terraform which is more generic and more maintain than vagrant.
+
+##  Decision
+
+Migrate dev workspace creation to terraform with libvirt provider.
+
+## Consequences
+
+Need to create a qemu archlinux image to provision machine and deploy ansible role on it without manual action replacing vagrant box download.
+This image will be create with packer like hetzner production image.
+with that I will be autonome for image update.
+
