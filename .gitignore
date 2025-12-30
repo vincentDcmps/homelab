@@ -38,6 +38,7 @@ override.tf.json
 terraform.rc
 site
 
+packer/output-archlinux-libvirtd  
 
 .vagrant
 go.work
