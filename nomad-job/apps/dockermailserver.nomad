@@ -16,7 +16,6 @@ job "dockermailserver" {
   }
   group "dockermailserver" {
     network {
-      mode = "host"
       port "smtp" {
         to = 25
       }
