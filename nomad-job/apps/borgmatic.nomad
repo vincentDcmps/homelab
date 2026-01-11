@@ -57,8 +57,8 @@ BORG_PASSPHRASE= {{.Data.data.BORG_PASSPHRASE}}
       }
       template {
         data= <<EOH
-0 2 * * * PATH=$PATH:/usr/local/bin /usr/local/bin/borgmatic create prune compact --verbosity 1
-0 23 1 * * PATH=$PATH:/usr/local/bin /usr/local/bin/borgmatic  check
+0 2 * * * PATH=$PATH:/usr/local/bin /usr/local/bin/borgmatic create prune  --verbosity 1
+0 23 1 * * PATH=$PATH:/usr/local/bin /usr/local/bin/borgmatic  check compact
           EOH
         destination = "local/borgmatic.d/crontab.txt"
       }
