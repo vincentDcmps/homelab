@@ -57,7 +57,7 @@ job "authelia" {
               ]
       }
       config {
-        image = "authelia/authelia:4.39"
+        image = "authelia/authelia:4.39.14"
         ports = ["authelia"]
         args = [
           "--config",
