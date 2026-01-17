@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v4
-    - uses: addnab/docker-run-action@v3
+    - uses: maus007/docker-run-action-fork@v1
       with:
           image: ducampsv/nomad-image-updater:latest
           options:  --pull=always --volumes-from=${{ env.JOB_CONTAINER_NAME }} -e NID_GIT_REMOTETOKEN=${{ secrets.GITEAPAT }}
