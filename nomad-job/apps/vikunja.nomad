@@ -40,7 +40,7 @@ job "vikunja" {
         ]
       }
       config {
-        image = "docker.service.consul:5000/vikunja/vikunja:0.24.6"
+        image = "docker.service.consul:5000/vikunja/vikunja:1.0.0"
         ports = ["api", "front"]
         volumes = ["local/config.yml:/etc/vikunja/config.yml"]
       }
