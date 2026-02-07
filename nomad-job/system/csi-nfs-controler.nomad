@@ -4,7 +4,7 @@ job "csi-nfs-controller" {
     task "csi-nfs-controller" {
       driver = "docker"
       config {
-        image = "registry.k8s.io/sig-storage/nfsplugin:v4.12.1"
+        image = "registry.k8s.io/sig-storage/nfsplugin:v4.13.0"
         args = [
           "--v=5",
           "--nodeid=${attr.unique.hostname}",
