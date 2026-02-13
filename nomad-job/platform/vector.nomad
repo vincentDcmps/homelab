@@ -15,7 +15,7 @@ job "vector" {
     task "vector" {
       driver = "docker"
       config {
-        image = "docker.service.consul:5000/timberio/vector:0.52.0-alpine"
+        image = "docker.service.consul:5000/timberio/vector:0.53.0-alpine"
         ports = ["api"]
         volumes = [
           "/var/run/docker.sock:/var/run/docker.sock",
