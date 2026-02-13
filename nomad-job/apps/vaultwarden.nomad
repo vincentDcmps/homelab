@@ -53,7 +53,7 @@ job "vaultwarden" {
         }
       }
       config {
-        image = "docker.service.consul:5000/vaultwarden/server:1.35.2"
+        image = "docker.service.consul:5000/vaultwarden/server:1.35.3"
         ports = ["http"]
         volumes = [
           "/mnt/diskstation/nomad/vaultwarden:/data"
