@@ -1,6 +1,6 @@
 ---
 
-default_interface: eth0
+default_interface: enp1s0
 vault_iface: "{{ default_interface}}"
 ansible_host: gerard-dev.lan.ducamps.dev
 wireguard_address: "10.0.1.6/24"

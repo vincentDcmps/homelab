@@ -1,7 +1,7 @@
 ---
 
 ansible_host: merlin-dev.lan.ducamps.dev
-default_interface: eth0
+default_interface: enp1s0
 vault_iface: "{{ default_interface}}"
 wireguard_address: "10.0.1.4/24"
 wireguard_endpoint: "{{ ansible_default_ipv4.address }}"

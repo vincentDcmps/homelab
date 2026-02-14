@@ -23,6 +23,10 @@ resource "libvirt_network" "homelab" {
   }
   dns = {
     enable = "yes"
+    forwarders = [ {
+      addr ="192.168.2.2"
+      domain = "consul"
+    } ]
 
   }
   domain = {
@@ -36,6 +40,28 @@ resource "libvirt_network" "homelab" {
         start = "192.168.2.2"
         end   = "192.168.2.254"
        },
+      ]
+      hosts = [
+        {
+          name = "oscar-dev"
+          mac  = "52:54:00:ab:cd:01"
+          ip   = "192.168.2.2"
+        },
+        {
+          name = "merlin-dev"
+          mac  = "52:54:00:ab:cd:02"
+          ip   = "192.168.2.3"
+        },
+        {
+          name = "gerard-dev"
+          mac  = "52:54:00:ab:cd:03"
+          ip   = "192.168.2.4"
+        },
+        {
+          name = "nas-dev"
+          mac  = "52:54:00:ab:cd:04"
+          ip   = "192.168.2.5"
+        }
       ]
     }
   }]
@@ -60,4 +86,5 @@ module "vm" {
   memory = each.value.memory
   vcpu = each.value.vcpu
   backing_store_path = libvirt_volume.base.path
+  mac_address = each.value.mac_address
 }

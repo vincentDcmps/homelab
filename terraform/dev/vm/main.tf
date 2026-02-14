@@ -31,6 +31,9 @@ variable "disk_size" {
   type    = number
   default = 20
 }
+variable "mac_address" {
+  type    = string
+}
 
 resource "libvirt_cloudinit_disk" "init" {
   name      = "${var.hostname}-init"
@@ -152,9 +155,6 @@ resource "libvirt_domain" "dev" {
           dev = "sda"
           bus = "virtio"
         }
-        driver = {
-          type = "qcow2"
-        }
       },
       {
         source ={
@@ -175,6 +175,9 @@ resource "libvirt_domain" "dev" {
           network = {
             network=var.networkname
           }
+        }
+        mac = {
+          address = var.mac_address
         }
         model = {
           type = "virtio"
