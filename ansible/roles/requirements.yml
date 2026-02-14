@@ -18,8 +18,6 @@ roles:
   scm: git
 - src: ssh://git@git.ducamps.eu:2222/ansible-roles/msmtp.git
   scm: git
-- src: ssh://git@git.ducamps.eu:2222/ansible-roles/rsyncd.git
-  scm: git
 - src: ssh://git@git.ducamps.eu:2222/ansible-roles/system.git
   scm: git
 - src: ssh://git@git.ducamps.eu:2222/ansible-roles/user_config.git
@@ -42,7 +40,6 @@ roles:
   scm: git
 - src: git@github.com:vincentDcmps/ansible-role-nut.git
   scm: git
-- src: git@git.ducamps.eu:2222/ansible-roles/ansible-role-pureftpd.git
   scm: git
 - src: https://github.com/PowerDNS/pdns_recursor-ansible.git
 collections:

@@ -22,7 +22,5 @@
       become: true
     - role: ansible-role-nfs
       become: true
-    - role: ansible-role-pureftpd
-      become: true
     - role: vladgh.samba.server
       become: true
