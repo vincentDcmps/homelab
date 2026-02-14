@@ -36,10 +36,9 @@ roles:
   scm: git
 - src: ssh://git@git.ducamps.eu:2222/ansible-roles/ansible-user.git
   scm: git
-- src: git@github.com:vincentDcmps/ansible-role-nfs.git
+- src: ssh://git@github.com:vincentDcmps/ansible-role-nfs.git
   scm: git
-- src: git@github.com:vincentDcmps/ansible-role-nut.git
-  scm: git
+- src: ssh://git@github.com:vincentDcmps/ansible-role-nut.git
   scm: git
 - src: https://github.com/PowerDNS/pdns_recursor-ansible.git
 collections:
