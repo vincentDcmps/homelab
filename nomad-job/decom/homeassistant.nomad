@@ -71,6 +71,7 @@ job "homeassistant" {
       resources {
         cpu    = 800 # 500 MHz
         memory = 512 # 512 MB
+        max_memory = 2000
       }
     }
   }
