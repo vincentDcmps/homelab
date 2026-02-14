@@ -67,6 +67,8 @@ job "vikunja" {
       }
       template {
         data        = <<EOH
+service:
+        publicurl: https://vikunja.ducamps.eu/
 auth:
   openid:
     enabled: true
