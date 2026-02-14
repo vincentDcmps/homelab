@@ -38,7 +38,7 @@ serve:
 DNS-stagging: 
 	 $(eval dns := $(shell dig oscar-dev.lan.ducamps.dev +short))
 	 $(eval dns1 := $(shell dig nas-dev.lan.ducamps.dev +short))
-	 sudo resolvectl  dns homelab_dev 192.168.2.1;sudo resolvectl domain homelab_dev "~consul";sudo resolvectl domain homelab_dev "lan.ducamps.dev";sudo systemctl restart systemd-resolved.service
+	 sudo resolvectl  dns homelab_dev 192.168.2.1;sudo resolvectl domain homelab_dev "~consul";sudo systemctl restart systemd-resolved.service
 
 
 DNS-production:
