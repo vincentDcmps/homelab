@@ -83,8 +83,8 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # misc
 systemctl set-default multi-user.target
 useradd -m -s /bin/bash ansible
-chown  -R ansible:ansible /home/ansible/.ssh
 mkdir /home/ansible/.ssh
+chown  -R ansible:ansible /home/ansible/.ssh
 echo 'ansible ALL = (ALL) NOPASSWD:ALL' > /etc/sudoers.d/ansible
 echo '${SSH_PUBLIC_KEY}' >>  /home/ansible/.ssh/authorized_keys
 echo 'archlinux' > /etc/hostname
