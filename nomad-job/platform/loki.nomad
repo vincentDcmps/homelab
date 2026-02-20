@@ -38,7 +38,7 @@ job "loki" {
         }
       }
       config {
-        image = "docker.service.consul:5000/grafana/loki:3.6.4"
+        image = "docker.service.consul:5000/grafana/loki:3.6.6"
         ports = ["http"]
         args = [
           "-config.file",
