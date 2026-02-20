@@ -15,7 +15,7 @@ job "gitea-runner" {
       }
       driver = "docker"
       config {
-        image = "docker.service.consul:5000/gitea/act_runner:0.2.13"
+        image = "docker.service.consul:5000/gitea/act_runner:0.3.0"
         volumes = [
           "/var/run/docker.sock:/var/run/docker.sock",
           "/var/local/gitea_runner:/data",
