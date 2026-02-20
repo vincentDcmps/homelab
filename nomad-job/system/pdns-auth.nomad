@@ -35,7 +35,7 @@ job "pdns-auth" {
 
       }
       config {
-        image        = "docker.service.consul:5000/powerdns/pdns-auth-49:4.9.12"
+        image        = "docker.service.consul:5000/powerdns/pdns-auth-49:4.9.13"
         network_mode = "host"
         privileged   = true
         cap_add      = ["net_bind_service"]
