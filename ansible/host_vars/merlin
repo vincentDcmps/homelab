@@ -7,8 +7,7 @@ wireguard_address: "10.0.0.4/24"
 wireguard_endpoint: "65.21.2.14"
 wireguard_persistent_keepalive: "20"
 wireguard_byhost_allowed_ips:
-  oscar: "0.0.0.0/0"
-  bleys: "0.0.0.0/0"
+  oberon: "0.0.0.0/0"
 wireguard_allowed_ips: "10.0.0.4/32,10.0.0.3,10.0.0.5"
 
 wireguard_postup:

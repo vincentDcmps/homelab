@@ -12,7 +12,7 @@ job "dockermailserver" {
   constraint {
     attribute = "${node.class}"
     operator = "set_contains"
-    value = "cluster"
+    value = "NAS"
   }
   group "dockermailserver" {
     network {
@@ -115,24 +115,68 @@ job "dockermailserver" {
     #      policies= ["policy_name"]
     #
     #}
+    volume "dms-data" {
+      type      = "csi"
+      source    = "dms-data"
+      access_mode = "multi-node-multi-writer"
+      attachment_mode = "file-system"
+    }
+       volume "dms-config" {
+      type      = "csi"
+      source    = "dms-config"
+      access_mode = "multi-node-multi-writer"
+      attachment_mode = "file-system"
+    }
+    volume "dms-logs" {
+      type      = "csi"
+      source    = "dms-logs"
+      access_mode = "multi-node-multi-writer"
+      attachment_mode = "file-system"
+    }
+    volume "dms-state" {
+      type      = "csi"
+      source    = "dms-state"
+      access_mode = "multi-node-multi-writer"
+      attachment_mode = "file-system"
+    }
+    volume "traefik" {
+      type      = "csi"
+      source    = "traefik-data"
+      access_mode = "multi-node-multi-writer"
+      attachment_mode = "file-system"
+    }
     task "docker-mailserver" {
       driver = "docker"
       config {
         image = "ghcr.service.consul:5000/docker-mailserver/docker-mailserver:15.1.0"
         ports = ["smtp", "esmtp", "imap","rspamd"]
         volumes = [
-          "/mnt/diskstation/nomad/dms/mail-data:/var/mail",
-          "/mnt/diskstation/nomad/dms/mail-state:/var/mail-state",
-          "/mnt/diskstation/nomad/dms/mail-logs:/var/log/mail",
-          "/mnt/diskstation/nomad/dms/config:/tmp/docker-mailserver",
           "/etc/localtime:/etc/localtime",
           "local/postfix-main.cf:/tmp/docker-mailserver/postfix-main.cf",
           "local/postfix-master.cf:/tmp/docker-mailserver/postfix-master.cf",
           "local/dovecot.cf:/tmp/docker-mailserver/dovecot.cf",
-          "/mnt/diskstation/nomad/traefik/acme.json:/etc/letsencrypt/acme.json"
         ]
       }
-
+      volume_mount  {
+        volume = "dms-data"
+        destination =  "/var/mail"
+      }
+      volume_mount  {
+        volume = "dms-state"
+        destination =  "/var/mail-state"
+      }
+      volume_mount  {
+        volume = "dms-logs"
+        destination =  "/var/log/mail"
+      }
+      volume_mount  {
+        volume = "dms-config"
+        destination =  "/tmp/docker-mailserver"
+      }
+      volume_mount  {
+        volume = "traefik"
+        destination =  "/etc/letsencrypt"
+      }
       env {
         OVERRIDE_HOSTNAME = "mail.ducamps.eu"
         DMS_VMAIL_UID = 1000000
