@@ -32,7 +32,7 @@ job "node-exporter" {
     task "node-exporter" {
       driver = "docker"
       config {
-        image = "docker.service.consul:5000/prom/node-exporter:v1.10.2"
+        image = "docker.service.consul:5000/prom/node-exporter:v1.11.1"
         ports = ["http"]
         args = [
           "--web.listen-address=:${NOMAD_PORT_http}",
