@@ -184,6 +184,7 @@ job "dockermailserver" {
         SSL_TYPE= "letsencrypt"
         LOG_LEVEL="info"
         POSTMASTER_ADDRESS="vincent@ducamps.eu"
+        POSTFIX_MESSAGE_SIZE_LIMIT=30240000
         ENABLE_RSPAMD=1
         ENABLE_OPENDKIM=0
         ENABLE_OPENDMARC=0
