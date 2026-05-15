@@ -4,6 +4,10 @@ postgres_consul_service_name: db
 postgresql_databases:
   - name: ttrss
     owner: ttrss
+  - name: forjego
+    owner: forjego
+    lc_collate: en_US.UTF-8
+    lc_ctype: en_US.UTF-8
   - name: gitea
     owner: gitea
   - name: supysonic
