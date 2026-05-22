@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Nomad
-        uses: hashicorp/setup-nomad@v1.0.0
+        uses: https://github.com/hashicorp/setup-nomad@v1.0.0
       - name: Nomad deploy
         run: |
           make -C nomad-job deploy-all
