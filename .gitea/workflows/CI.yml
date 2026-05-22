@@ -35,6 +35,11 @@ jobs:
           path: ~/.cache
           restore-keys: |
             mkdocs-material-
+      - name: Install Python dependencies
+        run: |
+          pip install mkdocs-material
+          pip install .[recommended,git,imaging]
+
       - name: Build documentation
         run: |
             mkdocs build --clean --strict --verbose --site-dir homelab
@@ -47,6 +52,11 @@ jobs:
           key: ${{ secrets.PrivateKey }}
           target: /srv/http/
           source: homelab
+      - name: Save build cache
+        uses: actions/cache/save@v4
+        with:
+          key: mkdocs-material-${{ hashfiles('.cache/**') }}
+          path: ~/.cache
   nomad_lint:
     runs-on: ubuntu-latest
     steps:
