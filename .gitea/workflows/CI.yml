@@ -2,7 +2,6 @@ name: Homelab CI Workflow
 on: push
 
 env:
-  PYTHON_VERSION: 3.x
 
 
 jobs:
@@ -25,7 +24,6 @@ jobs:
       - name: Set up Python runtime
         uses: actions/setup-python@v6
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
           cache: pip
           cache-dependency-path: |
             pyproject.toml
