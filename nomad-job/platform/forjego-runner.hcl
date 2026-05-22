@@ -52,7 +52,7 @@ job "forjego-runner" {
                 uuid: {{ .Data.data.uuid }}
                 token: {{ .Data.data.token }}
                 labels:
-                  - ubuntu-latest
+                  - ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-22.04
         {{ end }}
         EOH
         destination = "local/runner-config.yml"

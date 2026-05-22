@@ -24,10 +24,7 @@ jobs:
       - name: Set up Python runtime
         uses: actions/setup-python@v6
         with:
-          cache: pip
-          cache-dependency-path: |
-            pyproject.toml
-            requirements.txt
+          python-version: '3.14.4'
       - name: Set up build cache
         uses: actions/cache/restore@v4
         with:
@@ -38,7 +35,6 @@ jobs:
       - name: Install Python dependencies
         run: |
           pip install mkdocs-material
-          pip install .[recommended,git,imaging]
 
       - name: Build documentation
         run: |
