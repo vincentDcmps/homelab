@@ -11,13 +11,10 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v4
-    - uses: https://github.com/maus007/docker-run-action@v1
-      with:
-          image: ducampsv/nomad-image-updater:latest
-          options:  --pull=always --volumes-from=${{ env.JOB_CONTAINER_NAME }} -e NID_GIT_REMOTETOKEN=${{ secrets.GITEAPAT }}
-          run: |
-            cd ${{ github.workspace }}
-            /app/nomad-image-updater update .
+    - name: download nid binaries
+      run: wget https://git.ducamps.eu/vincent/nomad-image-updater/releases/download/1.0.0/nomad-image-updater && chmod +x ./nomad-image-updater
+    - name: execute nid
+      run: NID_GIT_REMOTETOKEN=${{ secrets.GITEAPAT }}  ./nomad-image-updater update .
             
 
 
