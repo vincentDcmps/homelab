@@ -54,7 +54,7 @@ job "filebrowser" {
         ]
       }
       config {
-        image = "gtstef/filebrowser:1.3.1-stable"
+        image = "gtstef/filebrowser:1.3.3-stable"
         ports = ["http"]
         volumes = [
           "local/config.yaml:/home/filebrowser/config.yaml",
