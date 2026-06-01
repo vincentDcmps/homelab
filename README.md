@@ -7,7 +7,7 @@ this Homelab is build over Hashicorp software stack:
 - Nomad
 - Consul
 - Vault
-
+d
 ## Dev
 
 dev stack is build over vagrant box with libvirt provider
