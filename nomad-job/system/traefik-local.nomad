@@ -94,7 +94,7 @@ job "traefik-local" {
       }
       template {
         data        = <<EOH
-          HETZNER_API_KEY = "{{with secret "secrets/data/nomad/traefik-local"}}{{.Data.data.hetznerdnstoken}}{{end}}"
+          HETZNER_API_TOKEN = "{{with secret "secrets/data/nomad/traefik-local"}}{{.Data.data.hetznerdnstoken}}{{end}}"
           EOH
         destination = "secrets/gandi.env"
         env         = true
