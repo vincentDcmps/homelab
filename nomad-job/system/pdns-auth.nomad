@@ -141,7 +141,7 @@ EOH
         EOH
       }
       config {
-        image        = "docker.service.consul:5000/osixia/keepalived:2.0.20"
+        image        = "docker.service.consul:5000/osixia/keepalived:2.3.4"
         network_mode = "host"
         cap_add = [
           "NET_ADMIN",
