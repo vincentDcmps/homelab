@@ -130,7 +130,7 @@ EOH
       env {
         KEEPALIVED_ROUTER_ID   = "52"
         KEEPALIVED_STATE       = "MASTER"
-        KEEPALIVED_VIRTUAL_IPS = "#PYTHON2BASH:['192.168.1.5','192.168.1.6']"
+        KEEPALIVED_VIRTUAL_IPS = "192.168.1.5 192.168.1.6"
       }
       template {
         destination = "local/env.yaml"
