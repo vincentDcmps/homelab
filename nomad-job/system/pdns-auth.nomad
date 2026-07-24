@@ -88,7 +88,7 @@ include-dir=/etc/powerdns/pdns.d
 
       driver = "docker"
       config {
-        image        = "docker.service.consul:5000/powerdns/pdns-recursor-52:5.2.11"
+        image        = "docker.service.consul:5000/powerdns/pdns-recursor-52:5.2.12"
         network_mode = "host"
         volumes = [
           "local/recursor.conf:/etc/powerdns/recursor.conf",
