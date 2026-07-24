@@ -130,7 +130,7 @@ job "forjego" {
         ]
       }
       config {
-        image = "ghcr.service.consul:5000/techarohq/anubis:v1.25.0"
+        image = "ghcr.service.consul:5000/techarohq/anubis:v1.26.0"
         ports = [
           "anubis"
         ]
