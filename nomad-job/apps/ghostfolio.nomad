@@ -50,7 +50,7 @@ job "ghostfolio" {
         ]
       }
       config {
-        image = "docker.service.consul:5000/ghostfolio/ghostfolio:3.32.0"
+        image = "docker.service.consul:5000/ghostfolio/ghostfolio:3.37.0"
         ports = ["http"]
         volumes = [
         ]
