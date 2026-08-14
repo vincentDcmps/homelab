@@ -53,7 +53,7 @@ job "gitea" {
         ]
       }
       config {
-        image = "docker.service.consul:5000/gitea/gitea:1.26"
+        image = "docker.service.consul:5000/gitea/gitea:1.27"
         ports = [
           "http",
           "ssh"
