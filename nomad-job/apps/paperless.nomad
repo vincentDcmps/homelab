@@ -67,7 +67,7 @@ job "paperless" {
         }
       }
       config {
-        image = "ghcr.service.consul:5000/paperless-ngx/paperless-ngx"
+        image = "ghcr.service.consul:5000/paperless-ngx/paperless-ngx:3.0"
         ports = ["http"]
         volumes = [
           "/mnt/diskstation/nomad/paperless-ng/media:/usr/src/paperless/media",
@@ -93,6 +93,7 @@ job "paperless" {
 
       template {
         data        = <<EOH
+          PAPERLESS_SECRET_KEY= {{ with secret "secrets/data/nomad/paperless"}}{{.Data.data.secret_key }}{{end}}
           PAPERLESS_DBPASS= {{ with secret "secrets/data/database/paperless"}}{{.Data.data.password }}{{end}}
           EOH
         destination = "secrets/paperless.env"
