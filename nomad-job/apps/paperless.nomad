@@ -67,7 +67,7 @@ job "paperless" {
         }
       }
       config {
-        image = "ghcr.service.consul:5000/paperless-ngx/paperless-ngx:3.0"
+        image = "ghcr.service.consul:5000/paperless-ngx/paperless-ngx:3.1"
         ports = ["http"]
         volumes = [
           "/mnt/diskstation/nomad/paperless-ng/media:/usr/src/paperless/media",
