@@ -148,7 +148,7 @@ job "dockermailserver" {
     task "docker-mailserver" {
       driver = "docker"
       config {
-        image = "ghcr.service.consul:5000/docker-mailserver/docker-mailserver:15.1.0"
+        image = "ghcr.service.consul:5000/docker-mailserver/docker-mailserver:16.0.0"
         ports = ["smtp", "esmtp", "imap","rspamd"]
         volumes = [
           "/etc/localtime:/etc/localtime",
