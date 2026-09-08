@@ -71,7 +71,7 @@ job "immich" {
         destination = "/photo"
       }
       config {
-        image   = "ghcr.service.consul:5000/immich-app/immich-server:v2.7.5"
+        image   = "ghcr.service.consul:5000/immich-app/immich-server:v3.1.0"
         ports   = ["http"]
         volumes = [
           "/etc/localtime:/etc/localtime"
