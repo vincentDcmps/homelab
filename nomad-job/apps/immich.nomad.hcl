@@ -71,7 +71,7 @@ job "immich" {
         destination = "/photo"
       }
       config {
-        image   = "ghcr.service.consul:5000/immich-app/immich-server:v2.7.5"
+        image   = "ghcr.service.consul:5000/immich-app/immich-server:v3.1.0"
         ports   = ["http"]
         volumes = [
           "/etc/localtime:/etc/localtime"
@@ -108,7 +108,7 @@ job "immich" {
         destination = "/cache"
       }
       config {
-        image = "ghcr.service.consul:5000/immich-app/immich-machine-learning:v2.7.5"
+        image = "ghcr.service.consul:5000/immich-app/immich-machine-learning:v3.1.0"
         ports = ["machinelearning"]
       }
 
@@ -135,7 +135,7 @@ job "immich" {
     task "redis" {
       driver = "docker"
       config {
-        image="docker.service.consul:5000/library/redis:8.8-alpine"
+        image="docker.service.consul:5000/library/redis:8.10-alpine"
         ports = ["redis"]
       }
       resources {
