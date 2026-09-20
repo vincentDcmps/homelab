@@ -57,7 +57,7 @@ job "homeassistant" {
         }
       }
       config {
-        image        = "docker.service.consul:5000/homeassistant/home-assistant:stable"
+        image        = "docker.service.consul:5000/homeassistant/home-assistant:2026.9"
         ports        = ["http", "coap"]
         privileged   = "true"
         network_mode = "host"
