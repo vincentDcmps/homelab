@@ -34,7 +34,7 @@ job "forjego-runner" {
       }
       driver = "docker"
       config {
-        image = "data.forgejo.org/forgejo/runner:12"
+        image = "data.forgejo.org/forgejo/runner:13"
         volumes = [
           "/var/local/forjego_runner:/data",
         ]
