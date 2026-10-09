@@ -45,7 +45,7 @@ job "jellyfin" {
         ]
       }
       config {
-        image = "docker.service.consul:5000/jellyfin/jellyfin:12.1"
+        image = "docker.service.consul:5000/jellyfin/jellyfin:12.2"
         ports = ["http"]
         volumes = [
           "/mnt/diskstation/nomad/jellyfin/config:/config",
