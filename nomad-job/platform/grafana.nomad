@@ -76,7 +76,7 @@ EOH
       }
       resources {
         memory = 250
-        max_merory = 500
+         memory_max = 500
       }
     }
   }
