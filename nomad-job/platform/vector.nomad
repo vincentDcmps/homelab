@@ -45,7 +45,6 @@ job "vector" {
           [api]
             enabled = true
             address = "0.0.0.0:8686"
-            playground = true
           [sources.logs]
             type = "docker_logs"
             exclude_containers= ["loki"]
